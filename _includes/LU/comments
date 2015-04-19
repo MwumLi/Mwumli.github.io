@@ -1,0 +1,16 @@
+{% if site.LU.comments.provider and page.comments != false %}
+
+{% case site.LU.comments.provider %}
+{% when "disqus" %}
+  {% include LU/comments-providers/disqus %}
+{% when "livefyre" %}
+  {% include LU/comments-providers/livefyre %}
+{% when "intensedebate" %}
+  {% include LU/comments-providers/intensedebate %}
+{% when "facebook" %}
+  {% include LU/comments-providers/facebook %}
+{% when "custom" %}
+  {% include custom/comments %}
+{% endcase %}
+
+{% endif %}

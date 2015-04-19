@@ -1,0 +1,28 @@
+{% comment %}<!--
+The list_posts include show a list ,which include the posts in category or tag.
+Usage:
+	1) assign the 'list_posts' variable to a vaild array of posts	
+	2) include LU/list_posts
+	eg1-->category
+	<ul>
+    {% assign list_posts = site.categories[1] %}
+    {% include LU/list_posts %}
+	</ul>	
+	*************************************************
+	eg2-->tag
+	<ul>
+	{% assign list_posts = site.tags[1] %}
+	{% include LU/list_posts %}
+	</ul>
+-->{% endcomment %}
+
+{% if site.LU.list_posts.provider == "custom" %}
+	{% include custom/list_posts %}
+{% else %}
+	{% for post in list_posts %}
+
+		<li><span>{{ post.date | date: "%Y-%m-%d" }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+
+	{% endfor %}
+{% endif %}
+{% assign list_posts = nil %}

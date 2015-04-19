@@ -1,0 +1,32 @@
+{% comment %}<!--
+The pages_list include is a listing helper.
+Usage:
+  1) assign the 'pages_list' variable to a valid array of pages or posts.
+  2) include LU/pages_list
+  example:
+    <ul>
+  	  {% include LU/pages_list %}
+  	</ul>
+  	
+-->{% endcomment %}
+
+
+
+  {% assign pages_list = site.pages %}  
+  {% capture this_year %}{{ site.time | date: "%Y" }}{% endcapture %}	
+  {% assign the_url = nil %}
+  {% assign the_title = nil %}
+  {% for node in pages_list %}
+	  
+	  {% if node.group == this_year %}
+  	 	{% capture the_url %}{{ node.url }}{% endcapture %}	
+      	{% capture the_title %}{{ node.title }}{% endcapture %}	
+	  {% endif %}			
+
+  {% endfor %}
+
+  {% if the_url != null %}
+  		<li><a href="{{ BASE_PATH }}{{the_url}}">{{the_title}}</a></li>
+  {% endif %}
+{% assign pages_list = nil %}
+{% assign group = nil %}

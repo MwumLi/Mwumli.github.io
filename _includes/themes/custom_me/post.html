@@ -1,0 +1,38 @@
+<div class="page-header">
+	<h1>{{ page.title }} <small>{{ page.tagline }}</small></h1>
+	<div id="article_header">
+		{% assign cur_category = page.categories %}
+		{% assign cur_tag = page.tags %}
+		<div><span>{{ page.date | date:"%Y-%m-%d" }}</span> | <span>发布:</span> Liluo | <span>分类: </span>
+		<a href="{{ BASE_PATH }}{{ site.LU.categories_path }}#{{ cur_category[0] }}-ref">{{cur_category[0]}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		| <span>标签: </span>
+			{% for tag in cur_tag %}
+        	<a href="{{ BASE_PATH }}{{ site.LU.tags_path }}#{{ tag }}-ref">{{ tag }}</a>
+    		{% endfor %}
+		</div>
+		{% assign cur_category = nil %}
+		{% assign cur_tag = nil %}
+	</div>
+</div>
+
+<div id="page-content">
+    {{ content }}
+    <hr>
+    <div class="pagination">
+      <ul>
+      {% if page.previous %}
+        <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr;上一篇：{{page.previous.title}}</a></li>
+      {% else %}
+        <li class="prev-disabled"><a>&larr;没了： 亲,还没开始呢</a></li>
+      {% endif %}
+        <li class="archive"><a href="{{ BASE_PATH }}{{ site.LU.archive_path }}">所有文章</a></li>
+      {% if page.next %}
+        <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">下一篇：{{ page.next.title }}&rarr;</a></li>
+      {% else %}
+        <li class="next-disabled"><a>没了：让时间加速吧&rarr;</a>
+      {% endif %}
+      </ul>
+    </div>
+    <hr>
+    {% include LU/comments %}
+ </div>
