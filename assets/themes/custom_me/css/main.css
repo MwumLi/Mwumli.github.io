@@ -532,20 +532,14 @@ ul#markdown-toc li {
 	position: fixed;
 	right: 15%;
 	bottom: 20px;
-	cursor:pointer;
-}
-
-.arrow-me {
-	background-color: #002b36; /* #666 */
-	width: .6em;
-	height: .8em;
-	left: 0.1em
-}
-.arrow-me:after {
-	left: -.5em;
-	top: -1.6em;
-	border-width: .8em;
-	border-color: transparent transparent #002b36 transparent; /* #666 */
+	cursor:pointer;  
+	border: 1px solid yellow;
+	width: 30px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+    text-align: center;
+	border-radius: 0.5em;
+	z-index: 101
 }
 
 
