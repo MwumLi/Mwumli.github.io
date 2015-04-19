@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "vim some operations"
+title: "vim的一些操作"
 description: ""
 category: 记录
 tags: [vim,operations,linux]
@@ -136,6 +136,7 @@ tags: [vim,operations,linux]
 
 
 ## vim加密文件
+
 Command mode下使用:X命令为文件设定一个密码  
 
 	:X
@@ -188,7 +189,7 @@ Vim 并不具备检验密码正确性的机制 (这一点使得破译密码更�
     		
 		:sp [file]
 
-[ ]代表可选，file是可选的  
+`[ ]`代表可选，file是可选的  
 若是不输入file，则分割后的创建窗口显示当前窗口文件  
 若是输入file,则分割后的窗口打开文件file
 

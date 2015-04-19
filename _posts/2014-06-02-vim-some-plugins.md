@@ -19,7 +19,7 @@ tags: [vim,plugin, linux]
 TagList是一个标签浏览器  
 所谓标签，就是那些具有表示意义的标示符，像变量，函数名，宏等  
 TagList通过一个简单窗口，展示了当前文件下的所有相关的标签  
-`PS`:__TagsList依赖于ctags产生的tags文件__  
+`PS`: __TagsList依赖于ctags产生的tags文件__  
 
 #### 添加到Vundle管理
 	
@@ -38,6 +38,7 @@ TagList通过一个简单窗口，展示了当前文件下的所有相关的标�
 	nmap <leader>tl :Tlist<CR>
 
 #### 使用
+
 * 打开Taglist窗口
 
 		:Tlist	或者 	使用定义的快捷键 '\+t+l'
@@ -53,7 +54,9 @@ TagList通过一个简单窗口，展示了当前文件下的所有相关的标�
 原型结果会显示在Vim命令行  
 
 ### echofunc
+
 #### 简述  
+
 echofunc可以帮助我们在插入函数的时候,提示当前输入函数的原型  
 提示结果显示在command line里  
 
@@ -62,6 +65,7 @@ echofunc可以帮助我们在插入函数的时候,提示当前输入函数的�
 	Plugin 'mbbill/echofunc'
 
 #### 使用
+
 需要tags文件的支持, 并且在创建tags文件的时候要加选项"--fields=+lS"（OmniCppComplete创建的tag文件也能用）  
 整个创建tags文件的命令如下:  
 
@@ -76,7 +80,9 @@ echofunc可以帮助我们在插入函数的时候,提示当前输入函数的�
 那么当你把鼠标放在函数名上的时候会有一个tip窗口弹出, 该窗口中也会有函数的声明  
 
 ### WinManager
+
 #### 简述
+
 WinManager是一个窗口管理器   
 在Vim中，通常使用其管理文件浏览器(netrw)和缓冲区(buffer)  
 2.0以上的版本还可以管理其他IDE类型插件,不过，需要我们在插件中增加一些辅助变量和hook来支持WinManager  
@@ -164,7 +170,9 @@ minibufexpl,一个缓冲区显示器，假如仅仅看它的效果，更像是�
 ---  
 
 ### Powerline
+
 #### 简述  
+
 Powerline,一个终极Vim状态栏工具  
 
 #### 添加到Vundle管理

@@ -1,7 +1,6 @@
 ---
 layout: page
-title: Hello!
-tagline: Welcome to 李洛's blog
+title: 微尘空间
 ---
 {% include LU/setup %}
 

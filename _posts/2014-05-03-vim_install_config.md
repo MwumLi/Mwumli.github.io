@@ -7,6 +7,9 @@ tags: [vim, linux]
 ---
 {% include LU/setup %}
 
+* here's toc
+{:toc}
+
 ## Debian/ubuntu下安装
 
 	$sudo apt-get install vim
@@ -89,3 +92,5 @@ vim系统级配置文件/usr/share/vim/vimrc
         
         "语法高亮,syntax off 取消语法高亮
         syntax on
+
+
