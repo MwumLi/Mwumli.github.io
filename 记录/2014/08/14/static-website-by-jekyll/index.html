@@ -161,6 +161,7 @@
 </code></pre>
 
 <h3 id="jekyll-1">Jekyll的使用</h3>
+
 <p>一个获取最简单 Jekyll 模板并生成静态站点的方法</p>
 
 <pre><code>$ jekyll new myblog
@@ -186,6 +187,7 @@ Configuration file: /home/temp/myblog/_config.yml
 <p>就是这么简单。从现在开始，你可以通过创建文章、改变头信息来控制模板和输出、修改 Jekyll 设置来使你的站点变得更有趣～</p>
 
 <h4 id="jekyll-2">运行jekyll开发服务器</h4>
+
 <p>jekyll使用一下命令，将会运行一个服务器，用来在本地查看你的静态站点<br />
 类似于在本地搭建的apache服务器，命令如下：</p>
 
@@ -208,8 +210,10 @@ Configuration file: /home/temp/myblog/_config.yml
 </code></pre>
 
 <h3 id="jekyll-3">Jekyll的配置</h3>
-<p>#### 使用RDiscount来渲染md文档<br />
-如果你希望使用RDiscount来渲染markdown,而不是Maruku,只要确保RDiscount被正确的安装</p>
+
+<h4 id="rdiscountmd">使用RDiscount来渲染md文档</h4>
+
+<p>如果你希望使用RDiscount来渲染markdown,而不是Maruku,只要确保RDiscount被正确的安装</p>
 
 <pre><code>$ sudo gem install rdiscount  
 </code></pre>
@@ -225,6 +229,7 @@ Configuration file: /home/temp/myblog/_config.yml
 </code></pre>
 
 <h4 id="pygments">Pygments来实现代码高亮</h4>
+
 <p>如果你是一个程序员，那么你一定希望你的文章中代码高亮<br />
 不错，已经有好的解决办法了：通过 highlight 标签实现代码高亮<br />
 但在此之前，你需要首先安装 Pygments</p>
@@ -233,6 +238,7 @@ Configuration file: /home/temp/myblog/_config.yml
 </code></pre>
 
 <h5 id="highlight">在文章中引用highlight标签</h5>
+
 <ol>
   <li>
     <p>使用pygmentize生成高亮CSS文件</p>

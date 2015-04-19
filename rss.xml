@@ -5,8 +5,8 @@
         <description>花开的声音 - Liluo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-04-19T13:41:35+08:00</lastBuildDate>
-        <pubDate>2015-04-19T13:41:35+08:00</pubDate>
+        <lastBuildDate>2015-04-19T15:11:44+08:00</lastBuildDate>
+        <pubDate>2015-04-19T15:11:44+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -1122,6 +1122,7 @@ $ git push origin master
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;jekyll-1&quot;&gt;Jekyll的使用&lt;/h3&gt;
+
 &lt;p&gt;一个获取最简单 Jekyll 模板并生成静态站点的方法&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ jekyll new myblog
@@ -1147,6 +1148,7 @@ Configuration file: /home/temp/myblog/_config.yml
 &lt;p&gt;就是这么简单。从现在开始，你可以通过创建文章、改变头信息来控制模板和输出、修改 Jekyll 设置来使你的站点变得更有趣～&lt;/p&gt;
 
 &lt;h4 id=&quot;jekyll-2&quot;&gt;运行jekyll开发服务器&lt;/h4&gt;
+
 &lt;p&gt;jekyll使用一下命令，将会运行一个服务器，用来在本地查看你的静态站点&lt;br /&gt;
 类似于在本地搭建的apache服务器，命令如下：&lt;/p&gt;
 
@@ -1169,8 +1171,10 @@ Configuration file: /home/temp/myblog/_config.yml
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;jekyll-3&quot;&gt;Jekyll的配置&lt;/h3&gt;
-&lt;p&gt;#### 使用RDiscount来渲染md文档&lt;br /&gt;
-如果你希望使用RDiscount来渲染markdown,而不是Maruku,只要确保RDiscount被正确的安装&lt;/p&gt;
+
+&lt;h4 id=&quot;rdiscountmd&quot;&gt;使用RDiscount来渲染md文档&lt;/h4&gt;
+
+&lt;p&gt;如果你希望使用RDiscount来渲染markdown,而不是Maruku,只要确保RDiscount被正确的安装&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ sudo gem install rdiscount  
 &lt;/code&gt;&lt;/pre&gt;
@@ -1186,6 +1190,7 @@ Configuration file: /home/temp/myblog/_config.yml
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&quot;pygments&quot;&gt;Pygments来实现代码高亮&lt;/h4&gt;
+
 &lt;p&gt;如果你是一个程序员，那么你一定希望你的文章中代码高亮&lt;br /&gt;
 不错，已经有好的解决办法了：通过 highlight 标签实现代码高亮&lt;br /&gt;
 但在此之前，你需要首先安装 Pygments&lt;/p&gt;
@@ -1194,6 +1199,7 @@ Configuration file: /home/temp/myblog/_config.yml
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h5 id=&quot;highlight&quot;&gt;在文章中引用highlight标签&lt;/h5&gt;
+
 &lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;使用pygmentize生成高亮CSS文件&lt;/p&gt;
@@ -1231,32 +1237,46 @@ Configuration file: /home/temp/myblog/_config.yml
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;建站开始&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#git&quot; id=&quot;markdown-toc-git&quot;&gt;选择你正在使用的git客户端&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#hello-world&quot; id=&quot;markdown-toc-hello-world&quot;&gt;Hello World&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#pushgithub&quot; id=&quot;markdown-toc-pushgithub&quot;&gt;push你的项目到github&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#github-for-windows-or-mac&quot; id=&quot;markdown-toc-github-for-windows-or-mac&quot;&gt;GitHub for Windows or Mac&lt;/a&gt;            &lt;ul&gt;
-              &lt;li&gt;&lt;a href=&quot;#createindexhtml&quot; id=&quot;markdown-toc-createindexhtml&quot;&gt;Create一个index.html文件&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#commit--sync&quot; id=&quot;markdown-toc-commit--sync&quot;&gt;commit &amp;amp;&amp;amp; Sync&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#user-or-organization-site&quot; id=&quot;markdown-toc-user-or-organization-site&quot;&gt;User or organization Site&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#githubrepository&quot; id=&quot;markdown-toc-githubrepository&quot;&gt;&lt;a href=&quot;https://github.com/new&quot; title=&quot;新建一个GitHub仓库&quot;&gt;创建一个仓库&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#git&quot; id=&quot;markdown-toc-git&quot;&gt;选择你正在使用的git客户端&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#terimal&quot; id=&quot;markdown-toc-terimal&quot;&gt;Terimal(终端)&lt;/a&gt;                &lt;ul&gt;
+                  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;克隆刚创建的仓库&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;#hello-world&quot; id=&quot;markdown-toc-hello-world&quot;&gt;Hello World&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;#pushgithub&quot; id=&quot;markdown-toc-pushgithub&quot;&gt;push你的项目到github&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#github-for-windows-or-mac&quot; id=&quot;markdown-toc-github-for-windows-or-mac&quot;&gt;GitHub for Windows or Mac&lt;/a&gt;                &lt;ul&gt;
+                  &lt;li&gt;&lt;a href=&quot;#clone&quot; id=&quot;markdown-toc-clone&quot;&gt;Clone仓库&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;#createindexhtml&quot; id=&quot;markdown-toc-createindexhtml&quot;&gt;Create一个index.html文件&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;#commit--sync&quot; id=&quot;markdown-toc-commit--sync&quot;&gt;commit &amp;amp;&amp;amp; Sync&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;未知区域&lt;/a&gt;&lt;/li&gt;
             &lt;/ul&gt;
           &lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;未知区域&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;浏览你的网站吧&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;浏览你的网站吧&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#generate-a-site&quot; id=&quot;markdown-toc-generate-a-site&quot;&gt;半路出家(Generate a Site)&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#automatic-generator&quot; id=&quot;markdown-toc-automatic-generator&quot;&gt;使用Automatic Generator&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;添加内容&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;选择一个主题&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#project-site&quot; id=&quot;markdown-toc-project-site&quot;&gt;project Site&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#generate-a-site&quot; id=&quot;markdown-toc-generate-a-site&quot;&gt;半路出家(Generate a Site)&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#repository-settings&quot; id=&quot;markdown-toc-repository-settings&quot;&gt;Repository Settings&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#automatic-generator&quot; id=&quot;markdown-toc-automatic-generator&quot;&gt;使用Automatic Generator&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;添加内容&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;选择一个主题&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#start-from-scratch&quot; id=&quot;markdown-toc-start-from-scratch&quot;&gt;白手起家(Start from scratch)&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#ph-pages&quot; id=&quot;markdown-toc-ph-pages&quot;&gt;创建一个ph-pages分支&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#section-8&quot; id=&quot;markdown-toc-section-8&quot;&gt;使其成为默认分支&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#indexhtml&quot; id=&quot;markdown-toc-indexhtml&quot;&gt;创建一个index.html&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#hello-world-1&quot; id=&quot;markdown-toc-hello-world-1&quot;&gt;Hello World&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#commit&quot; id=&quot;markdown-toc-commit&quot;&gt;commit文件&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-9&quot; id=&quot;markdown-toc-section-9&quot;&gt;查看你的项目站点&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#start-from-scratch&quot; id=&quot;markdown-toc-start-from-scratch&quot;&gt;白手起家(Start from scratch)&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;使其成为默认分支&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#indexhtml&quot; id=&quot;markdown-toc-indexhtml&quot;&gt;创建一个index.html&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#hello-world-1&quot; id=&quot;markdown-toc-hello-world-1&quot;&gt;Hello World&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#commit&quot; id=&quot;markdown-toc-commit&quot;&gt;commit文件&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-8&quot; id=&quot;markdown-toc-section-8&quot;&gt;查看你的项目站点&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -1284,16 +1304,22 @@ Configuration file: /home/temp/myblog/_config.yml
 &lt;p&gt;好了，该做出你的选择了…&lt;/p&gt;
 
 &lt;h2 id=&quot;section-2&quot;&gt;建站开始&lt;/h2&gt;
+
 &lt;hr /&gt;
-&lt;p&gt;### User or organization Site&lt;br /&gt;
-—
-#### &lt;a href=&quot;https://github.com/new&quot; title=&quot;新建一个GitHub仓库&quot;&gt;创建一个仓库&lt;/a&gt;&lt;br /&gt;
-从&lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub 首页&quot;&gt;GitHub&lt;/a&gt;开始，&lt;a href=&quot;https://github.com/new&quot; title=&quot;新建一个GitHub仓库&quot;&gt;创建&lt;/a&gt;一个名为&lt;strong&gt;username.github.io&lt;/strong&gt;的仓库&lt;br /&gt;
+
+&lt;h3 id=&quot;user-or-organization-site&quot;&gt;User or organization Site&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;githubrepository&quot;&gt;&lt;a href=&quot;https://github.com/new&quot; title=&quot;新建一个GitHub仓库&quot;&gt;创建一个仓库&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;从&lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub 首页&quot;&gt;GitHub&lt;/a&gt;开始，&lt;a href=&quot;https://github.com/new&quot; title=&quot;新建一个GitHub仓库&quot;&gt;创建&lt;/a&gt;一个名为&lt;strong&gt;username.github.io&lt;/strong&gt;的仓库&lt;br /&gt;
 其中,仓库名的第一部分&lt;em&gt;username&lt;/em&gt;是你在GitHub上的用户名(或组织名)&lt;br /&gt;
 假如&lt;em&gt;username&lt;/em&gt;和你的用户名不匹配，站点将不能工作，因此，请确保它正确&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/user-repo@2x.png&quot; alt=&quot;在GirHub上新建一个仓库&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;git&quot;&gt;选择你正在使用的git客户端&lt;/h4&gt;
+
 &lt;p&gt;这里讲述三种客户端：&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1302,15 +1328,19 @@ Configuration file: /home/temp/myblog/_config.yml
   &lt;li&gt;GitHub for Mac – 这个是Mac下的客户端&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;好了，开始咯&lt;br /&gt;
-##### Terimal(终端)&lt;br /&gt;
-###### 克隆刚创建的仓库&lt;br /&gt;
-在terimal下转到你想存放你项目的地方，然后clone这个新的仓库&lt;/p&gt;
+&lt;p&gt;好了，开始咯&lt;/p&gt;
+
+&lt;h5 id=&quot;terimal&quot;&gt;Terimal(终端)&lt;/h5&gt;
+
+&lt;h6 id=&quot;section-3&quot;&gt;克隆刚创建的仓库&lt;/h6&gt;
+
+&lt;p&gt;在terimal下转到你想存放你项目的地方，然后clone这个新的仓库&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ git clone https://github.com/username/username.github.io  
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h6 id=&quot;hello-world&quot;&gt;Hello World&lt;/h6&gt;
+
 &lt;p&gt;进入项目目录，新建一个&lt;em&gt;index.html&lt;/em&gt;,如下&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ cd username.github.io
@@ -1318,6 +1348,7 @@ $ echo &quot;Hello World&quot; &amp;gt; index.html
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h6 id=&quot;pushgithub&quot;&gt;push你的项目到github&lt;/h6&gt;
+
 &lt;p&gt;添加，提交，推送你对项目做出的改变&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ git add --all
@@ -1328,13 +1359,16 @@ $ git push
 &lt;hr /&gt;
 
 &lt;h5 id=&quot;github-for-windows-or-mac&quot;&gt;GitHub for Windows or Mac&lt;/h5&gt;
-&lt;p&gt;###### Clone仓库&lt;br /&gt;
-点击绿色的”Set up in Desktop”按钮&lt;br /&gt;
+
+&lt;h6 id=&quot;clone&quot;&gt;Clone仓库&lt;/h6&gt;
+
+&lt;p&gt;点击绿色的”Set up in Desktop”按钮&lt;br /&gt;
 当GitHub桌面app打开，保存这个项目&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/setup-in-desktop@2x.png&quot; alt=&quot;从GitHub上启动桌面app&quot; /&gt;&lt;br /&gt;
 假如app没有启动，那么双击的桌面app启动它，并且在app里克隆你的项目&lt;/p&gt;
 
 &lt;h6 id=&quot;createindexhtml&quot;&gt;Create一个index.html文件&lt;/h6&gt;
+
 &lt;p&gt;使用你最喜欢的编辑器，新建index.html,内容如下&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
@@ -1349,24 +1383,27 @@ $ git push
 &lt;p&gt;然后，添加到你的项目&lt;/p&gt;
 
 &lt;h6 id=&quot;commit--sync&quot;&gt;commit &amp;amp;&amp;amp; Sync&lt;/h6&gt;
+
 &lt;p&gt;进入你的仓库(app里),commit你的变化，然后按下sync(同步)按钮&lt;br /&gt;
 假如你在Windows下：&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/sync-windows@2x.png&quot; alt=&quot;windows提交并同步变化到项目&quot; /&gt;&lt;br /&gt;
 假如你在Mac下：&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/sync-mac.png&quot; alt=&quot;Mac提交并同步变化到项目&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;section-3&quot;&gt;未知区域&lt;/h5&gt;
+&lt;h5 id=&quot;section-4&quot;&gt;未知区域&lt;/h5&gt;
+
 &lt;p&gt;假如你不知道你的平台，额，我无能为力了&lt;/p&gt;
 
-&lt;h4 id=&quot;section-4&quot;&gt;浏览你的网站吧&lt;/h4&gt;
+&lt;h4 id=&quot;section-5&quot;&gt;浏览你的网站吧&lt;/h4&gt;
+
 &lt;p&gt;启动你的浏览器，输入&lt;em&gt;http://username.github.io&lt;/em&gt;,然后，回车，接着，404，哈哈&lt;br /&gt;
 等一下吧，新生成一个网站需要一段时间滴&lt;br /&gt;
 时间也不是很长，大概10分钟吧&lt;br /&gt;
 未来可能会做的更好，期待吧&lt;/p&gt;
 
 &lt;hr /&gt;
-&lt;p&gt;### project Site&lt;br /&gt;
-—&lt;/p&gt;
+
+&lt;h3 id=&quot;project-site&quot;&gt;project Site&lt;/h3&gt;
 
 &lt;p&gt;创建项目站点，有两种办法&lt;/p&gt;
 
@@ -1379,23 +1416,28 @@ $ git push
 说的简单点，第一种的gh-pages分支有当前项目的主分支的内容,所以被称为&lt;em&gt;半路出家&lt;/em&gt;；而第二种则没有当前项目主分支的内容，完全像一个新的仓库,所以被称为&lt;em&gt;白手起家&lt;/em&gt;(Start from scratch)&lt;/p&gt;
 
 &lt;h4 id=&quot;generate-a-site&quot;&gt;半路出家(Generate a Site)&lt;/h4&gt;
-&lt;p&gt;##### Repository Settings
-访问&lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub 首页&quot;&gt;GirHub,com&lt;/a&gt;,创建一个新的仓库或者进入一个已存在的仓库&lt;br /&gt;
+
+&lt;h5 id=&quot;repository-settings&quot;&gt;Repository Settings&lt;/h5&gt;
+
+&lt;p&gt;访问&lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub 首页&quot;&gt;GirHub,com&lt;/a&gt;,创建一个新的仓库或者进入一个已存在的仓库&lt;br /&gt;
 然后点击右手边的&lt;em&gt;Settings&lt;/em&gt;,进入项目设置页面&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/settings@2x.png&quot; alt=&quot;Repository settings&quot; /&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;automatic-generator&quot;&gt;使用Automatic Generator&lt;/h5&gt;
+
 &lt;p&gt;滑动settings页面到&lt;em&gt;GitHub Pages&lt;/em&gt;模块&lt;br /&gt;
 按下&lt;em&gt;Automatic Page Generator&lt;/em&gt;按钮&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/automatic@2x.png&quot; alt=&quot;Automatic Pages Generator&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;section-5&quot;&gt;添加内容&lt;/h5&gt;
+&lt;h5 id=&quot;section-6&quot;&gt;添加内容&lt;/h5&gt;
+
 &lt;p&gt;使用内置编辑器添加内容给你的网站&lt;br /&gt;
 假如你已经有了&lt;em&gt;README.md&lt;/em&gt;在你的项目，你可以点击右手边&lt;em&gt;Load README.md&lt;/em&gt;进行导入&lt;br /&gt;
 当你做完这些，点击&lt;em&gt;Continue to Layouts&lt;/em&gt;&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/add-content@2x.png&quot; alt=&quot;add content to your project site&quot; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&quot;section-6&quot;&gt;选择一个主题&lt;/h5&gt;
+&lt;h5 id=&quot;section-7&quot;&gt;选择一个主题&lt;/h5&gt;
+
 &lt;p&gt;在顶部的提供主题里，选择一个你喜欢的主题&lt;br /&gt;
 当你完成，点击右手边的&lt;em&gt;Publish page&lt;/em&gt;按钮&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/choose-layout@2x.png&quot; alt=&quot;choose a theme&quot; /&gt;&lt;/p&gt;
@@ -1405,12 +1447,15 @@ $ git push
 &lt;hr /&gt;
 
 &lt;h4 id=&quot;start-from-scratch&quot;&gt;白手起家(Start from scratch)&lt;/h4&gt;
-&lt;p&gt;##### 创建一个ph-pages分支&lt;br /&gt;
-在你的项目页面，点击左手边分支下拉菜单，输入&lt;code&gt;gh-pages&lt;/code&gt;,然后按下enter进行创建&lt;br /&gt;
+
+&lt;h5 id=&quot;ph-pages&quot;&gt;创建一个ph-pages分支&lt;/h5&gt;
+
+&lt;p&gt;在你的项目页面，点击左手边分支下拉菜单，输入&lt;code&gt;gh-pages&lt;/code&gt;,然后按下enter进行创建&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/create-branch@2x.png&quot; alt=&quot;create gh-pages branch&quot; /&gt;&lt;br /&gt;
 这个分支用于发布你的项目站点，你可以随时添加项目的进度等&lt;/p&gt;
 
-&lt;h5 id=&quot;section-7&quot;&gt;使其成为默认分支&lt;/h5&gt;
+&lt;h5 id=&quot;section-8&quot;&gt;使其成为默认分支&lt;/h5&gt;
+
 &lt;p&gt;假如你已经为你的项目创建了新分支&lt;em&gt;gh-pages&lt;/em&gt;&lt;br /&gt;
 进入仓库设置界面&lt;br /&gt;
 在顶部的模块，改变默认分支为&lt;em&gt;gh-pages&lt;/em&gt;&lt;br /&gt;
@@ -1418,21 +1463,25 @@ $ git push
 这一步并不是必须的，因为此步的意义只是让其看起来更像一个web site project&lt;/p&gt;
 
 &lt;h5 id=&quot;indexhtml&quot;&gt;创建一个index.html&lt;/h5&gt;
+
 &lt;p&gt;返回仓库总览界面，点击紧邻仓库名旁边的plus图标创建一个名为index.html的文件  &lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/create-file@2x.png&quot; alt=&quot;create file&quot; /&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;hello-world-1&quot;&gt;Hello World&lt;/h5&gt;
+
 &lt;p&gt;为这个index.html文件添加内容&lt;em&gt;Hello world&lt;/em&gt;&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/hello-world@2x.png&quot; alt=&quot;hello-world&quot; /&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;commit&quot;&gt;commit文件&lt;/h5&gt;
+
 &lt;p&gt;滑动到页面底部，写上提交信息，提交这个新文件&lt;br /&gt;
 &lt;img src=&quot;https://pages.github.com/images/commit-web@2x.png&quot; alt=&quot;commit-web&quot; /&gt;&lt;br /&gt;
 呼，打完收工&lt;/p&gt;
 
 &lt;p&gt;对咯，这种办法创建项目站点完全可以在Terimal,GitHub for Windows,还有GitHub for Mac下进行，请自行探索吧&lt;/p&gt;
 
-&lt;h4 id=&quot;section-8&quot;&gt;查看你的项目站点&lt;/h4&gt;
+&lt;h4 id=&quot;section-9&quot;&gt;查看你的项目站点&lt;/h4&gt;
+
 &lt;p&gt;领年终奖了&lt;br /&gt;
 启动你的浏览器，输入&lt;em&gt;http://username.github.io/repository&lt;/em&gt;&lt;br /&gt;
 &lt;em&gt;Repository&lt;/em&gt;是你的项目仓库名&lt;br /&gt;
@@ -2306,8 +2355,10 @@ B98FC99C 8FAC73EE D2B95564 DF450523
 &lt;p&gt;不过，若是大家手头方便的话，不妨支持一下正版，毕竟辛辛苦苦做一个软件不容易，何况还是这么好的软件(将来可能会更好)&lt;/p&gt;
 
 &lt;hr /&gt;
-&lt;p&gt;## 学学ST2的用法
-假如你已经安装好了ST2,那么学学怎么&lt;a href=&quot;/记录/2014/06/08/st2-some-usage/&quot; title=&quot;Sublime Text 2的使用&quot;&gt;ST2的一些操作和插件管理&lt;/a&gt;吧&lt;/p&gt;
+
+&lt;h2 id=&quot;st2-1&quot;&gt;学学ST2的用法&lt;/h2&gt;
+
+&lt;p&gt;假如你已经安装好了ST2,那么学学怎么&lt;a href=&quot;/记录/2014/06/08/st2-some-usage/&quot; title=&quot;Sublime Text 2的使用&quot;&gt;ST2的一些操作和插件管理&lt;/a&gt;吧&lt;/p&gt;
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/08/st2_install_config</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/08/st2_install_config</guid>
@@ -2495,7 +2546,7 @@ B98FC99C 8FAC73EE D2B95564 DF450523
 &lt;p&gt;TagList是一个标签浏览器&lt;br /&gt;
 所谓标签，就是那些具有表示意义的标示符，像变量，函数名，宏等&lt;br /&gt;
 TagList通过一个简单窗口，展示了当前文件下的所有相关的标签&lt;br /&gt;
-&lt;code&gt;PS&lt;/code&gt;:&lt;strong&gt;TagsList依赖于ctags产生的tags文件&lt;/strong&gt;&lt;/p&gt;
+&lt;code&gt;PS&lt;/code&gt;: &lt;strong&gt;TagsList依赖于ctags产生的tags文件&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;vundle&quot;&gt;添加到Vundle管理&lt;/h4&gt;
 
@@ -2516,6 +2567,7 @@ nmap &amp;lt;leader&amp;gt;tl :Tlist&amp;lt;CR&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&quot;section-2&quot;&gt;使用&lt;/h4&gt;
+
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;打开Taglist窗口&lt;/p&gt;
@@ -2540,8 +2592,10 @@ nmap &amp;lt;leader&amp;gt;tl :Tlist&amp;lt;CR&amp;gt;
 &lt;p&gt;原型结果会显示在Vim命令行&lt;/p&gt;
 
 &lt;h3 id=&quot;echofunc&quot;&gt;echofunc&lt;/h3&gt;
-&lt;p&gt;#### 简述&lt;br /&gt;
-echofunc可以帮助我们在插入函数的时候,提示当前输入函数的原型&lt;br /&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;简述&lt;/h4&gt;
+
+&lt;p&gt;echofunc可以帮助我们在插入函数的时候,提示当前输入函数的原型&lt;br /&gt;
 提示结果显示在command line里&lt;/p&gt;
 
 &lt;h4 id=&quot;vundle-1&quot;&gt;添加到Vundle管理&lt;/h4&gt;
@@ -2549,7 +2603,8 @@ echofunc可以帮助我们在插入函数的时候,提示当前输入函数的�
 &lt;pre&gt;&lt;code&gt;Plugin 'mbbill/echofunc'
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-3&quot;&gt;使用&lt;/h4&gt;
+&lt;h4 id=&quot;section-4&quot;&gt;使用&lt;/h4&gt;
+
 &lt;p&gt;需要tags文件的支持, 并且在创建tags文件的时候要加选项”–fields=+lS”（OmniCppComplete创建的tag文件也能用）&lt;br /&gt;
 整个创建tags文件的命令如下:&lt;/p&gt;
 
@@ -2565,8 +2620,10 @@ echofunc可以帮助我们在插入函数的时候,提示当前输入函数的�
 那么当你把鼠标放在函数名上的时候会有一个tip窗口弹出, 该窗口中也会有函数的声明&lt;/p&gt;
 
 &lt;h3 id=&quot;winmanager&quot;&gt;WinManager&lt;/h3&gt;
-&lt;p&gt;#### 简述
-WinManager是一个窗口管理器 &lt;br /&gt;
+
+&lt;h4 id=&quot;section-5&quot;&gt;简述&lt;/h4&gt;
+
+&lt;p&gt;WinManager是一个窗口管理器 &lt;br /&gt;
 在Vim中，通常使用其管理文件浏览器(netrw)和缓冲区(buffer)&lt;br /&gt;
 2.0以上的版本还可以管理其他IDE类型插件,不过，需要我们在插件中增加一些辅助变量和hook来支持WinManager&lt;/p&gt;
 
@@ -2591,7 +2648,7 @@ nmap wm :WMToggle&amp;lt;cr&amp;gt; 	&quot; 打开/关闭WinManager
 &lt;p&gt;个人觉得&lt;code&gt;let g:winManagerWindowLayout='FileExplorer,TagList'&lt;/code&gt;看起来比较好点,大气&lt;br /&gt;
 虽然&lt;code&gt;let g:winManagerWindowLayout='FileExplorer|TagList'&lt;/code&gt;可能看起来更像是一个IDE&lt;/p&gt;
 
-&lt;h4 id=&quot;section-4&quot;&gt;使用&lt;/h4&gt;
+&lt;h4 id=&quot;section-6&quot;&gt;使用&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -2623,7 +2680,7 @@ nmap wm :WMToggle&amp;lt;cr&amp;gt; 	&quot; 打开/关闭WinManager
 
 &lt;h3 id=&quot;minibufexpl&quot;&gt;minibufexpl&lt;/h3&gt;
 
-&lt;h4 id=&quot;section-5&quot;&gt;简述&lt;/h4&gt;
+&lt;h4 id=&quot;section-7&quot;&gt;简述&lt;/h4&gt;
 
 &lt;p&gt;minibufexpl,一个缓冲区显示器，假如仅仅看它的效果，更像是浏览器的多个标签页&lt;br /&gt;
 这个往往在编辑多个文件时显示&lt;/p&gt;
@@ -2641,7 +2698,7 @@ let g:miniBufExplMapCTabSwitchBufs = 1  &quot;Ubuntu不适用
 let g:miniBufExplModSelTarget = 1   &quot; 不要在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-6&quot;&gt;使用&lt;/h4&gt;
+&lt;h4 id=&quot;section-8&quot;&gt;使用&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;'Ctrl + h/j/k/l'	---&amp;gt;左/下/上/右窗口切换
 'Ctrl + Arrow'		---&amp;gt;same as 'Ctrl + h/j/k/l'
@@ -2661,7 +2718,7 @@ let g:miniBufExplModSelTarget = 1   &quot; 不要在不可编辑内容的窗口�
 let g:miniBufExplorerMoreThanOne=0 这样倒是可以解决问题，但是也引来一些新的问题(至于什么，你试试呗),所以果断启用  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-7&quot;&gt;设置快捷键&lt;/h4&gt;
+&lt;h4 id=&quot;section-9&quot;&gt;设置快捷键&lt;/h4&gt;
 
 &lt;p&gt;对WinManager设置快捷键,比如&lt;code&gt;nmap wm :WMToggle&amp;lt;cr&amp;gt;&lt;/code&gt;&lt;br /&gt;
 然后，我们只要在文件浏览器变小的时候，按动&lt;em&gt;两次wm&lt;/em&gt;即可(先关闭，在开启)&lt;br /&gt;
@@ -2672,8 +2729,10 @@ let g:miniBufExplorerMoreThanOne=0 这样倒是可以解决问题，但是也引
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;powerline&quot;&gt;Powerline&lt;/h3&gt;
-&lt;p&gt;#### 简述&lt;br /&gt;
-Powerline,一个终极Vim状态栏工具&lt;/p&gt;
+
+&lt;h4 id=&quot;section-10&quot;&gt;简述&lt;/h4&gt;
+
+&lt;p&gt;Powerline,一个终极Vim状态栏工具&lt;/p&gt;
 
 &lt;h4 id=&quot;vundle-4&quot;&gt;添加到Vundle管理&lt;/h4&gt;
 
@@ -2707,7 +2766,7 @@ set t_Co=256
 
 &lt;h3 id=&quot;markdown&quot;&gt;Markdown&lt;/h3&gt;
 
-&lt;h4 id=&quot;section-8&quot;&gt;简述&lt;/h4&gt;
+&lt;h4 id=&quot;section-11&quot;&gt;简述&lt;/h4&gt;
 
 &lt;p&gt;为vim下.md文件设置语法高亮，规则匹配,方便md文档的撰写&lt;/p&gt;
 
@@ -2725,7 +2784,7 @@ let g:vim_markdown_initial_foldlevel=1
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-9&quot;&gt;一些默认快捷键&lt;/h4&gt;
+&lt;h4 id=&quot;section-12&quot;&gt;一些默认快捷键&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;code&gt;]]&lt;/code&gt;: go to next header. &lt;code&gt;&amp;lt;Plug&amp;gt;(Markdown_MoveToNextHeader)&lt;/code&gt;&lt;/li&gt;
@@ -2751,7 +2810,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 
 &lt;h3 id=&quot;fencview&quot;&gt;fencview&lt;/h3&gt;
 
-&lt;h4 id=&quot;section-10&quot;&gt;简述&lt;/h4&gt;
+&lt;h4 id=&quot;section-13&quot;&gt;简述&lt;/h4&gt;
 
 &lt;p&gt;不同系统，不同平台下，文件编码往往不太一样&lt;br /&gt;
 故在一个系统下为gb2312的文件，放在另一个系统下以utf-8的方式打开,往往会产生乱码&lt;br /&gt;
@@ -2762,7 +2821,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 &lt;pre&gt;&lt;code&gt;Plugin `Mwumli/fencview`  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-11&quot;&gt;使用&lt;/h4&gt;
+&lt;h4 id=&quot;section-14&quot;&gt;使用&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -2781,7 +2840,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 
 &lt;h3 id=&quot;tohtml&quot;&gt;tohtml&lt;/h3&gt;
 
-&lt;h4 id=&quot;section-12&quot;&gt;简述&lt;/h4&gt;
+&lt;h4 id=&quot;section-15&quot;&gt;简述&lt;/h4&gt;
 
 &lt;p&gt;我们往往需要把我们的代码展示给别人看，但是直接copy代码，可能查看效果并不如意&lt;br /&gt;
 现在有这么一个插件，可以把你的代码转化成html,并且如在你的vim中格式那样显示(&lt;em&gt;代码高亮&lt;/em&gt;)&lt;br /&gt;
@@ -2795,7 +2854,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 &lt;pre&gt;&lt;code&gt;/usr/share/vim/vim74/autoload/tohtml.vim  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-13&quot;&gt;使用&lt;/h4&gt;
+&lt;h4 id=&quot;section-16&quot;&gt;使用&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -2821,7 +2880,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
         </item>
 
         <item>
-                <title>vim some operations</title>
+                <title>vim的一些操作</title>
                 <description>
 &lt;h2 id=&quot;vim&quot;&gt;vim编程常用命令&lt;/h2&gt;
 
@@ -2982,6 +3041,7 @@ zR  打开所有的折叠
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&quot;vim-2&quot;&gt;vim加密文件&lt;/h2&gt;
+
 &lt;p&gt;Command mode下使用:X命令为文件设定一个密码&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;:X
@@ -3052,7 +3112,7 @@ Vim 并不具备检验密码正确性的机制 (这一点使得破译密码更�
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;[ ]代表可选，file是可选的&lt;br /&gt;
+&lt;p&gt;&lt;code&gt;[ ]&lt;/code&gt;代表可选，file是可选的&lt;br /&gt;
 若是不输入file，则分割后的创建窗口显示当前窗口文件&lt;br /&gt;
 若是输入file,则分割后的窗口打开文件file&lt;/p&gt;
 
@@ -3580,6 +3640,16 @@ filetype plugin indent on    &quot; required
         <item>
                 <title>转载－只管开始做</title>
                 <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;流逝的绝大多数时光&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;奇妙的惰性&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;无法不去写，写完之后，甚为舒畅&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;清闲罪恶感&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;不仅有爱，还要有饥渴感&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#no-time-to-do&quot; id=&quot;markdown-toc-no-time-to-do&quot;&gt;一种自我蛊惑&amp;lt;—-&amp;gt;No time to do&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#just-do-it&quot; id=&quot;markdown-toc-just-do-it&quot;&gt;清空大脑，简单粗暴—&amp;gt;just do it&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;section&quot;&gt;流逝的绝大多数时光&lt;/h2&gt;
 
 &lt;p&gt;每天24小时：8小时睡觉时间，8小时工作时间，4小时饮食、回家等的时间，那么还剩余4小时呢？&lt;/p&gt;
@@ -3599,7 +3669,10 @@ filetype plugin indent on    &quot; required
 
 &lt;p&gt;但人们又有一种奇妙的惰性，不像机器那样，输满能量就能立刻开始运作：人是会贪恋舒服的动物，补充完汽油了，还不愿意出站，哪怕“我再听完加油站里这首歌吧。”&lt;/p&gt;
 
-&lt;p&gt;想读一本书，买下来；买完之后，不读，放着；时候久了，越告诉自己该读，就越不想读；每当想起，从书架上拿起，翻几页，又放回去；“我已经读过了，过几天再说”。反复的自我轻施压，有了逆反情绪，觉得这是苦差事，越不想做。&lt;/p&gt;
+&lt;p&gt;想读一本书，买下来；买完之后，不读，放着;&lt;br /&gt;
+时候久了，越告诉自己该读，就越不想读;&lt;br /&gt;
+每当想起，从书架上拿起，翻几页，又放回去:“我已经读过了，过几天再说”。&lt;br /&gt;
+反复的自我轻施压，有了逆反情绪，觉得这是苦差事，越不想做。&lt;/p&gt;
 
 &lt;h2 id=&quot;section-2&quot;&gt;无法不去写，写完之后，甚为舒畅&lt;/h2&gt;
 
@@ -3615,7 +3688,8 @@ filetype plugin indent on    &quot; required
 
 &lt;h2 id=&quot;section-3&quot;&gt;清闲罪恶感&lt;/h2&gt;
 
-&lt;p&gt;当你有选择的余地，不去做一件事时，便多少会想法子推诿；但当你被限期勒令做这件事时，你还是会推诿一阵，你会觉得“这样实在太难受了，想起来就是地狱啊”，但压力之下，便会进入一种疯狂的工作节奏。&lt;/p&gt;
+&lt;p&gt;当你有选择的余地，不去做一件事时，便多少会想法子推诿；&lt;br /&gt;
+但当你被限期勒令做这件事时，你还是会推诿一阵，你会觉得“这样实在太难受了，想起来就是地狱啊”，但压力之下，便会进入一种疯狂的工作节奏。&lt;/p&gt;
 
 &lt;p&gt;你高速劳作，极为顺手，等做完后回看才发现自己有多大的潜力，“我居然做完了！”&lt;/p&gt;
 
@@ -3623,13 +3697,15 @@ filetype plugin indent on    &quot; required
 
 &lt;p&gt;你会习惯于这种紧张而高效的岁月，甚至对自己的清闲产生罪恶感；而促使你继续劳作的，就是这种罪恶感。&lt;/p&gt;
 
-&lt;p&gt;人许多时候，就是这么种”贱骨头”：总会以为许多心结，自己无法克服；但时候到了，心理会自然把曾经厌恶的一切，归化为自己可接纳的部分，并自动从完成度上寻找快感&lt;/p&gt;
+&lt;p&gt;人许多时候，就是这么种”贱骨头”：总会以为许多心结，自己无法克服；&lt;br /&gt;
+但时候到了，心理会自然把曾经厌恶的一切，归化为自己可接纳的部分，并自动从完成度上寻找快感&lt;/p&gt;
 
 &lt;p&gt;许多工作狂大多如此，靠着连续不断的自我施压、击破压力来获得快感，终于欲罢不能。&lt;/p&gt;
 
 &lt;h2 id=&quot;section-4&quot;&gt;不仅有爱，还要有饥渴感&lt;/h2&gt;
 
-&lt;p&gt;所谓巧妙的读书方法，所谓巧妙的工作方法，许多仅仅是变着法的自我激励和自我暗示，是对心绪的谄媚，绕着弯哄自己，put your FXXX ass down in front of the desk and keep on working。&lt;/p&gt;
+&lt;p&gt;所谓巧妙的读书方法，所谓巧妙的工作方法，许多仅仅是变着法的自我激励和自我暗示，是对心绪的谄媚，绕着弯哄自己&lt;br /&gt;
+“put your FXXX ass down in front of the desk and keep on working”&lt;/p&gt;
 
 &lt;p&gt;所以许多法子，能有用于一时，却无法持续刺激自己，除了少数天才。&lt;/p&gt;
 
@@ -3663,6 +3739,20 @@ filetype plugin indent on    &quot; required
         <item>
                 <title>vim的安装与配置</title>
                 <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#debianubuntu&quot; id=&quot;markdown-toc-debianubuntu&quot;&gt;Debian/ubuntu下安装&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;编写配置文件&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim&quot; id=&quot;markdown-toc-vim&quot;&gt;查看vim做过什么&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim-1&quot; id=&quot;markdown-toc-vim-1&quot;&gt;Vim的四大模式&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#normal-mode----press-esc-to-enter&quot; id=&quot;markdown-toc-normal-mode----press-esc-to-enter&quot;&gt;Normal mode	—-	Press [Esc] to enter&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#visual-mode----press-escv-to-enter&quot; id=&quot;markdown-toc-visual-mode----press-escv-to-enter&quot;&gt;Visual mode	—-	press [Esc]+v to enter&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#insert-mode----press-escioa-to-enter&quot; id=&quot;markdown-toc-insert-mode----press-escioa-to-enter&quot;&gt;Insert mode	—-	press [Esc]+[i,o,a] to enter&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#command-line-mode----press-esc-to-enter&quot; id=&quot;markdown-toc-command-line-mode----press-esc-to-enter&quot;&gt;Command-line mode	—-	press [Esc]+[:] to enter&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim-2&quot; id=&quot;markdown-toc-vim-2&quot;&gt;vim的环境设定参数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;debianubuntu&quot;&gt;Debian/ubuntu下安装&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;$sudo apt-get install vim
@@ -3760,6 +3850,7 @@ vim系统级配置文件/usr/share/vim/vimrc&lt;br /&gt;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/05/03/vim_install_config</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/05/03/vim_install_config</guid>

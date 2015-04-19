@@ -145,7 +145,7 @@
 <p>TagList是一个标签浏览器<br />
 所谓标签，就是那些具有表示意义的标示符，像变量，函数名，宏等<br />
 TagList通过一个简单窗口，展示了当前文件下的所有相关的标签<br />
-<code>PS</code>:<strong>TagsList依赖于ctags产生的tags文件</strong></p>
+<code>PS</code>: <strong>TagsList依赖于ctags产生的tags文件</strong></p>
 
 <h4 id="vundle">添加到Vundle管理</h4>
 
@@ -166,6 +166,7 @@ nmap &lt;leader&gt;tl :Tlist&lt;CR&gt;
 </code></pre>
 
 <h4 id="section-2">使用</h4>
+
 <ul>
   <li>
     <p>打开Taglist窗口</p>
@@ -190,8 +191,10 @@ nmap &lt;leader&gt;tl :Tlist&lt;CR&gt;
 <p>原型结果会显示在Vim命令行</p>
 
 <h3 id="echofunc">echofunc</h3>
-<p>#### 简述<br />
-echofunc可以帮助我们在插入函数的时候,提示当前输入函数的原型<br />
+
+<h4 id="section-3">简述</h4>
+
+<p>echofunc可以帮助我们在插入函数的时候,提示当前输入函数的原型<br />
 提示结果显示在command line里</p>
 
 <h4 id="vundle-1">添加到Vundle管理</h4>
@@ -199,7 +202,8 @@ echofunc可以帮助我们在插入函数的时候,提示当前输入函数的�
 <pre><code>Plugin 'mbbill/echofunc'
 </code></pre>
 
-<h4 id="section-3">使用</h4>
+<h4 id="section-4">使用</h4>
+
 <p>需要tags文件的支持, 并且在创建tags文件的时候要加选项”–fields=+lS”（OmniCppComplete创建的tag文件也能用）<br />
 整个创建tags文件的命令如下:</p>
 
@@ -215,8 +219,10 @@ echofunc可以帮助我们在插入函数的时候,提示当前输入函数的�
 那么当你把鼠标放在函数名上的时候会有一个tip窗口弹出, 该窗口中也会有函数的声明</p>
 
 <h3 id="winmanager">WinManager</h3>
-<p>#### 简述
-WinManager是一个窗口管理器 <br />
+
+<h4 id="section-5">简述</h4>
+
+<p>WinManager是一个窗口管理器 <br />
 在Vim中，通常使用其管理文件浏览器(netrw)和缓冲区(buffer)<br />
 2.0以上的版本还可以管理其他IDE类型插件,不过，需要我们在插件中增加一些辅助变量和hook来支持WinManager</p>
 
@@ -241,7 +247,7 @@ nmap wm :WMToggle&lt;cr&gt; 	" 打开/关闭WinManager
 <p>个人觉得<code>let g:winManagerWindowLayout='FileExplorer,TagList'</code>看起来比较好点,大气<br />
 虽然<code>let g:winManagerWindowLayout='FileExplorer|TagList'</code>可能看起来更像是一个IDE</p>
 
-<h4 id="section-4">使用</h4>
+<h4 id="section-6">使用</h4>
 
 <ul>
   <li>
@@ -273,7 +279,7 @@ nmap wm :WMToggle&lt;cr&gt; 	" 打开/关闭WinManager
 
 <h3 id="minibufexpl">minibufexpl</h3>
 
-<h4 id="section-5">简述</h4>
+<h4 id="section-7">简述</h4>
 
 <p>minibufexpl,一个缓冲区显示器，假如仅仅看它的效果，更像是浏览器的多个标签页<br />
 这个往往在编辑多个文件时显示</p>
@@ -291,7 +297,7 @@ let g:miniBufExplMapCTabSwitchBufs = 1  "Ubuntu不适用
 let g:miniBufExplModSelTarget = 1   " 不要在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer
 </code></pre>
 
-<h4 id="section-6">使用</h4>
+<h4 id="section-8">使用</h4>
 
 <pre><code>'Ctrl + h/j/k/l'	---&gt;左/下/上/右窗口切换
 'Ctrl + Arrow'		---&gt;same as 'Ctrl + h/j/k/l'
@@ -311,7 +317,7 @@ let g:miniBufExplModSelTarget = 1   " 不要在不可编辑内容的窗口（如
 let g:miniBufExplorerMoreThanOne=0 这样倒是可以解决问题，但是也引来一些新的问题(至于什么，你试试呗),所以果断启用  
 </code></pre>
 
-<h4 id="section-7">设置快捷键</h4>
+<h4 id="section-9">设置快捷键</h4>
 
 <p>对WinManager设置快捷键,比如<code>nmap wm :WMToggle&lt;cr&gt;</code><br />
 然后，我们只要在文件浏览器变小的时候，按动<em>两次wm</em>即可(先关闭，在开启)<br />
@@ -322,8 +328,10 @@ let g:miniBufExplorerMoreThanOne=0 这样倒是可以解决问题，但是也引
 <hr />
 
 <h3 id="powerline">Powerline</h3>
-<p>#### 简述<br />
-Powerline,一个终极Vim状态栏工具</p>
+
+<h4 id="section-10">简述</h4>
+
+<p>Powerline,一个终极Vim状态栏工具</p>
 
 <h4 id="vundle-4">添加到Vundle管理</h4>
 
@@ -357,7 +365,7 @@ set t_Co=256
 
 <h3 id="markdown">Markdown</h3>
 
-<h4 id="section-8">简述</h4>
+<h4 id="section-11">简述</h4>
 
 <p>为vim下.md文件设置语法高亮，规则匹配,方便md文档的撰写</p>
 
@@ -375,7 +383,7 @@ let g:vim_markdown_initial_foldlevel=1
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 </code></pre>
 
-<h4 id="section-9">一些默认快捷键</h4>
+<h4 id="section-12">一些默认快捷键</h4>
 
 <ul>
   <li><code>]]</code>: go to next header. <code>&lt;Plug&gt;(Markdown_MoveToNextHeader)</code></li>
@@ -401,7 +409,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 
 <h3 id="fencview">fencview</h3>
 
-<h4 id="section-10">简述</h4>
+<h4 id="section-13">简述</h4>
 
 <p>不同系统，不同平台下，文件编码往往不太一样<br />
 故在一个系统下为gb2312的文件，放在另一个系统下以utf-8的方式打开,往往会产生乱码<br />
@@ -412,7 +420,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 <pre><code>Plugin `Mwumli/fencview`  
 </code></pre>
 
-<h4 id="section-11">使用</h4>
+<h4 id="section-14">使用</h4>
 
 <ul>
   <li>
@@ -431,7 +439,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 
 <h3 id="tohtml">tohtml</h3>
 
-<h4 id="section-12">简述</h4>
+<h4 id="section-15">简述</h4>
 
 <p>我们往往需要把我们的代码展示给别人看，但是直接copy代码，可能查看效果并不如意<br />
 现在有这么一个插件，可以把你的代码转化成html,并且如在你的vim中格式那样显示(<em>代码高亮</em>)<br />
@@ -445,7 +453,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 <pre><code>/usr/share/vim/vim74/autoload/tohtml.vim  
 </code></pre>
 
-<h4 id="section-13">使用</h4>
+<h4 id="section-16">使用</h4>
 
 <ul>
   <li>
@@ -469,7 +477,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
     <div class="pagination">
       <ul>
       
-        <li class="prev"><a href="/%E8%AE%B0%E5%BD%95/2014/06/02/vim-some-operations" title="vim some operations">&larr;上一篇：vim some operations</a></li>
+        <li class="prev"><a href="/%E8%AE%B0%E5%BD%95/2014/06/02/vim-some-operations" title="vim的一些操作">&larr;上一篇：vim的一些操作</a></li>
       
         <li class="archive"><a href="/pages/articles/index.html">所有文章</a></li>
       
