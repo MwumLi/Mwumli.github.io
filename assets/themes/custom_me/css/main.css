@@ -539,6 +539,7 @@ ul#markdown-toc li {
 	background-color: #002b36; /* #666 */
 	width: .6em;
 	height: .8em;
+	left: 0.1em
 }
 .arrow-me:after {
 	left: -.5em;
