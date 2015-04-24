@@ -126,6 +126,11 @@ code {
 	white-space: pre-wrap;
 	word-wrap: break-word;
 }
+p code {
+  color: yellow;
+  padding: 0.5em;  
+
+}
 
 blockquote, pre {
     padding: 0.8em;
@@ -324,19 +329,7 @@ em, i {
     font-size: 1em;
 }
 #article_header div span {
-    color: rgba(13, 214, 214, 0.99);
-    padding-left: 1em;
-}
-#article_header div a {
-    border: display;
-    padding: 0 1em 0;
-    background-color: rgba(10, 121, 5, 0.61);
-    border-radius: 15px;
-    color: white;
-    text-decoration: none;
-}
-#article_header div a:hover {
-    background-color: rgba(19, 160, 15, 0.72);
+    color: darkkhaki;
 }
 /*content*/
 #page-content {
@@ -354,19 +347,18 @@ em, i {
     float:left;
     padding: 1em;
 }
-.tag_box li a {
-    display: block;
-    border-radius: 15px;
-    padding: 6px 20px;
+a.tag {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 5px 10px;
     margin: 0 0.5px;
-    background-color: rgba(62, 38, 128, 0.51);
-    color: white;
+    background-color: rgba(0, 128, 128, 0.29);
+    color: cyan;
     text-decoration: none;
     
 }   
-.tag_box li a:hover {
-    border-color: #450e87;
-    background-color: #450e87;
+a.tag:hover {
+    background-color: teal;
 }
 .tag_box li span {
     vertical-align: super;

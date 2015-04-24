@@ -5,8 +5,8 @@
         <description>微尘 - Liluo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-04-24T15:40:09+08:00</lastBuildDate>
-        <pubDate>2015-04-24T15:40:09+08:00</pubDate>
+        <lastBuildDate>2015-04-24T20:49:28+08:00</lastBuildDate>
+        <pubDate>2015-04-24T20:49:28+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -46,7 +46,7 @@
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;检验你某个扩展是否安装，可以在你的 Apache 目录下新建文件&lt;code&gt;phpinfo.php&lt;/code&gt;:&lt;/p&gt;
+    &lt;p&gt;检验你某个扩展是否安装，可以在你的 Apache 目录下新建文件 &lt;code&gt;phpinfo.php&lt;/code&gt; :&lt;/p&gt;
 
     &lt;pre&gt;&lt;code&gt; &amp;lt;?php
      phpinfo();
@@ -54,7 +54,7 @@
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;访问此网页，使用浏览器查找功能查找你的扩展，比如&lt;code&gt;redis&lt;/code&gt;&lt;/p&gt;
+    &lt;p&gt;访问此网页，使用浏览器查找功能查找你的扩展，比如 &lt;code&gt;redis&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;如果你的扩展已经安装成功，并添加到 php 的 apache 配置文件，那么就会搜索到&lt;/p&gt;
@@ -3607,6 +3607,22 @@ filetype plugin indent on    &quot; required
         <item>
                 <title>转载-如何改变世界</title>
                 <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;改变世界，回归自身&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;是自我的呈现还是善其身，济天下?&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;艺术家—内心具现化&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;穷则独善其身，达则兼济天下&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;鱼和熊掌，兼得之&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;大道万千，殊途同归—完善自己&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;认识世界就是认识自己&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;李洛语&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-8&quot; id=&quot;markdown-toc-section-8&quot;&gt;备注&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;section&quot;&gt;改变世界，回归自身&lt;/h2&gt;
 
 &lt;p&gt;我已经见过太多嚷嚷着要改变世界的人，若问他们要改变世界什么，换来的不过是支支吾吾。&lt;br /&gt;
