@@ -5,8 +5,8 @@
         <description>微尘 - Liluo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-04-24T15:26:18+08:00</lastBuildDate>
-        <pubDate>2015-04-24T15:26:18+08:00</pubDate>
+        <lastBuildDate>2015-04-24T15:40:09+08:00</lastBuildDate>
+        <pubDate>2015-04-24T15:40:09+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -21,7 +21,7 @@
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#php-1&quot; id=&quot;markdown-toc-php-1&quot;&gt;安装并添加php扩展&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;几个扩展安装案例&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#redis-&quot; id=&quot;markdown-toc-redis-&quot;&gt;redis 扩展的安装&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#redis-redis-github&quot; id=&quot;markdown-toc-redis-redis-github&quot;&gt;redis 扩展的安装&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#mongo-&quot; id=&quot;markdown-toc-mongo-&quot;&gt;mongo 扩展的安装&lt;/a&gt;&lt;/li&gt;
           &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;待续…&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
@@ -104,7 +104,7 @@
 
 &lt;h3 id=&quot;section-2&quot;&gt;几个扩展安装案例&lt;/h3&gt;
 
-&lt;h4 id=&quot;redis-&quot;&gt;redis 扩展的安装&lt;/h4&gt;
+&lt;h4 id=&quot;redis-redis-github&quot;&gt;redis 扩展的安装&lt;sup id=&quot;fnref:redis-github&quot;&gt;&lt;a href=&quot;#fn:redis-github&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/h4&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -191,6 +191,9 @@
     &lt;/li&gt;
     &lt;li id=&quot;fn:LAMP&quot;&gt;
       &lt;p&gt;Linux+Apache+Mysql+Php, 安装请参考&lt;a href=&quot;/记录/2014/06/14/lamp-build/ LAMP环境搭建&quot;&gt;LAMP环境搭建&lt;/a&gt; &lt;a href=&quot;#fnref:LAMP&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:redis-github&quot;&gt;
+      &lt;p&gt;可参考&lt;a href=&quot;https://github.com/phpredis/phpredis#installation&quot;&gt;&lt;code&gt;&amp;lt;&lt;/code&gt;一篇来自github的安装指南-redis&lt;code&gt;&amp;gt;&lt;/code&gt;&lt;/a&gt; &lt;a href=&quot;#fnref:redis-github&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
