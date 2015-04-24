@@ -10,6 +10,7 @@ http://mwumli.github.io/index.html
 http://mwumli.github.io/rss.xml
 http://mwumli.github.io/sitemap.txt
 
+http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2015/04/24/php-extension-install
 http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/12/06/raspberrypi-install
 http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/12/05/linux-masm-built
 http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/11/05/dns

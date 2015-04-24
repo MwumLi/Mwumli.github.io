@@ -5,10 +5,200 @@
         <description>微尘 - Liluo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-04-23T07:27:40+08:00</lastBuildDate>
-        <pubDate>2015-04-23T07:27:40+08:00</pubDate>
+        <lastBuildDate>2015-04-24T15:26:18+08:00</lastBuildDate>
+        <pubDate>2015-04-24T15:26:18+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>Linux下php扩展安装</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;碎碎念&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#php&quot; id=&quot;markdown-toc-php&quot;&gt;检验php是否安装某个扩展&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;没有搜索到扩展&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#php-1&quot; id=&quot;markdown-toc-php-1&quot;&gt;安装并添加php扩展&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;几个扩展安装案例&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#redis-&quot; id=&quot;markdown-toc-redis-&quot;&gt;redis 扩展的安装&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#mongo-&quot; id=&quot;markdown-toc-mongo-&quot;&gt;mongo 扩展的安装&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;待续…&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;安装需要&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#phpize-&quot; id=&quot;markdown-toc-phpize-&quot;&gt;phpize 的安装&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;碎碎念&lt;/h2&gt;
+
+&lt;p&gt;进行简单的 web 动态网站开发，只需快速搭建一个 LAMP 环境即可&lt;/p&gt;
+
+&lt;p&gt;但有的时候还需要一些特别的功能，这时候需要安装相应扩展&lt;sup id=&quot;fnref:extension&quot;&gt;&lt;a href=&quot;#fn:extension&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;这里以 LAMP&lt;sup id=&quot;fnref:LAMP&quot;&gt;&lt;a href=&quot;#fn:LAMP&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; 环境为例&lt;/p&gt;
+
+&lt;h2 id=&quot;php&quot;&gt;检验php是否安装某个扩展&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;检验你某个扩展是否安装，可以在你的 Apache 目录下新建文件&lt;code&gt;phpinfo.php&lt;/code&gt;:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; &amp;lt;?php
+     phpinfo();
+ &amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;访问此网页，使用浏览器查找功能查找你的扩展，比如&lt;code&gt;redis&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果你的扩展已经安装成功，并添加到 php 的 apache 配置文件，那么就会搜索到&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;没有搜索到扩展&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;重启了下服务器: &lt;code&gt;sudo service apache2 restart&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;检查配置文件 &lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt; 是否正确添加扩展&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;可能没有安装成功，请检查网络，请百度，请谷歌…&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;php-1&quot;&gt;安装并添加php扩展&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载并安装下载相应扩展(请自行搜索)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; http://php.net/manual/zh/extensions.php  
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加扩展到配置文件&lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt;&lt;br /&gt;
+ (以&lt;code&gt;redis&lt;/code&gt;为例)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; [redis]
+ extension=redis.so
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;添加文件末尾即可&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;重启web服务器&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; sudo service apache2 restart
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;几个扩展安装案例&lt;/h3&gt;
+
+&lt;h4 id=&quot;redis-&quot;&gt;redis 扩展的安装&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用git下载&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ git clone https://github.com/phpredis/phpredis.git
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;编译扩展模块,需要&lt;code&gt;phpize&lt;/code&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ phpize
+ $ ./configure [--enable-redis-igbinary]
+ $ make &amp;amp;&amp;amp; make install
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这样 redis 就被安装在合适的位置&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加扩展到配置文件&lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; [redis]                            
+ extension=redis.so
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;重启web服务器&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;mongo-&quot;&gt;mongo 扩展的安装&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载，编译，安装，查看:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ git clone https://github.com/mongodb/mongo-php-driver.git
+ $ cd mongo-php-driver
+ $ phpize
+ $ ./configure
+ $ sudo make install
+ ...
+ Installing shared extensions:     
+ /usr/lib/php5/20121212+lfs/
+ $ ls /usr/lib/php5/20121212+lfs/
+ json.so   mysqli.so  opcache.so    pdo.so       redis.so
+ mongo.so  mysql.so   pdo_mysql.so  readline.so
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;可以看到&lt;code&gt;mongo.so&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加配置 &lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt;:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; [mongo.so]
+ extension=mongo.so
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;重启web服务器&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;待续…&lt;/h4&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;安装需要&lt;/h3&gt;
+
+&lt;h4 id=&quot;phpize-&quot;&gt;phpize 的安装&lt;/h4&gt;
+
+&lt;p&gt;用 C 开发 PHP 扩展的时候如果用动态链接库的方式编译扩展模块，需要用到 &lt;code&gt;phpize&lt;/code&gt;&lt;br /&gt;
+这个工具在使用 &lt;code&gt;apt-get install php5&lt;/code&gt; 默认情况也是没安装的&lt;br /&gt;
+可以执行以下命令:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install php5-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:extension&quot;&gt;
+      &lt;p&gt;php扩展列表:&lt;a href=&quot;http://php.net/manual/zh/extensions.php&quot;&gt;http://php.net/manual/zh/extensions.php&lt;/a&gt; &lt;a href=&quot;#fnref:extension&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:LAMP&quot;&gt;
+      &lt;p&gt;Linux+Apache+Mysql+Php, 安装请参考&lt;a href=&quot;/记录/2014/06/14/lamp-build/ LAMP环境搭建&quot;&gt;LAMP环境搭建&lt;/a&gt; &lt;a href=&quot;#fnref:LAMP&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+                <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2015/04/24/php-extension-install</link>
+                <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2015/04/24/php-extension-install</guid>
+                <pubDate>2015-04-24T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>Raspberry Pi安装Debian Wheezy系统</title>
