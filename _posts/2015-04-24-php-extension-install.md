@@ -60,7 +60,7 @@ tags: [web, php, apache]
 
 ### 几个扩展安装案例  
 
-#### redis 扩展的安装  
+#### redis 扩展的安装[^redis-github]  
 
 1. 使用git下载  
 
@@ -80,6 +80,7 @@ tags: [web, php, apache]
         extension=redis.so
 
 4. 重启web服务器
+
 
 #### mongo 扩展的安装
 
@@ -122,6 +123,6 @@ tags: [web, php, apache]
 
 [^LAMP]:Linux+Apache+Mysql+Php, 安装请参考[LAMP环境搭建](/记录/2014/06/14/lamp-build/ LAMP环境搭建)  
 
-
+[^redis-github]:可参考[`<`一篇来自github的安装指南-redis`>`](https://github.com/phpredis/phpredis#installation)
 
 
