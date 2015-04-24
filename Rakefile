@@ -65,11 +65,13 @@ task :post do
     post.puts "---"
     post.puts "layout: post"
     post.puts "title: \"#{title.gsub(/-/,' ')}\""
+	post.puts 'toc: ""'
     post.puts 'description: ""'
     post.puts "category: #{category}"
     post.puts "tags: #{tags}"
     post.puts "---"
     post.puts "{% include LU/setup %}"
+	post.puts "{% include LU/gen_toc %}"
   end
 end # task :post
 

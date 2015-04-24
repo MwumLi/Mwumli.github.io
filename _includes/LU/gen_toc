@@ -1,0 +1,19 @@
+{% comment %}<!-- 
+Use kramdown syntax to generate table of contents
+Usage:
+	1) add `toc: "true"` or `toc: "false"` in page YAML header
+	2) include LU/gen_toc
+The following content below should be placed in post:
+	---
+	...
+	toc: "true"
+	...
+	---
+	{% include LU/gen_toc %}
+-->{% endcomment %}
+
+{% if page.toc == "true" %}
+* toc
+{:toc}
+{% endif %}
+
