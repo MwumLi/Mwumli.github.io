@@ -2,10 +2,12 @@
 layout: post
 title: "转载-如何改变世界"
 description: ""
+toc: "true"
 category: 不知名的情
 tags: [内圣外王,改变世界,回归自身]
 ---
 {% include LU/setup %}
+{% include LU/gen_toc %}
 
 ## 改变世界，回归自身
 
