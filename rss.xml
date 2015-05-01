@@ -5,10 +5,100 @@
         <description>微尘 - Liluo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-04-24T20:49:28+08:00</lastBuildDate>
-        <pubDate>2015-04-24T20:49:28+08:00</pubDate>
+        <lastBuildDate>2015-05-01T16:59:12+08:00</lastBuildDate>
+        <pubDate>2015-05-01T16:59:12+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>离去</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;实习&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;前端的进步&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;离去&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;回家&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;离职咯，嘿嘿，不要误会，只是实习期结束了…&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;实习&lt;/h2&gt;
+
+&lt;p&gt;实习这段时间，我的工作主要是前端方面的(喂，是不是搞错了，我面的是后台呀…)&lt;/p&gt;
+
+&lt;p&gt;对于此，我郁闷好一会儿。&lt;br /&gt;
+不过，未来的学习计划安排有前端，所以也就提前让它生长发芽吧&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;前端的进步&lt;/h3&gt;
+
+&lt;p&gt;同事中有位大哥，前端很厉害，指导了我很多&lt;/p&gt;
+
+&lt;p&gt;之前接触过一些前端 : 基础知识很简单( HTML/CSS/JS ),但是简单也意味着，在某些方面会比较麻烦，比如页面布局，比如网站框架设计&lt;/p&gt;
+
+&lt;p&gt;前端学习阶梯:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTML/CSS/JS，基础知识，很必要&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;JQuery 的使用–这是一门很流行的js框架，我想学习它，非常必要&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Bootstrap 的使用–想要快速开发一个响应式网站，那么学习它&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;与后台数据交互和Ajax – 与后台进行数据交互，这是一个必备技能，使用Ajax，也是必备技能&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;JS的原型链继承，很重要, 这对学习框架设计(如果你只想写些效果，按照已有的框架设计，那就…)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;看源码–研究一下比较流行的插件源码吧，仅仅看书学习JS的原型链继承&lt;br /&gt;
+ 那非常枯燥，即使看懂，也会很茫然&lt;br /&gt;
+ 看源码,永远是最有效的学习方式&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;写插件–你已经学会原型链继承，也吸收了高手们开发插件的经验，那么开始写吧(有想法的时候)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;寻找机会 – 等待一个合适机会，从一个最基本的网站进行构建&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;快速编写 – less,sass,coffeescript …&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;nodejs…&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;…&lt;/p&gt;
+
+&lt;p&gt;应该还有很多，目前就只了解到这里&lt;br /&gt;
+以上这些，有些顺序可以提前，学习本无先后，有所需，就得学…
+我也并没有完全掌握这些知识，但是药性成为一个很厉害的前端，这些步骤时必须的&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;离去&lt;/h2&gt;
+
+&lt;p&gt;下雨了，没想到离去的时候，竟然会下雨&lt;/p&gt;
+
+&lt;p&gt;长安也下雨了&lt;/p&gt;
+
+&lt;p&gt;“青山一道同云雨，明月何曾是两乡”&lt;/p&gt;
+
+&lt;p&gt;最后，再见，帝都…&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;回家&lt;/h2&gt;
+
+&lt;p&gt;我要回来了&lt;/p&gt;
+
+</description>
+                <link>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2015/05/01/leave-beijing</link>
+                <guid>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2015/05/01/leave-beijing</guid>
+                <pubDate>2015-05-01T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>Linux下php扩展安装</title>
