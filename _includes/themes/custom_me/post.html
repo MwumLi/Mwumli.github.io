@@ -15,7 +15,7 @@
 		</div>		
 		<div>
 			Last Modify in
-			{% if page.modifyTime != "" %}
+			{% if page.modifyTime and page.modifyTime != "" %}
 			<span>{{ page.modifyTime | date:"%Y-%m-%d" }}</span>,
 			{% else %}
 			<span>{{ page.date | date:"%Y-%m-%d" }}</span>,
