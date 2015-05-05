@@ -7,7 +7,7 @@
 			<span>分类: </span>
 			<a href="{{ BASE_PATH }}{{ site.LU.categories_path }}#{{ cur_category[0] }}-ref" class="tag">{{cur_category[0]}}</a> 
 			{% if cur_tag and cur_tag.size != 0 %}
-			| <span>标签: </span>
+				<span>标签: </span>
 			{% endif %}
 			{% for tag in cur_tag %}
 				<a href="{{ BASE_PATH }}{{ site.LU.tags_path }}#{{ tag }}-ref" class="tag">{{ tag }}</a>
@@ -15,7 +15,7 @@
 		</div>		
 		<div>
 			Last Modify in
-			{% if page.modifyTime %}
+			{% if page.modifyTime != "" %}
 			<span>{{ page.modifyTime | date:"%Y-%m-%d" }}</span>,
 			{% else %}
 			<span>{{ page.date | date:"%Y-%m-%d" }}</span>,
