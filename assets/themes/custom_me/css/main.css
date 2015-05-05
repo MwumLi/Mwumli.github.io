@@ -482,7 +482,7 @@ div.tocWrap {
 	width: 250px;
 	z-index: 100;
 	top: 16%;
-	left: 2.8%;
+	right: 2.8%;
 }
 div.tocWrap .menu {
 	text-align: center;
