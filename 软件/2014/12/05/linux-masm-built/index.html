@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		
-		<title>离去 | 微尘</title>
+		<title>Linux下MASM汇编环境搭建 | 微尘</title>
 
   		
 		<meta name="description" content="">
@@ -113,28 +113,30 @@
 
 
 <div class="page-header">
-	<h1>离去 <small></small></h1>
+	<h1>Linux下MASM汇编环境搭建 <small></small></h1>
 	<div id="article_header">
 		
 		
 		<div>
 			<span>分类: </span>
-			<a href="/pages/categories/index.html#情绪-ref" class="tag">情绪</a> 
+			<a href="/pages/categories/index.html#软件-ref" class="tag">软件</a> 
 			
 				<span>标签: </span>
 			
 			
-				<a href="/pages/tags/index.html#离开-ref" class="tag">离开</a>
+				<a href="/pages/tags/index.html#masm-ref" class="tag">masm</a>
     		
-				<a href="/pages/tags/index.html#北京-ref" class="tag">北京</a>
+				<a href="/pages/tags/index.html#assembly-ref" class="tag">assembly</a>
+    		
+				<a href="/pages/tags/index.html#汇编-ref" class="tag">汇编</a>
     		
 		</div>		
 		<div>
 			Last Modify in
 			
-			<span>2015-05-05</span>,
+			<span>2014-12-05</span>,
 			
-			published in <span>2015-05-01</span> 
+			published in <span>2014-12-05</span> 
 			by <span> LiLuo</span>
 		</div>
 
@@ -145,96 +147,124 @@
 
 <div id="page-content">
     
-<ul id="markdown-toc">
-  <li><a href="#section" id="markdown-toc-section">实习</a>    <ul>
-      <li><a href="#section-1" id="markdown-toc-section-1">前端的进步</a></li>
-    </ul>
-  </li>
-  <li><a href="#section-2" id="markdown-toc-section-2">离去</a></li>
-  <li><a href="#section-3" id="markdown-toc-section-3">回家</a></li>
-</ul>
+<h3 id="section">碎碎念</h3>
 
-<p>离职咯，嘿嘿，不要误会，只是实习期结束了…</p>
+<p><code>MASM</code>是Microsoft Macro Assembler的缩写，它是微软为x86微处理器家族缩写的一套宏编译器</p>
 
-<h2 id="section">实习</h2>
+<p><code>dosbox</code>是一款x86/DOS环境模拟器，可以很好模拟DOS环境,方便我们运行DOS程序</p>
 
-<p>实习这段时间，我的工作主要是前端方面的(喂，是不是搞错了，我面的是后台呀…)</p>
+<p><code>.asm</code>是汇编代码的后缀</p>
 
-<p>对于此，我郁闷好一会儿。<br />
-不过，未来的学习计划安排有前端，所以也就提前让它生长发芽吧</p>
+<p>好了，现在开始吧！</p>
 
-<h3 id="section-1">前端的进步</h3>
+<h3 id="dosbox">安装dosbox</h3>
 
-<p>同事中有位大哥，前端很厉害，指导了我很多</p>
+<pre><code>$ sudo apt-get install dosbox  
+</code></pre>
 
-<p>之前接触过一些前端 : 基础知识很简单( HTML/CSS/JS ),但是简单也意味着，在某些方面会比较麻烦，比如页面布局，比如网站框架设计</p>
+<h3 id="masm">下载MASM软件包</h3>
 
-<p>前端学习阶梯:</p>
+<p>从这里下载<a href="http://yun.baidu.com/share/link?shareid=507770005&amp;uk=388194121" title="masm.tar.bz2">masm.tar.bz2</a></p>
 
-<ol>
-  <li>
-    <p>HTML/CSS/JS，基础知识，很必要</p>
-  </li>
-  <li>
-    <p>JQuery 的使用 — 这是一门很流行的js框架，我想学习它，非常必要</p>
-  </li>
-  <li>
-    <p>Bootstrap 的使用 — 想要快速开发一个响应式网站，那么学习它</p>
-  </li>
-  <li>
-    <p>与后台数据交互和Ajax — 与后台进行数据交互，这是一个必备技能，使用Ajax，也是必备技能</p>
-  </li>
-  <li>
-    <p>JS的原型链继承，很重要, 这对学习框架设计(如果你只想写些效果，按照已有的框架设计，那就…)</p>
-  </li>
-  <li>
-    <p>看源码 — 研究一下比较流行的插件源码吧,仅仅看书学习,不仅枯燥，而且你的知识只会碎片化<br />
- 看源码,永远是最有效的学习方式</p>
-  </li>
-  <li>
-    <p>写插件 — 你已经学会原型链继承，也吸收了高手们开发插件的经验，那么开始写吧(有想法的时候)</p>
-  </li>
-  <li>
-    <p>寻找机会 — 等待一个合适机会，从一个最基本的网站进行构建</p>
-  </li>
-  <li>
-    <p>快速编写 — less,sass,coffeescript …</p>
-  </li>
-  <li>
-    <p>nodejs…</p>
-  </li>
-</ol>
+<pre><code>$ cd ~
+$ mkdir -p masm/tools
+$ tar xjf Download/masm.tar.bz2 -C masm/tools 
+</code></pre>
 
-<p>…</p>
+<p>下载的文件，解压到新建的文件夹masm/tools下<br />
+masm即将作为dosbox的C盘</p>
 
-<p>应该还有很多，目前就只了解到这里<br />
-以上这些，有些顺序可以提前，学习本无先后，有所需，就得学…
-我也并没有完全掌握这些知识，但是要想成为一个真正的前端，这些步骤时必须的</p>
+<h3 id="dosbox-1">启动dosbox</h3>
 
-<h2 id="section-2">离去</h2>
+<pre><code>$ dosbox -c "mount C: ~/masm/tools" -c "path %path%;C:\tools\"
+</code></pre>
 
-<p>下雨了，没想到离去的时候，竟然会下雨</p>
+<p>好了，dosbox应该出现了，你可以使用<code>debug.exe</code>,<code>masm.exe</code>了<br />
+<code>-c</code>: 指定dosbox的启动参数<br />
+<code>mount C: ~/masm/tools</code>: 把我们用户主目录下的masm/tools作为dosbox的C盘<br />
+<code>path %path%;C:\tools</code> : 给path(<em>可执行文件搜索路径</em>)环境变量添加值，这样，我们无论在哪个目录都可以使用masm软件包的工具了</p>
 
-<p>长安也下雨了</p>
+<h3 id="dosbox-2">使用脚本启动dosbox</h3>
 
-<p>“青山一道同云雨，明月何曾是两乡”</p>
+<p><strong>dosbox_setup.sh</strong></p>
 
-<p>最后，再见，帝都…</p>
+<pre><code>#!/bin/bash
+dosbox -c "mount C: ~masm" -c "path %path%;C:\tools\" &amp;
+</code></pre>
 
-<h2 id="section-3">回家</h2>
+<p>为dosbox_setup.sh添加执行权限</p>
 
-<p>我要回来了</p>
+<pre><code>$ chmod a+x dosbox_setup.sh
+</code></pre>
+
+<p>好了，你可以通过运行此脚本打开dosbox,而且路径已经配置好了</p>
+
+<h3 id="helloworld">写个汇编版的HelloWorld</h3>
+
+<p><strong>hello.asm</strong></p>
+
+<pre><code>assume cs:codes, ds:datas
+datas segment
+		str db 'hello,world',13,10,'$'
+datas ends
+codes segment
+	start:
+		mov ax, datas
+		mov ds, ax
+		lea dx, str
+		mov ah, 9
+		int 21h
+		mov ah, 4ch
+		int 21h
+codes ends
+	end start
+</code></pre>
+
+<p>可以使用vim写代码(当然如果你嫌影响你的心情的话，可以使用<code>EDIT.COM</code>)</p>
+
+<h4 id="dosbox-3">在dosbox中编译连接</h4>
+
+<pre><code>C:\&gt; masm hello.asm
+</code></pre>
+
+<p>编译生成hello.obj的连接文件</p>
+
+<pre><code>C:\&gt; link hello.obj
+</code></pre>
+
+<p>连接生成hello.exe的可执行文件</p>
+
+<pre><code>C:\&gt; hello.exe
+hello,world
+</code></pre>
+
+<p>至此结束</p>
+
+<h3 id="section-1">一些自言自语</h3>
+
+<p><em>为什么选择MASM呢？</em><br />
+事实上，各大高校的汇编语言学习都是使用MASM的语法，而Linux下的NASM的语法和其还是有些差异的<br />
+(不要问我为何在Linux下使用MASM，我能告诉你这是我的偏执吗?嘿嘿…)</p>
+
+<p><em>为什么还要学习汇编?</em>  <br />
+这个各人有个人的理由吧，而我只是单纯想了解一下底层程序的运行机制</p>
+
+<h3 id="section-2">推荐</h3>
+
+<p>对于汇编学习，推荐王爽先生的《汇编语言》<br />
+对于dosbox的其他用法，请使用Linux下的<code>man dosbox</code><br />
+对于其它问题，请留言或者google</p>
 
 
     <hr>
     <div class="pagination">
       <ul>
       
-        <li class="prev"><a href="/%E8%AE%B0%E5%BD%95/2015/04/24/php-extension-install" title="Linux下php扩展安装">&larr;上一篇：Linux下php扩展安装</a></li>
+        <li class="prev"><a href="/%E8%AE%B0%E5%BD%95/2014/11/05/dns" title="简单的DNS讲解">&larr;上一篇：简单的DNS讲解</a></li>
       
         <li class="archive"><a href="/pages/articles/index.html">所有文章</a></li>
       
-        <li class="next"><a href="/%E8%BD%AF%E4%BB%B6/2015/05/05/tmux" title="用tmux保存工作现场">下一篇：用tmux保存工作现场&rarr;</a></li>
+        <li class="next"><a href="/%E8%AE%B0%E5%BD%95/2014/12/06/raspberrypi-install" title="Raspberry Pi安装Debian Wheezy系统">下一篇：Raspberry Pi安装Debian Wheezy系统&rarr;</a></li>
       
       </ul>
     </div>

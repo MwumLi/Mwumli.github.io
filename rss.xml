@@ -5,10 +5,484 @@
         <description>微尘 - Liluo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-05-05T14:19:30+08:00</lastBuildDate>
-        <pubDate>2015-05-05T14:19:30+08:00</pubDate>
+        <lastBuildDate>2015-05-06T12:19:53+08:00</lastBuildDate>
+        <pubDate>2015-05-06T12:19:53+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>用tmux保存工作现场</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux-&quot; id=&quot;markdown-toc-tmux-&quot;&gt;tmux 是什么?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux--1&quot; id=&quot;markdown-toc-tmux--1&quot;&gt;tmux 的任务会话机制&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux&quot; id=&quot;markdown-toc-tmux&quot;&gt;安装 tmux&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux-session&quot; id=&quot;markdown-toc-tmux-session&quot;&gt;tmux session&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux-window&quot; id=&quot;markdown-toc-tmux-window&quot;&gt;tmux window&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#window&quot; id=&quot;markdown-toc-window&quot;&gt;创建 window&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#window-1&quot; id=&quot;markdown-toc-window-1&quot;&gt;切换 window&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;重命名当前窗口&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux-pane&quot; id=&quot;markdown-toc-tmux-pane&quot;&gt;tmux pane&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux--2&quot; id=&quot;markdown-toc-tmux--2&quot;&gt;tmux 的复制&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#copy--&quot; id=&quot;markdown-toc-copy--&quot;&gt;Copy 模式下的复制, 然后粘贴&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;复制&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;粘贴&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#copy-&quot; id=&quot;markdown-toc-copy-&quot;&gt;推荐使用 Copy 模式&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux--3&quot; id=&quot;markdown-toc-tmux--3&quot;&gt;tmux 的配置文件&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;配置文件生效&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tmux--4&quot; id=&quot;markdown-toc-tmux--4&quot;&gt;一个简单的 tmux 配置文件&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;自动生成布局&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux--5&quot; id=&quot;markdown-toc-tmux--5&quot;&gt;tmux 在远程服务器中的表现&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;结对编程&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux--6&quot; id=&quot;markdown-toc-tmux--6&quot;&gt;tmux 小技巧&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#tmux--command-prompt&quot; id=&quot;markdown-toc-tmux--command-prompt&quot;&gt;tmux 的 command-prompt&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tmux--7&quot; id=&quot;markdown-toc-tmux--7&quot;&gt;tmux 快捷键帮助&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#send-prefix&quot; id=&quot;markdown-toc-send-prefix&quot;&gt;重新绑定 send-prefix&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tmux--8&quot; id=&quot;markdown-toc-tmux--8&quot;&gt;tmux 底部状态栏&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;显示钟表&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#pane----&quot; id=&quot;markdown-toc-pane----&quot;&gt;为 pane 显示编号—快速切换&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tmux-1&quot; id=&quot;markdown-toc-tmux-1&quot;&gt;使用tmux的一些问题&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#tmux--vimpowerline&quot; id=&quot;markdown-toc-tmux--vimpowerline&quot;&gt;tmux 和 vim的powerline插件&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;一些自言自语&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tmux-&quot;&gt;tmux 是什么?&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;tmux&lt;/code&gt; 是一款非常好用的终端复用器&lt;/p&gt;
+
+&lt;p&gt;可以认为是终端分屏软件，但远远不止…&lt;br /&gt;
+可以认为是 &lt;code&gt;nohup&lt;/code&gt; 和 &lt;code&gt;&amp;amp;&lt;/code&gt; 的结合体，但远远不止…&lt;br /&gt;
+可以认为是一款结对编程 ( Pair Programming ) 的软件，但远远不止…&lt;/p&gt;
+
+&lt;p&gt;是的，远远不止…&lt;/p&gt;
+
+&lt;p&gt;不知道怎么去描述，且跟随使用去体会吧&lt;/p&gt;
+
+&lt;h2 id=&quot;tmux--1&quot;&gt;tmux 的任务会话机制&lt;/h2&gt;
+
+&lt;p&gt;当你运行 &lt;code&gt;tmux&lt;/code&gt; 之后，会启动一个 tmux server 来管理 tmux 的 sessions&lt;/p&gt;
+
+&lt;p&gt;tmux server 有且仅有一个，并且在第一个 session 创建时启动， 当最后一个 session 销毁时销毁&lt;/p&gt;
+
+&lt;p&gt;然后有以下几条规则:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;一个 tmux server 可以有多个 sessions&lt;/li&gt;
+  &lt;li&gt;一个 session 可以有多个 window ， 类似终端有多个标签页&lt;/li&gt;
+  &lt;li&gt;一个 window 可以有多个 pane, 即分屏&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;code&gt;session&lt;/code&gt; 可译作 &lt;code&gt;会话&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;window&lt;/code&gt; 可译作 &lt;code&gt;窗口&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;pane&lt;/code&gt; 可译作 &lt;code&gt;窗格&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;tmux&quot;&gt;安装 tmux&lt;/h2&gt;
+
+&lt;p&gt;Ubuntu下安装:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;tmux-session&quot;&gt;tmux session&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;快速创建:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;这样创建的 session 被自动用数字命名&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;创建一个命名的 session :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ tmux new-session -s session-name
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看当前所有的 sessions :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ tmux list-sessions
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;脱离当前 session : &lt;code&gt;ctrl-b + d&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;脱离当前 session , 你的工作状态依然保留&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果想重新进入之前的 session , 只需:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ tmux attach-session -t session-name
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;这样你又回看到你之前的工作进度了&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当你想退出当前 session :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; 在终端中输入 `exit`, 直到所有的 window 和 pane 被关闭  
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;这时，你的 session 也被销毁了&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;杀死指定的 session :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ tmux kill-session -t session-name
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;重命名 session : &lt;code&gt;ctrl-b + $&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;杀死所有的 session :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ tmux kill-server
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;因为所有的 sessions 跑在一个 server 上&lt;br /&gt;
+所以只要关掉 tmux server 即可&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;tmux-window&quot;&gt;tmux window&lt;/h2&gt;
+
+&lt;h3 id=&quot;window&quot;&gt;创建 window&lt;/h3&gt;
+
+&lt;p&gt;当你创建一个 session 时，也自动创建一个 window , window 中也会自动创建一个 pane&lt;/p&gt;
+
+&lt;p&gt;在 session 中创建 window :  按下&lt;code&gt;ctrl-b +c&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;window-1&quot;&gt;切换 window&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;切换到下一个窗口 : &lt;code&gt;ctrl-b + n&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;切换到上一个窗口 : &lt;code&gt;ctrl-b + p&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;切换到num窗口，num为窗口编号，底部状态栏可看到 : &lt;code&gt;ctrl-b + num&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;显示当前会话的所有窗口 : &lt;code&gt;ctrl-b + w&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;关闭当前窗口 : &lt;code&gt;ctrl-b + &amp;amp;&lt;/code&gt; 或者 &lt;code&gt;exit&lt;/code&gt; 或者 &lt;code&gt;ctrl + d&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;重命名当前窗口&lt;/h3&gt;
+
+&lt;p&gt;按下 &lt;code&gt;ctrl-b + ,&lt;/code&gt;&lt;br /&gt;
+然后输入 window-name 即可&lt;/p&gt;
+
+&lt;h2 id=&quot;tmux-pane&quot;&gt;tmux pane&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;分割一个垂直的窗格 : &lt;code&gt;ctrl-b + &quot;&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;分割一个水平的窗格 : &lt;code&gt;ctrl-b + %&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;移动到其他窗格 : &lt;code&gt;ctrl-b + Arrow-Up/Down/Left/Right&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;关闭所有窗格 : &lt;code&gt;ctrl-b + !&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;tmux--2&quot;&gt;tmux 的复制&lt;/h2&gt;
+
+&lt;p&gt;在没有启动鼠标滚轮时， tmux 可以通过鼠标选中，并复制&lt;/p&gt;
+
+&lt;p&gt;当你用了上面配置文件中的鼠标滚轮启用，那么一般的鼠标选中就不可能了:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;按下 shift, 然后使用鼠标去选中想要copy的内容进行复制操作  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;copy--&quot;&gt;Copy 模式下的复制, 然后粘贴&lt;/h3&gt;
+
+&lt;p&gt;tmux 提供了一种 copy 模式,类似于 vim 的(Esc-v)模式&lt;/p&gt;
+
+&lt;p&gt;按下 &lt;code&gt;ctrl-b + [&lt;/code&gt; 进入 copy 模式&lt;/p&gt;
+
+&lt;p&gt;tmux 的 copy 模式下有两种快捷键模式: vim 和 Emacs&lt;br /&gt;
+当你在配置文件中启用 vim 模式:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setw -g mode-keys vi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在 copy 模式下， 我们就可以使用 &lt;code&gt;j/k/h/l&lt;/code&gt;来移动光标了&lt;/p&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;复制&lt;/h4&gt;
+
+&lt;p&gt;在 Copy 模式下，我们这样复制:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;移动光标到复制开始位置&lt;/li&gt;
+  &lt;li&gt;按下 &lt;code&gt;Space&lt;/code&gt; 键进入复制模式&lt;/li&gt;
+  &lt;li&gt;移动光标选择要复制的内容&lt;/li&gt;
+  &lt;li&gt;按下 &lt;code&gt;Enter&lt;/code&gt; 键完成复制&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;粘贴&lt;/h4&gt;
+
+&lt;p&gt;到你要粘贴内容的位置， 使用快捷键 &lt;code&gt;ctrl-b + ]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;刚才复制的内容已经被完美粘贴了&lt;/p&gt;
+
+&lt;h3 id=&quot;copy-&quot;&gt;推荐使用 Copy 模式&lt;/h3&gt;
+
+&lt;p&gt;如果你只是想复制不超过一行文字，那么这两种方式均可，甚至第一种方式更有效率&lt;/p&gt;
+
+&lt;p&gt;如果你想复制多行文本，那么还是使用Copy 模式&lt;/p&gt;
+
+&lt;p&gt;这和 tmux 的实现方式有关,具体请自行探讨&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;tmux--3&quot;&gt;tmux 的配置文件&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;配置文件生效&lt;/h3&gt;
+
+&lt;p&gt;配置文件生效有两种方式:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;新建一个 session, &lt;code&gt;.tmux.conf&lt;/code&gt; 中的设置就在此 session 中生效了&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在当前 session 中，按下 &lt;code&gt;ctrl-b + :&lt;/code&gt;,然后:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; : source-file ~/.tmux.conf `.tmux.conf`是 tmux 配置文件的命名，默认位于你的用户主目录下  
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;tmux--4&quot;&gt;一个简单的 tmux 配置文件&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;# This is a tmux configure file
+# 取消默认Ctrl+b的前缀绑定，绑定Ctrl+a为新的快捷发送前缀方式
+unbind C-o
+set -g prefix C-a
+
+# Copy模式下使用vim快捷操作方式
+setw -g mode-keys vi
+
+# split window with s/v after C-a
+bind s split-window -h
+bind v split-window -v
+
+# move into left/Down/Up/Right panes with h/j/k/l after C-a
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# resize panes forward left/right/Down/Up with &amp;lt;/&amp;gt;/-/+ after C-a
+bind &amp;lt; resize-pane -L 10
+bind &amp;gt; resize-pane -R 10
+bind - resize-pane -D 10
+bind + resize-pane -U 10
+
+# bind : to command-prompt like vim
+# this is the defalut in tmux already
+bind : command-prompt
+
+#鼠标可以选中窗格
+set-option -g mouse-select-pane on  
+#鼠标滚轮可以使用
+set-window-option -g mode-mouse on  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;自动生成布局&lt;/h3&gt;
+
+&lt;p&gt;新建一个文件 &lt;code&gt;~/.tmux/mylayout&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;selectp -t 0 #选中第0个窗格
+splitw -h -p 50 #将其分成左右两个
+selectp -t 1 #选中第一个，也就是右边那个
+splitw -v -p 50 #将右边那个分成上下两个
+selectp -t 0 #选中第一个
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后在 &lt;code&gt;.tmux.conf&lt;/code&gt;	后面添加:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bind D source-file ~/.tmux/mylayout
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样，每次当我们启动 tmux 后， 可以使用 &lt;code&gt;ctrl-b + D&lt;/code&gt; 来生成布局&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;tmux--5&quot;&gt;tmux 在远程服务器中的表现&lt;/h2&gt;
+
+&lt;p&gt;如果通过 &lt;code&gt;ssh&lt;/code&gt; 远程登录到服务器，恰好要进行一个很耗时的任务&lt;/p&gt;
+
+&lt;p&gt;我们不可能等待这个任务执行完毕，再去做其他工作&lt;/p&gt;
+
+&lt;p&gt;因此，我们选择了启用一个新的终端来完成其他工作&lt;/p&gt;
+
+&lt;p&gt;但是网络可能很不稳定，你那个耗时任务在执行过程，突然网络掉线，然后，你的 ssh 断掉，然后你的任务挂掉了&lt;/p&gt;
+
+&lt;p&gt;但是我们的任务已经进行了80%，功亏一篑&lt;/p&gt;
+
+&lt;p&gt;是的，你可以选择执行任务时，采用 &lt;code&gt;nohup&lt;/code&gt; ，那样，网络断掉，也不会影响你的任务&lt;/p&gt;
+
+&lt;p&gt;但是你永远也回不到 &lt;em&gt;案发现场&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;案发现场&lt;/em&gt; 在某些情况下很重要&lt;/p&gt;
+
+&lt;p&gt;而且费那么多心思在保证任务完成，现场保留上，实在太浪费了&lt;/p&gt;
+
+&lt;p&gt;使用 &lt;code&gt;tmux&lt;/code&gt; 完全可以解决这个问题，除非远程服务器挂了&lt;/p&gt;
+
+&lt;p&gt;因此，远程工作的正确方式:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh pi@192.168.199.114 
+...
+Last login: Tue May  5 02:37:14 2015 from 192.168.199.104
+pi@raspberrypi ~ $ tmux new-session -s code
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样，你可在 session 中进行分屏来完成其他工作&lt;br /&gt;
+或者你可以脱离终端， 继续其他操作&lt;br /&gt;
+再或者网络中断，当你重新连接上服务器:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+Last login: Tue May  5 02:37:14 2015 from 192.168.199.104
+pi@raspberrypi ~ $ tmux a -t code
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你会发现，哦，我的工作现场依旧完整无缺…&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;结对编程&lt;/h2&gt;
+
+&lt;p&gt;关于结对编程的概念，可以查看维基百科:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://zh.wikipedia.org/wiki/%E7%BB%93%E5%AF%B9%E7%BC%96%E7%A8%8B
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;tmux 利用服务器上的同一账户的同一 tmux session 实现的&lt;/p&gt;
+
+&lt;p&gt;两个人打开同一个 tmux session, 一个人所做的改变，会即时的反映到另一个人的终端上&lt;/p&gt;
+
+&lt;p&gt;tmux 基于文本， 所以即使网速慢点也无妨&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;tmux--6&quot;&gt;tmux 小技巧&lt;/h2&gt;
+
+&lt;h3 id=&quot;tmux--command-prompt&quot;&gt;tmux 的 command-prompt&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;command-prompt&lt;/code&gt; 是用来输入 tmux 命令的&lt;/p&gt;
+
+&lt;p&gt;tmux 的所有快捷键的功能都是通过命令来实现的&lt;/p&gt;
+
+&lt;p&gt;因此，我们也通过键入命令来实现某种功能&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;按下 ctrl-b + : 即可打开 command-prompt  
+然后，你输入相应命令即可  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;tmux--7&quot;&gt;tmux 快捷键帮助&lt;/h3&gt;
+
+&lt;p&gt;tmux 的快捷键由 send-prefix 和 bind-key 组成&lt;/p&gt;
+
+&lt;p&gt;按下 send-prefix 的同时，按下 bind-key 才唤醒相应的快捷功能&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;send-prefix&lt;/code&gt; 是固定的，默认是 &lt;code&gt;ctrl-b&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bind-key&lt;/code&gt; 对应不同的功能绑定了不同的 key, 可以通过以下方式查看:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;按下 `ctrl-b + ?`  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;send-prefix&quot;&gt;重新绑定 send-prefix&lt;/h3&gt;
+
+&lt;p&gt;更换 send-prefix 为 &lt;code&gt;ctrl-a&lt;/code&gt; ,在 tmux 的配置文件(&lt;code&gt;.tmux.conf&lt;/code&gt;)中这样写:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unbind C-b
+set -g prefix C-a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;tmux--8&quot;&gt;tmux 底部状态栏&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;tmux 窗口底部就是状态栏&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;状态栏左边显示 session-name ,并且列出当前所有 window-name ,以及所有 window 当前运行的 process-name&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当前所在 window 旁边会有 &lt;code&gt;*&lt;/code&gt; 提示&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;右边会显示主机名和时间&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;显示钟表&lt;/h3&gt;
+
+&lt;p&gt;按下 &lt;code&gt;ctrl-b + t&lt;/code&gt;, 会在当前 window 的当前 pane 显示当前时间&lt;/p&gt;
+
+&lt;h3 id=&quot;pane----&quot;&gt;为 pane 显示编号—快速切换&lt;/h3&gt;
+
+&lt;p&gt;按下 &lt;code&gt;ctrl-b + q&lt;/code&gt;, 每一个 pane 都会出现一个数字&lt;br /&gt;
+按下想要切换的 pane 显示的数字， 就可以切换到那个 pane&lt;/p&gt;
+
+&lt;h2 id=&quot;tmux-1&quot;&gt;使用tmux的一些问题&lt;/h2&gt;
+
+&lt;h3 id=&quot;tmux--vimpowerline&quot;&gt;tmux 和 vim的powerline插件&lt;/h3&gt;
+
+&lt;p&gt;默认情况下，启动vim, 如果使用了 powerline 插件， 那么会发现颜色显示不正常&lt;/p&gt;
+
+&lt;p&gt;此时，只要你在每次打开 tmux 时启动256色即可，即 &lt;code&gt;tmux -2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;我们可以在 &lt;code&gt;.bashrc&lt;/code&gt; 末尾添加:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias tmux='tmux -2'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样，每次使用 tmux 就会很方便啦&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;一些自言自语&lt;/h2&gt;
+
+&lt;p&gt;任何时候不要太过迷信一件东西&lt;/p&gt;
+
+&lt;p&gt;你知道的, 服务器也会有重启的时候&lt;/p&gt;
+
+&lt;p&gt;及时保存你的编辑，及时提交你的修改，即使备份你的收藏，永远是明智的做法&lt;/p&gt;
+
+</description>
+                <link>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2015/05/05/tmux</link>
+                <guid>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2015/05/05/tmux</guid>
+                <pubDate>2015-05-05T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>离去</title>
@@ -600,19 +1074,22 @@ iface default inet dhcp
                 <title>Linux下MASM汇编环境搭建</title>
                 <description>
 &lt;h3 id=&quot;section&quot;&gt;碎碎念&lt;/h3&gt;
+
 &lt;p&gt;&lt;code&gt;MASM&lt;/code&gt;是Microsoft Macro Assembler的缩写，它是微软为x86微处理器家族缩写的一套宏编译器&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;dosbox&lt;/code&gt;是一款x86/DOS环境模拟器，可以很好模拟DOS环境,方便我们运行DOS程序&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;.asm&lt;/code&gt;是汇编代码的后缀&lt;/p&gt;
 
-&lt;p&gt;好了，现在开始吧！&lt;br /&gt;
-### 安装dosbox&lt;/p&gt;
+&lt;p&gt;好了，现在开始吧！&lt;/p&gt;
+
+&lt;h3 id=&quot;dosbox&quot;&gt;安装dosbox&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;$ sudo apt-get install dosbox  
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;masm&quot;&gt;下载MASM软件包&lt;/h3&gt;
+
 &lt;p&gt;从这里下载&lt;a href=&quot;http://yun.baidu.com/share/link?shareid=507770005&amp;amp;uk=388194121&quot; title=&quot;masm.tar.bz2&quot;&gt;masm.tar.bz2&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ cd ~
@@ -623,7 +1100,7 @@ $ tar xjf Download/masm.tar.bz2 -C masm/tools
 &lt;p&gt;下载的文件，解压到新建的文件夹masm/tools下&lt;br /&gt;
 masm即将作为dosbox的C盘&lt;/p&gt;
 
-&lt;h3 id=&quot;dosbox&quot;&gt;启动dosbox&lt;/h3&gt;
+&lt;h3 id=&quot;dosbox-1&quot;&gt;启动dosbox&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;$ dosbox -c &quot;mount C: ~/masm/tools&quot; -c &quot;path %path%;C:\tools\&quot;
 &lt;/code&gt;&lt;/pre&gt;
@@ -633,7 +1110,8 @@ masm即将作为dosbox的C盘&lt;/p&gt;
 &lt;code&gt;mount C: ~/masm/tools&lt;/code&gt;: 把我们用户主目录下的masm/tools作为dosbox的C盘&lt;br /&gt;
 &lt;code&gt;path %path%;C:\tools&lt;/code&gt; : 给path(&lt;em&gt;可执行文件搜索路径&lt;/em&gt;)环境变量添加值，这样，我们无论在哪个目录都可以使用masm软件包的工具了&lt;/p&gt;
 
-&lt;h3 id=&quot;dosbox-1&quot;&gt;使用脚本启动dosbox&lt;/h3&gt;
+&lt;h3 id=&quot;dosbox-2&quot;&gt;使用脚本启动dosbox&lt;/h3&gt;
+
 &lt;p&gt;&lt;strong&gt;dosbox_setup.sh&lt;/strong&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#!/bin/bash
@@ -648,6 +1126,7 @@ dosbox -c &quot;mount C: ~masm&quot; -c &quot;path %path%;C:\tools\&quot; &amp;a
 &lt;p&gt;好了，你可以通过运行此脚本打开dosbox,而且路径已经配置好了&lt;/p&gt;
 
 &lt;h3 id=&quot;helloworld&quot;&gt;写个汇编版的HelloWorld&lt;/h3&gt;
+
 &lt;p&gt;&lt;strong&gt;hello.asm&lt;/strong&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;assume cs:codes, ds:datas
@@ -669,7 +1148,7 @@ codes ends
 
 &lt;p&gt;可以使用vim写代码(当然如果你嫌影响你的心情的话，可以使用&lt;code&gt;EDIT.COM&lt;/code&gt;)&lt;/p&gt;
 
-&lt;h4 id=&quot;dosbox-2&quot;&gt;在dosbox中编译连接&lt;/h4&gt;
+&lt;h4 id=&quot;dosbox-3&quot;&gt;在dosbox中编译连接&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;C:\&amp;gt; masm hello.asm
 &lt;/code&gt;&lt;/pre&gt;
@@ -688,6 +1167,7 @@ hello,world
 &lt;p&gt;至此结束&lt;/p&gt;
 
 &lt;h3 id=&quot;section-1&quot;&gt;一些自言自语&lt;/h3&gt;
+
 &lt;p&gt;&lt;em&gt;为什么选择MASM呢？&lt;/em&gt;&lt;br /&gt;
 事实上，各大高校的汇编语言学习都是使用MASM的语法，而Linux下的NASM的语法和其还是有些差异的&lt;br /&gt;
 (不要问我为何在Linux下使用MASM，我能告诉你这是我的偏执吗?嘿嘿…)&lt;/p&gt;
@@ -696,13 +1176,14 @@ hello,world
 这个各人有个人的理由吧，而我只是单纯想了解一下底层程序的运行机制&lt;/p&gt;
 
 &lt;h3 id=&quot;section-2&quot;&gt;推荐&lt;/h3&gt;
+
 &lt;p&gt;对于汇编学习，推荐王爽先生的《汇编语言》&lt;br /&gt;
 对于dosbox的其他用法，请使用Linux下的&lt;code&gt;man dosbox&lt;/code&gt;&lt;br /&gt;
 对于其它问题，请留言或者google&lt;/p&gt;
 
 </description>
-                <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/12/05/linux-masm-built</link>
-                <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/12/05/linux-masm-built</guid>
+                <link>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/12/05/linux-masm-built</link>
+                <guid>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/12/05/linux-masm-built</guid>
                 <pubDate>2014-12-05T00:00:00+08:00</pubDate>
         </item>
 
@@ -1504,8 +1985,8 @@ Configuration file: /home/temp/myblog/_config.yml
 &lt;p&gt;其中&lt;code&gt;language&lt;/code&gt;可以从&lt;a href=&quot;http://pygments.org/docs/lexers/&quot; title=&quot;pygments语法高亮&quot;&gt;Syntax highlighter&lt;/a&gt;获取&lt;/p&gt;
 
 </description>
-                <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/08/14/static-website-by-jekyll</link>
-                <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/08/14/static-website-by-jekyll</guid>
+                <link>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/08/14/static-website-by-jekyll</link>
+                <guid>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/08/14/static-website-by-jekyll</guid>
                 <pubDate>2014-08-14T00:00:00+08:00</pubDate>
         </item>
 
@@ -2326,6 +2807,172 @@ $ sudo umount dir
         </item>
 
         <item>
+                <title>Sublime Text 2的使用</title>
+                <description>
+&lt;p&gt;假如你还没安装ST2,那么去&lt;a href=&quot;/记录/2014/06/08/st2_install_config/&quot; title=&quot;Sublime Text 2的安装与配置&quot;&gt;安装它&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;多项选择，多项编辑&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;鼠标选中多行，按下 Ctrl+Shift+L (Command+Shift+L) 即可同时编辑这些行；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;鼠标选中文本，反复按 CTRL+D (Command+D) 即可继续向下同时选中下一个相同的文本进行同时编辑；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;鼠标选中文本，按下 Alt+	F3 (Win) 或 Ctrl+Command+G(Mac) 即可一次性选择全部的相同文本进行同时编辑；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Shift+鼠标右键 (Win) 或 Option+鼠标左键 (Mac) 或使用鼠标中键可以用鼠标进行竖向多行选择；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ctrl+鼠标左键(Win) 或 Command+鼠标左键(Mac) 可以手动选择同时要编辑的多处文本&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;command-palette&quot;&gt;命令行面板(Command Palette)&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Ctrl+Shift+P&lt;/strong&gt;唤醒Command Palette　　　
+输入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sspy	---&amp;gt;set the syntax of the current file to Python
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当然，还有很多命令，使用过程中慢慢发现吧&lt;/p&gt;
+
+&lt;h3 id=&quot;goto-anything&quot;&gt;快速导航面板(Goto Anything)&lt;/h3&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;快速切换文件&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Ctrl+p&lt;/strong&gt;唤醒&lt;em&gt;Goto Anything&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;输入文件名，面板下拉框将出现所有匹配的文件名(当然，在这之前必须线打开一个目录作为搜索根目录)&lt;/p&gt;
+
+&lt;p&gt;可以试着在使用Up和Down滚动条目，会有意外的发现哦&lt;/p&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;在指定文件中快速查找函数，文本，跳转指定行&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;查找函数，或者id（HTML）&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  file@func
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查找文本&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  file#text
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;跳转指定行&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  file:num
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当&lt;em&gt;file&lt;/em&gt;省略时，默认当前编辑文件&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;打开一个项目&lt;/h3&gt;
+&lt;p&gt;使用ST2可以打开一个项目，这样我们就可以很方便的对一个项目进行编辑，修改了&lt;br /&gt;
+打开的项目文件会展示在左侧的&lt;code&gt;side bar&lt;/code&gt;&lt;br /&gt;
+当我们编辑某文件时，希望&lt;code&gt;Side bar&lt;/code&gt;在我们需要时候展示，在我们不需要的时候消失，你可以这样做&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Ctrl + k Ctrl + b   --&amp;gt;隐藏时显示，显示时隐藏 for Side bar 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当然，你也可以使用鼠标进行选择，但是那样不可避免降低你的速度&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;模糊匹配&lt;/h3&gt;
+&lt;p&gt;无论是Command Palette还是Goto Anything,他们都采用模糊匹配，故不需要输入全命令和全文件名&lt;br /&gt;
+例如:在文件shiluodechenai.c中查找func_word&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sldca@fw  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;甚至可能更短&lt;/p&gt;
+
+&lt;h3 id=&quot;package-control&quot;&gt;Package Control(扩展包管理器)&lt;/h3&gt;
+&lt;p&gt;用来管理（安装，卸载）插件，皮肤的管理器，和vim中Vundle差不多，不过看起来更简单&lt;br /&gt;
+默认不含有此管理器，我们需要自己手动安装&lt;/p&gt;
+
+&lt;h4 id=&quot;section-5&quot;&gt;安装&lt;/h4&gt;
+
+&lt;h5 id=&quot;section-6&quot;&gt;手动版(复杂点)&lt;/h5&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;在 SublimeText2 的目录里面找到 &lt;code&gt;Data &amp;gt; Installed Packages&lt;/code&gt; 的文件夹 (如没有请手动新建)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在这里下载 &lt;a href=&quot;http://dl.iplaysoft.com/files/1774.html#download_list&quot;&gt;Package Control.sublime-package&lt;/a&gt; 文件&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;将下载到的文件放进去 Installed Packages 里面&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;重新启动 Sublime Text 即可&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;section-7&quot;&gt;自动版(保持网络，简单)&lt;/h5&gt;
+
+&lt;p&gt;如果你按照上面的方法确实搞不定，&lt;br /&gt;
+可以试试按键盘 Ctrl+~ （数字1左边的按键）调出控制台，&lt;br /&gt;
+然后拷贝下面的代码进去并回车，  它会自动帮你新建文件夹并下载文件的，与上面的方法最终效果是一样的&lt;br /&gt;
+代码如下：　　&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print 'Please restart Sublime Text to finish installation'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-8&quot;&gt;使用&lt;/h4&gt;
+
+&lt;p&gt;如果 Package Control 已经安装成功，&lt;br /&gt;
+那么 Ctrl+Shift+P 调用命令面板，我们就会找到一些以“Package Control:”开头的命令:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Install Package	---&amp;gt;(安装扩展)
+ List Packages 		---&amp;gt;(列出全部扩展)
+ Remove Package		---&amp;gt;(移除扩展)
+ Upgrade Package	---&amp;gt;(升级扩展)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在命令面板输入 “Package Control: Install Package“即会列出全部可以安装的扩展&lt;br /&gt;
+从列表可以看到，4GL、AAAPackageDev 那些就是插件的名称  &lt;br /&gt;
+选择它们就可以进行下载安装了&lt;/p&gt;
+
+&lt;p&gt;此外，你还可以&lt;a href=&quot;https://sublime.wbond.net/&quot;&gt;在这里看到 Web 版的扩展列表和详细的说明&lt;/a&gt; （这俩列表的数据应该是同步的)&lt;/p&gt;
+
+&lt;h4 id=&quot;section-9&quot;&gt;一些比较好的插件&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;Emmet&lt;/strong&gt;: 以前被称作为Zen Coding,如果你从事Web前端开发的话，对该插件一定不会陌生。&lt;br /&gt;
+它使用仿CSS选择器的语法来快速开发HTML和CSS,在一个扩展框中输入符合规范的表达式，它会动态生成相应的代码 ,或者直接在文本中使用表达式，按扩展键(Tab)进行扩展&lt;/p&gt;
+
+&lt;p&gt;具体使用见:&lt;a href=&quot;http://www.w3cplus.com/tools/emmet-cheat-sheet.html&quot;&gt;表达式语法&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Gits&lt;/strong&gt;： 可以轻松集成 GitHub&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;SFTP&lt;/strong&gt;： 直接编辑 FTP 或 SFTP 服务器上的文件&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ConvertToUTF8&lt;/strong&gt;： ST2只支持utf8编码，该插件可以显示与编辑 GBK, BIG5, EUC-KR, EUC-JP, Shift_JIS 等编码的文件&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Clipboard History&lt;/strong&gt;： 剪切板历史&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;WordPress&lt;/strong&gt;： 集成一些WordPress的函数，对于像我这种经常要写WP模版和插件的人特别有用！&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;HtmlTidy&lt;/strong&gt;： 清理与排版你的HTML代码&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;PHPTidy&lt;/strong&gt;： 整理与排版PHP代码&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;YUI Compressor&lt;/strong&gt;： 压缩JS和CSS文件&lt;/p&gt;
+</description>
+                <link>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/06/08/st2-some-usage</link>
+                <guid>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/06/08/st2-some-usage</guid>
+                <pubDate>2014-06-08T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
                 <title>Sublime Text 2的安装与配置</title>
                 <description>
 &lt;h3 id=&quot;section&quot;&gt;简介&lt;/h3&gt;
@@ -2642,174 +3289,8 @@ B98FC99C 8FAC73EE D2B95564 DF450523
 
 &lt;p&gt;假如你已经安装好了ST2,那么学学怎么&lt;a href=&quot;/记录/2014/06/08/st2-some-usage/&quot; title=&quot;Sublime Text 2的使用&quot;&gt;ST2的一些操作和插件管理&lt;/a&gt;吧&lt;/p&gt;
 </description>
-                <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/08/st2_install_config</link>
-                <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/08/st2_install_config</guid>
-                <pubDate>2014-06-08T00:00:00+08:00</pubDate>
-        </item>
-
-        <item>
-                <title>Sublime Text 2的使用</title>
-                <description>
-&lt;p&gt;假如你还没安装ST2,那么去&lt;a href=&quot;/记录/2014/06/08/st2_install_config/&quot; title=&quot;Sublime Text 2的安装与配置&quot;&gt;安装它&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;多项选择，多项编辑&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;鼠标选中多行，按下 Ctrl+Shift+L (Command+Shift+L) 即可同时编辑这些行；&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;鼠标选中文本，反复按 CTRL+D (Command+D) 即可继续向下同时选中下一个相同的文本进行同时编辑；&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;鼠标选中文本，按下 Alt+	F3 (Win) 或 Ctrl+Command+G(Mac) 即可一次性选择全部的相同文本进行同时编辑；&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Shift+鼠标右键 (Win) 或 Option+鼠标左键 (Mac) 或使用鼠标中键可以用鼠标进行竖向多行选择；&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ctrl+鼠标左键(Win) 或 Command+鼠标左键(Mac) 可以手动选择同时要编辑的多处文本&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;command-palette&quot;&gt;命令行面板(Command Palette)&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Ctrl+Shift+P&lt;/strong&gt;唤醒Command Palette　　　
-输入：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sspy	---&amp;gt;set the syntax of the current file to Python
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;当然，还有很多命令，使用过程中慢慢发现吧&lt;/p&gt;
-
-&lt;h3 id=&quot;goto-anything&quot;&gt;快速导航面板(Goto Anything)&lt;/h3&gt;
-
-&lt;h4 id=&quot;section-1&quot;&gt;快速切换文件&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;Ctrl+p&lt;/strong&gt;唤醒&lt;em&gt;Goto Anything&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;输入文件名，面板下拉框将出现所有匹配的文件名(当然，在这之前必须线打开一个目录作为搜索根目录)&lt;/p&gt;
-
-&lt;p&gt;可以试着在使用Up和Down滚动条目，会有意外的发现哦&lt;/p&gt;
-
-&lt;h4 id=&quot;section-2&quot;&gt;在指定文件中快速查找函数，文本，跳转指定行&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;查找函数，或者id（HTML）&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt;  file@func
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;查找文本&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt;  file#text
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;跳转指定行&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt;  file:num
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;当&lt;em&gt;file&lt;/em&gt;省略时，默认当前编辑文件&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;打开一个项目&lt;/h3&gt;
-&lt;p&gt;使用ST2可以打开一个项目，这样我们就可以很方便的对一个项目进行编辑，修改了&lt;br /&gt;
-打开的项目文件会展示在左侧的&lt;code&gt;side bar&lt;/code&gt;&lt;br /&gt;
-当我们编辑某文件时，希望&lt;code&gt;Side bar&lt;/code&gt;在我们需要时候展示，在我们不需要的时候消失，你可以这样做&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Ctrl + k Ctrl + b   --&amp;gt;隐藏时显示，显示时隐藏 for Side bar 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;当然，你也可以使用鼠标进行选择，但是那样不可避免降低你的速度&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;模糊匹配&lt;/h3&gt;
-&lt;p&gt;无论是Command Palette还是Goto Anything,他们都采用模糊匹配，故不需要输入全命令和全文件名&lt;br /&gt;
-例如:在文件shiluodechenai.c中查找func_word&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sldca@fw  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;甚至可能更短&lt;/p&gt;
-
-&lt;h3 id=&quot;package-control&quot;&gt;Package Control(扩展包管理器)&lt;/h3&gt;
-&lt;p&gt;用来管理（安装，卸载）插件，皮肤的管理器，和vim中Vundle差不多，不过看起来更简单&lt;br /&gt;
-默认不含有此管理器，我们需要自己手动安装&lt;/p&gt;
-
-&lt;h4 id=&quot;section-5&quot;&gt;安装&lt;/h4&gt;
-
-&lt;h5 id=&quot;section-6&quot;&gt;手动版(复杂点)&lt;/h5&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;在 SublimeText2 的目录里面找到 &lt;code&gt;Data &amp;gt; Installed Packages&lt;/code&gt; 的文件夹 (如没有请手动新建)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在这里下载 &lt;a href=&quot;http://dl.iplaysoft.com/files/1774.html#download_list&quot;&gt;Package Control.sublime-package&lt;/a&gt; 文件&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;将下载到的文件放进去 Installed Packages 里面&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;重新启动 Sublime Text 即可&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h5 id=&quot;section-7&quot;&gt;自动版(保持网络，简单)&lt;/h5&gt;
-
-&lt;p&gt;如果你按照上面的方法确实搞不定，&lt;br /&gt;
-可以试试按键盘 Ctrl+~ （数字1左边的按键）调出控制台，&lt;br /&gt;
-然后拷贝下面的代码进去并回车，  它会自动帮你新建文件夹并下载文件的，与上面的方法最终效果是一样的&lt;br /&gt;
-代码如下：　　&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print 'Please restart Sublime Text to finish installation'
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;section-8&quot;&gt;使用&lt;/h4&gt;
-
-&lt;p&gt;如果 Package Control 已经安装成功，&lt;br /&gt;
-那么 Ctrl+Shift+P 调用命令面板，我们就会找到一些以“Package Control:”开头的命令:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; Install Package	---&amp;gt;(安装扩展)
- List Packages 		---&amp;gt;(列出全部扩展)
- Remove Package		---&amp;gt;(移除扩展)
- Upgrade Package	---&amp;gt;(升级扩展)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在命令面板输入 “Package Control: Install Package“即会列出全部可以安装的扩展&lt;br /&gt;
-从列表可以看到，4GL、AAAPackageDev 那些就是插件的名称  &lt;br /&gt;
-选择它们就可以进行下载安装了&lt;/p&gt;
-
-&lt;p&gt;此外，你还可以&lt;a href=&quot;https://sublime.wbond.net/&quot;&gt;在这里看到 Web 版的扩展列表和详细的说明&lt;/a&gt; （这俩列表的数据应该是同步的)&lt;/p&gt;
-
-&lt;h4 id=&quot;section-9&quot;&gt;一些比较好的插件&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;Emmet&lt;/strong&gt;: 以前被称作为Zen Coding,如果你从事Web前端开发的话，对该插件一定不会陌生。&lt;br /&gt;
-它使用仿CSS选择器的语法来快速开发HTML和CSS,在一个扩展框中输入符合规范的表达式，它会动态生成相应的代码 ,或者直接在文本中使用表达式，按扩展键(Tab)进行扩展&lt;/p&gt;
-
-&lt;p&gt;具体使用见:&lt;a href=&quot;http://www.w3cplus.com/tools/emmet-cheat-sheet.html&quot;&gt;表达式语法&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Gits&lt;/strong&gt;： 可以轻松集成 GitHub&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;SFTP&lt;/strong&gt;： 直接编辑 FTP 或 SFTP 服务器上的文件&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;ConvertToUTF8&lt;/strong&gt;： ST2只支持utf8编码，该插件可以显示与编辑 GBK, BIG5, EUC-KR, EUC-JP, Shift_JIS 等编码的文件&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Clipboard History&lt;/strong&gt;： 剪切板历史&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;WordPress&lt;/strong&gt;： 集成一些WordPress的函数，对于像我这种经常要写WP模版和插件的人特别有用！&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;HtmlTidy&lt;/strong&gt;： 清理与排版你的HTML代码&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;PHPTidy&lt;/strong&gt;： 整理与排版PHP代码&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;YUI Compressor&lt;/strong&gt;： 压缩JS和CSS文件&lt;/p&gt;
-</description>
-                <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/08/st2-some-usage</link>
-                <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/08/st2-some-usage</guid>
+                <link>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/06/08/st2-install-config</link>
+                <guid>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/06/08/st2-install-config</guid>
                 <pubDate>2014-06-08T00:00:00+08:00</pubDate>
         </item>
 
@@ -3646,7 +4127,7 @@ filetype plugin indent on    &quot; required
         </item>
 
         <item>
-                <title>转载-不早不晚，当下最好</title>
+                <title>不早不晚，当下最好(转载)</title>
                 <description>
 &lt;p&gt;人生苦短，大概三件事对我重要。&lt;/p&gt;
 
@@ -3688,13 +4169,13 @@ filetype plugin indent on    &quot; required
 原文链接：&lt;a href=&quot;http://www.xingzhekui.com/archives/6442&quot;&gt;http://www.xingzhekui.com/archives/6442&lt;/a&gt;&lt;/p&gt;
 
 </description>
-                <link>http://mwumli.github.io/%E4%B8%8D%E7%9F%A5%E5%90%8D%E7%9A%84%E6%83%85/2014/05/20/three-big-things</link>
-                <guid>http://mwumli.github.io/%E4%B8%8D%E7%9F%A5%E5%90%8D%E7%9A%84%E6%83%85/2014/05/20/three-big-things</guid>
+                <link>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/20/three-big-things</link>
+                <guid>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/20/three-big-things</guid>
                 <pubDate>2014-05-20T00:00:00+08:00</pubDate>
         </item>
 
         <item>
-                <title>转载-如何改变世界</title>
+                <title>如何改变世界(转载)</title>
                 <description>
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;改变世界，回归自身&lt;/a&gt;&lt;/li&gt;
@@ -3788,8 +4269,8 @@ filetype plugin indent on    &quot; required
 
 &lt;p&gt;原文链接：&lt;a href=&quot;http://lightory.net/how-to-change-the-world/&quot;&gt;http://lightory.net/how-to-change-the-world/&lt;/a&gt;&lt;/p&gt;
 </description>
-                <link>http://mwumli.github.io/%E4%B8%8D%E7%9F%A5%E5%90%8D%E7%9A%84%E6%83%85/2014/05/19/how-to-change-world</link>
-                <guid>http://mwumli.github.io/%E4%B8%8D%E7%9F%A5%E5%90%8D%E7%9A%84%E6%83%85/2014/05/19/how-to-change-world</guid>
+                <link>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/19/how-to-change-world</link>
+                <guid>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/19/how-to-change-world</guid>
                 <pubDate>2014-05-19T00:00:00+08:00</pubDate>
         </item>
 
@@ -3930,13 +4411,13 @@ filetype plugin indent on    &quot; required
 &lt;/ul&gt;
 
 </description>
-                <link>http://mwumli.github.io/%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E7%BC%96%E7%A8%8B/2014/05/13/kernel_hello</link>
-                <guid>http://mwumli.github.io/%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E7%BC%96%E7%A8%8B/2014/05/13/kernel_hello</guid>
+                <link>http://mwumli.github.io/%E5%86%85%E6%A0%B8/2014/05/13/kernel-hello</link>
+                <guid>http://mwumli.github.io/%E5%86%85%E6%A0%B8/2014/05/13/kernel-hello</guid>
                 <pubDate>2014-05-13T00:00:00+08:00</pubDate>
         </item>
 
         <item>
-                <title>转载－只管开始做</title>
+                <title>只管开始做(转载)</title>
                 <description>
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;流逝的绝大多数时光&lt;/a&gt;&lt;/li&gt;
@@ -4029,8 +4510,8 @@ filetype plugin indent on    &quot; required
 
 &lt;p&gt;“别多想，只管开始做！”&lt;/p&gt;
 </description>
-                <link>http://mwumli.github.io/%E4%B8%8D%E7%9F%A5%E5%90%8D%E7%9A%84%E6%83%85/2014/05/04/just_do_it</link>
-                <guid>http://mwumli.github.io/%E4%B8%8D%E7%9F%A5%E5%90%8D%E7%9A%84%E6%83%85/2014/05/04/just_do_it</guid>
+                <link>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/04/just-do-it</link>
+                <guid>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/04/just-do-it</guid>
                 <pubDate>2014-05-04T00:00:00+08:00</pubDate>
         </item>
 
