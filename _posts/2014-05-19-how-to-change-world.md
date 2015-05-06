@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "转载-如何改变世界"
+title: "如何改变世界(转载)"
 description: ""
 toc: "true"
-category: 不知名的情
+category: 情绪
 tags: [内圣外王,改变世界,回归自身]
 ---
 {% include LU/setup %}

@@ -2,7 +2,7 @@
 layout: post
 title: "使用jekyll搭建静态站点"
 description: ""
-category: 记录
+category: 软件
 tags: [jekyll,git,github,linux,web,website]
 ---
 {% include LU/setup %}

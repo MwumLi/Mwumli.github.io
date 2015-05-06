@@ -3,7 +3,7 @@ layout: post
 title: "Linux内核链表的分析"
 description: "" 
 category: 记录
-tags: [kernel, linux, list]
+tags: [kernel, linux, list, 内核]
 ---
 ### 内核中list_head的定义  
 	

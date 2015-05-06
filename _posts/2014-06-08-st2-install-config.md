@@ -2,7 +2,7 @@
 layout: post
 title: "Sublime Text 2的安装与配置"
 description: ""
-category: 记录
+category: 软件
 tags: [Sulime Text 2,前端,编辑器]
 ---
 {% include LU/setup %}

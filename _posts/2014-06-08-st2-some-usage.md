@@ -2,7 +2,7 @@
 layout: post
 title: "Sublime Text 2的使用"
 description: ""
-category: 记录
+category: 软件
 tags: [Sublime Text 2, Usage]
 ---
 {% include LU/setup %}

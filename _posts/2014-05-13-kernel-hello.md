@@ -2,8 +2,8 @@
 layout: post
 title: "来自Linux内核的hello,world"
 description: ""
-category: 内核模块编程
-tags: [linux, kernel]
+category: 内核
+tags: [linux, kernel, 内核]
 ---
 {% include LU/setup %}
 
