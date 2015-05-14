@@ -19,7 +19,9 @@ body {
     max-width: 80em;
     position: relative;
     margin: auto;
-    font: 100 14px/1.5 Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif;
+    font: 100 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+	letter-spacing: 0.5px;
+//	word-spacing : 3px; //单词之间的间距
 }
 table {
     margin: 0;
@@ -121,7 +123,7 @@ img {
 
 code {
     color: #cae3b6;
-    font-family: "Open Sans";
+    font-family: "monospace";
 	/*添加code自动换行*/
 	white-space: pre-wrap;
 	word-wrap: break-word;

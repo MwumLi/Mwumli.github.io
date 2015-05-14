@@ -5,8 +5,8 @@
         <description>微尘 - Liluo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-05-08T23:46:39+08:00</lastBuildDate>
-        <pubDate>2015-05-08T23:46:39+08:00</pubDate>
+        <lastBuildDate>2015-05-14T23:42:34+08:00</lastBuildDate>
+        <pubDate>2015-05-14T23:42:34+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -232,7 +232,7 @@
 &lt;pre&gt;&lt;code&gt;setw -g mode-keys vi
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;在 copy 模式下， 我们就可以使用 &lt;code&gt;j/k/h/l&lt;/code&gt;来移动光标了&lt;/p&gt;
+&lt;p&gt;在 copy 模式下， 我们就可以使用 &lt;code&gt;j/k/h/l&lt;/code&gt; 来移动光标了&lt;/p&gt;
 
 &lt;h4 id=&quot;section-1&quot;&gt;复制&lt;/h4&gt;
 
@@ -274,8 +274,10 @@
   &lt;li&gt;
     &lt;p&gt;在当前 session 中，按下 &lt;code&gt;ctrl-b + :&lt;/code&gt;,然后:&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; : source-file ~/.tmux.conf `.tmux.conf`是 tmux 配置文件的命名，默认位于你的用户主目录下  
+    &lt;pre&gt;&lt;code&gt; : source-file ~/.tmux.conf
 &lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;&lt;code&gt;.tmux.conf&lt;/code&gt;是 tmux 配置文件的命名，默认位于你的用户主目录下&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
