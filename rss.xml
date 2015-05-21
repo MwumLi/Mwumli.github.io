@@ -5,8 +5,8 @@
         <description>微尘 - Liluo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-05-14T23:42:34+08:00</lastBuildDate>
-        <pubDate>2015-05-14T23:42:34+08:00</pubDate>
+        <lastBuildDate>2015-05-22T01:00:44+08:00</lastBuildDate>
+        <pubDate>2015-05-22T01:00:44+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -3299,6 +3299,71 @@ B98FC99C 8FAC73EE D2B95564 DF450523
         <item>
                 <title>Vim下fancy的插件</title>
                 <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;简要声明&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#taglist&quot; id=&quot;markdown-toc-taglist&quot;&gt;TagList&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;简述&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vundle&quot; id=&quot;markdown-toc-vundle&quot;&gt;添加到Vundle管理&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vimrc&quot; id=&quot;markdown-toc-vimrc&quot;&gt;.vimrc中的一些配置&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;使用&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#echofunc&quot; id=&quot;markdown-toc-echofunc&quot;&gt;echofunc&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;简述&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vundle-1&quot; id=&quot;markdown-toc-vundle-1&quot;&gt;添加到Vundle管理&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;使用&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#winmanager&quot; id=&quot;markdown-toc-winmanager&quot;&gt;WinManager&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;简述&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vundle-2&quot; id=&quot;markdown-toc-vundle-2&quot;&gt;加入Vundle管理&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vimrc-1&quot; id=&quot;markdown-toc-vimrc-1&quot;&gt;.vimrc中的一些配置&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;使用&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#minibufexpl&quot; id=&quot;markdown-toc-minibufexpl&quot;&gt;minibufexpl&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;简述&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vundle-3&quot; id=&quot;markdown-toc-vundle-3&quot;&gt;加入Vundle管理&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vimrc-2&quot; id=&quot;markdown-toc-vimrc-2&quot;&gt;.vimrc中的一些配置&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-8&quot; id=&quot;markdown-toc-section-8&quot;&gt;使用&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#minibufexpl-1&quot; id=&quot;markdown-toc-minibufexpl-1&quot;&gt;minibufexpl引发的血案(窗口大小变化)&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#vimrc-3&quot; id=&quot;markdown-toc-vimrc-3&quot;&gt;在.vimrc进行设置&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-9&quot; id=&quot;markdown-toc-section-9&quot;&gt;设置快捷键&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tagsfiles&quot; id=&quot;markdown-toc-tagsfiles&quot;&gt;使用之前的分开显示tags和files的方式&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#powerline&quot; id=&quot;markdown-toc-powerline&quot;&gt;Powerline&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-10&quot; id=&quot;markdown-toc-section-10&quot;&gt;简述&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vundle-4&quot; id=&quot;markdown-toc-vundle-4&quot;&gt;添加到Vundle管理&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vimrc-4&quot; id=&quot;markdown-toc-vimrc-4&quot;&gt;.vimrc中的一些配置&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#themes-and-colorschemes&quot; id=&quot;markdown-toc-themes-and-colorschemes&quot;&gt;Themes and ColorSchemes&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tmuxvim&quot; id=&quot;markdown-toc-tmuxvim&quot;&gt;在tmux中的vim状态栏不颜色并不那么好看？&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#markdown&quot; id=&quot;markdown-toc-markdown&quot;&gt;Markdown&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-11&quot; id=&quot;markdown-toc-section-11&quot;&gt;简述&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vundle-5&quot; id=&quot;markdown-toc-vundle-5&quot;&gt;添加到Vundle管理&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vimrc-5&quot; id=&quot;markdown-toc-vimrc-5&quot;&gt;.vimrc中的一些配置&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-12&quot; id=&quot;markdown-toc-section-12&quot;&gt;一些默认快捷键&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#with-&quot; id=&quot;markdown-toc-with-&quot;&gt;生成目录 with ‘#’&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#fencview&quot; id=&quot;markdown-toc-fencview&quot;&gt;fencview&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-13&quot; id=&quot;markdown-toc-section-13&quot;&gt;简述&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vundle-6&quot; id=&quot;markdown-toc-vundle-6&quot;&gt;添加到Vundle管理&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-14&quot; id=&quot;markdown-toc-section-14&quot;&gt;使用&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tohtml&quot; id=&quot;markdown-toc-tohtml&quot;&gt;tohtml&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-15&quot; id=&quot;markdown-toc-section-15&quot;&gt;简述&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#ubuntu&quot; id=&quot;markdown-toc-ubuntu&quot;&gt;ubuntu下的位置&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-16&quot; id=&quot;markdown-toc-section-16&quot;&gt;使用&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h3 id=&quot;section&quot;&gt;简要声明&lt;/h3&gt;
 &lt;p&gt;以下介绍的插件的安装，均使用&lt;code&gt;Vundle管理&lt;/code&gt;&lt;/p&gt;
 
@@ -3645,8 +3710,34 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
         </item>
 
         <item>
-                <title>vim的一些操作</title>
+                <title>Vim的一些操作</title>
                 <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim&quot; id=&quot;markdown-toc-vim&quot;&gt;vim编程常用命令&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;常用命令&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;快速查找单词&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;撤销和反撤销&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;相关帮助文档&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim-1&quot; id=&quot;markdown-toc-vim-1&quot;&gt;Vim中文文档&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;缩进设置&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#vimrc&quot; id=&quot;markdown-toc-vimrc&quot;&gt;.vimrc选项&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tab&quot; id=&quot;markdown-toc-tab&quot;&gt;根据文件类型来设置 tab：&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tab-1&quot; id=&quot;markdown-toc-tab-1&quot;&gt;用特殊符号设置tab制表符&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;　折叠&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;6种方法&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;常见设置&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-8&quot; id=&quot;markdown-toc-section-8&quot;&gt;常用快捷键&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim-2&quot; id=&quot;markdown-toc-vim-2&quot;&gt;vim加密文件&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim-3&quot; id=&quot;markdown-toc-vim-3&quot;&gt;Vim的多文件操作&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim-4&quot; id=&quot;markdown-toc-vim-4&quot;&gt;vim的多窗口操作&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;vim&quot;&gt;vim编程常用命令&lt;/h2&gt;
 
 &lt;h3 id=&quot;section&quot;&gt;常用命令&lt;/h3&gt;
@@ -3662,7 +3753,17 @@ mx 		| 	设置书签，x只能是[a---z]的26个字母
 &amp;lt;  		| 	减少缩进，&quot;x&amp;gt;&quot;表示减少以下x行的缩进
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;相关帮助文档&lt;/h3&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;快速查找单词&lt;/h3&gt;
+
+&lt;p&gt;当光标移动到相应单词，按下 &lt;code&gt;shift + #&lt;/code&gt;, 就会在文件中快速查找改单词&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;撤销和反撤销&lt;/h3&gt;
+
+&lt;p&gt;按下 &lt;code&gt;u&lt;/code&gt; 撤销上一步保存的操作&lt;/p&gt;
+
+&lt;p&gt;按下 &lt;code&gt;ctrl + r&lt;/code&gt; 回退上一步撤销的操作&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;相关帮助文档&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;:help usr_29
 :help usr_30
@@ -3690,7 +3791,7 @@ mx 		| 	设置书签，x只能是[a---z]的26个字母
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;缩进设置&lt;/h2&gt;
+&lt;h2 id=&quot;section-4&quot;&gt;缩进设置&lt;/h2&gt;
 
 &lt;h4 id=&quot;vimrc&quot;&gt;.vimrc选项&lt;/h4&gt;
 
@@ -3732,9 +3833,9 @@ endif
 set listchars=tab:▸\ ,eol:¬
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&quot;section-3&quot;&gt;　折叠&lt;/h2&gt;
+&lt;h2 id=&quot;section-5&quot;&gt;　折叠&lt;/h2&gt;
 
-&lt;h4 id=&quot;section-4&quot;&gt;6种方法&lt;/h4&gt;
+&lt;h4 id=&quot;section-6&quot;&gt;6种方法&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;manual	---	手工定义折叠  
 indent	---	更多的缩进表示更高级别的折叠
@@ -3746,7 +3847,7 @@ marker	---	对文中的标志折叠
 
 &lt;p&gt;注意，每一种折叠方式不兼容，当前时刻，有且只能使用一种&lt;/p&gt;
 
-&lt;h4 id=&quot;section-5&quot;&gt;常见设置&lt;/h4&gt;
+&lt;h4 id=&quot;section-7&quot;&gt;常见设置&lt;/h4&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -3793,7 +3894,7 @@ marker	---	对文中的标志折叠
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h4 id=&quot;section-6&quot;&gt;常用快捷键&lt;/h4&gt;
+&lt;h4 id=&quot;section-8&quot;&gt;常用快捷键&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;za  打开/关闭在光标下的折叠
 zA  循环地打开/关闭光标下的折叠
@@ -3973,8 +4074,20 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
         </item>
 
         <item>
-                <title>vim插件管理及安装</title>
+                <title>Vim插件管理及安装</title>
                 <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim---vundle&quot; id=&quot;markdown-toc-vim---vundle&quot;&gt;Vim插件管理插件—&amp;gt;Vundle&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#github&quot; id=&quot;markdown-toc-github&quot;&gt;Github地址&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;配置&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vundle&quot; id=&quot;markdown-toc-vundle&quot;&gt;四种添加插件到Vundle管理的方式&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vundle-1&quot; id=&quot;markdown-toc-vundle-1&quot;&gt;使用Vundle安装插件&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vundle-2&quot; id=&quot;markdown-toc-vundle-2&quot;&gt;Vundle的其他使用&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;vim---vundle&quot;&gt;Vim插件管理插件—&amp;gt;Vundle&lt;/h2&gt;
 
 &lt;h3 id=&quot;github&quot;&gt;Github地址&lt;/h3&gt;
@@ -4518,7 +4631,7 @@ filetype plugin indent on    &quot; required
         </item>
 
         <item>
-                <title>vim的安装与配置</title>
+                <title>Vim的安装与配置</title>
                 <description>
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#debianubuntu&quot; id=&quot;markdown-toc-debianubuntu&quot;&gt;Debian/ubuntu下安装&lt;/a&gt;&lt;/li&gt;
@@ -4633,8 +4746,8 @@ vim系统级配置文件/usr/share/vim/vimrc&lt;br /&gt;
 &lt;/ul&gt;
 
 </description>
-                <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/05/03/vim_install_config</link>
-                <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/05/03/vim_install_config</guid>
+                <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/05/03/vim-install-config</link>
+                <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/05/03/vim-install-config</guid>
                 <pubDate>2014-05-03T00:00:00+08:00</pubDate>
         </item>
 

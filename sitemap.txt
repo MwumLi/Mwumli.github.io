@@ -33,4 +33,4 @@ http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/20/three-big-things
 http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/19/how-to-change-world
 http://mwumli.github.io/%E5%86%85%E6%A0%B8/2014/05/13/kernel-hello
 http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/04/just-do-it
-http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/05/03/vim_install_config
+http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/05/03/vim-install-config

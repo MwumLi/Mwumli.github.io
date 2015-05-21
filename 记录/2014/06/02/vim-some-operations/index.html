@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		
-		<title>vim的一些操作 | 微尘</title>
+		<title>Vim的一些操作 | 微尘</title>
 
   		
 		<meta name="description" content="">
@@ -113,7 +113,7 @@
 
 
 <div class="page-header">
-	<h1>vim的一些操作 <small></small></h1>
+	<h1>Vim的一些操作 <small></small></h1>
 	<div id="article_header">
 		
 		
@@ -134,7 +134,7 @@
 		<div>
 			Last Modify in
 			
-			<span>2014-06-02</span>,
+			<span>2015-05-22</span>,
 			
 			published in <span>2014-06-02</span> 
 			by <span> LiLuo</span>
@@ -147,6 +147,32 @@
 
 <div id="page-content">
     
+<ul id="markdown-toc">
+  <li><a href="#vim" id="markdown-toc-vim">vim编程常用命令</a>    <ul>
+      <li><a href="#section" id="markdown-toc-section">常用命令</a></li>
+      <li><a href="#section-1" id="markdown-toc-section-1">快速查找单词</a></li>
+      <li><a href="#section-2" id="markdown-toc-section-2">撤销和反撤销</a></li>
+      <li><a href="#section-3" id="markdown-toc-section-3">相关帮助文档</a></li>
+    </ul>
+  </li>
+  <li><a href="#vim-1" id="markdown-toc-vim-1">Vim中文文档</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">缩进设置</a>    <ul>
+      <li><a href="#vimrc" id="markdown-toc-vimrc">.vimrc选项</a></li>
+      <li><a href="#tab" id="markdown-toc-tab">根据文件类型来设置 tab：</a></li>
+      <li><a href="#tab-1" id="markdown-toc-tab-1">用特殊符号设置tab制表符</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-5" id="markdown-toc-section-5">　折叠</a>    <ul>
+      <li><a href="#section-6" id="markdown-toc-section-6">6种方法</a></li>
+      <li><a href="#section-7" id="markdown-toc-section-7">常见设置</a></li>
+      <li><a href="#section-8" id="markdown-toc-section-8">常用快捷键</a></li>
+    </ul>
+  </li>
+  <li><a href="#vim-2" id="markdown-toc-vim-2">vim加密文件</a></li>
+  <li><a href="#vim-3" id="markdown-toc-vim-3">Vim的多文件操作</a></li>
+  <li><a href="#vim-4" id="markdown-toc-vim-4">vim的多窗口操作</a></li>
+</ul>
+
 <h2 id="vim">vim编程常用命令</h2>
 
 <h3 id="section">常用命令</h3>
@@ -162,7 +188,17 @@ mx 		| 	设置书签，x只能是[a---z]的26个字母
 &lt;  		| 	减少缩进，"x&gt;"表示减少以下x行的缩进
 </code></pre>
 
-<h3 id="section-1">相关帮助文档</h3>
+<h3 id="section-1">快速查找单词</h3>
+
+<p>当光标移动到相应单词，按下 <code>shift + #</code>, 就会在文件中快速查找改单词</p>
+
+<h3 id="section-2">撤销和反撤销</h3>
+
+<p>按下 <code>u</code> 撤销上一步保存的操作</p>
+
+<p>按下 <code>ctrl + r</code> 回退上一步撤销的操作</p>
+
+<h3 id="section-3">相关帮助文档</h3>
 
 <pre><code>:help usr_29
 :help usr_30
@@ -190,7 +226,7 @@ mx 		| 	设置书签，x只能是[a---z]的26个字母
   </li>
 </ol>
 
-<h2 id="section-2">缩进设置</h2>
+<h2 id="section-4">缩进设置</h2>
 
 <h4 id="vimrc">.vimrc选项</h4>
 
@@ -232,9 +268,9 @@ endif
 set listchars=tab:▸\ ,eol:¬
 </code></pre>
 
-<h2 id="section-3">　折叠</h2>
+<h2 id="section-5">　折叠</h2>
 
-<h4 id="section-4">6种方法</h4>
+<h4 id="section-6">6种方法</h4>
 
 <pre><code>manual	---	手工定义折叠  
 indent	---	更多的缩进表示更高级别的折叠
@@ -246,7 +282,7 @@ marker	---	对文中的标志折叠
 
 <p>注意，每一种折叠方式不兼容，当前时刻，有且只能使用一种</p>
 
-<h4 id="section-5">常见设置</h4>
+<h4 id="section-7">常见设置</h4>
 
 <ol>
   <li>
@@ -293,7 +329,7 @@ marker	---	对文中的标志折叠
   </li>
 </ol>
 
-<h4 id="section-6">常用快捷键</h4>
+<h4 id="section-8">常用快捷键</h4>
 
 <pre><code>za  打开/关闭在光标下的折叠
 zA  循环地打开/关闭光标下的折叠
