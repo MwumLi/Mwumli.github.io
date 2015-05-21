@@ -1,11 +1,15 @@
 ---
 layout: post
-title: "vim插件管理及安装"
+title: "Vim插件管理及安装"
+toc: "true"
 description: ""
 category: 记录
 tags: [vim,plugin,manage]
 ---
 {% include LU/setup %}
+
+* here is toc
+{:toc}
 
 ## Vim插件管理插件--->Vundle
 

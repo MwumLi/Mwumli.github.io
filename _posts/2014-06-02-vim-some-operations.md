@@ -1,11 +1,16 @@
 ---
 layout: post
-title: "vim的一些操作"
+title: "Vim的一些操作"
+toc: "true"
+modifyTime: "2015-05-22 00:29:43"
 description: ""
 category: 记录
 tags: [vim,operations,linux]
 ---
 {% include LU/setup %}
+
+* here is toc
+{:toc}
 
 ## vim编程常用命令  
 
@@ -20,6 +25,16 @@ tags: [vim,operations,linux]
 	`x 		| 	跳转到书签处(`是１旁边的键)
 	>  		| 	增加缩进，"x>"表示增加以下x行的缩进
 	<  		| 	减少缩进，"x>"表示减少以下x行的缩进
+	
+### 快速查找单词  
+
+当光标移动到相应单词，按下 `shift + #`, 就会在文件中快速查找改单词  
+
+### 撤销和反撤销  
+
+按下 `u` 撤销上一步保存的操作  
+
+按下 `ctrl + r` 回退上一步撤销的操作  
 
 ### 相关帮助文档 
 

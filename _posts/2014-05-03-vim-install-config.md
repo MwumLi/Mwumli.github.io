@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "vim的安装与配置"
+title: "Vim的安装与配置"
 description: ""
 category: 记录
 tags: [vim, linux]

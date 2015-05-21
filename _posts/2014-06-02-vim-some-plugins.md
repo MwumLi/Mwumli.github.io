@@ -1,11 +1,15 @@
 ---
 layout: post
 title: "Vim下fancy的插件"
+toc: "true"
 description: ""
 category: 记录
 tags: [vim,plugin, linux]
 ---
 {% include LU/setup %}
+
+* here is toc
+{:toc}
 
 ### 简要声明
 以下介绍的插件的安装，均使用`Vundle管理`  
