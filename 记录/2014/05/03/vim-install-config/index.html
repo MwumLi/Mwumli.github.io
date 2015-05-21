@@ -1,0 +1,341 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		<title>Vim的安装与配置 | 微尘</title>
+
+  		
+		<meta name="description" content="">
+        
+
+	    <meta name="author" content="Liluo">
+	
+        <!-- syntax highlighting CSS -->
+		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- Custom CSS -->
+		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+
+    </head>
+    <body>
+        <div id="all">
+<!--            header start-->
+            <div id="header">
+                <div id="title">
+                <h1 >
+                    <a href="/">微尘<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
+					</a>                     	   
+				</h1>
+                </div>
+                <!--hr/ -->
+                <div id="top-nav">
+                    <ul>
+					
+
+
+
+    
+  	
+  
+  
+  
+	  
+	  			
+
+  
+	  
+	  
+  	 		
+      		
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+
+  
+  		<li><a href="/pages/micro_say/2015.html">微尘</a></li>
+  
+
+
+
+					<li><a href="/pages/articles/index.html">文章</a></li>
+					<li><a href="/pages/categories/index.html">分类</a></li>
+					<li><a href="/pages/tags/index.html">标签</a></li>
+					<li><a href="/rss.xml">rss订阅</a></li>
+					</ul>   
+                </div>
+            </div> 
+<!--            header end-->
+            <!--hr /-->
+            <div class="content">
+                
+
+
+<div class="page-header">
+	<h1>Vim的安装与配置 <small></small></h1>
+	<div id="article_header">
+		
+		
+		<div>
+			<span>分类: </span>
+			<a href="/pages/categories/index.html#记录-ref" class="tag">记录</a> 
+			
+				<span>标签: </span>
+			
+			
+				<a href="/pages/tags/index.html#vim-ref" class="tag">vim</a>
+    		
+				<a href="/pages/tags/index.html#linux-ref" class="tag">linux</a>
+    		
+		</div>		
+		<div>
+			Last Modify in
+			
+			<span>2014-05-03</span>,
+			
+			published in <span>2014-05-03</span> 
+			by <span> LiLuo</span>
+		</div>
+
+		
+		
+	</div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#debianubuntu" id="markdown-toc-debianubuntu">Debian/ubuntu下安装</a></li>
+  <li><a href="#section" id="markdown-toc-section">编写配置文件</a></li>
+  <li><a href="#vim" id="markdown-toc-vim">查看vim做过什么</a></li>
+  <li><a href="#vim-1" id="markdown-toc-vim-1">Vim的四大模式</a>    <ul>
+      <li><a href="#normal-mode----press-esc-to-enter" id="markdown-toc-normal-mode----press-esc-to-enter">Normal mode	—-	Press [Esc] to enter</a></li>
+      <li><a href="#visual-mode----press-escv-to-enter" id="markdown-toc-visual-mode----press-escv-to-enter">Visual mode	—-	press [Esc]+v to enter</a></li>
+      <li><a href="#insert-mode----press-escioa-to-enter" id="markdown-toc-insert-mode----press-escioa-to-enter">Insert mode	—-	press [Esc]+[i,o,a] to enter</a></li>
+      <li><a href="#command-line-mode----press-esc-to-enter" id="markdown-toc-command-line-mode----press-esc-to-enter">Command-line mode	—-	press [Esc]+[:] to enter</a></li>
+    </ul>
+  </li>
+  <li><a href="#vim-2" id="markdown-toc-vim-2">vim的环境设定参数</a></li>
+</ul>
+
+<h2 id="debianubuntu">Debian/ubuntu下安装</h2>
+
+<pre><code>$sudo apt-get install vim
+</code></pre>
+
+<h2 id="section">编写配置文件</h2>
+
+<p>vim用户自定义配置文件$(HOME)/.vimrc(若没有,请自行创建)<br />
+vim系统级配置文件/usr/share/vim/vimrc<br />
+而我们一般只修改~/.vimrc</p>
+
+<h2 id="vim">查看vim做过什么</h2>
+
+<p>~/.viminfo：记录了你曾经在vim上做过的操作(vim会自动创建)</p>
+
+<h2 id="vim-1">Vim的四大模式</h2>
+
+<h3 id="normal-mode----press-esc-to-enter">Normal mode	—-	Press [Esc] to enter</h3>
+
+<p>此mode是进入其他mode的基础</p>
+
+<pre><code>	[Ctrl]+[f]	==	[PgDn]
+	[Ctrl]+[b]	==	[PgUp]
+	[Ctrl]+[d]		向下翻半页
+	[Ctrl]+[u]		向上翻半页
+	[Ctrl]+[g]  	显示位置信息
+	[g]+[Ctrl]+[g]	统计字数
+	[d]+[d]			删除光标所在行
+	[W]				跳转到下一个单词的开头
+</code></pre>
+
+<h3 id="visual-mode----press-escv-to-enter">Visual mode	—-	press [Esc]+v to enter</h3>
+
+<p>选择区域：移动光标选择区域</p>
+
+<p>复制：选中区域后，按下y,选中的区域就被复制到剪贴板</p>
+
+<p>粘贴：移动光标到想要粘贴的位置，按下p,剪贴板的内容就被复制到该位</p>
+
+<p>区块选择：</p>
+
+<ol>
+  <li>
+    <p>光标移动到想复制区域的左上角，然后按下[Ctrl-v],进入区块选择模式</p>
+  </li>
+  <li>
+    <p>移动光标选择矩形区域，选定之后，选择的区域会反白，按下[y],反白区域消失，内容已进入vim复制缓冲区</p>
+  </li>
+  <li>
+    <p>移动光标到你想开始粘贴位置的起点，按下[p],刚才复制内容就会以矩形形式粘贴下来</p>
+  </li>
+</ol>
+
+<h3 id="insert-mode----press-escioa-to-enter">Insert mode	—-	press [Esc]+[i,o,a] to enter</h3>
+
+<pre><code>	[Ctrl]+[n]和[Ctrl][p]	单词补全
+</code></pre>
+
+<h3 id="command-line-mode----press-esc-to-enter">Command-line mode	—-	press [Esc]+[:] to enter</h3>
+
+<pre><code>	:help	进入vim帮助文档
+	:set all	查看vim的素有原始设置
+</code></pre>
+
+<h2 id="vim-2">vim的环境设定参数</h2>
+
+<p>两种设置方式：</p>
+
+<ul>
+  <li>在配置文件vimrc中写入(永久有效)</li>
+  <li>
+    <p>在vim的命令行模式下设置(只在此次打开的vim中有效)<br />
+展示一些常用参数：</p>
+
+    <pre><code> "设置高亮搜索
+ set hlsearch	"high light search,默认
+
+ "设置backspace按键的工作方式
+ "0,1表示只删除当前输入的字符
+ "2表示可任意删除字符,默认
+ set backspace=[0,1,2]
+	
+ "设置不自动缩进，自动缩进set autoindent
+ set noautoindent	"默认
+                                                                       
+ "设置不显示行号	set nonumber显示行号
+ set nonumber
+
+ "设置不自动储存备份,set backup	自动备份
+ "更改一个文件file时，会自动在当前路径生成一个file~的文件，记录上一步状态
+ set nobackup
+    
+ "语法高亮,syntax off 取消语法高亮
+ syntax on
+</code></pre>
+  </li>
+</ul>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev-disabled"><a>&larr;没了： 亲,还没开始呢</a></li>
+      
+        <li class="archive"><a href="/pages/articles/index.html">所有文章</a></li>
+      
+        <li class="next"><a href="/%E6%83%85%E7%BB%AA/2014/05/04/just-do-it" title="只管开始做(转载)">下一篇：只管开始做(转载)&rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'blog-mwumli';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+ </div>
+
+
+   
+            </div>
+            <hr />
+            <div id="footer">
+                <p>
+                <span>&copy;2014 Liluo</span>
+                </p>
+            </div>
+        </div>
+		
+		<!-- site top -->
+		<div id="site-top"><a href="#" title="Return to Top">TOP</a></div>
+
+		
+
+
+		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
+		<script src="/assets/themes/custom_me/js/copy.js"></script>
+		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+		<script src="/assets/themes/custom_me/js/toc.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+						
+				addCopy("pre", "copy", "Copy");
+				tocEffect();
+
+				var bigfoot=$.bigfoot({
+					preventPageScroll: true
+					})
+
+			})
+		</script>	
+ </div>
+    </body>
+</html>
+
+
+
+
