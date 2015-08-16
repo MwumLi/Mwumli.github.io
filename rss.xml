@@ -5,8 +5,8 @@
         <description>微尘 - Liluo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-06-02T11:00:13+08:00</lastBuildDate>
-        <pubDate>2015-06-02T11:00:13+08:00</pubDate>
+        <lastBuildDate>2015-08-16T23:54:24+00:00</lastBuildDate>
+        <pubDate>2015-08-16T23:54:24+00:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -483,7 +483,7 @@ set -g prefix C-a
 </description>
                 <link>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2015/05/05/tmux</link>
                 <guid>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2015/05/05/tmux</guid>
-                <pubDate>2015-05-05T00:00:00+08:00</pubDate>
+                <pubDate>2015-05-05T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -572,7 +572,7 @@ set -g prefix C-a
 </description>
                 <link>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2015/05/01/leave-beijing</link>
                 <guid>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2015/05/01/leave-beijing</guid>
-                <pubDate>2015-05-01T00:00:00+08:00</pubDate>
+                <pubDate>2015-05-01T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -765,7 +765,7 @@ set -g prefix C-a
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2015/04/24/php-extension-install</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2015/04/24/php-extension-install</guid>
-                <pubDate>2015-04-24T00:00:00+08:00</pubDate>
+                <pubDate>2015-04-24T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -1069,7 +1069,7 @@ iface default inet dhcp
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/12/06/raspberrypi-install</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/12/06/raspberrypi-install</guid>
-                <pubDate>2014-12-06T00:00:00+08:00</pubDate>
+                <pubDate>2014-12-06T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -1186,7 +1186,7 @@ hello,world
 </description>
                 <link>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/12/05/linux-masm-built</link>
                 <guid>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/12/05/linux-masm-built</guid>
-                <pubDate>2014-12-05T00:00:00+08:00</pubDate>
+                <pubDate>2014-12-05T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -1287,7 +1287,7 @@ IP 172.24.243.1.53 &amp;gt; 172.24.243.3.21645: 18340 3/0/0 CNAME www.a.shifen.c
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/11/05/dns</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/11/05/dns</guid>
-                <pubDate>2014-11-05T00:00:00+08:00</pubDate>
+                <pubDate>2014-11-05T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -1457,7 +1457,7 @@ Linux命令如下:&lt;/p&gt;
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/09/28/compile-link</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/09/28/compile-link</guid>
-                <pubDate>2014-09-28T00:00:00+08:00</pubDate>
+                <pubDate>2014-09-28T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -1752,7 +1752,7 @@ int main(int argc, const char *argv[])
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/09/22/kernel-list</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/09/22/kernel-list</guid>
-                <pubDate>2014-09-22T00:00:00+08:00</pubDate>
+                <pubDate>2014-09-22T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -1859,7 +1859,7 @@ $ git push origin master
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/08/14/website-by-using-jekyllboostrap</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/08/14/website-by-using-jekyllboostrap</guid>
-                <pubDate>2014-08-14T00:00:00+08:00</pubDate>
+                <pubDate>2014-08-14T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -1989,7 +1989,7 @@ Configuration file: /home/temp/myblog/_config.yml
 </description>
                 <link>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/08/14/static-website-by-jekyll</link>
                 <guid>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/08/14/static-website-by-jekyll</guid>
-                <pubDate>2014-08-14T00:00:00+08:00</pubDate>
+                <pubDate>2014-08-14T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -2256,7 +2256,7 @@ $ git push
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/08/03/websites-by-github-pages</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/08/03/websites-by-github-pages</guid>
-                <pubDate>2014-08-03T00:00:00+08:00</pubDate>
+                <pubDate>2014-08-03T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -2535,7 +2535,7 @@ $cfg['Servers'][$i]['compress']='false';
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/14/lamp-build</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/14/lamp-build</guid>
-                <pubDate>2014-06-14T00:00:00+08:00</pubDate>
+                <pubDate>2014-06-14T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -2805,7 +2805,7 @@ $ sudo umount dir
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/10/linux-file-system</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/10/linux-file-system</guid>
-                <pubDate>2014-06-10T00:00:00+08:00</pubDate>
+                <pubDate>2014-06-10T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -2971,7 +2971,7 @@ $ sudo umount dir
 </description>
                 <link>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/06/08/st2-some-usage</link>
                 <guid>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/06/08/st2-some-usage</guid>
-                <pubDate>2014-06-08T00:00:00+08:00</pubDate>
+                <pubDate>2014-06-08T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -3293,7 +3293,7 @@ B98FC99C 8FAC73EE D2B95564 DF450523
 </description>
                 <link>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/06/08/st2-install-config</link>
                 <guid>http://mwumli.github.io/%E8%BD%AF%E4%BB%B6/2014/06/08/st2-install-config</guid>
-                <pubDate>2014-06-08T00:00:00+08:00</pubDate>
+                <pubDate>2014-06-08T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -3706,7 +3706,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/02/vim-some-plugins</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/02/vim-some-plugins</guid>
-                <pubDate>2014-06-02T00:00:00+08:00</pubDate>
+                <pubDate>2014-06-02T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -3995,7 +3995,7 @@ Vim 并不具备检验密码正确性的机制 (这一点使得破译密码更�
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/02/vim-some-operations</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/02/vim-some-operations</guid>
-                <pubDate>2014-06-02T00:00:00+08:00</pubDate>
+                <pubDate>2014-06-02T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -4070,7 +4070,7 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/02/ctags</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/02/ctags</guid>
-                <pubDate>2014-06-02T00:00:00+08:00</pubDate>
+                <pubDate>2014-06-02T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -4238,7 +4238,7 @@ filetype plugin indent on    &quot; required
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/01/vim-plugin-manage</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/06/01/vim-plugin-manage</guid>
-                <pubDate>2014-06-01T00:00:00+08:00</pubDate>
+                <pubDate>2014-06-01T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -4286,7 +4286,7 @@ filetype plugin indent on    &quot; required
 </description>
                 <link>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/20/three-big-things</link>
                 <guid>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/20/three-big-things</guid>
-                <pubDate>2014-05-20T00:00:00+08:00</pubDate>
+                <pubDate>2014-05-20T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -4386,7 +4386,7 @@ filetype plugin indent on    &quot; required
 </description>
                 <link>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/19/how-to-change-world</link>
                 <guid>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/19/how-to-change-world</guid>
-                <pubDate>2014-05-19T00:00:00+08:00</pubDate>
+                <pubDate>2014-05-19T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -4528,7 +4528,7 @@ filetype plugin indent on    &quot; required
 </description>
                 <link>http://mwumli.github.io/%E5%86%85%E6%A0%B8/2014/05/13/kernel-hello</link>
                 <guid>http://mwumli.github.io/%E5%86%85%E6%A0%B8/2014/05/13/kernel-hello</guid>
-                <pubDate>2014-05-13T00:00:00+08:00</pubDate>
+                <pubDate>2014-05-13T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -4627,7 +4627,7 @@ filetype plugin indent on    &quot; required
 </description>
                 <link>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/04/just-do-it</link>
                 <guid>http://mwumli.github.io/%E6%83%85%E7%BB%AA/2014/05/04/just-do-it</guid>
-                <pubDate>2014-05-04T00:00:00+08:00</pubDate>
+                <pubDate>2014-05-04T00:00:00+00:00</pubDate>
         </item>
 
         <item>
@@ -4748,7 +4748,7 @@ vim系统级配置文件/usr/share/vim/vimrc&lt;br /&gt;
 </description>
                 <link>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/05/03/vim-install-config</link>
                 <guid>http://mwumli.github.io/%E8%AE%B0%E5%BD%95/2014/05/03/vim-install-config</guid>
-                <pubDate>2014-05-03T00:00:00+08:00</pubDate>
+                <pubDate>2014-05-03T00:00:00+00:00</pubDate>
         </item>
 
 

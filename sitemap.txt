@@ -2,10 +2,10 @@
 http://mwumli.github.io/pages/micro_say/2014.html
 http://mwumli.github.io/pages/micro_say/2015.html
 http://mwumli.github.io/404.html
-http://mwumli.github.io/pages/articles/index.html
-http://mwumli.github.io/pages/categories/index.html
 http://mwumli.github.io/pages/gcse/index.html
 http://mwumli.github.io/pages/tags/index.html
+http://mwumli.github.io/pages/articles/index.html
+http://mwumli.github.io/pages/categories/index.html
 http://mwumli.github.io/index.html
 http://mwumli.github.io/rss.xml
 http://mwumli.github.io/sitemap.txt
