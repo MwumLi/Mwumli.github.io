@@ -35,15 +35,14 @@
     <div class="pagination">
       <ul>
       {% if page.previous %}
-        <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr;上一篇：{{page.previous.title}}</a></li>
+        <li class="prev">上一篇: <a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">{{page.previous.title}}</a></li>
       {% else %}
-        <li class="prev-disabled"><a>&larr;没了： 亲,还没开始呢</a></li>
+        <li class="prev-disabled">上一篇: 呵呵,还没开始呢</li>
       {% endif %}
-        <li class="archive"><a href="{{ BASE_PATH }}{{ site.LU.archive_path }}">所有文章</a></li>
       {% if page.next %}
-        <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">下一篇：{{ page.next.title }}&rarr;</a></li>
+        <li class="next">下一篇: <a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{ page.next.title }}</a></li>
       {% else %}
-        <li class="next-disabled"><a>没了：让时间加速吧&rarr;</a>
+        <li class="next-disabled">下一篇: 让时间加速吧
       {% endif %}
       </ul>
     </div>

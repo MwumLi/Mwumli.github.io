@@ -20,6 +20,8 @@ title: 微尘空间
 	只是，随便拍拍，身上的尘土落尽，又有多少罪孽呢？
 	只是，阳光下，金色的微尘闪着光，又是怎样一个世界呢？
 
+## 微语
+
 <ul>
 {% assign micro_say_list = site.pages %}
 {% include LU/micro_say_list %}
