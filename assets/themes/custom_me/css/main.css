@@ -415,16 +415,22 @@ a.tag:hover {
 .pagination {
 
 }
-.prev , .prev-disabled {
+
+.pagination ul {
+ list-style:none; 
+}
+/*.prev , .prev-disabled {
     float: left;
 }
+
 .archive {
     float: left;
     text-align: center;
     width: 100px;
     padding:0 2em 0 2em;
 }
-.next , .next-disabled {
+
+/*.next , .next-disabled {
     float: left;
 }
 .archive ,.prev , .next , .prev-disabled , .next-disabled {
@@ -432,7 +438,7 @@ a.tag:hover {
 }
 .archive a, .prev a, .next a, .prev-disabled a, .next-disabled a {
     display: block;
-/*    border-radius: 15px;*/
+//    border-radius: 15px;
     padding: 6px 20px;
     margin: 0 0.5px;
     background-color: rgba(62, 38, 128, 0.51);
@@ -444,7 +450,7 @@ a.tag:hover {
 .prev a:hover , .next a:hover, .archive a:hover{
     background-color: rgba(19, 160, 15, 0.72);
 }
-/*.prev-disabled a, next-disabled a {
+.prev-disabled a, next-disabled a {
     
 }*/
 
