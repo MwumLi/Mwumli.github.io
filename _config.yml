@@ -87,7 +87,7 @@ LU :
   comments :
     provider : disqus
     disqus :
-        short_name : blog-mwumli
+        short_name : ifmicro
     livefyre :
       site_id : 123
     intensedebate :
