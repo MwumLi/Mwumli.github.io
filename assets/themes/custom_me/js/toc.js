@@ -12,22 +12,13 @@ function tocEffect() {
 			.delay(500)
 			.fadeTo(500, '0.25')
 			.hover(function(){
-				$("#site-top").stop().fadeTo(300,"0.9");
+//				$("#site-top").stop().fadeTo(300,"0.9");
 				$(this).stop().fadeTo(300, '0.9');
 			}, function(){
-				$("#site-top").stop().fadeTo(300,"0.2");
+//				$("#site-top").stop().fadeTo(300,"0.2");
 				$(this).stop().fadeTo(300, "0.25");
 		});
 	
-		$('#site-top')
-			.fadeTo(500, '0.25')	
-			.hover(function(){
-				$(".tocWrap").stop().fadeTo(300,"0.9");
-				$(this).stop().fadeTo(300, '0.9');
-			}, function(){
-				$(".tocWrap").stop().fadeTo(300,"0.2");
-				$(this).stop().fadeTo(300, "0.25");
-			});
 
 		//Press key Shift+Z to close and open Menu
 		//Press key Shift+V to close and open head
@@ -68,12 +59,6 @@ function tocEffect() {
 		})
 		
 		// set scroll to top
-		$('#site-top').click(function(){
-			$('html,body').animate({
-				scrollTop: 0
-			}, "slow")
-			return false;
-		})
 		// adjust the height dynamically
 		adjustTocScrollbarByWinH("ul#markdown-toc", 0.74);
 
