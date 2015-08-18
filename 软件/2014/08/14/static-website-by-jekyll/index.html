@@ -287,7 +287,8 @@ Configuration file: /home/temp/myblog/_config.yml
       </ul>
     </div>
     <hr>
-    
+	<div id="to_comments">
+	
 
 
   <div id="disqus_thread"></div>
@@ -307,6 +308,8 @@ Configuration file: /home/temp/myblog/_config.yml
 
 
 
+	</div>
+
  </div>
 
 
@@ -321,7 +324,11 @@ Configuration file: /home/temp/myblog/_config.yml
         </div>
 		
 		<!-- site top -->
-		<div id="site-top"><a href="#" title="Return to Top">TOP</a></div>
+		<div class="nav-bottom">
+			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+		</div>
 
 		
 
@@ -333,14 +340,15 @@ Configuration file: /home/temp/myblog/_config.yml
 		<script src="/assets/themes/custom_me/js/toc.js"></script>
 		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
 		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
-
+	
 		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script src="/assets/themes/custom_me/js/toComments.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
 						
 				addCopy("pre", "copy", "Copy");
 				tocEffect();
-
+				toComments();
 				var bigfoot=$.bigfoot({
 					preventPageScroll: true
 					})

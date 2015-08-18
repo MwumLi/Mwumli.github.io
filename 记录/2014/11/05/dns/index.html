@@ -250,7 +250,8 @@ IP 172.24.243.1.53 &gt; 172.24.243.3.21645: 18340 3/0/0 CNAME www.a.shifen.com.,
       </ul>
     </div>
     <hr>
-    
+	<div id="to_comments">
+	
 
 
   <div id="disqus_thread"></div>
@@ -270,6 +271,8 @@ IP 172.24.243.1.53 &gt; 172.24.243.3.21645: 18340 3/0/0 CNAME www.a.shifen.com.,
 
 
 
+	</div>
+
  </div>
 
 
@@ -284,7 +287,11 @@ IP 172.24.243.1.53 &gt; 172.24.243.3.21645: 18340 3/0/0 CNAME www.a.shifen.com.,
         </div>
 		
 		<!-- site top -->
-		<div id="site-top"><a href="#" title="Return to Top">TOP</a></div>
+		<div class="nav-bottom">
+			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+		</div>
 
 		
 
@@ -296,14 +303,15 @@ IP 172.24.243.1.53 &gt; 172.24.243.3.21645: 18340 3/0/0 CNAME www.a.shifen.com.,
 		<script src="/assets/themes/custom_me/js/toc.js"></script>
 		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
 		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
-
+	
 		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script src="/assets/themes/custom_me/js/toComments.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
 						
 				addCopy("pre", "copy", "Copy");
 				tocEffect();
-
+				toComments();
 				var bigfoot=$.bigfoot({
 					preventPageScroll: true
 					})
