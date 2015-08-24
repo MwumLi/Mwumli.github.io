@@ -146,13 +146,14 @@ MySQL大部分命令是以`;`结尾
 	
 	sudo vim /etc/mysql/my.cnf
 
-这里有一个地方要注意 默认：是只允许本地访问数据库的这里不是说本机架设了网站，用户通过架设在的网页不能访问MySQL ,是指其它机子不能直接访问MySQL   
+这里有一个地方要注意: 默认情况下，只允许本地访问数据库 ,其它机子不能直接访问MySQL   
 
 	bind-address 127.0.0.1
 
-解除限制只能本地访问mysql，如果需要其他机器访问，应使用如下语句，把这`bind-address 127.0.0.1`句话用`#`注释掉  
-
-	#bind-address 127.0.0.1
+如果需要其他机器访问，应这样做:
+	
+	# bind-address 127.0.0.1		// 把这 "bind-address 127.0.0.1" 句话用"#"注释掉  
+	
 
 
 ### 安装PHP以及一些必要的模块  
@@ -180,7 +181,7 @@ MySQL大部分命令是以`;`结尾
 #### 测试  
 在apache的默认工作目录下(/var/www/html)中新建文件phpinfo.php,内容为:  
 
-	<? php phpinfo() ?>
+	<?php phpinfo() ?>
 	
 在浏览器窗口输入`http://localhost/phpinfo.php`,若出现php的相关信息，则安装成功  
 
@@ -227,6 +228,12 @@ phpmyadmin是一个图形化的数据库管理软件
 在浏览器里输入`http://localhost/phpMyAdmin`   
 出现登陆数据库界面，嗯，成功了，终于不用面对那么冷淡的终端了  
 
+如果浏览器中显示 `配置文件权限错误，不应任何用户都能修改！`,那么可以这样解决:  
+1. 修改 `phpMyAdmin/` 文件下所有文件权限:  `sudo chmod -R 755 phpMyAdmin`  
+2. 可以通过修改 phpMyAdmin 的配置文件(`phpMyAdmin/libraries/config.default.php`)解决:  
+
+	$cfg['CheckConfigurationPermissions']=false
+	
 ### 配置文件路径
 1. apache 的配置文件路径 `/etc/apache2/apache2.conf`  
 2. apache 网站字符编码配置路径 `/etc/apache2/conf-enabled/charset.conf`  
