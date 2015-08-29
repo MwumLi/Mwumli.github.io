@@ -315,14 +315,14 @@ mysql&gt;
 <pre><code>sudo vim /etc/mysql/my.cnf
 </code></pre>
 
-<p>这里有一个地方要注意 默认：是只允许本地访问数据库的这里不是说本机架设了网站，用户通过架设在的网页不能访问MySQL ,是指其它机子不能直接访问MySQL</p>
+<p>这里有一个地方要注意: 默认情况下，只允许本地访问数据库 ,其它机子不能直接访问MySQL</p>
 
 <pre><code>bind-address 127.0.0.1
 </code></pre>
 
-<p>解除限制只能本地访问mysql，如果需要其他机器访问，应使用如下语句，把这<code>bind-address 127.0.0.1</code>句话用<code>#</code>注释掉</p>
+<p>如果需要其他机器访问，应这样做:</p>
 
-<pre><code>#bind-address 127.0.0.1
+<pre><code># bind-address 127.0.0.1		// 把这 "bind-address 127.0.0.1" 句话用"#"注释掉  
 </code></pre>
 
 <h3 id="php">安装PHP以及一些必要的模块</h3>
@@ -353,7 +353,7 @@ mysql&gt;
 <h4 id="section-2">测试</h4>
 <p>在apache的默认工作目录下(/var/www/html)中新建文件phpinfo.php,内容为:</p>
 
-<pre><code>&lt;? php phpinfo() ?&gt;
+<pre><code>&lt;?php phpinfo() ?&gt;
 </code></pre>
 
 <p>在浏览器窗口输入<code>http://localhost/phpinfo.php</code>,若出现php的相关信息，则安装成功</p>
@@ -407,6 +407,13 @@ $cfg['Servers'][$i]['compress']='false';
 
 <p>在浏览器里输入<code>http://localhost/phpMyAdmin</code> <br />
 出现登陆数据库界面，嗯，成功了，终于不用面对那么冷淡的终端了</p>
+
+<p>如果浏览器中显示 <code>配置文件权限错误，不应任何用户都能修改！</code>,那么可以这样解决:<br />
+1. 修改 <code>phpMyAdmin/</code> 文件下所有文件权限:  <code>sudo chmod -R 755 phpMyAdmin</code><br />
+2. 可以通过修改 phpMyAdmin 的配置文件(<code>phpMyAdmin/libraries/config.default.php</code>)解决:</p>
+
+<pre><code>$cfg['CheckConfigurationPermissions']=false
+</code></pre>
 
 <h3 id="section-3">配置文件路径</h3>
 <ol>

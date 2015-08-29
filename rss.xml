@@ -5,8 +5,8 @@
         <description>微尘 - Liluo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-08-23T07:48:59+00:00</lastBuildDate>
-        <pubDate>2015-08-23T07:48:59+00:00</pubDate>
+        <lastBuildDate>2015-08-29T23:04:43+00:00</lastBuildDate>
+        <pubDate>2015-08-29T23:04:43+00:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -2424,14 +2424,14 @@ mysql&amp;gt;
 &lt;pre&gt;&lt;code&gt;sudo vim /etc/mysql/my.cnf
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;这里有一个地方要注意 默认：是只允许本地访问数据库的这里不是说本机架设了网站，用户通过架设在的网页不能访问MySQL ,是指其它机子不能直接访问MySQL&lt;/p&gt;
+&lt;p&gt;这里有一个地方要注意: 默认情况下，只允许本地访问数据库 ,其它机子不能直接访问MySQL&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;bind-address 127.0.0.1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;解除限制只能本地访问mysql，如果需要其他机器访问，应使用如下语句，把这&lt;code&gt;bind-address 127.0.0.1&lt;/code&gt;句话用&lt;code&gt;#&lt;/code&gt;注释掉&lt;/p&gt;
+&lt;p&gt;如果需要其他机器访问，应这样做:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;#bind-address 127.0.0.1
+&lt;pre&gt;&lt;code&gt;# bind-address 127.0.0.1		// 把这 &quot;bind-address 127.0.0.1&quot; 句话用&quot;#&quot;注释掉  
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;php&quot;&gt;安装PHP以及一些必要的模块&lt;/h3&gt;
@@ -2462,7 +2462,7 @@ mysql&amp;gt;
 &lt;h4 id=&quot;section-2&quot;&gt;测试&lt;/h4&gt;
 &lt;p&gt;在apache的默认工作目录下(/var/www/html)中新建文件phpinfo.php,内容为:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;? php phpinfo() ?&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php phpinfo() ?&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;在浏览器窗口输入&lt;code&gt;http://localhost/phpinfo.php&lt;/code&gt;,若出现php的相关信息，则安装成功&lt;/p&gt;
@@ -2516,6 +2516,13 @@ $cfg[&#39;Servers&#39;][$i][&#39;compress&#39;]=&#39;false&#39;;
 
 &lt;p&gt;在浏览器里输入&lt;code&gt;http://localhost/phpMyAdmin&lt;/code&gt; &lt;br /&gt;
 出现登陆数据库界面，嗯，成功了，终于不用面对那么冷淡的终端了&lt;/p&gt;
+
+&lt;p&gt;如果浏览器中显示 &lt;code&gt;配置文件权限错误，不应任何用户都能修改！&lt;/code&gt;,那么可以这样解决:&lt;br /&gt;
+1. 修改 &lt;code&gt;phpMyAdmin/&lt;/code&gt; 文件下所有文件权限:  &lt;code&gt;sudo chmod -R 755 phpMyAdmin&lt;/code&gt;&lt;br /&gt;
+2. 可以通过修改 phpMyAdmin 的配置文件(&lt;code&gt;phpMyAdmin/libraries/config.default.php&lt;/code&gt;)解决:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$cfg[&#39;CheckConfigurationPermissions&#39;]=false
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;section-3&quot;&gt;配置文件路径&lt;/h3&gt;
 &lt;ol&gt;
