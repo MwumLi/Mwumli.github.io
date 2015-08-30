@@ -8,14 +8,16 @@
 {% if site.LU.micro_say_list.provider == "custom" %}
   {% include custom/micro_say_list %}
 {% else %}
-
-  {% for node in micro_say_list %}
-
-    {% if node.title == "微尘" %}
-      	<li><a href="{{ BASE_PATH }}{{node.url}}">{{node.group}}</a></li>
-    {% endif %}
-
-  {% endfor %}
+	{% assign once = 1 %}
+	{% for node in micro_say_list %}
+		{% if node.title == site.page_name.micro_say and once != 1 %}
+			| 	
+		{% endif %}
+		{% if node.title == site.page_name.micro_say %}
+			<li><a href="{{ BASE_PATH }}{{node.url}}">{{node.group}}</a></li>
+			{% capture once %}2{% endcapture %}
+		{% endif %}
+	{% endfor %}
 {% endif %}
 {% assign pages_list = nil %}
 {% assign group = nil %}

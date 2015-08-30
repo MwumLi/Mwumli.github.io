@@ -568,9 +568,14 @@ ul#markdown-toc li {
 	ul#markdown-toc {
 	  float: none;
 	  margin-left: auto;
-	  margin-right: auto
+	  margin-right: auto;
 	}
 }
 
+#micro_say_ul {
+	list-style: none;
+}
 
-
+#micro_say_ul li {
+	display: inline-block;
+}

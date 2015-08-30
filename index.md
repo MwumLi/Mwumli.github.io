@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 微尘空间
+title: 微尘
 ---
 {% include LU/setup %}
 
@@ -22,7 +22,9 @@ title: 微尘空间
 
 ## 微语
 
-<ul>
+	没有振聋发聩，只有静静地低语
+
+<ul id="micro_say_ul">
 {% assign micro_say_list = site.pages %}
 {% include LU/micro_say_list %}
 </ul>

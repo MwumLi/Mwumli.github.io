@@ -11,14 +11,18 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : 微尘
+title : 倘若微小
 tagline: 人生最美妙的风景就是内心的淡定和从容
 author :
-  name : Liluo
+  name : Luo
   email : mwumli@hotmail.com
   github : mwumli
   twitter : 
   feedburner : 
+
+# page name
+page_name :
+      micro_say : 微语
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -79,6 +83,7 @@ LU :
   atom_path : /atom.xml
   rss_path : /rss.xml
   subscribe_path: /rss.xml
+
 
   # Settings for comments helper
   # Set 'provider' to the comment provider you want to use.
