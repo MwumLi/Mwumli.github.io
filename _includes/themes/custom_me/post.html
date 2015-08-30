@@ -21,7 +21,7 @@
 			<span>{{ page.date | date:"%Y-%m-%d" }}</span>,
 			{% endif %}
 			published in <span>{{ page.date | date:"%Y-%m-%d" }}</span> 
-			by <span> LiLuo</span>
+			by <span> {{ site.author.name}}</span>
 		</div>
 
 		{% assign cur_category = nil %}
