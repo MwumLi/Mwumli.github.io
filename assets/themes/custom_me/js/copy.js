@@ -22,14 +22,17 @@ function addCopy(container, copyClass, copyText) {
 
 	var copy = $('<div><a href="javascript:void(0)"></div>');	
 	copy.find("a").addClass(copyClass);
-	$(container).prepend(copy);
+
+	$(container).prepend(copy);		
 
 	//use copy plugin
 	$("."+copyClass).zclip({
 		path: 'http://cdn.bootcss.com/zclip/1.1.2/ZeroClipboard.swf',
 		copy: function() {
 		var copyNode = $("a."+copyClass+".hover");
+		console.log(copyNode);
 		var node = copyNode.parents(container);
+		node = copyNode.parent().next();	//pre --> code
 		copyNode.parent().slideUp();
 		copyNode.text("");
 		return node.text();
