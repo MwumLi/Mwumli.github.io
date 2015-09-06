@@ -1,0 +1,650 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		<title>倘若微小 - Vim下fancy的插件</title>
+
+  		
+		<meta name="description" content="">
+        
+
+	    <meta name="author" content="Luo">
+	
+        <!-- syntax highlighting CSS -->
+		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- Custom CSS -->
+		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+
+    </head>
+    <body>
+        <div id="all">
+<!--            header start-->
+            <div id="header">
+                <div id="title">
+                <h1 >
+                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
+					</a>                     	   
+				</h1>
+                </div>
+                <!--hr/ -->
+                <div id="top-nav">
+                    <ul>
+					
+
+
+
+    
+  	
+  
+  
+  
+	  
+	  			
+
+  
+	  
+	  
+  	 		
+      		
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+
+  
+  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
+  
+
+
+
+					<li><a href="/pages/articles/index.html">文章</a></li>
+					<li><a href="/pages/categories/index.html">分类</a></li>
+					<li><a href="/pages/tags/index.html">标签</a></li>
+					<li><a href="/rss.xml">rss订阅</a></li>
+					</ul>   
+                </div>
+            </div> 
+<!--            header end-->
+            <!--hr /-->
+            <div class="content">
+                
+
+
+<div class="page-header">
+	<h1>Vim下fancy的插件 <small></small></h1>
+	<div id="article_header">
+		
+		
+		<div>
+			<span>分类: </span>
+			<a href="/pages/categories/index.html#记录-ref" class="tag">记录</a> 
+			
+				<span>标签: </span>
+			
+			
+				<a href="/pages/tags/index.html#vim-ref" class="tag">vim</a>
+    		
+				<a href="/pages/tags/index.html#plugin-ref" class="tag">plugin</a>
+    		
+				<a href="/pages/tags/index.html#linux-ref" class="tag">linux</a>
+    		
+		</div>		
+		<div>
+			Last Modify in
+			
+			<span>2014-06-02</span>,
+			
+			published in <span>2014-06-02</span> 
+			by <span> Luo</span>
+		</div>
+
+		
+		
+	</div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">简要声明</a></li>
+  <li><a href="#taglist" id="markdown-toc-taglist">TagList</a>    <ul>
+      <li><a href="#section-1" id="markdown-toc-section-1">简述</a></li>
+      <li><a href="#vundle" id="markdown-toc-vundle">添加到Vundle管理</a></li>
+      <li><a href="#vimrc" id="markdown-toc-vimrc">.vimrc中的一些配置</a></li>
+      <li><a href="#section-2" id="markdown-toc-section-2">使用</a></li>
+    </ul>
+  </li>
+  <li><a href="#echofunc" id="markdown-toc-echofunc">echofunc</a>    <ul>
+      <li><a href="#section-3" id="markdown-toc-section-3">简述</a></li>
+      <li><a href="#vundle-1" id="markdown-toc-vundle-1">添加到Vundle管理</a></li>
+      <li><a href="#section-4" id="markdown-toc-section-4">使用</a></li>
+    </ul>
+  </li>
+  <li><a href="#winmanager" id="markdown-toc-winmanager">WinManager</a>    <ul>
+      <li><a href="#section-5" id="markdown-toc-section-5">简述</a></li>
+      <li><a href="#vundle-2" id="markdown-toc-vundle-2">加入Vundle管理</a></li>
+      <li><a href="#vimrc-1" id="markdown-toc-vimrc-1">.vimrc中的一些配置</a></li>
+      <li><a href="#section-6" id="markdown-toc-section-6">使用</a></li>
+    </ul>
+  </li>
+  <li><a href="#minibufexpl" id="markdown-toc-minibufexpl">minibufexpl</a>    <ul>
+      <li><a href="#section-7" id="markdown-toc-section-7">简述</a></li>
+      <li><a href="#vundle-3" id="markdown-toc-vundle-3">加入Vundle管理</a></li>
+      <li><a href="#vimrc-2" id="markdown-toc-vimrc-2">.vimrc中的一些配置</a></li>
+      <li><a href="#section-8" id="markdown-toc-section-8">使用</a></li>
+    </ul>
+  </li>
+  <li><a href="#minibufexpl-1" id="markdown-toc-minibufexpl-1">minibufexpl引发的血案(窗口大小变化)</a>    <ul>
+      <li><a href="#vimrc-3" id="markdown-toc-vimrc-3">在.vimrc进行设置</a></li>
+      <li><a href="#section-9" id="markdown-toc-section-9">设置快捷键</a></li>
+      <li><a href="#tagsfiles" id="markdown-toc-tagsfiles">使用之前的分开显示tags和files的方式</a></li>
+    </ul>
+  </li>
+  <li><a href="#powerline" id="markdown-toc-powerline">Powerline</a>    <ul>
+      <li><a href="#section-10" id="markdown-toc-section-10">简述</a></li>
+      <li><a href="#vundle-4" id="markdown-toc-vundle-4">添加到Vundle管理</a></li>
+      <li><a href="#vimrc-4" id="markdown-toc-vimrc-4">.vimrc中的一些配置</a></li>
+      <li><a href="#themes-and-colorschemes" id="markdown-toc-themes-and-colorschemes">Themes and ColorSchemes</a></li>
+      <li><a href="#tmuxvim" id="markdown-toc-tmuxvim">在tmux中的vim状态栏不颜色并不那么好看？</a></li>
+    </ul>
+  </li>
+  <li><a href="#markdown" id="markdown-toc-markdown">Markdown</a>    <ul>
+      <li><a href="#section-11" id="markdown-toc-section-11">简述</a></li>
+      <li><a href="#vundle-5" id="markdown-toc-vundle-5">添加到Vundle管理</a></li>
+      <li><a href="#vimrc-5" id="markdown-toc-vimrc-5">.vimrc中的一些配置</a></li>
+      <li><a href="#section-12" id="markdown-toc-section-12">一些默认快捷键</a></li>
+      <li><a href="#with-" id="markdown-toc-with-">生成目录 with ‘#’</a></li>
+    </ul>
+  </li>
+  <li><a href="#fencview" id="markdown-toc-fencview">fencview</a>    <ul>
+      <li><a href="#section-13" id="markdown-toc-section-13">简述</a></li>
+      <li><a href="#vundle-6" id="markdown-toc-vundle-6">添加到Vundle管理</a></li>
+      <li><a href="#section-14" id="markdown-toc-section-14">使用</a></li>
+    </ul>
+  </li>
+  <li><a href="#tohtml" id="markdown-toc-tohtml">tohtml</a>    <ul>
+      <li><a href="#section-15" id="markdown-toc-section-15">简述</a></li>
+      <li><a href="#ubuntu" id="markdown-toc-ubuntu">ubuntu下的位置</a></li>
+      <li><a href="#section-16" id="markdown-toc-section-16">使用</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="section">简要声明</h3>
+<p>以下介绍的插件的安装，均使用<code>Vundle管理</code></p>
+
+<hr />
+
+<h3 id="taglist">TagList</h3>
+
+<h4 id="section-1">简述</h4>
+
+<p>TagList是一个标签浏览器<br />
+所谓标签，就是那些具有表示意义的标示符，像变量，函数名，宏等<br />
+TagList通过一个简单窗口，展示了当前文件下的所有相关的标签<br />
+<code>PS</code>: <strong>TagsList依赖于ctags产生的tags文件</strong></p>
+
+<h4 id="vundle">添加到Vundle管理</h4>
+
+<pre><code>Plugin 'vim-scripts/taglist.vim'
+</code></pre>
+
+<h4 id="vimrc">.vimrc中的一些配置</h4>
+
+<pre><code>let Tlist_Ctags_Cmd='ctags'         "taglist依赖于ctags,设置ctags位置
+let Tlist_Use_Right_Window=0        "窗口显示:1--右边，0--左边
+let Tlist_Show_One_File=1           "显示一个文件:1--是 0--否
+let Tlist_File_Fold_Auto_Close=1    "非当前文件，函数列表折叠隐藏
+let Tlist_GainFocus_On_ToggleOpen = 1  "打开taglist时，光标保留在taglist窗口
+let Tlist_Exit_OnlyWindow=1         "当taglist是最后一个分割窗口时，自动退出vim
+let Tlist_Process_File_Always=1     "实时更新tags 1--是　0--否
+let Tlist_Inc_Winwidth=0
+nmap &lt;leader&gt;tl :Tlist&lt;CR&gt;
+</code></pre>
+
+<h4 id="section-2">使用</h4>
+
+<ul>
+  <li>
+    <p>打开Taglist窗口</p>
+
+    <pre><code>  :Tlist	或者 	使用定义的快捷键 '\+t+l'
+</code></pre>
+  </li>
+  <li>
+    <p>跳跃到某一item定义处</p>
+
+    <pre><code>  选中item，点击'Enter'
+</code></pre>
+  </li>
+  <li>
+    <p>仅仅查看item原型</p>
+
+    <pre><code>  选中要查看的item,点击'Space'
+</code></pre>
+  </li>
+</ul>
+
+<p>原型结果会显示在Vim命令行</p>
+
+<h3 id="echofunc">echofunc</h3>
+
+<h4 id="section-3">简述</h4>
+
+<p>echofunc可以帮助我们在插入函数的时候,提示当前输入函数的原型<br />
+提示结果显示在command line里</p>
+
+<h4 id="vundle-1">添加到Vundle管理</h4>
+
+<pre><code>Plugin 'mbbill/echofunc'
+</code></pre>
+
+<h4 id="section-4">使用</h4>
+
+<p>需要tags文件的支持, 并且在创建tags文件的时候要加选项”–fields=+lS”（OmniCppComplete创建的tag文件也能用）<br />
+整个创建tags文件的命令如下:</p>
+
+<pre><code>$ ctags -R --fields=+lS
+</code></pre>
+
+<p>当你在vim插入(insert)模式下紧接着函数名后输入一个”(“的时候, 这个函数的声明就会自动显示在命令行中。</p>
+
+<p>如果这个函数有多个声明, 则可以通过按键<em>Alt + -</em>和<em>Alt + =</em>向前和向后翻页<br />
+这个两个键可以通过设置<code>g:EchoFuncKeyNext</code>和<code>g:EchoFuncKeyPrev</code>参数来修改</p>
+
+<p>如果你在编译vim时加上了”+balloon_eval”特性<br />
+那么当你把鼠标放在函数名上的时候会有一个tip窗口弹出, 该窗口中也会有函数的声明</p>
+
+<h3 id="winmanager">WinManager</h3>
+
+<h4 id="section-5">简述</h4>
+
+<p>WinManager是一个窗口管理器 <br />
+在Vim中，通常使用其管理文件浏览器(netrw)和缓冲区(buffer)<br />
+2.0以上的版本还可以管理其他IDE类型插件,不过，需要我们在插件中增加一些辅助变量和hook来支持WinManager</p>
+
+<p>这里，我们就用WinManager来管理文件浏览器netrw和标签浏览器Taglist。<br />
+netrw是标准的vim插件, 已经随vim一起安装进系统里了, 不需要我们自行下载安装。<br />
+而Taglist我们刚刚已经安装完成了</p>
+
+<h4 id="vundle-2">加入Vundle管理</h4>
+
+<pre><code>Plugin 'MwumLi/WinManager'
+</code></pre>
+
+<h4 id="vimrc-1">.vimrc中的一些配置</h4>
+
+<pre><code>" 设置我们要管理的插件
+let g:winManagerWindowLayout='FileExplorer|TagList' 	"FileExplorer和TagList同时在左边窗口显示
+let g:winManagerWindowLayout='FileExplorer,TagList' 	"FileExplorer和TagList同时仅有一个在左边窗口显示,使用Ctrl+n/p切换
+let g:persistentBehaviour=0 " 如果所有编辑文件都关闭了，退出vim
+nmap wm :WMToggle&lt;cr&gt; 	" 打开/关闭WinManager
+</code></pre>
+
+<p>个人觉得<code>let g:winManagerWindowLayout='FileExplorer,TagList'</code>看起来比较好点,大气<br />
+虽然<code>let g:winManagerWindowLayout='FileExplorer|TagList'</code>可能看起来更像是一个IDE</p>
+
+<h4 id="section-6">使用</h4>
+
+<ul>
+  <li>
+    <p>打开WinMananger</p>
+
+    <pre><code>  'w + m'
+</code></pre>
+  </li>
+  <li>
+    <p>假如采用第二种分开显示tags和files，则按以下方式切换:</p>
+
+    <pre><code>  'Ctrl + n' 	---&gt;下一页
+  'Ctrl + p' 	---&gt;前一页
+</code></pre>
+  </li>
+  <li>
+    <p>假如还没有安装minibufexpl(即将安装),则使用一下方式在不同窗口切换:</p>
+
+    <pre><code>  'Ctrl + w + w'
+</code></pre>
+  </li>
+  <li>
+    <p>假如安装了minibufexpl,则切换窗口变得很简单:</p>
+
+    <pre><code>  'Ctrl + h/j/k/l'  ==  'Ctrl + Arrow left/down/up/right'  //左-下-上-右移动
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="minibufexpl">minibufexpl</h3>
+
+<h4 id="section-7">简述</h4>
+
+<p>minibufexpl,一个缓冲区显示器，假如仅仅看它的效果，更像是浏览器的多个标签页<br />
+这个往往在编辑多个文件时显示</p>
+
+<h4 id="vundle-3">加入Vundle管理</h4>
+
+<pre><code>Plugin 'vim-scripts/minibufexpl.vim'
+</code></pre>
+
+<h4 id="vimrc-2">.vimrc中的一些配置</h4>
+
+<pre><code>let g:miniBufExplMapWindowNavVim = 1    " 按下Ctrl+h/j/k/l，可以切换到当前窗口的上下左右窗口
+let g:miniBufExplMapWindowNavArrows = 1 " 按下Ctrl+箭头，可以切换到当前窗口的上下左右窗口
+let g:miniBufExplMapCTabSwitchBufs = 1  "Ubuntu不适用
+let g:miniBufExplModSelTarget = 1   " 不要在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer
+</code></pre>
+
+<h4 id="section-8">使用</h4>
+
+<pre><code>'Ctrl + h/j/k/l'	---&gt;左/下/上/右窗口切换
+'Ctrl + Arrow'		---&gt;same as 'Ctrl + h/j/k/l'
+'Tab'				---&gt;缓冲区间切换
+</code></pre>
+
+<h3 id="minibufexpl-1">minibufexpl引发的血案(窗口大小变化)</h3>
+
+<p>在这之前，我们一切都感觉很好(真像一个IDE)<br />
+但是在安装了minibufexpl后，我们的美好感觉破灭了(毕竟还不是IDE)<br />
+文件浏览器的窗口显得异常小，在打开多个文件时，更小，哎，愁…<br />
+还好，有解决办法，不过都不是很完美  a</p>
+
+<h4 id="vimrc-3">在.vimrc进行设置</h4>
+
+<pre><code>let g:bufExplorerMaxHeight=30
+let g:miniBufExplorerMoreThanOne=0 这样倒是可以解决问题，但是也引来一些新的问题(至于什么，你试试呗),所以果断启用  
+</code></pre>
+
+<h4 id="section-9">设置快捷键</h4>
+
+<p>对WinManager设置快捷键,比如<code>nmap wm :WMToggle&lt;cr&gt;</code><br />
+然后，我们只要在文件浏览器变小的时候，按动<em>两次wm</em>即可(先关闭，在开启)<br />
+这个方法还是可以接收的</p>
+
+<h4 id="tagsfiles">使用之前的分开显示tags和files的方式</h4>
+
+<hr />
+
+<h3 id="powerline">Powerline</h3>
+
+<h4 id="section-10">简述</h4>
+
+<p>Powerline,一个终极Vim状态栏工具</p>
+
+<h4 id="vundle-4">添加到Vundle管理</h4>
+
+<pre><code>Plugin 'Lokaltog/vim-powerline'
+</code></pre>
+
+<h4 id="vimrc-4">.vimrc中的一些配置</h4>
+
+<p><code>$HOME/.vimrc</code>:</p>
+
+<pre><code>set laststatus=2    "一直展示两行状态
+set t_Co=256        "告诉vim这个终端支持256色
+let g:Powerline_symbols = 'unicode'
+set encoding=utf8
+</code></pre>
+
+<h4 id="themes-and-colorschemes">Themes and ColorSchemes</h4>
+
+<p>主题在目录<code>autoload/Powerline/Themes</code>下,配色在<code>autoload/Powerline/Colorschemes</code></p>
+
+<h4 id="tmuxvim">在tmux中的vim状态栏不颜色并不那么好看？</h4>
+
+<p>确保你在.tmux.conf中启用了256color:</p>
+
+<pre><code>set -g default-terminal "screen-256color" 确保你在.vimrc中启用了终端256color:  
+
+set t_Co=256  
+</code></pre>
+
+<hr />
+
+<h3 id="markdown">Markdown</h3>
+
+<h4 id="section-11">简述</h4>
+
+<p>为vim下.md文件设置语法高亮，规则匹配,方便md文档的撰写</p>
+
+<h4 id="vundle-5">添加到Vundle管理</h4>
+
+<pre><code>Plugin 'plasticboy/vim-markdown'
+</code></pre>
+
+<h4 id="vimrc-5">.vimrc中的一些配置</h4>
+
+<pre><code>let g:vim_markdown_folding_disabled=1  			"禁用折叠
+let g:vim_markdown_initial_foldlevel=1
+"let g:vim_markdown_no_default_key_mappings=1   "禁用默认键
+"对文件名后缀为md,mdown,mkd,mkdn,markdown,mdwn的文件，使用markdown语法
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
+</code></pre>
+
+<h4 id="section-12">一些默认快捷键</h4>
+
+<ul>
+  <li><code>]]</code>: go to next header. <code>&lt;Plug&gt;(Markdown_MoveToNextHeader)</code></li>
+  <li><code>[[</code>: go to previous header. Contrast with <code>]c</code>. <code>&lt;Plug&gt;(Markdown_MoveToPreviousHeader)</code></li>
+  <li><code>][</code>: go to next sibling header if any. <code>&lt;Plug&gt;(Markdown_MoveToNextSiblingHeader)</code></li>
+  <li><code>[]</code>: go to previous sibling header if any. <code>&lt;Plug&gt;(Markdown_MoveToPreviousSiblingHeader)</code></li>
+  <li><code>]c</code>: go to Current header. <code>&lt;Plug&gt;(Markdown_MoveToCurHeader)</code></li>
+  <li><code>]u</code>: go to parent header (Up). <code>&lt;Plug&gt;(Markdown_MoveToParentHeader)</code></li>
+</ul>
+
+<h4 id="with-">生成目录 with ‘#’</h4>
+
+<pre><code>:Toc 	---&gt;创建一个快速垂直窗口显示文档目录  
+:Toch	---&gt;创建一个快速水平窗口显示文档目录  
+</code></pre>
+
+<p>Hit <code>&lt;Enter&gt;</code> on a line to jump to the corresponding line of the markdown file.</p>
+
+<pre><code>:Toch	---&gt;Same as `:Toc` but in an horizontal window.
+:Toct	---&gt;Same as `:Toc` but in a new tab.
+:Tocv	---&gt;Same as `:Toc` for symmetry with `:Toch` and `Tocv`.   
+</code></pre>
+
+<h3 id="fencview">fencview</h3>
+
+<h4 id="section-13">简述</h4>
+
+<p>不同系统，不同平台下，文件编码往往不太一样<br />
+故在一个系统下为gb2312的文件，放在另一个系统下以utf-8的方式打开,往往会产生乱码<br />
+好了，我(fencview)来了,fencview应运而生</p>
+
+<h4 id="vundle-6">添加到Vundle管理</h4>
+
+<pre><code>Plugin `Mwumli/fencview`  
+</code></pre>
+
+<h4 id="section-14">使用</h4>
+
+<ul>
+  <li>
+    <p>自动探测文件编码，以合适的编码方式显示</p>
+
+    <pre><code>  :FencAutoDetect
+</code></pre>
+  </li>
+  <li>
+    <p>打开编码列表窗口,选择合适编码，重新加载文件</p>
+
+    <pre><code>  :Fencview
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="tohtml">tohtml</h3>
+
+<h4 id="section-15">简述</h4>
+
+<p>我们往往需要把我们的代码展示给别人看，但是直接copy代码，可能查看效果并不如意<br />
+现在有这么一个插件，可以把你的代码转化成html,并且如在你的vim中格式那样显示(<em>代码高亮</em>)<br />
+当然，此插件不仅仅可以转化代码，还可以转化其他文字<br />
+不过对于程序员来说，此功能就已足够</p>
+
+<p>此插件已经内置在vim的最新版本，故不需要手动安装</p>
+
+<h4 id="ubuntu">ubuntu下的位置</h4>
+
+<pre><code>/usr/share/vim/vim74/autoload/tohtml.vim  
+</code></pre>
+
+<h4 id="section-16">使用</h4>
+
+<ul>
+  <li>
+    <p>转化整片文章成html</p>
+
+    <pre><code>  :TOhtml    工作目录下会生成以文件名为前缀，以html为后缀的文件  
+</code></pre>
+  </li>
+  <li>
+    <p>转化指定行成html</p>
+
+    <pre><code>  :num1,num2TOhtml   把此篇文章的num1到num2行的文本转化成html文件  
+</code></pre>
+  </li>
+</ul>
+
+<p><strong>假如此前vim显示行号，生成的html文件中也显示行号</strong></p>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/vim-some-operations" title="Vim的一些操作">Vim的一些操作</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/st2-install-config" title="Sublime Text 2的安装与配置">Sublime Text 2的安装与配置</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+	<div id="to_comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+								     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+	</div>
+
+ </div>
+
+
+   
+            </div>
+            <hr />
+            <div id="footer">
+                <p>
+                <span>&copy;2014 Luo</span>
+                </p>
+            </div>
+        </div>
+		
+		<!-- site top -->
+		<div class="nav-bottom">
+			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+		</div>
+
+		
+
+
+		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
+
+		
+		<script src="/assets/themes/custom_me/js/copy.js"></script>
+		
+		
+		
+
+		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+		<script src="/assets/themes/custom_me/js/toc.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	
+		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script src="/assets/themes/custom_me/js/toComments.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+						
+				
+				addCopy("pre", "copy", "Copy");
+				
+
+				tocEffect();
+				toComments();
+				var bigfoot=$.bigfoot({
+					preventPageScroll: true
+					})
+
+			})
+		</script>	
+ </div>
+    </body>
+</html>
+
+
+
+

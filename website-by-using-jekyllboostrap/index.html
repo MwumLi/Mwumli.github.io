@@ -1,0 +1,344 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		<title>倘若微小 - 静态博客系统-->JekyllBootstrap</title>
+
+  		
+		<meta name="description" content="">
+        
+
+	    <meta name="author" content="Luo">
+	
+        <!-- syntax highlighting CSS -->
+		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- Custom CSS -->
+		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+
+    </head>
+    <body>
+        <div id="all">
+<!--            header start-->
+            <div id="header">
+                <div id="title">
+                <h1 >
+                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
+					</a>                     	   
+				</h1>
+                </div>
+                <!--hr/ -->
+                <div id="top-nav">
+                    <ul>
+					
+
+
+
+    
+  	
+  
+  
+  
+	  
+	  			
+
+  
+	  
+	  
+  	 		
+      		
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+
+  
+  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
+  
+
+
+
+					<li><a href="/pages/articles/index.html">文章</a></li>
+					<li><a href="/pages/categories/index.html">分类</a></li>
+					<li><a href="/pages/tags/index.html">标签</a></li>
+					<li><a href="/rss.xml">rss订阅</a></li>
+					</ul>   
+                </div>
+            </div> 
+<!--            header end-->
+            <!--hr /-->
+            <div class="content">
+                
+
+
+<div class="page-header">
+	<h1>静态博客系统-->JekyllBootstrap <small></small></h1>
+	<div id="article_header">
+		
+		
+		<div>
+			<span>分类: </span>
+			<a href="/pages/categories/index.html#记录-ref" class="tag">记录</a> 
+			
+				<span>标签: </span>
+			
+			
+				<a href="/pages/tags/index.html#website-ref" class="tag">website</a>
+    		
+				<a href="/pages/tags/index.html#web-ref" class="tag">web</a>
+    		
+				<a href="/pages/tags/index.html#jekyll-ref" class="tag">jekyll</a>
+    		
+		</div>		
+		<div>
+			Last Modify in
+			
+			<span>2014-08-14</span>,
+			
+			published in <span>2014-08-14</span> 
+			by <span> Luo</span>
+		</div>
+
+		
+		
+	</div>
+</div>
+
+<div id="page-content">
+    
+<h3 id="jekyllbootstrap">上菜–JekyllBootstrap</h3>
+<p>在<a href="/%E8%AE%B0%E5%BD%95/2014/08/14/static-website-by-jekyll/" title="使用jekyll搭建静态站点">使用jekyll搭建静态站点</a>一文中， 我已经介绍了怎么创建最简单站点的例子(<code>jekyll new myblog</code>),但看起来貌似难以起步(神马都没有),一切都需要start from scratch，真是愁啊</p>
+
+<p>不过，现在不用担心了，我们有技能–&gt;JekyllBootstrap</p>
+
+<p>JekyllbBootstrap就像WordPress(动态博客系统）一样，但是，jekyllbootstrap用于静态网站</p>
+
+<p>好了，开始准备干活吧</p>
+
+<ol>
+  <li>
+    <p>创建一个新的仓库<br />
+去你的<a href="https://github.com" title="github首页">https://github.com</a>创建一个新的仓库，命名为<code>username.github.io</code></p>
+  </li>
+  <li>
+    <p>安装Jekyll-Bootstrap<br />
+打开终端，切换到你想放置站点的目录，输入一下命令：</p>
+
+    <pre><code> $ git clone https://github.com/plusjade/jekyll-bootstrap.git username.github.io
+ $ cd username.github.io
+ $ git remote set-url origin git@github.com:username/username.github.com.git
+ $ git push origin master
+</code></pre>
+  </li>
+  <li>
+    <p>等待与收获<br />
+等待大约10分钟，你就可以通过browser在<code>http://username.github.com</code>看到你的站点</p>
+  </li>
+</ol>
+
+<h3 id="rakepost-or-page">使用rake快速创建post or page</h3>
+<p>顺便说一句，<code>rake</code>工具需要安装，Linux/Ubuntu请使用：</p>
+
+<pre><code>$ sudo apt-get install rake  
+</code></pre>
+
+<p><code>rake</code>使用之前需要有一个<code>Rakefile</code>文件，如果你使用<code>JekyllBootstrap</code>,那你就不用自己创建<code>Rakefile</code>文件，已经内置;否则，你如果想使用<code>Rake</code>，可以拷贝一下<code>JekyllBoostrap</code>里的<code>Rakefile</code>，或者，自己查阅相关资料按照规则编写（你可以的，嘿嘿）</p>
+
+<h4 id="post">创建一篇post</h4>
+<p>通过<code>rake</code>很容易创建一篇post</p>
+
+<pre><code>$ rake post title="Hello World"  
+Creating new post: ./_posts/2014-08-14-hello-world.md  
+</code></pre>
+
+<p><code>rake</code>会帮你格式化名字并添加日期(当前时间) <br />
+并且post中自动添加YAML头信息，太方便了<br />
+<code>rake</code>不会覆盖原有文件，除非你让它那么做</p>
+
+<h4 id="page">创建一个page</h4>
+<ul>
+  <li>
+    <p>在根目录创建</p>
+
+    <pre><code>  $ rake page name="about.md"
+  Creating new page: ./about.md  
+</code></pre>
+  </li>
+  <li>
+    <p>创建一个内嵌</p>
+
+    <pre><code>  $ rake page name="pages/about.md"
+  Creating new page: ./pages/about.md  
+</code></pre>
+  </li>
+  <li>
+    <p>创建一个”漂亮”的路径</p>
+
+    <pre><code>  $ rake page name="pages/about.md
+  Creating new page: ./pages/about/index.html"
+</code></pre>
+  </li>
+</ul>
+
+<p>三种方式的区别在于browser呈现的路径的不同,自己尝试吧</p>
+
+<h4 id="section">发布你的站点</h4>
+
+<pre><code>$ git add .
+$ git commit -m "add new content"
+$ git push origin master  
+</code></pre>
+
+<p>好了，新的内容已经在你的github项目，享受新的变化吧</p>
+
+<h4 id="section-1">自定义</h4>
+<p>Jekyll-Bootstrap可以根据喜好自我定义<br />
+主题可以更换，也可以自己写；配置根据喜好自己修改<br />
+具体请参考<a href="http://jekyllbootstrap.com/usage/jekyll-quick-start.html" title="Jekyll-Bootstrap快速开始">Jekyll-Bootstrap快速开始</a></p>
+
+<hr />
+
+<h3 id="section-2">说些什么</h3>
+<p>其实这篇文章也算是一篇简单的译文吧<br />
+不管如何，看完基本能懂得怎么安装，使用Jekyll-Bootstrap就可以了<br />
+至于深入用法和配置，请参考<a href="http://jekyllbootstrap.com" title="Jekyll-Bootstrap官方网站">Jekyll-Bootstrap官方网站</a><br />
+单词和句型都很简单(就连我四级都没过的人都看的懂)，你一定可以的，嘿嘿</p>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/static-website-by-jekyll" title="使用jekyll搭建静态站点">使用jekyll搭建静态站点</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/kernel-list" title="Linux内核链表的分析">Linux内核链表的分析</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+	<div id="to_comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+								     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+	</div>
+
+ </div>
+
+
+   
+            </div>
+            <hr />
+            <div id="footer">
+                <p>
+                <span>&copy;2014 Luo</span>
+                </p>
+            </div>
+        </div>
+		
+		<!-- site top -->
+		<div class="nav-bottom">
+			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+		</div>
+
+		
+
+
+		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
+
+		
+		<script src="/assets/themes/custom_me/js/copy.js"></script>
+		
+		
+		
+
+		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+		<script src="/assets/themes/custom_me/js/toc.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	
+		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script src="/assets/themes/custom_me/js/toComments.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+						
+				
+				addCopy("pre", "copy", "Copy");
+				
+
+				tocEffect();
+				toComments();
+				var bigfoot=$.bigfoot({
+					preventPageScroll: true
+					})
+
+			})
+		</script>	
+ </div>
+    </body>
+</html>
+
+
+
+

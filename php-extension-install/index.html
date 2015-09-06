@@ -1,0 +1,430 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		<title>倘若微小 - Linux下php扩展安装</title>
+
+  		
+		<meta name="description" content="">
+        
+
+	    <meta name="author" content="Luo">
+	
+        <!-- syntax highlighting CSS -->
+		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- Custom CSS -->
+		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+
+    </head>
+    <body>
+        <div id="all">
+<!--            header start-->
+            <div id="header">
+                <div id="title">
+                <h1 >
+                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
+					</a>                     	   
+				</h1>
+                </div>
+                <!--hr/ -->
+                <div id="top-nav">
+                    <ul>
+					
+
+
+
+    
+  	
+  
+  
+  
+	  
+	  			
+
+  
+	  
+	  
+  	 		
+      		
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+
+  
+  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
+  
+
+
+
+					<li><a href="/pages/articles/index.html">文章</a></li>
+					<li><a href="/pages/categories/index.html">分类</a></li>
+					<li><a href="/pages/tags/index.html">标签</a></li>
+					<li><a href="/rss.xml">rss订阅</a></li>
+					</ul>   
+                </div>
+            </div> 
+<!--            header end-->
+            <!--hr /-->
+            <div class="content">
+                
+
+
+<div class="page-header">
+	<h1>Linux下php扩展安装 <small></small></h1>
+	<div id="article_header">
+		
+		
+		<div>
+			<span>分类: </span>
+			<a href="/pages/categories/index.html#记录-ref" class="tag">记录</a> 
+			
+				<span>标签: </span>
+			
+			
+				<a href="/pages/tags/index.html#web-ref" class="tag">web</a>
+    		
+				<a href="/pages/tags/index.html#php-ref" class="tag">php</a>
+    		
+				<a href="/pages/tags/index.html#apache-ref" class="tag">apache</a>
+    		
+		</div>		
+		<div>
+			Last Modify in
+			
+			<span>2015-04-24</span>,
+			
+			published in <span>2015-04-24</span> 
+			by <span> Luo</span>
+		</div>
+
+		
+		
+	</div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">碎碎念</a></li>
+  <li><a href="#php" id="markdown-toc-php">检验php是否安装某个扩展</a>    <ul>
+      <li><a href="#section-1" id="markdown-toc-section-1">没有搜索到扩展</a></li>
+    </ul>
+  </li>
+  <li><a href="#php-1" id="markdown-toc-php-1">安装并添加php扩展</a>    <ul>
+      <li><a href="#section-2" id="markdown-toc-section-2">几个扩展安装案例</a>        <ul>
+          <li><a href="#redis-redis-github" id="markdown-toc-redis-redis-github">redis 扩展的安装</a></li>
+          <li><a href="#mongo-" id="markdown-toc-mongo-">mongo 扩展的安装</a></li>
+          <li><a href="#section-3" id="markdown-toc-section-3">待续…</a></li>
+        </ul>
+      </li>
+      <li><a href="#section-4" id="markdown-toc-section-4">安装需要</a>        <ul>
+          <li><a href="#phpize-" id="markdown-toc-phpize-">phpize 的安装</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="section">碎碎念</h2>
+
+<p>进行简单的 web 动态网站开发，只需快速搭建一个 LAMP 环境即可</p>
+
+<p>但有的时候还需要一些特别的功能，这时候需要安装相应扩展<sup id="fnref:extension"><a href="#fn:extension" class="footnote">1</a></sup></p>
+
+<p>这里以 LAMP<sup id="fnref:LAMP"><a href="#fn:LAMP" class="footnote">2</a></sup> 环境为例</p>
+
+<h2 id="php">检验php是否安装某个扩展</h2>
+
+<ol>
+  <li>
+    <p>检验你某个扩展是否安装，可以在你的 Apache 目录下新建文件 <code>phpinfo.php</code> :</p>
+
+    <pre><code> &lt;?php
+     phpinfo();
+ &gt;
+</code></pre>
+  </li>
+  <li>
+    <p>访问此网页，使用浏览器查找功能查找你的扩展，比如 <code>redis</code></p>
+  </li>
+  <li>
+    <p>如果你的扩展已经安装成功，并添加到 php 的 apache 配置文件，那么就会搜索到</p>
+  </li>
+</ol>
+
+<h3 id="section-1">没有搜索到扩展</h3>
+
+<ol>
+  <li>
+    <p>重启了下服务器: <code>sudo service apache2 restart</code></p>
+  </li>
+  <li>
+    <p>检查配置文件 <code>/etc/php5/apache2/php.ini</code> 是否正确添加扩展</p>
+  </li>
+  <li>
+    <p>可能没有安装成功，请检查网络，请百度，请谷歌…</p>
+  </li>
+</ol>
+
+<h2 id="php-1">安装并添加php扩展</h2>
+
+<ol>
+  <li>
+    <p>下载并安装下载相应扩展(请自行搜索)</p>
+
+    <pre><code> http://php.net/manual/zh/extensions.php  
+</code></pre>
+  </li>
+  <li>
+    <p>添加扩展到配置文件<code>/etc/php5/apache2/php.ini</code><br />
+ (以<code>redis</code>为例)</p>
+
+    <pre><code> [redis]
+ extension=redis.so
+</code></pre>
+
+    <p>添加文件末尾即可</p>
+  </li>
+  <li>
+    <p>重启web服务器</p>
+
+    <pre><code> sudo service apache2 restart
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="section-2">几个扩展安装案例</h3>
+
+<h4 id="redis-redis-github">redis 扩展的安装<sup id="fnref:redis-github"><a href="#fn:redis-github" class="footnote">3</a></sup></h4>
+
+<ol>
+  <li>
+    <p>使用git下载</p>
+
+    <pre><code> $ git clone https://github.com/phpredis/phpredis.git
+</code></pre>
+  </li>
+  <li>
+    <p>编译扩展模块,需要<code>phpize</code></p>
+
+    <pre><code> $ phpize
+ $ ./configure [--enable-redis-igbinary]
+ $ make &amp;&amp; make install
+</code></pre>
+  </li>
+</ol>
+
+<p>这样 redis 就被安装在合适的位置</p>
+
+<ol>
+  <li>
+    <p>添加扩展到配置文件<code>/etc/php5/apache2/php.ini</code></p>
+
+    <pre><code> [redis]                            
+ extension=redis.so
+</code></pre>
+  </li>
+  <li>
+    <p>重启web服务器</p>
+  </li>
+</ol>
+
+<h4 id="mongo-">mongo 扩展的安装</h4>
+
+<ol>
+  <li>
+    <p>下载，编译，安装，查看:</p>
+
+    <pre><code> $ git clone https://github.com/mongodb/mongo-php-driver.git
+ $ cd mongo-php-driver
+ $ phpize
+ $ ./configure
+ $ sudo make install
+ ...
+ Installing shared extensions:     
+ /usr/lib/php5/20121212+lfs/
+ $ ls /usr/lib/php5/20121212+lfs/
+ json.so   mysqli.so  opcache.so    pdo.so       redis.so
+ mongo.so  mysql.so   pdo_mysql.so  readline.so
+</code></pre>
+
+    <p>可以看到<code>mongo.so</code></p>
+  </li>
+  <li>
+    <p>添加配置 <code>/etc/php5/apache2/php.ini</code>:</p>
+
+    <pre><code> [mongo.so]
+ extension=mongo.so
+</code></pre>
+  </li>
+  <li>
+    <p>重启web服务器</p>
+  </li>
+</ol>
+
+<h4 id="section-3">待续…</h4>
+
+<h3 id="section-4">安装需要</h3>
+
+<h4 id="phpize-">phpize 的安装</h4>
+
+<p>用 C 开发 PHP 扩展的时候如果用动态链接库的方式编译扩展模块，需要用到 <code>phpize</code><br />
+这个工具在使用 <code>apt-get install php5</code> 默认情况也是没安装的<br />
+可以执行以下命令:</p>
+
+<pre><code>$ sudo apt-get install php5-dev
+</code></pre>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:extension">
+      <p>php扩展列表:<a href="http://php.net/manual/zh/extensions.php">http://php.net/manual/zh/extensions.php</a> <a href="#fnref:extension" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:LAMP">
+      <p>Linux+Apache+Mysql+Php, 安装请参考<a href="/记录/2014/06/14/lamp-build/ LAMP环境搭建">LAMP环境搭建</a> <a href="#fnref:LAMP" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:redis-github">
+      <p>可参考<a href="https://github.com/phpredis/phpredis#installation"><code>&lt;</code>一篇来自github的安装指南-redis<code>&gt;</code></a> <a href="#fnref:redis-github" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/raspberrypi-install" title="Raspberry Pi安装Debian Wheezy系统">Raspberry Pi安装Debian Wheezy系统</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/leave-beijing" title="离去">离去</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+	<div id="to_comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+								     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+	</div>
+
+ </div>
+
+
+   
+            </div>
+            <hr />
+            <div id="footer">
+                <p>
+                <span>&copy;2014 Luo</span>
+                </p>
+            </div>
+        </div>
+		
+		<!-- site top -->
+		<div class="nav-bottom">
+			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+		</div>
+
+		
+
+
+		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
+
+		
+		<script src="/assets/themes/custom_me/js/copy.js"></script>
+		
+		
+		
+
+		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+		<script src="/assets/themes/custom_me/js/toc.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	
+		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script src="/assets/themes/custom_me/js/toComments.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+						
+				
+				addCopy("pre", "copy", "Copy");
+				
+
+				tocEffect();
+				toComments();
+				var bigfoot=$.bigfoot({
+					preventPageScroll: true
+					})
+
+			})
+		</script>	
+ </div>
+    </body>
+</html>
+
+
+
+
