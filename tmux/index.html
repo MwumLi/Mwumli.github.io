@@ -1,0 +1,717 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		<title>倘若微小 - 用tmux保存工作现场</title>
+
+  		
+		<meta name="description" content="">
+        
+
+	    <meta name="author" content="Luo">
+	
+        <!-- syntax highlighting CSS -->
+		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- Custom CSS -->
+		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+
+    </head>
+    <body>
+        <div id="all">
+<!--            header start-->
+            <div id="header">
+                <div id="title">
+                <h1 >
+                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
+					</a>                     	   
+				</h1>
+                </div>
+                <!--hr/ -->
+                <div id="top-nav">
+                    <ul>
+					
+
+
+
+    
+  	
+  
+  
+  
+	  
+	  			
+
+  
+	  
+	  
+  	 		
+      		
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+
+  
+  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
+  
+
+
+
+					<li><a href="/pages/articles/index.html">文章</a></li>
+					<li><a href="/pages/categories/index.html">分类</a></li>
+					<li><a href="/pages/tags/index.html">标签</a></li>
+					<li><a href="/rss.xml">rss订阅</a></li>
+					</ul>   
+                </div>
+            </div> 
+<!--            header end-->
+            <!--hr /-->
+            <div class="content">
+                
+
+
+<div class="page-header">
+	<h1>用tmux保存工作现场 <small></small></h1>
+	<div id="article_header">
+		
+		
+		<div>
+			<span>分类: </span>
+			<a href="/pages/categories/index.html#软件-ref" class="tag">软件</a> 
+			
+				<span>标签: </span>
+			
+			
+				<a href="/pages/tags/index.html#linux-ref" class="tag">linux</a>
+    		
+				<a href="/pages/tags/index.html#tmux-ref" class="tag">tmux</a>
+    		
+				<a href="/pages/tags/index.html#终端-ref" class="tag">终端</a>
+    		
+				<a href="/pages/tags/index.html#teriminal-ref" class="tag">teriminal</a>
+    		
+				<a href="/pages/tags/index.html#multiplexers-ref" class="tag">multiplexers</a>
+    		
+		</div>		
+		<div>
+			Last Modify in
+			
+			<span>2015-05-14</span>,
+			
+			published in <span>2015-05-05</span> 
+			by <span> Luo</span>
+		</div>
+
+		
+		
+	</div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#tmux-" id="markdown-toc-tmux-">tmux 是什么?</a></li>
+  <li><a href="#tmux--1" id="markdown-toc-tmux--1">tmux 的任务会话机制</a></li>
+  <li><a href="#tmux" id="markdown-toc-tmux">安装 tmux</a></li>
+  <li><a href="#tmux-session" id="markdown-toc-tmux-session">tmux session</a></li>
+  <li><a href="#tmux-window" id="markdown-toc-tmux-window">tmux window</a>    <ul>
+      <li><a href="#window" id="markdown-toc-window">创建 window</a></li>
+      <li><a href="#window-1" id="markdown-toc-window-1">切换 window</a></li>
+      <li><a href="#section" id="markdown-toc-section">重命名当前窗口</a></li>
+    </ul>
+  </li>
+  <li><a href="#tmux-pane" id="markdown-toc-tmux-pane">tmux pane</a></li>
+  <li><a href="#tmux--2" id="markdown-toc-tmux--2">tmux 的复制</a>    <ul>
+      <li><a href="#copy--" id="markdown-toc-copy--">Copy 模式下的复制, 然后粘贴</a>        <ul>
+          <li><a href="#section-1" id="markdown-toc-section-1">复制</a></li>
+          <li><a href="#section-2" id="markdown-toc-section-2">粘贴</a></li>
+        </ul>
+      </li>
+      <li><a href="#copy-" id="markdown-toc-copy-">推荐使用 Copy 模式</a></li>
+    </ul>
+  </li>
+  <li><a href="#tmux--3" id="markdown-toc-tmux--3">tmux 的配置文件</a>    <ul>
+      <li><a href="#section-3" id="markdown-toc-section-3">配置文件生效</a></li>
+      <li><a href="#tmux--4" id="markdown-toc-tmux--4">一个简单的 tmux 配置文件</a></li>
+      <li><a href="#section-4" id="markdown-toc-section-4">自动生成布局</a></li>
+    </ul>
+  </li>
+  <li><a href="#tmux--5" id="markdown-toc-tmux--5">tmux 在远程服务器中的表现</a></li>
+  <li><a href="#section-5" id="markdown-toc-section-5">结对编程</a></li>
+  <li><a href="#tmux--6" id="markdown-toc-tmux--6">tmux 小技巧</a>    <ul>
+      <li><a href="#tmux--command-prompt" id="markdown-toc-tmux--command-prompt">tmux 的 command-prompt</a></li>
+      <li><a href="#tmux--7" id="markdown-toc-tmux--7">tmux 快捷键帮助</a></li>
+      <li><a href="#send-prefix" id="markdown-toc-send-prefix">重新绑定 send-prefix</a></li>
+      <li><a href="#tmux--8" id="markdown-toc-tmux--8">tmux 底部状态栏</a></li>
+      <li><a href="#section-6" id="markdown-toc-section-6">显示钟表</a></li>
+      <li><a href="#pane----" id="markdown-toc-pane----">为 pane 显示编号—快速切换</a></li>
+    </ul>
+  </li>
+  <li><a href="#tmux-1" id="markdown-toc-tmux-1">使用tmux的一些问题</a>    <ul>
+      <li><a href="#tmux--vimpowerline" id="markdown-toc-tmux--vimpowerline">tmux 和 vim的powerline插件</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-7" id="markdown-toc-section-7">一些自言自语</a></li>
+</ul>
+
+<h2 id="tmux-">tmux 是什么?</h2>
+
+<p><code>tmux</code> 是一款非常好用的终端复用器</p>
+
+<p>可以认为是终端分屏软件，但远远不止…<br />
+可以认为是 <code>nohup</code> 和 <code>&amp;</code> 的结合体，但远远不止…<br />
+可以认为是一款结对编程 ( Pair Programming ) 的软件，但远远不止…</p>
+
+<p>是的，远远不止…</p>
+
+<p>不知道怎么去描述，且跟随使用去体会吧</p>
+
+<h2 id="tmux--1">tmux 的任务会话机制</h2>
+
+<p>当你运行 <code>tmux</code> 之后，会启动一个 tmux server 来管理 tmux 的 sessions</p>
+
+<p>tmux server 有且仅有一个，并且在第一个 session 创建时启动， 当最后一个 session 销毁时销毁</p>
+
+<p>然后有以下几条规则:</p>
+
+<ol>
+  <li>一个 tmux server 可以有多个 sessions</li>
+  <li>一个 session 可以有多个 window ， 类似终端有多个标签页</li>
+  <li>一个 window 可以有多个 pane, 即分屏</li>
+</ol>
+
+<p><code>session</code> 可译作 <code>会话</code><br />
+<code>window</code> 可译作 <code>窗口</code><br />
+<code>pane</code> 可译作 <code>窗格</code></p>
+
+<h2 id="tmux">安装 tmux</h2>
+
+<p>Ubuntu下安装:</p>
+
+<pre><code>$ sudo apt-get install tmux
+</code></pre>
+
+<h2 id="tmux-session">tmux session</h2>
+
+<ol>
+  <li>
+    <p>快速创建:</p>
+
+    <pre><code> $ tmux
+</code></pre>
+
+    <p>这样创建的 session 被自动用数字命名</p>
+  </li>
+  <li>
+    <p>创建一个命名的 session :</p>
+
+    <pre><code> $ tmux new-session -s session-name
+</code></pre>
+  </li>
+  <li>
+    <p>查看当前所有的 sessions :</p>
+
+    <pre><code> $ tmux list-sessions
+</code></pre>
+  </li>
+  <li>
+    <p>脱离当前 session : <code>ctrl-b + d</code></p>
+
+    <p>脱离当前 session , 你的工作状态依然保留</p>
+  </li>
+  <li>
+    <p>如果想重新进入之前的 session , 只需:</p>
+
+    <pre><code> $ tmux attach-session -t session-name
+</code></pre>
+
+    <p>这样你又回看到你之前的工作进度了</p>
+  </li>
+  <li>
+    <p>当你想退出当前 session :</p>
+
+    <pre><code> 在终端中输入 `exit`, 直到所有的 window 和 pane 被关闭  
+</code></pre>
+
+    <p>这时，你的 session 也被销毁了</p>
+  </li>
+  <li>
+    <p>杀死指定的 session :</p>
+
+    <pre><code> $ tmux kill-session -t session-name
+</code></pre>
+  </li>
+  <li>
+    <p>重命名 session : <code>ctrl-b + $</code></p>
+  </li>
+  <li>
+    <p>杀死所有的 session :</p>
+
+    <pre><code> $ tmux kill-server
+</code></pre>
+
+    <p>因为所有的 sessions 跑在一个 server 上<br />
+所以只要关掉 tmux server 即可</p>
+  </li>
+</ol>
+
+<h2 id="tmux-window">tmux window</h2>
+
+<h3 id="window">创建 window</h3>
+
+<p>当你创建一个 session 时，也自动创建一个 window , window 中也会自动创建一个 pane</p>
+
+<p>在 session 中创建 window :  按下<code>ctrl-b +c</code></p>
+
+<h3 id="window-1">切换 window</h3>
+
+<ol>
+  <li>
+    <p>切换到下一个窗口 : <code>ctrl-b + n</code></p>
+  </li>
+  <li>
+    <p>切换到上一个窗口 : <code>ctrl-b + p</code></p>
+  </li>
+  <li>
+    <p>切换到num窗口，num为窗口编号，底部状态栏可看到 : <code>ctrl-b + num</code></p>
+  </li>
+  <li>
+    <p>显示当前会话的所有窗口 : <code>ctrl-b + w</code></p>
+  </li>
+  <li>
+    <p>关闭当前窗口 : <code>ctrl-b + &amp;</code> 或者 <code>exit</code> 或者 <code>ctrl + d</code></p>
+  </li>
+</ol>
+
+<h3 id="section">重命名当前窗口</h3>
+
+<p>按下 <code>ctrl-b + ,</code><br />
+然后输入 window-name 即可</p>
+
+<h2 id="tmux-pane">tmux pane</h2>
+
+<ol>
+  <li>
+    <p>分割一个垂直的窗格 : <code>ctrl-b + "</code></p>
+  </li>
+  <li>
+    <p>分割一个水平的窗格 : <code>ctrl-b + %</code></p>
+  </li>
+  <li>
+    <p>移动到其他窗格 : <code>ctrl-b + Arrow-Up/Down/Left/Right</code></p>
+  </li>
+  <li>
+    <p>关闭所有窗格 : <code>ctrl-b + !</code></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="tmux--2">tmux 的复制</h2>
+
+<p>在没有启动鼠标滚轮时， tmux 可以通过鼠标选中，并复制</p>
+
+<p>当你用了上面配置文件中的鼠标滚轮启用，那么一般的鼠标选中就不可能了:</p>
+
+<pre><code>按下 shift, 然后使用鼠标去选中想要copy的内容进行复制操作  
+</code></pre>
+
+<h3 id="copy--">Copy 模式下的复制, 然后粘贴</h3>
+
+<p>tmux 提供了一种 copy 模式,类似于 vim 的(Esc-v)模式</p>
+
+<p>按下 <code>ctrl-b + [</code> 进入 copy 模式</p>
+
+<p>tmux 的 copy 模式下有两种快捷键模式: vim 和 Emacs<br />
+当你在配置文件中启用 vim 模式:</p>
+
+<pre><code>setw -g mode-keys vi
+</code></pre>
+
+<p>在 copy 模式下， 我们就可以使用 <code>j/k/h/l</code> 来移动光标了</p>
+
+<h4 id="section-1">复制</h4>
+
+<p>在 Copy 模式下，我们这样复制:</p>
+
+<ol>
+  <li>移动光标到复制开始位置</li>
+  <li>按下 <code>Space</code> 键进入复制模式</li>
+  <li>移动光标选择要复制的内容</li>
+  <li>按下 <code>Enter</code> 键完成复制</li>
+</ol>
+
+<h4 id="section-2">粘贴</h4>
+
+<p>到你要粘贴内容的位置， 使用快捷键 <code>ctrl-b + ]</code></p>
+
+<p>刚才复制的内容已经被完美粘贴了</p>
+
+<h3 id="copy-">推荐使用 Copy 模式</h3>
+
+<p>如果你只是想复制不超过一行文字，那么这两种方式均可，甚至第一种方式更有效率</p>
+
+<p>如果你想复制多行文本，那么还是使用Copy 模式</p>
+
+<p>这和 tmux 的实现方式有关,具体请自行探讨</p>
+
+<hr />
+
+<h2 id="tmux--3">tmux 的配置文件</h2>
+
+<h3 id="section-3">配置文件生效</h3>
+
+<p>配置文件生效有两种方式:</p>
+
+<ol>
+  <li>
+    <p>新建一个 session, <code>.tmux.conf</code> 中的设置就在此 session 中生效了</p>
+  </li>
+  <li>
+    <p>在当前 session 中，按下 <code>ctrl-b + :</code>,然后:</p>
+
+    <pre><code> : source-file ~/.tmux.conf
+</code></pre>
+
+    <p><code>.tmux.conf</code>是 tmux 配置文件的命名，默认位于你的用户主目录下</p>
+  </li>
+</ol>
+
+<h3 id="tmux--4">一个简单的 tmux 配置文件</h3>
+
+<pre><code># This is a tmux configure file
+# 取消默认Ctrl+b的前缀绑定，绑定Ctrl+a为新的快捷发送前缀方式
+unbind C-o
+set -g prefix C-a
+
+# Copy模式下使用vim快捷操作方式
+setw -g mode-keys vi
+
+# split window with s/v after C-a
+bind s split-window -h
+bind v split-window -v
+
+# move into left/Down/Up/Right panes with h/j/k/l after C-a
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# resize panes forward left/right/Down/Up with &lt;/&gt;/-/+ after C-a
+bind &lt; resize-pane -L 10
+bind &gt; resize-pane -R 10
+bind - resize-pane -D 10
+bind + resize-pane -U 10
+
+# bind : to command-prompt like vim
+# this is the defalut in tmux already
+bind : command-prompt
+
+#鼠标可以选中窗格
+set-option -g mouse-select-pane on  
+#鼠标滚轮可以使用
+set-window-option -g mode-mouse on  
+</code></pre>
+
+<h3 id="section-4">自动生成布局</h3>
+
+<p>新建一个文件 <code>~/.tmux/mylayout</code>:</p>
+
+<pre><code>selectp -t 0 #选中第0个窗格
+splitw -h -p 50 #将其分成左右两个
+selectp -t 1 #选中第一个，也就是右边那个
+splitw -v -p 50 #将右边那个分成上下两个
+selectp -t 0 #选中第一个
+</code></pre>
+
+<p>然后在 <code>.tmux.conf</code>	后面添加:</p>
+
+<pre><code>bind D source-file ~/.tmux/mylayout
+</code></pre>
+
+<p>这样，每次当我们启动 tmux 后， 可以使用 <code>ctrl-b + D</code> 来生成布局</p>
+
+<hr />
+
+<h2 id="tmux--5">tmux 在远程服务器中的表现</h2>
+
+<p>如果通过 <code>ssh</code> 远程登录到服务器，恰好要进行一个很耗时的任务</p>
+
+<p>我们不可能等待这个任务执行完毕，再去做其他工作</p>
+
+<p>因此，我们选择了启用一个新的终端来完成其他工作</p>
+
+<p>但是网络可能很不稳定，你那个耗时任务在执行过程，突然网络掉线，然后，你的 ssh 断掉，然后你的任务挂掉了</p>
+
+<p>但是我们的任务已经进行了80%，功亏一篑</p>
+
+<p>是的，你可以选择执行任务时，采用 <code>nohup</code> ，那样，网络断掉，也不会影响你的任务</p>
+
+<p>但是你永远也回不到 <em>案发现场</em></p>
+
+<p><em>案发现场</em> 在某些情况下很重要</p>
+
+<p>而且费那么多心思在保证任务完成，现场保留上，实在太浪费了</p>
+
+<p>使用 <code>tmux</code> 完全可以解决这个问题，除非远程服务器挂了</p>
+
+<p>因此，远程工作的正确方式:</p>
+
+<pre><code>$ ssh pi@192.168.199.114 
+...
+Last login: Tue May  5 02:37:14 2015 from 192.168.199.104
+pi@raspberrypi ~ $ tmux new-session -s code
+</code></pre>
+
+<p>这样，你可在 session 中进行分屏来完成其他工作<br />
+或者你可以脱离终端， 继续其他操作<br />
+再或者网络中断，当你重新连接上服务器:</p>
+
+<pre><code>...
+Last login: Tue May  5 02:37:14 2015 from 192.168.199.104
+pi@raspberrypi ~ $ tmux a -t code
+...
+</code></pre>
+
+<p>你会发现，哦，我的工作现场依旧完整无缺…</p>
+
+<h2 id="section-5">结对编程</h2>
+
+<p>关于结对编程的概念，可以查看维基百科:</p>
+
+<pre><code>http://zh.wikipedia.org/wiki/%E7%BB%93%E5%AF%B9%E7%BC%96%E7%A8%8B
+</code></pre>
+
+<p>tmux 利用服务器上的同一账户的同一 tmux session 实现的</p>
+
+<p>两个人打开同一个 tmux session, 一个人所做的改变，会即时的反映到另一个人的终端上</p>
+
+<p>tmux 基于文本， 所以即使网速慢点也无妨</p>
+
+<hr />
+
+<h2 id="tmux--6">tmux 小技巧</h2>
+
+<h3 id="tmux--command-prompt">tmux 的 command-prompt</h3>
+
+<p><code>command-prompt</code> 是用来输入 tmux 命令的</p>
+
+<p>tmux 的所有快捷键的功能都是通过命令来实现的</p>
+
+<p>因此，我们也通过键入命令来实现某种功能</p>
+
+<pre><code>按下 ctrl-b + : 即可打开 command-prompt  
+然后，你输入相应命令即可  
+</code></pre>
+
+<h3 id="tmux--7">tmux 快捷键帮助</h3>
+
+<p>tmux 的快捷键由 send-prefix 和 bind-key 组成</p>
+
+<p>按下 send-prefix 的同时，按下 bind-key 才唤醒相应的快捷功能</p>
+
+<p><code>send-prefix</code> 是固定的，默认是 <code>ctrl-b</code></p>
+
+<p><code>bind-key</code> 对应不同的功能绑定了不同的 key, 可以通过以下方式查看:</p>
+
+<pre><code>按下 `ctrl-b + ?`  
+</code></pre>
+
+<h3 id="send-prefix">重新绑定 send-prefix</h3>
+
+<p>更换 send-prefix 为 <code>ctrl-a</code> ,在 tmux 的配置文件(<code>.tmux.conf</code>)中这样写:</p>
+
+<pre><code>unbind C-b
+set -g prefix C-a
+</code></pre>
+
+<h3 id="tmux--8">tmux 底部状态栏</h3>
+
+<ul>
+  <li>
+    <p>tmux 窗口底部就是状态栏</p>
+  </li>
+  <li>
+    <p>状态栏左边显示 session-name ,并且列出当前所有 window-name ,以及所有 window 当前运行的 process-name</p>
+  </li>
+  <li>
+    <p>当前所在 window 旁边会有 <code>*</code> 提示</p>
+  </li>
+  <li>
+    <p>右边会显示主机名和时间</p>
+  </li>
+</ul>
+
+<h3 id="section-6">显示钟表</h3>
+
+<p>按下 <code>ctrl-b + t</code>, 会在当前 window 的当前 pane 显示当前时间</p>
+
+<h3 id="pane----">为 pane 显示编号—快速切换</h3>
+
+<p>按下 <code>ctrl-b + q</code>, 每一个 pane 都会出现一个数字<br />
+按下想要切换的 pane 显示的数字， 就可以切换到那个 pane</p>
+
+<h2 id="tmux-1">使用tmux的一些问题</h2>
+
+<h3 id="tmux--vimpowerline">tmux 和 vim的powerline插件</h3>
+
+<p>默认情况下，启动vim, 如果使用了 powerline 插件， 那么会发现颜色显示不正常</p>
+
+<p>此时，只要你在每次打开 tmux 时启动256色即可，即 <code>tmux -2</code></p>
+
+<p>我们可以在 <code>.bashrc</code> 末尾添加:</p>
+
+<pre><code>alias tmux='tmux -2'
+</code></pre>
+
+<p>这样，每次使用 tmux 就会很方便啦</p>
+
+<hr />
+
+<h2 id="section-7">一些自言自语</h2>
+
+<p>任何时候不要太过迷信一件东西</p>
+
+<p>你知道的, 服务器也会有重启的时候</p>
+
+<p>及时保存你的编辑，及时提交你的修改，即使备份你的收藏，永远是明智的做法</p>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/leave-beijing" title="离去">离去</a></li>
+      
+      
+        <li class="next-disabled">下一篇: 让时间加速吧
+      
+      </ul>
+    </div>
+    <hr>
+	<div id="to_comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+								     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+	</div>
+
+ </div>
+
+
+   
+            </div>
+            <hr />
+            <div id="footer">
+                <p>
+                <span>&copy;2014 Luo</span>
+                </p>
+            </div>
+        </div>
+		
+		<!-- site top -->
+		<div class="nav-bottom">
+			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+		</div>
+
+		
+
+
+		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
+
+		
+		<script src="/assets/themes/custom_me/js/copy.js"></script>
+		
+		
+		
+
+		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+		<script src="/assets/themes/custom_me/js/toc.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	
+		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script src="/assets/themes/custom_me/js/toComments.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+						
+				
+				addCopy("pre", "copy", "Copy");
+				
+
+				tocEffect();
+				toComments();
+				var bigfoot=$.bigfoot({
+					preventPageScroll: true
+					})
+
+			})
+		</script>	
+ </div>
+    </body>
+</html>
+
+
+
+

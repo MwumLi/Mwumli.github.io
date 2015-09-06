@@ -1,0 +1,405 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		<title>倘若微小 - 编译和连接</title>
+
+  		
+		<meta name="description" content="">
+        
+
+	    <meta name="author" content="Luo">
+	
+        <!-- syntax highlighting CSS -->
+		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- Custom CSS -->
+		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+
+    </head>
+    <body>
+        <div id="all">
+<!--            header start-->
+            <div id="header">
+                <div id="title">
+                <h1 >
+                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
+					</a>                     	   
+				</h1>
+                </div>
+                <!--hr/ -->
+                <div id="top-nav">
+                    <ul>
+					
+
+
+
+    
+  	
+  
+  
+  
+	  
+	  			
+
+  
+	  
+	  
+  	 		
+      		
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+
+  
+  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
+  
+
+
+
+					<li><a href="/pages/articles/index.html">文章</a></li>
+					<li><a href="/pages/categories/index.html">分类</a></li>
+					<li><a href="/pages/tags/index.html">标签</a></li>
+					<li><a href="/rss.xml">rss订阅</a></li>
+					</ul>   
+                </div>
+            </div> 
+<!--            header end-->
+            <!--hr /-->
+            <div class="content">
+                
+
+
+<div class="page-header">
+	<h1>编译和连接 <small></small></h1>
+	<div id="article_header">
+		
+		
+		<div>
+			<span>分类: </span>
+			<a href="/pages/categories/index.html#记录-ref" class="tag">记录</a> 
+			
+				<span>标签: </span>
+			
+			
+				<a href="/pages/tags/index.html#linux-ref" class="tag">linux</a>
+    		
+				<a href="/pages/tags/index.html#编译，链接-ref" class="tag">编译，链接</a>
+    		
+		</div>		
+		<div>
+			Last Modify in
+			
+			<span>2014-09-28</span>,
+			
+			published in <span>2014-09-28</span> 
+			by <span> Luo</span>
+		</div>
+
+		
+		
+	</div>
+</div>
+
+<div id="page-content">
+    <h2 id="section">编译和连接</h2>
+<p>对于平常的应用程序开发，我们很少关注编译和连接的过程，因为通常的开发环境都是流行的集成开发环境(IDE)</p>
+
+<p>而IDE往往将编译和连接的过程“一气呵成”,通常编译和连接合并到一块被称为”build”,也就是构建.</p>
+
+<p>即使是命令行来编译一个<code>hello.c</code>，简单一句<code>gcc hello.c</code>，然后你就可以<code>./a.out</code>来得到富有盛名的<code>Hello,World!</code>了</p>
+
+<p>正所谓“有一得必有一失”，我们享受与这种一键执行的快感，却忽略很多系统软件背后的运行机制和机理，程序中很多莫名其妙的错误常常令我们无所适从，面对程序运行时种种性能瓶颈我们束手无策，而为了解决这些问题，我们往往需要追根溯源</p>
+
+<p>因此，了解编译和连接的过程，有助于我们对软件运行的机理的了解以及对出现的各种问题能有更高效的解决途径</p>
+
+<h2 id="section-1">从最简单最熟悉开始</h2>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello,World</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span><span class="c1">//hello.c</span></code></pre></div>
+
+<p>这样的程序，闭着眼睛，用心作笔，估计一秒钟都可以写几万次了吧<br />
+在Linux下，当我们使用GCC来编译hello.c,这样做:</p>
+
+<pre><code>$ ls 
+hello.c
+$ gcc hello.c
+$ ls
+a.out hello.c
+$ ./a.out
+Hello,World
+</code></pre>
+
+<p>可以看到，我们使用gcc编译处理hello.c之后，生成了一个a.out的文件<br />
+这个文件正是我们可执行程序，运行之后，输出<code>Hello,World</code></p>
+
+<p>整个过程很简单，但这只是表面上的，事实上，上述过程可以分解为4个步骤，分别是：</p>
+
+<pre><code>预处理(Prepressing)[.c]-&gt;编译(Compilation)[.i]-&gt;汇编(Assembly)[.o]-&gt;链接(Linking)[可执行文件]
+</code></pre>
+
+<h3 id="c-i-using-cpp">预处理(.c-&gt;.i using cpp)</h3>
+<p>Linux下对c文件进行预处理，可以使用预编译器<code>cpp</code><br />
+进行预处理之后，生成的预处理文件为<code>.i</code>,对于C++程序而言，预编译后的文件为<code>.ii</code><br />
+以下是预编译的命令:</p>
+
+<pre><code>$ cpp hello.c &gt; hello.i  
+</code></pre>
+
+<p>或者</p>
+
+<pre><code>$ gcc -E hello.c -o hello.i  
+</code></pre>
+
+<p>无论是<code>cpp</code>还是<code>gcc -E</code>,他们的结果(在不指定目标文件的情况下)会输出到<code>stdout</code></p>
+
+<p>预编译的过程主要处理那些源码中以”#”开始的预编译指令，比如<code>#include</code>，<code>#define</code><br />
+主要做了一下处理:</p>
+
+<ol>
+  <li>
+    <p>将所有<code>#define</code>处删除，展开所有宏定义</p>
+
+    <pre><code> 在include和main之间添加“#define HELLO "hello,world\n" ”,
+ 然后把printf()中的内容改为HELLO,接着如上预处理生成目标文件hello_micro.i
+ 使用diff hello.i hello_micro.i,发现两个文件完全一致 
+ 由此证明删除定义宏，展开所有宏  
+</code></pre>
+  </li>
+  <li>
+    <p>处理所有条件预编译指令，比如<code>#if</code>,<code>#ifdef</code>,<code>#elif</code>,<code>#else</code>,<code>#endif</code></p>
+  </li>
+  <li>
+    <p>处理<code>#include</code>预编译指令，将被包含的文件插入到该预编译指令的位置。</p>
+
+    <pre><code> 注意，这个过程是递归进行的，也就是说被包含的文件可能还包含其他文件。
+ 因此，在多文件程序中要注意同一文件被多次包含引起的错误  
+</code></pre>
+  </li>
+  <li>删除所有的注释<code>//</code>和<code>/**/</code></li>
+  <li>添加行号和文件名标识，比如<code>#2 "hello.c" 2</code>,以便于编译时产生调试用的行号信息及用于编译时产生编译错误或警告时都能显示行号</li>
+  <li>保留所有的<code>#pragma</code>编译器指令，因为编译器需要使用它们</li>
+</ol>
+
+<p>经过预编译后的<code>.i</code>文件不包含任何宏定义，因为所有的宏已经被展开，并且包含的文件也已经被插入到.i文件中。<br />
+所以当我们<em>无法判断宏定义是否正确</em>或者<em>头文件是否正确引入</em>的时候，可以查看预编译后的<code>.i</code>文件来确定问题</p>
+
+<h3 id="i-s-using-cc1">编译(.i-&gt;.s using cc1)</h3>
+<p>编译过程就是把<code>.i</code>文件进行一系列的词法分析、语法分析、语义分析以及优化后生成相应的汇编代码文件<code>.s</code><br />
+这个过程整个程序构建的核心部分,也是最复杂的部分，涉及到编译原理的一些内容<br />
+Linux命令如下:</p>
+
+<pre><code>$ gcc -S hello.i -o hello.s  
+</code></pre>
+
+<p>据说，现在的gcc已经将预编译和编译两个步骤合并成一个步骤，使用一个叫做<code>cc1</code>的程序<br />
+<code>cc1</code>在我的机器(Ubuntu 14.04 LTS)上的路径<code>/usr/lib/gcc/x86_64-linux-gnu/4.8/cc1</code> <br />
+因此，我这样编译：</p>
+
+<pre><code>$ /usr/lib/gcc/x86_64-linux-gnu/4.8/cc1 hello.i
+</code></pre>
+
+<p>和上面的命令效果等同<br />
+但是根据资料显示，<code>cc1</code>把预编译和编译融合，因此我使用<code>/usr/lib/gcc/x86_64-linux-gnu/4.8/cc1 hello.c</code>,结果出错</p>
+
+<p>为了研究其原因，我使用<code>gcc -v hello.c 2&gt;cp.txt</code>打印gcc对其编译过程做了那些操作<br />
+因为比较长，只截取有用的部分</p>
+
+<pre><code>/usr/lib/gcc/x86_64-linux-gnu/4.8/cc1 -quiet -v -imultiarch x86_64-linux-gnu hello.c -quiet -dumpbase hello.c -mtune=generic -march=x86-64 -auxbase hello -version -fstack-protector -Wformat -Wformat-security -o /tmp/cckHwTs6.s
+</code></pre>
+
+<p>可以看到cc1携带了大量的参数，最终生成汇编文件保存在<code>/tmp/cckHwTs6.s</code><br />
+我在命令行进行了验证，确实如此<br />
+这里又一次证明了：IDE掩盖很多已有的参数。不过，这么多参数确实让人心烦，既然常用，默认是一个好的办法，不过，你应该了解有这么个过程</p>
+
+<h3 id="s-o-using-as">汇编(.s-&gt;.o using as)</h3>
+<p>汇编器就是将汇编代码转变成机器可以执行的指令，每一个汇编语句都对应一条机器指令,所以汇编器的汇编过程相对于编译过程就显得简单多了。</p>
+
+<p>汇编过程在linux下我们调用汇编器as来完成：</p>
+
+<pre><code>$ as hello.s -o hello.o  
+</code></pre>
+
+<p>或者</p>
+
+<pre><code>$ gcc -c hello.s -o hello.o  
+</code></pre>
+
+<p>或者使用gcc从.c文件开始，经过预编译、编译、汇编直接输出<em>目标文件</em>(Object File)</p>
+
+<pre><code>$ gcc -c hello.s -o hello.o
+</code></pre>
+
+<p>同样，我们可以在cp.txt文件中看到下面一段：</p>
+
+<pre><code>COLLECT_GCC_OPTIONS='-v' '-mtune=generic' '-march=x86-64'
+</code></pre>
+
+<h3 id="section-2">链接</h3>
+<p>链接通常是一个让人费解的过程：<br />
+为什么汇编器不直接输出可执行文件而是一个目标文件呢？<br />
+链接过程到底包含了什么内容？<br />
+为什么要链接?<br />
+…<br />
+我们通常使用ld来链接目标文件<br />
+我们来看看cp.txt中的相应描述：</p>
+
+<pre><code>/usr/lib/gcc/x86_64-linux-gnu/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. /tmp/ccfb7d3z.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o
+</code></pre>
+
+<p>额，好长啊，不过貌似没有<code>ld</code>的字眼，看来gcc并没有如同我们想象的那样直接调用ld进行链接。而是调用<code>collect2</code>进行链接</p>
+
+<p>实际上，<code>collect2</code>只是一个辅助程序最终它仍调用<code>ld</code>进行链接</p>
+
+<p>举个例子：对于C++程序来说，在执行main函数前，全局静态对象必须构造完成。
+也就是说，在main之前程序需要进行一些必要的初始化，gcc就是使用collect2安排初始化过程中如何调用各个初始化函数的。根据链接过程可见，除了hello.c对应的目标文件ccfb7d3z.o外，ld也链接了libc、libgcc等库，以及所谓的包含启动代码（start code）的启动文件（start/startup file），包括crt1.o、crti.o、crtbegin.o、crtend.o和crtn.o</p>
+
+<h2 id="section-3">参考文献</h2>
+<ul>
+  <li>《程序员的自我修养》</li>
+  <li>《深度探索Linux操作系统：系统构建和原理解析》</li>
+</ul>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/kernel-list" title="Linux内核链表的分析">Linux内核链表的分析</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/dns" title="简单的DNS讲解">简单的DNS讲解</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+	<div id="to_comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+								     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+	</div>
+
+ </div>
+
+
+   
+            </div>
+            <hr />
+            <div id="footer">
+                <p>
+                <span>&copy;2014 Luo</span>
+                </p>
+            </div>
+        </div>
+		
+		<!-- site top -->
+		<div class="nav-bottom">
+			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+		</div>
+
+		
+
+
+		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
+
+		
+		<script src="/assets/themes/custom_me/js/copy.js"></script>
+		
+		
+		
+
+		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+		<script src="/assets/themes/custom_me/js/toc.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	
+		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script src="/assets/themes/custom_me/js/toComments.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+						
+				
+				addCopy("pre", "copy", "Copy");
+				
+
+				tocEffect();
+				toComments();
+				var bigfoot=$.bigfoot({
+					preventPageScroll: true
+					})
+
+			})
+		</script>	
+ </div>
+    </body>
+</html>
+
+
+
+

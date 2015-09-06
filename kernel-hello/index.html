@@ -1,0 +1,379 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		<title>倘若微小 - 来自Linux内核的hello,world</title>
+
+  		
+		<meta name="description" content="">
+        
+
+	    <meta name="author" content="Luo">
+	
+        <!-- syntax highlighting CSS -->
+		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- Custom CSS -->
+		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+
+    </head>
+    <body>
+        <div id="all">
+<!--            header start-->
+            <div id="header">
+                <div id="title">
+                <h1 >
+                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
+					</a>                     	   
+				</h1>
+                </div>
+                <!--hr/ -->
+                <div id="top-nav">
+                    <ul>
+					
+
+
+
+    
+  	
+  
+  
+  
+	  
+	  			
+
+  
+	  
+	  
+  	 		
+      		
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+
+  
+  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
+  
+
+
+
+					<li><a href="/pages/articles/index.html">文章</a></li>
+					<li><a href="/pages/categories/index.html">分类</a></li>
+					<li><a href="/pages/tags/index.html">标签</a></li>
+					<li><a href="/rss.xml">rss订阅</a></li>
+					</ul>   
+                </div>
+            </div> 
+<!--            header end-->
+            <!--hr /-->
+            <div class="content">
+                
+
+
+<div class="page-header">
+	<h1>来自Linux内核的hello,world <small></small></h1>
+	<div id="article_header">
+		
+		
+		<div>
+			<span>分类: </span>
+			<a href="/pages/categories/index.html#内核-ref" class="tag">内核</a> 
+			
+				<span>标签: </span>
+			
+			
+				<a href="/pages/tags/index.html#linux-ref" class="tag">linux</a>
+    		
+				<a href="/pages/tags/index.html#kernel-ref" class="tag">kernel</a>
+    		
+				<a href="/pages/tags/index.html#内核-ref" class="tag">内核</a>
+    		
+		</div>		
+		<div>
+			Last Modify in
+			
+			<span>2014-05-13</span>,
+			
+			published in <span>2014-05-13</span> 
+			by <span> Luo</span>
+		</div>
+
+		
+		
+	</div>
+</div>
+
+<div id="page-content">
+    
+<h2 id="linux">Linux内核模块</h2>
+
+<h3 id="section">内核模块是什么</h3>
+
+<p>内核模块是Linux内核向外部提供的一个插口,其全程为动态可加载内核模块(LVM,Loadable Kernel Module),简称模块</p>
+
+<p>内核模块是具有独立功能的程序，可以被单独编译，但不能独立运行<br />
+它在运行时被链接到内核作为内核的一部分在内核空间，这和我们平时在用户空间的进程不同</p>
+
+<p>内核模块通常由一组函数和数据结构构成</p>
+
+<h3 id="section-1">内核模块的来由</h3>
+
+<p>Linux是一个单内核操作系统<br />
+它有着单内核的优点<strong>效率高</strong>,因为所有内容都集成在一起<br />
+同样，缺点也是显而易见的，可扩展性和可维护性相对较差，模块机制正是为了弥补这一缺陷</p>
+
+<h3 id="section-2">内核模块可以做什么</h3>
+
+<p>模块作为内核功能的一个扩展,是为了在保持内核体积较小的情况下，增强其功能<br />
+内核只需要完成必要的功能即可，其他的功能都可以通过模块进行增强，类似于Vim的插件机制</p>
+
+<p>内核模块用来实现一种文件系统，一个驱动程序和其他内核上层的功能</p>
+
+<h2 id="helloworld">来自内核的hello,world</h2>
+
+<h3 id="helloworld-1">内核版本的hello,world</h3>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/*hello_world.c*/</span>
+	<span class="cp">#include &lt;linux/init.h&gt;</span>
+	<span class="cp">#include &lt;linux/module.h&gt;</span>
+	<span class="cp">#include &lt;linux/kernel.h&gt;</span>
+
+	<span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&quot;GPL&quot;</span><span class="p">);</span>
+
+	<span class="k">static</span> <span class="kt">int</span> <span class="n">__init</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&quot;Hllo,kernel world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">static</span> <span class="kt">void</span> <span class="n">__exit</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&quot;goodbye,kernel</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
+	<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">);</span>
+
+	<span class="n">MODULE_AUTHOR</span><span class="p">(</span><span class="s">&quot;MwumLi&quot;</span><span class="p">);</span>
+	<span class="n">MODULE_DESCRIPTION</span><span class="p">(</span><span class="s">&quot;Hello World&#39;s kernel version!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span></code></pre></div>
+
+<p>一些说明:</p>
+
+<ol>
+  <li>&lt;linux/module.h&gt;，&lt;linux/init.h&gt;,&lt;linux/kernel.h&gt;是Linux内核模块程序必不可少的三个头文件
+    <ul>
+      <li>&lt;linux/module.h&gt;包含模块的结构定义以及模块的版本控制</li>
+      <li>&lt;linux/init.h&gt;包含了宏__init和__exit,函数module_init(),module_exit()</li>
+      <li>&lt;linux/kernel.h&gt;包含了常用的内核函数</li>
+    </ul>
+  </li>
+  <li>
+    <p>__init告诉编译器此函数仅用于初始化，编译器将__init的所有代码存储到特殊的内存区域,初始化完毕之后，这段内存将被释放掉;__exit表示此段函数是模块卸载清理函数,当模块卸载之时，将执行此函数</p>
+  </li>
+  <li>
+    <p>MODULE_*系列宏，是一些模块程序的说明信息，可选；但是，要注意的是MODULE_LICENSE(“GPL”)宏，如果模块中无此宏，编译的时候会出现警告(假如你特别在意此问题，那么加上即可)</p>
+  </li>
+  <li>module_init()是模块加载函数，当模块加载时，会执行此函数参数指向的函数；module_exit()是模块卸载函数，当卸载模块的时候，会执行此函数参数指向的函数,必须</li>
+</ol>
+
+<h3 id="makefile">编写Makefile文件</h3>
+
+<p>对于一般的Ｃ程序，我们只需要gcc就可以了，然后直接运行<br />
+但是内核模块程序，我们必须使用内核中makefile文件，里面包含了内核库的位置<br />
+因此，我们需要编写makefile文件来实现内核模块的编译</p>
+
+<div class="highlight"><pre><code class="language-mf" data-lang="mf"><span class="c"># this is a Makefile</span>
+	obj-m +<span class="o">=</span> hello_world.o
+<span class="c">	#generate the path</span>
+	CURRENT_PATH:<span class="o">=</span><span class="k">$(</span>shell <span class="nb">pwd</span><span class="k">)</span>
+<span class="c">	#the current kernel version number</span>
+	LINUX_KERNEL:<span class="o">=</span><span class="k">$(</span>shell uname -r<span class="k">)</span>
+<span class="c">	#the absolute path</span>
+	LINUX_KERNEL_PATH:<span class="o">=</span>/usr/src/linux-headers-<span class="k">$(</span>LINUX_KERNEL<span class="k">)</span>
+<span class="c">	#complie object</span>
+	all:
+		make -C <span class="k">$(</span>LINUX_KERNEL_PATH<span class="k">)</span> <span class="nv">M</span><span class="o">=</span><span class="k">$(</span>CURRENT_PATH<span class="k">)</span> modules
+<span class="c">	#clean</span>
+	clean:
+		make -C <span class="k">$(</span>LINUX_KERNEL_PATH<span class="k">)</span> <span class="nv">M</span><span class="o">=</span><span class="k">$(</span>CURRENT_PATH<span class="k">)</span> clean</code></pre></div>
+
+<p>然后，在命令行下:</p>
+
+<pre><code>	$ sudo make
+</code></pre>
+
+<p>这样就可以成功编译(报错的话，根据错误信息debug)</p>
+
+<h3 id="section-3">模块的加载，卸载，查看</h3>
+
+<ul>
+  <li>
+    <p>模块加载到内核</p>
+
+    <pre><code>  $ sudo insmod hello_world.ko
+</code></pre>
+  </li>
+  <li>
+    <p>查看内核中已经加载的内核模块</p>
+
+    <pre><code>  $ sudo lsmod | head
+</code></pre>
+  </li>
+</ul>
+
+<p>你会发现hello_word在第一行,okay,加载成功</p>
+
+<ul>
+  <li>
+    <p>从内核卸载模块</p>
+
+    <pre><code>  $ sudo rmmod hello_world
+</code></pre>
+  </li>
+  <li>
+    <p>查看编译成功的内核模块信息</p>
+
+    <pre><code>  $ sudo modinfo hello_world.ko
+</code></pre>
+  </li>
+</ul>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/just-do-it" title="只管开始做(转载)">只管开始做(转载)</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/how-to-change-world" title="如何改变世界(转载)">如何改变世界(转载)</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+	<div id="to_comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+								     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+	</div>
+
+ </div>
+
+
+   
+            </div>
+            <hr />
+            <div id="footer">
+                <p>
+                <span>&copy;2014 Luo</span>
+                </p>
+            </div>
+        </div>
+		
+		<!-- site top -->
+		<div class="nav-bottom">
+			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+		</div>
+
+		
+
+
+		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
+
+		
+		<script src="/assets/themes/custom_me/js/copy.js"></script>
+		
+		
+		
+
+		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+		<script src="/assets/themes/custom_me/js/toc.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	
+		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script src="/assets/themes/custom_me/js/toComments.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+						
+				
+				addCopy("pre", "copy", "Copy");
+				
+
+				tocEffect();
+				toComments();
+				var bigfoot=$.bigfoot({
+					preventPageScroll: true
+					})
+
+			})
+		</script>	
+ </div>
+    </body>
+</html>
+
+
+
+

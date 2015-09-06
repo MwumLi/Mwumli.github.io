@@ -1,0 +1,539 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		<title>倘若微小 - Raspberry Pi安装Debian Wheezy系统</title>
+
+  		
+		<meta name="description" content="">
+        
+
+	    <meta name="author" content="Luo">
+	
+        <!-- syntax highlighting CSS -->
+		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- Custom CSS -->
+		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+
+    </head>
+    <body>
+        <div id="all">
+<!--            header start-->
+            <div id="header">
+                <div id="title">
+                <h1 >
+                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
+					</a>                     	   
+				</h1>
+                </div>
+                <!--hr/ -->
+                <div id="top-nav">
+                    <ul>
+					
+
+
+
+    
+  	
+  
+  
+  
+	  
+	  			
+
+  
+	  
+	  
+  	 		
+      		
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+
+  
+  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
+  
+
+
+
+					<li><a href="/pages/articles/index.html">文章</a></li>
+					<li><a href="/pages/categories/index.html">分类</a></li>
+					<li><a href="/pages/tags/index.html">标签</a></li>
+					<li><a href="/rss.xml">rss订阅</a></li>
+					</ul>   
+                </div>
+            </div> 
+<!--            header end-->
+            <!--hr /-->
+            <div class="content">
+                
+
+
+<div class="page-header">
+	<h1>Raspberry Pi安装Debian Wheezy系统 <small></small></h1>
+	<div id="article_header">
+		
+		
+		<div>
+			<span>分类: </span>
+			<a href="/pages/categories/index.html#记录-ref" class="tag">记录</a> 
+			
+				<span>标签: </span>
+			
+			
+				<a href="/pages/tags/index.html#raspberrypi-ref" class="tag">raspberrypi</a>
+    		
+				<a href="/pages/tags/index.html#树莓派-ref" class="tag">树莓派</a>
+    		
+		</div>		
+		<div>
+			Last Modify in
+			
+			<span>2014-12-06</span>,
+			
+			published in <span>2014-12-06</span> 
+			by <span> Luo</span>
+		</div>
+
+		
+		
+	</div>
+</div>
+
+<div id="page-content">
+    
+<h3 id="section">碎碎念</h3>
+
+<p>Raspberry Pi，是一款基于Linux系统的、信用卡大小的单板机电脑<br />
+它的出现源于一个想<strong>制作一套启发孩子的电脑</strong>的想法<br />
+看来一切美好的事情背后总是有一颗让人心动的理念，而这个理念往往才是他们获得流行的动力</p>
+
+<p><img src="/assets/imgs/640px-RaspberryPi.jpg" alt="树莓派B2.0简图" title="树莓派B2.0简图" /></p>
+
+<h3 id="section-1">系统安装</h3>
+<p>可以用于Raspberry Pi的系统很多，有我们即将安装的Debian Wheezy,还有Arch Linux ARM, RISC OS等等<br />
+对咯，Debian Wheezy更为常见的称呼是Raspbian,但是为了避免与Raspberry Pix形似，我特意称其为Debian Wheezy,也喜欢这样称呼(嘿嘿…)<br />
+这些资源都可以送网络上获取，感谢互联网</p>
+
+<p>为树莓派安装系统很简单，开始咯</p>
+
+<ol>
+  <li>
+    <p>首先从<a href="http://www.raspberrypi.org/downloads/" title="RaspberryPi OS下载页">树莓派官网下载页</a>选择下载Debian Wheezy系统(第一个应该就是),这是树莓派专用系统</p>
+  </li>
+  <li>
+    <p>因为Raspberry Pi是从SD卡启动的(<strong>没有BIOS和其他内部存储设备，只有一个SD卡槽</strong>)，所以我们需要准备一张SD卡,8G大小(<strong>更大更好，不过it depends</strong>),把SD卡使用卡托或者读卡器接入你的计算机</p>
+  </li>
+</ol>
+
+<h4 id="section-2">不同平台下的镜像写入</h4>
+<ul>
+  <li>Windows
+    <ol>
+      <li>请下载官方推荐工具<a href="http://sourceforge.net/projects/win32diskimager/" title="一个Windows下把原始数据写入可移动设备的工具">Win32 Disk Imager</a>，它是一款绿色软件，点击即可使用</li>
+      <li>运行软件，选择我们SD卡盘符，加载我们的Debian Wheezy镜像(<strong>像2014-09-09-wheezy-raspbian.img</strong>)，最后点击”Write”,等待几分钟写入完成</li>
+      <li>哦，对了，在写入镜像前，你也可以校验镜像的完整性，可以使用<code>fciv</code>命令生成SHA1校验码与网上公布的码值对比，如果一样，okay，没问题。不过假如你从官网下载镜像与软件以及网络环境没问题，那么应该不会有太大问题问题(<strong>可忽略</strong>)</li>
+    </ol>
+  </li>
+  <li>Linux
+    <ol>
+      <li>
+        <p>校验镜像，使用sha1sum生成SHA1校验码</p>
+
+        <pre><code> $ sha1sum 2014-09-09-wheezy-raspbian.img 
+ 57a73544fab3f1163a14903647e55c3998bf9dc9  2014-09-09-wheezy-raspbian.img  
+</code></pre>
+      </li>
+      <li>
+        <p>查看你的SD卡的准确位置，并确定是否挂载分区</p>
+
+        <pre><code> $ df -h
+ Filesystem      Size  Used Avail Use% Mounted on
+ /dev/sda1       103G   37G   61G  38% /
+ none            4.0K     0  4.0K   0% /sys/fs/cgroup
+ udev            2.0G   12K  2.0G   1% /dev
+ tmpfs           393M  1.3M  392M   1% /run
+ none            5.0M     0  5.0M   0% /run/lock
+ none            2.0G   58M  1.9G   3% /run/shm
+ none            100M   40K  100M   1% /run/user
+ /dev/sde2       3.6G  1.2G  2.4G  30% /media/mwumli/12C-3244-2342
+ /dev/sde1		4.2G	0G	0G	   0% /media/mwumli/43C-2334-4354
+</code></pre>
+      </li>
+      <li>
+        <p>如果挂载，请先卸载所有分区，以免发生错误</p>
+
+        <pre><code> $ umount /dev/sde1
+ $ umount /dev/sde2
+</code></pre>
+      </li>
+      <li>
+        <p>使用<code>dd</code>写入镜像</p>
+
+        <pre><code> $ sudo dd bs=1M if=2014-09-09-wheezy-raspbian.img of=/dev/sde 
+ [sudo] password for mwumli:
+ 3125+0 records in
+ 3125+0 records out
+ 3276800000 bytes (3.3 GB) copied, 406.802 s, 8.1 MB/s
+</code></pre>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="section-3">访问</h3>
+<p>把写好的SD卡插入树莓派卡槽，连接上电源</p>
+
+<h4 id="section-4">和正常计算机一样访问</h4>
+<p>为树莓派配上显示器和键盘，鼠标，这样就和正常的计算机一样访问了 <br />
+但要注意的是USB接口在B2.0上只有两个，就算B+也只有4个<br />
+同时还要注意电压不足的问题，这个问题好解决，买一个可以接入外接电源的USB集线器</p>
+
+<h4 id="ssh">通过ssh远程访问</h4>
+<p>Debian Wheezy系统默认已经开启ssh服务，所以我们可以通过ssh进行远程访问，对于很多操作，那已足够</p>
+
+<pre><code>$ ssh pi@192.168.199.244
+pi@192.168.199.244's password: 
+Linux raspberrypi 3.12.28+ #709 PREEMPT Mon Sep 8 15:28:00 BST 2014 armv6l
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sat Dec  6 23:08:25 2014 from mwumli-k43sa.lan
+pi@raspberrypi ~ $ whoami
+pi
+</code></pre>
+
+<h5 id="section-5">一些必要的小贴士</h5>
+<ul>
+  <li>
+    <p>用户名为<code>pi</code>,密码为<code>raspberry</code><br />
+Debian Wheezy提供一个默认的用户名<code>pi</code>和密码<code>raspberry</code>(据说很久之前密码是<code>suse</code>,假如你足够幸运)<br />
+<code>raspberry</code>不是一个很好的密码，因为很多地区的键盘布局并没有设置<code>y</code>(德国)，假如你是在国外，那么你可以使用<code>raspberrz</code>来登录</p>
+  </li>
+  <li>
+    <p>获取你的Raspberry Pi的IP <br />
+请保证树莓派连接上网络，然后</p>
+    <ul>
+      <li>你可以在路由器后台中查看你的树莓派的IP</li>
+      <li>你可以在Windows下使用<a href="http://abel.oss.aliyuncs.com/file/PortScan.zip" title="一款Windows下的端口扫描工具">PortScan</a>去查看,它会列出当前局域网内所有主机</li>
+      <li>
+        <p>你可以在Linux下使用<code>nmap</code></p>
+
+        <pre><code>  $ nmap -sP 192.168.199.0/24  
+  Starting Nmap 6.40 ( http://nmap.org ) at 2014-12-07 08:51 CST
+  Nmap scan report for Hiwifi.lan (192.168.199.1)
+  Host is up (0.39s latency).
+  Nmap scan report for mwumli-K43SA.lan (192.168.199.104)
+  Host is up (0.00036s latency).
+  Nmap scan report for MI2A-xiaomishouji.lan (192.168.199.137)
+  Host is up (0.64s latency).
+  Nmap scan report for android-e54569f466270a09.lan (192.168.199.226)
+  Host is up (0.34s latency).
+  Nmap scan report for raspberrypi.lan (192.168.199.244)
+  Host is up (0.016s latency).
+  Nmap done: 256 IP addresses (5 hosts up) scanned in 14.32 seconds
+</code></pre>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>具体可参考<a href="http://www.jbxue.com/LINUXjishu/10514.html" title="Linux 查看局域网内所有主机IP和MAC的方法">Linux 查看局域网内所有主机IP和MAC的方法</a><br />
+<code>nmap</code>的介绍可以参考<a href="http://nmap.org/man/zh/" title="Nmap的Man手册">Nmap参考指南</a><br />
+<code>nmap</code>的使用介绍可以参考<a href="http://netsecurity.51cto.com/art/200801/63660.htm" title="端口扫描工具nmap使用介绍">端口扫描工具namp的使用介绍</a></p>
+
+<h4 id="vnc">使用VNC远程图形化访问</h4>
+<ol>
+  <li>
+    <p>Raspberry Pi安装VNC Server<code>tightvncserver</code></p>
+
+    <pre><code> $ sudo apt-get install tightvncserver  
+</code></pre>
+  </li>
+  <li>
+    <p>使用<code>vncpasswd</code>设置登录密码和一个view-only密码</p>
+
+    <pre><code> $ vncpasswd
+ You will require a password to access your desktops.
+
+ Password: 
+ Verify:   
+ Would you like to enter a view-only password (y/n)? n view-only密码仅仅用来查看，所以可以不设置  
+</code></pre>
+  </li>
+  <li>
+    <p>启用VNC Server</p>
+
+    <pre><code> $ tightvncserver
+</code></pre>
+  </li>
+</ol>
+
+<p>在初次启动时，会提示步骤2的过程，之后就不会再提示<br />
+每启动一次，就会建立一个虚拟屏幕，那个<code>:n</code>后面的数字n就是虚拟屏幕ID，我们使用VNC Client连接时需要</p>
+
+<ol>
+  <li>在你的计算机中使用VNC Client,客户端很多
+    <ul>
+      <li>安装chrome浏览器，使用VNC Viewer for Google Chrome插件</li>
+      <li>在这里下在<a href="https://www.realvnc.com/download/" title="一个VNC Software站点">https://www.realvnc.com/download/</a></li>
+      <li>
+        <p>Linux下可以通过命令安装</p>
+
+        <pre><code>  $ sudo apt-get install vncviewer xtightvncviewer  
+</code></pre>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>用VNC客户端连接VNC服务端需要两个参数:<code>Pi的IP地址和屏幕的端口地址</code><br />
+VNC端口地址：<code>基础端口(默认5900)+屏幕ID</code> <br />
+如果Pi的iP地址为:<code>192.168.199.227</code>，屏幕ID为:<code>1</code><br />
+那么在Linux下可以这样访问:</p>
+
+<pre><code>	$ xtightvncviewer 192.168.199.227:5901
+</code></pre>
+
+<p>由于基础端口一般默认为5901,所以我们直接通过屏幕ID访问</p>
+
+<pre><code>	$ xtightvncviewer 192.168.199.227:1
+</code></pre>
+
+<p>其他客户端访问一样，在输入地址区域输入:<code>Pi's IP:[base port]+Screen ID</code> <br />
+然后选择连接即可</p>
+
+<h3 id="section-6">配置</h3>
+<p>使用<code>raspi-config</code>进行一些重要的系统配置<br />
+主要是设置合适的区域以及扩展其可用存储空间</p>
+
+<p><em>扩展文件系统到SD卡所有空间</em></p>
+
+<pre><code>$ sudo raspi-config 
+</code></pre>
+
+<p>好了出现一个命令行设置界面，选择第一项<code>Expand Filesystem</code>,设置完毕，然后重启即可生效</p>
+
+<p>Raspberry镜像在整个系统中只占用2G空间，即用户8G的SD卡，也只能被使用2G空间，那么一些大的软件将无法安装</p>
+
+<p><em>设置区域</em> <br />
+每个地区的语言环境不一样，造成我们使用的键盘布局不一样，排序方法不一样，设置合适的区域，便于我们操作<br />
+而且各个地方的时间并不一致，难道你想坐在大白天看的时间凌晨一点吗?</p>
+
+<p>当然，假如你有此癖好，就请忽略</p>
+
+<p><em>其他设置</em><br />
+按你的需求吧</p>
+
+<h3 id="section-7">更换软件源</h3>
+<p>树莓派的服务器在国外，在国内访问可能有点慢，额，应该很慢，还有些东西可能因为土啬的原因还下载不了<br />
+还好Raspberry Pi官方提供了一个镜像列表:<a href="http://www.raspbian.org/RaspbianMirrors" title="树莓派软件源列表">http://www.raspbian.org/RaspbianMirrors</a><br />
+就近原则选择更换吧</p>
+
+<p>编辑<code>/etc/apt/sources.list</code></p>
+
+<pre><code>#deb http://mirrordirector.raspbian.org/raspbian/ wheezy main contrib non-free rpi
+deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ wheezy main contrib non-free rpi 
+deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ wheezy main non-free contrib rpi
+</code></pre>
+
+<p>保存，更新软件源</p>
+
+<pre><code>$ sudo apt-get update
+</code></pre>
+
+<p>我注释了旧的软件源，添加一个中国的软件源</p>
+
+<p>对咯，使用上面地址打开的是一个目录，然后我们需要进入当前目录的<code>dists</code>,然后可以看到<code>wheezy</code>目录,进入<code>wheezy</code>就可以看到<code>main</code>,<code>contrib</code>,<code>non-free</code>,<code>rpi</code>目录,每一个软件源的目录结构都是这样的，所以其他软件源的添加都这样办即可</p>
+
+<pre><code>deb http-address wheezy main contrib non-free rpi 
+</code></pre>
+
+<h3 id="section-8">配置自动连接你的局域网</h3>
+<p>修改/etc/network/interfaces,原内容如下</p>
+
+<pre><code>auto lo 
+
+iface lo inet loopback
+iface eth0 inet dhcp
+
+allow-hotplug wlan0
+iface wlan0 inet manual
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet dhcp
+</code></pre>
+
+<p>修改如下:</p>
+
+<h1 id="localhost">使用localhost</h1>
+
+<pre><code>auto lo
+
+iface lo inet loopback
+iface eth0 inet dhcp
+
+allow-hotplug wlan0 #表示wlan0设备可以热插拔
+iface wlan0 inet dhcp
+wpa-ssid your-wifi-ssid
+wpa-psk your-wifi-passwd
+
+iface default inet dhcp
+</code></pre>
+
+<p>OKay，以后就会自动连接上你的wifi，假如存在</p>
+
+<h3 id="section-9">后记</h3>
+<p>刚看到树莓派的时候，就一块布满电路的板子，瞬间有点懵，天生对电路过敏</p>
+
+<p>但事实上，关于电路的部分，人家已经为你封装好了(<strong>多好的思想,感谢面向对象</strong>),你只需要会一点软件的知识，痛快的玩就可以了</p>
+
+<p>文章很长，但还是觉得不够，很多东西还没讲到，但这些应该已经足够</p>
+
+<p>装系统其实只花费了一小会儿，而写文章却用了4个小时</p>
+
+<p>希望玩的愉快!…</p>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/linux-masm-built" title="Linux下MASM汇编环境搭建">Linux下MASM汇编环境搭建</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/php-extension-install" title="Linux下php扩展安装">Linux下php扩展安装</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+	<div id="to_comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+								     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+	</div>
+
+ </div>
+
+
+   
+            </div>
+            <hr />
+            <div id="footer">
+                <p>
+                <span>&copy;2014 Luo</span>
+                </p>
+            </div>
+        </div>
+		
+		<!-- site top -->
+		<div class="nav-bottom">
+			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+		</div>
+
+		
+
+
+		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
+
+		
+		<script src="/assets/themes/custom_me/js/copy.js"></script>
+		
+		
+		
+
+		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+		<script src="/assets/themes/custom_me/js/toc.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	
+		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script src="/assets/themes/custom_me/js/toComments.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+						
+				
+				addCopy("pre", "copy", "Copy");
+				
+
+				tocEffect();
+				toComments();
+				var bigfoot=$.bigfoot({
+					preventPageScroll: true
+					})
+
+			})
+		</script>	
+ </div>
+    </body>
+</html>
+
+
+
+
