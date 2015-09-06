@@ -296,5 +296,5 @@ Hit `<Enter>` on a line to jump to the corresponding line of the markdown file.
 把此篇文章的num1到num2行的文本转化成html文件  
   
 
-**假如此前vim显示行号，生成的html文件中也显示行号 **
+**假如此前vim显示行号，生成的html文件中也显示行号**
 

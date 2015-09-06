@@ -1,6 +1,10 @@
 # This is the default format. 
 # For more see: http://jekyllrb.com/docs/permalinks/
-permalink: /:categories/:year/:month/:day/:title 
+#permalink: /:categories/:year/:month/:day/:title 
+# 三种已经建立好的连接类型 date pretty none  
+# 可以自定义  
+
+permalink: /:title
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 #jekyll的默认markdown解析器maruku对中文支持不够完善，故改用rdiscount
