@@ -576,4 +576,5 @@ ul#markdown-toc li {
 
 #micro_say_ul li {
 	display: inline-block;
+	margin: 0.3em auto;
 }
