@@ -10,6 +10,7 @@ http://mwumli.github.io/index.html
 http://mwumli.github.io/rss.xml
 http://mwumli.github.io/sitemap.txt
 
+http://mwumli.github.io/gitbook
 http://mwumli.github.io/tmux
 http://mwumli.github.io/leave-beijing
 http://mwumli.github.io/php-extension-install

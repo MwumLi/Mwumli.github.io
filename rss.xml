@@ -5,13 +5,453 @@
         <description>倘若微小 - Luo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-09-06T13:10:25+00:00</lastBuildDate>
-        <pubDate>2015-09-06T13:10:25+00:00</pubDate>
+        <lastBuildDate>2015-09-08T19:08:13+00:00</lastBuildDate>
+        <pubDate>2015-09-08T19:08:13+00:00</pubDate>
         <ttl>1800</ttl>
 
 
         <item>
-                <title>用tmux保存工作现场</title>
+                <title>用 gitbook 来写书</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#gitbook-&quot; id=&quot;markdown-toc-gitbook-&quot;&gt;GitBook 是什么&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#gitbook--1&quot; id=&quot;markdown-toc-gitbook--1&quot;&gt;GitBook 能做些什么&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ubuntu--gitbook-&quot; id=&quot;markdown-toc-ubuntu--gitbook-&quot;&gt;Ubuntu 下 gitbook 的安装&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#gitbook--2&quot; id=&quot;markdown-toc-gitbook--2&quot;&gt;用 gitbook 来写书&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#gitbook--3&quot; id=&quot;markdown-toc-gitbook--3&quot;&gt;gitbook 的命令小结&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;构建和运行&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#pdfepubmobi&quot; id=&quot;markdown-toc-pdfepubmobi&quot;&gt;生成电子书(PDF、ePub和Mobi)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;指定一个版本&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;管理版本&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;用插件来丰富你的书&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;发现插件&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;安装插件&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;一些插件&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#disqus-----disqushttppluginsgitbookcomplugindisqus&quot; id=&quot;markdown-toc-disqus-----disqushttppluginsgitbookcomplugindisqus&quot;&gt;disqus 评论系统 – &lt;a href=&quot;http://plugins.gitbook.com/plugin/disqus&quot;&gt;disqus&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#autocoverhttppluginsgitbookcompluginautocover&quot; id=&quot;markdown-toc-autocoverhttppluginsgitbookcompluginautocover&quot;&gt;自动化封面 – &lt;a href=&quot;http://plugins.gitbook.com/plugin/autocover&quot;&gt;autocover&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#gitbook--4&quot; id=&quot;markdown-toc-gitbook--4&quot;&gt;GitBook 相关链接&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;gitbook-&quot;&gt;GitBook 是什么&lt;/h2&gt;
+
+&lt;p&gt;GitBook 是一个可以用来构建一本漂亮的电子书的命令行工具&lt;sup id=&quot;fnref:gitbook-online&quot;&gt;&lt;a href=&quot;#fn:gitbook-online&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; , 基于 Node.js&lt;/p&gt;
+
+&lt;p&gt;可以使用 Markdown 文法来写作&lt;/p&gt;
+
+&lt;p&gt;只要你部署好一定的目录结构并且完成书的内容，就能通过命令很方便地转化成网页和其它格式的电子书&lt;/p&gt;
+
+&lt;p&gt;所以，用起来很简单&lt;/p&gt;
+
+&lt;h2 id=&quot;gitbook--1&quot;&gt;GitBook 能做些什么&lt;/h2&gt;
+
+&lt;p&gt;写一本书，听起来有点太高级，但是往往却是如此现实&lt;br /&gt;
+因此，你可以用 GitBook 来写一本属于你自己的书&lt;/p&gt;
+
+&lt;p&gt;至于书的内容，就由你自己来定:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;可以是你幻想已久的一个世界&lt;/li&gt;
+  &lt;li&gt;可以是平时生活中的小常识&lt;/li&gt;
+  &lt;li&gt;可以是一本菜谱&lt;/li&gt;
+  &lt;li&gt;可以是你整理知识的小册子&lt;/li&gt;
+  &lt;li&gt;可以是…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ubuntu--gitbook-&quot;&gt;Ubuntu 下 gitbook 的安装&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装 nodejs并建立软链接&lt;sup id=&quot;fnref:nodejs&quot;&gt;&lt;a href=&quot;#fn:nodejs&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ sudo apt-get install nodejs -y &amp;amp;&amp;amp; sudo ln -s `which nodejs` /usr/bin/node
+&lt;/code&gt;&lt;/pre&gt;
+
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装 NPM&lt;sup id=&quot;fnref:npm&quot;&gt;&lt;a href=&quot;#fn:npm&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ sudo apt-get install npm
+&lt;/code&gt;&lt;/pre&gt;
+
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装 gitbook(全局)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ sudo npm install gitbook-cli -g
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;gitbook--2&quot;&gt;用 gitbook 来写书&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;新建一个项目，命名为 learn-gitbook, 并初始化&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ mkdir learn-gitbook &amp;amp;&amp;amp; cd learn-gitbook
+ learn-gitbook $ gitbook init 
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;learn-gitbook 下会生成两个文件 README.md 和 SUMMARY.md&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;构建并运行服务器&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ gitbook serve ./learn-gitbook  --port 4001
+ ...
+ Starting server ...
+ Serving book on http://localhost:4001
+ ...
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;在浏览器中访问 &lt;code&gt;http://localhost:4001&lt;/code&gt;, 就可以看到一个没有内容的书&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改书籍名称&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; learn-gitbook $ echo &quot;#learn gitbook&quot; &amp;gt; README.md
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;在浏览器中查看浏览器标签页显示内容的变化&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改书籍介绍的内容&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; learn-gitbook $ echo &quot;GitBook is a command line tool (and Node.js library) for building beautiful books using GitHub/Git and Markdown (or AsciiDoc).&quot; &amp;gt;&amp;gt; README.md
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;在浏览器中查看 Introduction 页面的变化&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;增加几个章节(Markdown 的列表和链接语法)&lt;br /&gt;
+在 SUMMARY.md 中增加以下内容 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; * [Part I](part1/README.md)
+   * [Writing is nice](part1/writing.md)
+   * [GitBook is nice](part1/gitbook.md)
+ * [Part II](part2/README.md)
+   * [We love feedback](part2/feedback_please.md)
+   * [Better tools for authors](part2/better_tools.md)
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;重建项目页面和目录 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;learn-gitbook  $ gitbook init		
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;在浏览器中查看左边侧边栏的变化：发现有了几个新的章节&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;为每个页面增加内容&lt;/p&gt;
+
+    &lt;p&gt;你只要在相应的页面用 Markdown 文法写作&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;增加术语页面(GLOSSARY.md)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; learn-gitbook $ touch GLOSSARY.md &amp;amp;&amp;amp; vim GLOSSARY.md		
+ # 术语
+ 这个术语的定义
+
+ # 另外一个术语
+ 它的定义可以包含粗体和其他所有类型的内嵌式标记...
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;浏览器中你会发现 : 书中有 &lt;code&gt;术语&lt;/code&gt;、&lt;code&gt;另外一个术语&lt;/code&gt; 字样的都被高亮，而且可以点击看到它的解释&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在 book.json 中指定 gitbook 版本&lt;br /&gt;
+列出已经安装的版本&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; learn-gitbook $ gitbook versions				
+ Versions Installed:
+
+      2.2.0
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;新建 book.json,并指定版本 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; learn-gitbook $ touch book.json &amp;amp;&amp;amp; vim book.json
+ {
+     &quot;gitbook&quot; : &quot;2.2.0&quot;
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;避免运行 gitbook 时输出警告 : &lt;code&gt;warn: you should specify a gitbook version to use in your book.json, for example: 2.x.x&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;指定书籍所用语言风格&lt;br /&gt;
+修改 book.json 内容为 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; {
+     &quot;gitbook&quot; : &quot;2.2.0&quot;,
+     &quot;language&quot; : &quot;cn&quot;
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;在浏览器中可以看到侧边栏的 &lt;code&gt;Introduction&lt;/code&gt; 变为 &lt;code&gt;介绍&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;为侧边栏顶部增加链接&lt;br /&gt;
+   修改 book.json 内容为 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;{
+    &quot;gitbook&quot; : &quot;2.2.0&quot;,
+    &quot;language&quot; : &quot;cn&quot;,
+    &quot;links&quot; : {
+        &quot;sidebar&quot; : {
+            &quot;倘若微小&quot; : &quot;http://www.ifmicro.com/&quot;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;在浏览器中可以看到侧边栏顶部增加一个链接，名为 &lt;a href=&quot;http://www.ifmicro.com/&quot;&gt;倘若微小&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;最后，尽情写下你奇妙的想法，分享给大家吧&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;通过网站分享：把 learn-gitbook/_book 的内容放到一个云服务器上&lt;/li&gt;
+  &lt;li&gt;发布电子书到云盘: 生成 pdf、epub、mobi电子书，放到云盘进行分享&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;gitbook--3&quot;&gt;gitbook 的命令小结&lt;/h2&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;构建和运行&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;初始化项目目录:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ gitbook init
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;会自动生成 SUMMARY.md 中指定的页面目录和页面&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;生成网站&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ gitbook build book_path output_path
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;构建网页并运行一个小型服务器&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ gitbook serve --port 4001  
+ ...
+ Serving book on http://localhost:4001
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;在浏览器上，访问 http://localhost:4001 , 就可以看到你的书&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;pdfepubmobi&quot;&gt;生成电子书(PDF、ePub和Mobi)&lt;/h3&gt;
+
+&lt;p&gt;第一步 : &lt;a href=&quot;http://www.calibre-ebook.com/download&quot;&gt;安装 calibre&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;第二步 : 执行对应命令&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	$ gitbook pdf  book_path  output_path/book_name.pdf
+	$ gitbook epub book_path  output_path/book_name.epub
+	$ gitbook mobi book_path  output_path/book_name.mobi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;指定一个版本&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;	$ gitbook build book_path --gitbook=2.3.0
+	$ gitbook help --gitbook=2.3.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;管理版本&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看 gitbook 使用&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ gitbook -h
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看可以获得的所有 GitBook 版本:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ gitbook versions:available  
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装最新的 GitBook 版本&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ sudo gitbook versions:install latest
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;用插件来丰富你的书&lt;/h2&gt;
+
+&lt;p&gt;gitbook 文档推荐插件(主题也是插件的一种)的命名方式:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;gitbook-plugin-X&lt;/li&gt;
+  &lt;li&gt;gitbook-theme-X&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;发现插件&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.npmjs.com/search?q=gitbook-plugin&quot;&gt;NPM-Search-gitbook-plugin&lt;/a&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; https://www.npmjs.com/search?q=gitbook-plugin
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.npmjs.com/search?q=gitbook-theme&quot;&gt;NPM-Search-gitbook-theme&lt;/a&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; https://www.npmjs.com/search?q=gitbook-theme
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://plugins.gitbook.com/&quot;&gt;gitbook 插件官方地址&lt;/a&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; http://plugins.gitbook.com/
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;安装插件&lt;/h3&gt;
+
+&lt;p&gt;一旦你发现你需要的插件，在 book.json 添加:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &quot;plugins&quot;: [&quot;myPlugin&quot;, &quot;anotherPlugin&quot;]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后在你的项目目录中安装它:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;book-dir $ gitbook install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;PS : 具体插件请参照具体插件的文档&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;一些插件&lt;/h3&gt;
+
+&lt;h4 id=&quot;disqus-----disqushttppluginsgitbookcomplugindisqus&quot;&gt;disqus 评论系统 – &lt;a href=&quot;http://plugins.gitbook.com/plugin/disqus&quot;&gt;disqus&lt;/a&gt;&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装 gitbook-plugin-disqus&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; sudo npm install gitbook-plugin-disqus -g
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在 book.json 中添加 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; {
+     &quot;plugins&quot;: [&quot;disqus&quot;],
+     &quot;pluginsConfig&quot;: {
+         &quot;disqus&quot;: {
+                 &quot;shortName&quot;: &quot;XXXXXXX&quot;
+             }
+         }  
+ }
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;code&gt;shortName&lt;/code&gt; 是你在 &lt;a href=&quot;https://disqus.com/&quot;&gt;disqus.com&lt;/a&gt; 上创建 website 指定的 shortname&lt;/p&gt;
+
+&lt;h4 id=&quot;autocoverhttppluginsgitbookcompluginautocover&quot;&gt;自动化封面 – &lt;a href=&quot;http://plugins.gitbook.com/plugin/autocover&quot;&gt;autocover&lt;/a&gt;&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;安装 &lt;a href=&quot;https://github.com/Automattic/node-canvas/wiki/_pages&quot;&gt;node-canvas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装 gitbook-plugin-autocover&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; sudo npm install gitbook-plugin-autocover
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在 book.json 中添加 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; {
+     &quot;plugins&quot;: [&quot;autocover&quot;],
+     &quot;pluginsConfig&quot;: {
+         &quot;autocover&quot;: {
+             &quot;title&quot;: &quot;My Book&quot;,
+             &quot;author&quot;: &quot;Author&quot;,
+             &quot;font&quot;: {
+                 &quot;size&quot;: null,
+                 &quot;family&quot;: &quot;Impact&quot;,
+                 &quot;color&quot;: &quot;#FFF&quot;
+             },
+             &quot;size&quot;: {
+                 &quot;w&quot;: 1800,
+                 &quot;h&quot;: 2360
+             },
+             &quot;background&quot;: {
+                 &quot;color&quot;: &quot;#09F&quot;
+             }
+         }
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;gitbook--4&quot;&gt;GitBook 相关链接&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;GitBook 官方文档 : &lt;a href=&quot;https://www.gitbook.com/book/gitbookio/documentation/details&quot;&gt;https://www.gitbook.com/book/gitbookio/documentation/details&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GitBook 项目目录 : &lt;a href=&quot;https://github.com/GitbookIO/gitbook&quot;&gt;https://github.com/GitbookIO/gitbook&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;gitbook-cli 项目目录 : &lt;a href=&quot;https://github.com/GitbookIO/gitbook-cli&quot;&gt;https://github.com/GitbookIO/gitbook-cli&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GitBook API Documentation : &lt;a href=&quot;http://developer.gitbook.com/&quot;&gt;http://developer.gitbook.com/&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GitBook Enterprise Guide : &lt;a href=&quot;https://www.gitbook.com/book/gitbookio/enterprise-guide/details&quot;&gt;https://www.gitbook.com/book/gitbookio/enterprise-guide/details&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:gitbook-online&quot;&gt;
+      &lt;p&gt;还有一个与之同名的在线创建和托管书籍的平台&lt;a href=&quot;https://www.gitbook.com/&quot;&gt;www.gitbook.com&lt;/a&gt; &lt;a href=&quot;#fnref:gitbook-online&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:nodejs&quot;&gt;
+      &lt;p&gt;采用软链接解决ubuntu下 nodejs 命令名与 gitbook 内部使用 nodejs 命令名不一致&lt;br /&gt;具体看&lt;a href=&quot;http://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04#answer-18130296&quot;&gt;nodejs vs node on ubuntu 12.04&lt;/a&gt; &lt;a href=&quot;#fnref:nodejs&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:npm&quot;&gt;
+      &lt;p&gt;Node Package Manager , 一个 nodejs 包管理和分发工具 &lt;br /&gt;&lt;a href=&quot;https://github.com/npm/npm&quot;&gt;NPM Github项目地址&lt;/a&gt; &lt;a href=&quot;#fnref:npm&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+                <link>http://mwumli.github.io/gitbook</link>
+                <guid>http://mwumli.github.io/gitbook</guid>
+                <pubDate>2015-09-07T00:00:00+00:00</pubDate>
+        </item>
+
+        <item>
+                <title>用 tmux 保存工作现场</title>
                 <description>
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#tmux-&quot; id=&quot;markdown-toc-tmux-&quot;&gt;tmux 是什么?&lt;/a&gt;&lt;/li&gt;
