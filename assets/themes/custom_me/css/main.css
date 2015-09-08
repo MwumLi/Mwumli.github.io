@@ -101,9 +101,8 @@ ul ul, ul ol, ol ol, ol ul {
 
 }
 li {
-    margin: 0.3em auto;
-    list-style-position: inside;
-
+    margin: 0.3em auto 0.3em 1.5em;
+	list-style-position: outside;
 }
 ol, ul {
     margin-left: 1em;
@@ -136,10 +135,7 @@ p code {
 
 blockquote, pre {
     padding: 0.8em;
-    background: #39213E;
-//    background: rgba(172, 15, 78, 0.12);
 	background: rgba(11, 132, 95, 0.26);
-//  border: 1px solid #614;
     border: 1.5px solid rgba(14, 139, 125, 0.2);
     position: relative;
     z-index: 2;
@@ -186,7 +182,7 @@ th {
 }
 hr {
     border: none;
-    border-top: 3px double #836d03;
+    border-top: 1px double rgb(76, 64, 8);
     width: 100%;
     margin: 20px 0;
 }
@@ -519,8 +515,10 @@ ul#markdown-toc {
 	-webkit-box-shadow: 0 1px 8px #000;
 
 }
-ul#markdown-toc li {
-  margin-left: 15px !important;
+ul#markdown-toc li {      
+//  margin: 0.3em auto;
+  list-style-position: inside;
+//  margin-left: 15px !important;
   padding: 0px !important
 }
 
