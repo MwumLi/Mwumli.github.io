@@ -134,7 +134,7 @@
 		<div>
 			Last Modify in
 			
-			<span>2015-09-08</span>,
+			<span>2015-09-11</span>,
 			
 			published in <span>2015-09-07</span> 
 			by <span> Luo</span>
@@ -159,6 +159,7 @@
       <li><a href="#section-2" id="markdown-toc-section-2">管理版本</a></li>
     </ul>
   </li>
+  <li><a href="#css" id="markdown-toc-css">自定义书本的 css</a></li>
   <li><a href="#section-3" id="markdown-toc-section-3">用插件来丰富你的书</a>    <ul>
       <li><a href="#section-4" id="markdown-toc-section-4">发现插件</a></li>
       <li><a href="#section-5" id="markdown-toc-section-5">安装插件</a></li>
@@ -429,6 +430,38 @@
   </li>
 </ol>
 
+<h2 id="css">自定义书本的 css</h2>
+
+<p>一般在生成站点时，会有默认的 css (_book/gitbook/style.css)</p>
+
+<p>你也可以自定义 css，使你的书籍更好看</p>
+
+<ol>
+  <li>
+    <p>建立 css 文件</p>
+
+    <pre><code> learn-gitbook $ mkdir -p assets/css &amp;&amp; cd assets/css &amp;&amp; touch myWebStyle.css myPdfStyle.css myMobiStyle.css myEpubStyle.css
+</code></pre>
+
+    <p>在 myStyle.css 写下你的样式</p>
+  </li>
+  <li>
+    <p>在 book.json 中添加</p>
+
+    <pre><code> {
+     "styles" : {
+         "website" : "assets/css/myWebStyle.css",
+         "pdf" : "assets/css/myPdfStyle.css",
+         "mobi" : "assets/css/myMobiStyle.css",
+         "epub" : "assets/css/myEpubStyle.css"
+     }
+ }
+</code></pre>
+
+    <p>我分别为 site, pdf, mobi, epub 指定了 css, 那么分别生成它们的时候，会在默认的 css 基础上层叠指定的 css</p>
+  </li>
+</ol>
+
 <h2 id="section-3">用插件来丰富你的书</h2>
 
 <p>gitbook 文档推荐插件(主题也是插件的一种)的命名方式:</p>
@@ -470,10 +503,9 @@
 }
 </code></pre>
 
-<p>然后在你的项目目录中安装它:</p>
+<p>对于 gitbook-theme-X 的插件，请这样安装 :  <code>book-dir $ gitbook install</code>  或者 <code>npm install gitbook-plugin-X</code></p>
 
-<pre><code>book-dir $ gitbook install
-</code></pre>
+<p>对于 gitbook-theme-X 的插件，请这样安装 : <code>npm install gitbook-theme-X &amp;&amp; mv node_modules/gitbook-theme-X node_modules/gitbook-plugin-X</code></p>
 
 <p><strong>PS : 具体插件请参照具体插件的文档</strong></p>
 

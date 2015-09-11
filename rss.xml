@@ -5,8 +5,8 @@
         <description>倘若微小 - Luo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-09-08T19:13:56+00:00</lastBuildDate>
-        <pubDate>2015-09-08T19:13:56+00:00</pubDate>
+        <lastBuildDate>2015-09-11T02:19:23+00:00</lastBuildDate>
+        <pubDate>2015-09-11T02:19:23+00:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -25,6 +25,7 @@
       &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;管理版本&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#css&quot; id=&quot;markdown-toc-css&quot;&gt;自定义书本的 css&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;用插件来丰富你的书&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;发现插件&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;安装插件&lt;/a&gt;&lt;/li&gt;
@@ -295,6 +296,38 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;h2 id=&quot;css&quot;&gt;自定义书本的 css&lt;/h2&gt;
+
+&lt;p&gt;一般在生成站点时，会有默认的 css (_book/gitbook/style.css)&lt;/p&gt;
+
+&lt;p&gt;你也可以自定义 css，使你的书籍更好看&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;建立 css 文件&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; learn-gitbook $ mkdir -p assets/css &amp;amp;&amp;amp; cd assets/css &amp;amp;&amp;amp; touch myWebStyle.css myPdfStyle.css myMobiStyle.css myEpubStyle.css
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;在 myStyle.css 写下你的样式&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在 book.json 中添加&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; {
+     &quot;styles&quot; : {
+         &quot;website&quot; : &quot;assets/css/myWebStyle.css&quot;,
+         &quot;pdf&quot; : &quot;assets/css/myPdfStyle.css&quot;,
+         &quot;mobi&quot; : &quot;assets/css/myMobiStyle.css&quot;,
+         &quot;epub&quot; : &quot;assets/css/myEpubStyle.css&quot;
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;我分别为 site, pdf, mobi, epub 指定了 css, 那么分别生成它们的时候，会在默认的 css 基础上层叠指定的 css&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h2 id=&quot;section-3&quot;&gt;用插件来丰富你的书&lt;/h2&gt;
 
 &lt;p&gt;gitbook 文档推荐插件(主题也是插件的一种)的命名方式:&lt;/p&gt;
@@ -336,10 +369,9 @@
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;然后在你的项目目录中安装它:&lt;/p&gt;
+&lt;p&gt;对于 gitbook-theme-X 的插件，请这样安装 :  &lt;code&gt;book-dir $ gitbook install&lt;/code&gt;  或者 &lt;code&gt;npm install gitbook-plugin-X&lt;/code&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;book-dir $ gitbook install
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;对于 gitbook-theme-X 的插件，请这样安装 : &lt;code&gt;npm install gitbook-theme-X &amp;amp;&amp;amp; mv node_modules/gitbook-theme-X node_modules/gitbook-plugin-X&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;PS : 具体插件请参照具体插件的文档&lt;/strong&gt;&lt;/p&gt;
 
