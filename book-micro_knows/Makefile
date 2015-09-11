@@ -7,6 +7,8 @@ plugin:
 site:
 	gitbook build . ./book-micro_knows
 
-
+## 本地服务  
+serve:
+	gitbook serve
 
 
