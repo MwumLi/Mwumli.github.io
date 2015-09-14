@@ -15,4 +15,7 @@ serve:
 init:
 	gitbook init
 
+## 清除历史数据
+clean:
+	rm -rIv ./book-micro_knows/
 
