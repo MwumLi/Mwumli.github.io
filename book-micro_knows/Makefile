@@ -11,4 +11,8 @@ site:
 serve:
 	gitbook serve
 
+## 初始化书籍结构
+init:
+	gitbook init
+
 
