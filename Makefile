@@ -1,5 +1,7 @@
 book-name = micro_cmd		#书名和分支名
+book-dir = book-micro_cmd
 commit-m = "update book cmd"
+
 ## 本地安装 book.json 中配置的插件
 plugin:  
 	gitbook install
@@ -10,7 +12,7 @@ site:
 
 ## push html to github
 push_html:
-	cp -Rv book-$(book-name)/* ../html-hub/book-$(book-name)/ && cd ../html-hub && git add book-$(book-name)/* && git commit -m $(commit-m) && git push origin master
+	cp -Rv $(book-dir)/* ../html-hub/$(book-dir)
 
 ##  push book to github
 push_book:
@@ -26,6 +28,6 @@ init:
 
 ## 清除历史数据
 clean:
-	rm -rIv ./book-$(book-name)/
-	rm -rIv ./_book/
+	rm -rIv ./book-$(book-name) 
+	rm ./_book/
 
