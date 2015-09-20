@@ -1,5 +1,5 @@
 book-name = micro_cmd		#书名和分支名
-book-dir = book-micro_cmd
+book-dir = book-$(book-name)
 html-master = html-hub
 commit-m = "update book cmd"
 
@@ -9,11 +9,11 @@ plugin:
 
 ## 生成网站
 site:
-	gitbook build . book-$(book-name)
+	gitbook build . $(book-dir)
 
 ## push html to github
 move_html:
-	cp -Rv $(book-dir)/* ../$(html-master)/$(book-dir)
+	mkdir -p ../$(html-master)/$(book-dir) && cp -Ruv $(book-dir) ../$(html-master)
 
 ##  push book to github
 push:
@@ -30,5 +30,5 @@ init:
 ## 清除历史数据
 clean:
 	rm -rIv ./book-$(book-name) 
-	rm ./_book/
+	rm -rIv ./_book/
 
