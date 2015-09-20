@@ -1,7 +1,7 @@
 book-name = micro_cmd		#书名和分支名
 book-dir = book-$(book-name)
 html-master = html-hub
-commit-m = "update book cmd"
+commit-m = "update book_cmd"
 
 ## 本地安装 book.json 中配置的插件
 plugin:  
