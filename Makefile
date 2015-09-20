@@ -12,11 +12,11 @@ site:
 	gitbook build . book-$(book-name)
 
 ## push html to github
-push_html:
+move_html:
 	cp -Rv $(book-dir)/* ../$(html-master)/$(book-dir)
 
 ##  push book to github
-push_book:
+push:
 	git push origin $(book-name)
 
 ## 本地服务  
