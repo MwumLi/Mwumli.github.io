@@ -6,7 +6,10 @@
 			"倘若微小" : "http://www.ifmicro.com/"
 		}
 	},
-	"plugins" : ["disqus"],
+	"styles" : {
+		"website": "assets/css/myStyle.css"
+	},
+	"plugins" : ["disqus","maxiang"],
 	"pluginsConfig" : {
 		"disqus" : {
 			"shortName" : "ifmicro"
