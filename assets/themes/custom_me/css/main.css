@@ -275,7 +275,7 @@ em, i {
 
 #top-nav ul li+li a{
 	border-left: 1px solid #678139;
-	padding-left: 1em;
+	padding-left: 1.7em;
 }
 #top-nav ul li a:hover, #top-nav ul li a:focus{
 	color: rgba(255, 255, 0, 0.39);
