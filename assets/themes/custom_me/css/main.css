@@ -122,7 +122,7 @@ img {
 
 code {
     color: #cae3b6;
-    font-family: "monospace";
+	font-family: DejaVu Sans Mono,Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 	/*添加code自动换行*/
 	white-space: pre-wrap;
 	word-wrap: break-word;
