@@ -1,7 +1,9 @@
 ---
 layout: post
 title: "不早不晚，当下最好(转载)"
-description: ""
+toc: "true"
+modifyTime: "2015-09-25 15:41:35"
+description: "人生苦短, 三件事尤为重要:锻炼身体、阅读和记录"
 category: 情绪
 tags: [三件事]
 ---

@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "来自Linux内核的hello,world"
-description: ""
-category: 内核
-tags: [linux, kernel, 内核]
+toc: "true"
+modifyTime: "2015-09-25 15:34:48"
+description: "简单讲解 Linux 内核模块的定义以及加载,卸载,查看, 最后写了一个简单的 HelloWorld 模块"
+category: 记录
+tags: [Linux, Kernel, 内核]
 ---
 {% include LU/setup %}
 

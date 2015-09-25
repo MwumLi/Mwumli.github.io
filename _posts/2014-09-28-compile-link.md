@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "编译和连接"
+toc: "true"
+modifyTime: "2015-09-25 16:54:14"
 description: ""
 category: 记录
-tags: [linux, 编译，链接]
+tags: [Linux, 编译，链接]
 ---
 ## 编译和连接  
 对于平常的应用程序开发，我们很少关注编译和连接的过程，因为通常的开发环境都是流行的集成开发环境(IDE)  

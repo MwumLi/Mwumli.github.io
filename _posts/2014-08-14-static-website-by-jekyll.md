@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "使用jekyll搭建静态站点"
+toc: "true"
+modifyTime: "2015-09-25 16:50:53"
 description: ""
 category: 软件
-tags: [jekyll,git,github,linux,web,website]
+tags: [Jekyll, Git, Github, Linux, Web, Website]
 ---
 {% include LU/setup %}
 

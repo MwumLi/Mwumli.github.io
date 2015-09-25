@@ -1,29 +1,34 @@
 ---
 layout: post
-title: "Vim插件管理及安装"
+title: "使用 Vundle 对 Vim 插件进行管理及安装"
 toc: "true"
-description: ""
+modifyTime: "2015-09-25 15:44:13"
+description: "使用 Vundle 对 Vim 插件管理"
 category: 记录
-tags: [vim,plugin,manage]
+tags: [Vim, Plugin]
 ---
 {% include LU/setup %}
 
 * here is toc
 {:toc}
 
-## Vim插件管理插件--->Vundle
 
-### Github地址
+Vundle -- Vim 的一个强大的管理插件的插件   
+可以很方便地管理 Vim 其他插件的安装、卸载和禁用  
+
+用起来很简单, 只需要一丁点的配置  
+
+## Github地址
 
 	https://github.com/gmarik/vundle.git 
 
-### 安装
+## Vundle 的安装
 
 	$ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim  
 
-### 配置
+## Vundle 在 .vimrc 的配置
 
-把下面这些放在你的`.vimrc`中去使用`Vundle`  
+把下面这些放在你的 `.vimrc` 中去使用 `Vundle`  
 移除下面不必要的插件，他们仅仅是为了演示效果   
 
 	set nocompatible              " be iMproved, required
@@ -65,10 +70,12 @@ tags: [vim,plugin,manage]
 	" see :h vundle for more details or wiki for FAQ
 	" Put your non-Plugin stuff after this line
 
-### 四种添加插件到Vundle管理的方式  
+## 将 Vim 插件纳入 Vundle 的管理  
 
-1. 指定Github中用户仓库的插件，使用“用户名/插件名称”的方式指定  
-	插件名中的空格使用“-”代替  
+有 4 种方式, 下面一一列举 :  
+
+1. 指定 Github 中用户仓库的插件，使用“用户名/插件名称”的方式指定  
+   插件名中的空格使用“-”代替  
 
 		Plugin 'tpope/vim-fugitive'
 
@@ -77,9 +84,8 @@ tags: [vim,plugin,manage]
 
 		Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-2. 指定Github中vim-scripts仓库中的插件  
-	即在http://vim-scripts.org/vim/scripts.html列出的插件  
-	直接指定插件名称即可  
+2. 指定 Github 中 [vim-scripts 仓库](http://vim-scripts.org/vim/scripts.html)的插件
+   直接指定插件名称即可  
 
 		Plugin 'L9'
 
@@ -87,18 +93,18 @@ tags: [vim,plugin,manage]
 	
 		Plugin 'user/L9', {'name': 'newL9'}
 
-3. 指定非Github的Git仓库的插件，需要使用git地址  
+3. 指定非 Github 的 Git 仓库的插件，需要使用 git 地址  
 
 		Plugin 'git://git.wincent.com/command-t.git'
 
-4. 指定本地Git仓库中的插件  
+4. 指定本地 Git 仓库中的插件  
 
 		Plugin 'file:///home/gmarik/path/to/plugin'
 
 
-### 使用Vundle安装插件
+## 使用 Vundle 安装插件
 
-1. 启动vim,并且运行:  
+1. 启动 vim ,并且运行:  
 
 		:PluginInstall
 
@@ -106,16 +112,16 @@ tags: [vim,plugin,manage]
 
 		$ vim +PluginInstall +qall
 
-### Vundle的其他使用  
+## Vundle 的其他操作  
 
-1. 预览模式列出已配置的Plugins
+1. 预览模式列出已配置的 Plugins
 
 		:PluginList          - list configured plugins
 
 2. 安装(更新)插件
 
-		:PluginInstall(!)    - install plugins
-		:PluginInstall!		 - update all plugins
+		:PluginInstall(!)	- install plugins
+		:PluginInstall!		- update all plugins
 
 3. 搜索(首先刷新缓存)
 

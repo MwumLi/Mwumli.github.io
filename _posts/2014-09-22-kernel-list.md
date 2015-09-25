@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "Linux内核链表的分析"
+toc: "true"
+modifyTime: "2015-09-25 16:53:21"
 description: "" 
 category: 记录
-tags: [kernel, linux, list, 内核]
+tags: [Kernel, Linux, List, 内核]
 ---
 ### 内核中list_head的定义  
 	

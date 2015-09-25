@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "为你和你的项目建立一个站点--Github Pages"
+toc: "true"
+modifyTime: "2015-09-25 16:49:18"
 description: ""
 category: 记录
-tags: [github, website]
+tags: [Github, Website]
 ---
 {% include LU/setup %}
 *  here's toc

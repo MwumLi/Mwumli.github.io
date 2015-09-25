@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "Linux文件系统的创建和挂载"
+toc: "true"
+modifyTime: "2015-09-25 16:42:35"
 description: ""
 category: 记录
-tags: [linux, mount / umount, mkfs , 文件系统 ]
+tags: [Linux, cmd, 文件系统]
 ---
 {% include LU/setup %}
 

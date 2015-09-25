@@ -1,7 +1,9 @@
 ---
 layout: post
-title: "Sublime Text 2的使用"
-description: ""
+title: "Sublime Text 2 的使用"
+toc: "true"
+modifyTime: "2015-09-25 16:35:06"
+description: "介绍 Sumlime Text 2 的编辑、命令行面板、快速导航面板、扩展包管理器"
 category: 软件
 tags: [Sublime Text 2, Usage]
 ---
@@ -10,7 +12,7 @@ tags: [Sublime Text 2, Usage]
 
 假如你还没安装ST2,那么去[安装它](/记录/2014/06/08/st2_install_config/ "Sublime Text 2的安装与配置")
 
-### 多项选择，多项编辑  
+## 多项选择，多项编辑  
 
 * 鼠标选中多行，按下 Ctrl+Shift+L (Command+Shift+L) 即可同时编辑这些行；  
 
@@ -22,7 +24,7 @@ tags: [Sublime Text 2, Usage]
 
 * Ctrl+鼠标左键(Win) 或 Command+鼠标左键(Mac) 可以手动选择同时要编辑的多处文本  
 
-### 命令行面板(Command Palette)
+## 命令行面板(Command Palette)
 
 **Ctrl+Shift+P**唤醒Command Palette　　　
 输入：  
@@ -31,16 +33,16 @@ tags: [Sublime Text 2, Usage]
 
 当然，还有很多命令，使用过程中慢慢发现吧  
 
-### 快速导航面板(Goto Anything)
+## 快速导航面板(Goto Anything)
 
-#### 快速切换文件
+### 快速切换文件
 **Ctrl+p**唤醒*Goto Anything*  
 
 输入文件名，面板下拉框将出现所有匹配的文件名(当然，在这之前必须线打开一个目录作为搜索根目录)	  
 
 可以试着在使用Up和Down滚动条目，会有意外的发现哦    
 
-#### 在指定文件中快速查找函数，文本，跳转指定行  
+### 在指定文件中快速查找函数，文本，跳转指定行  
 
 * 查找函数，或者id（HTML）	  
 
@@ -56,7 +58,7 @@ tags: [Sublime Text 2, Usage]
 
 当*file*省略时，默认当前编辑文件
 
-### 打开一个项目  
+## 打开一个项目  
 使用ST2可以打开一个项目，这样我们就可以很方便的对一个项目进行编辑，修改了  
 打开的项目文件会展示在左侧的`side bar`  
 当我们编辑某文件时，希望`Side bar`在我们需要时候展示，在我们不需要的时候消失，你可以这样做  
@@ -65,7 +67,8 @@ tags: [Sublime Text 2, Usage]
 
 当然，你也可以使用鼠标进行选择，但是那样不可避免降低你的速度   
 
-### 模糊匹配  
+## 模糊匹配  
+
 无论是Command Palette还是Goto Anything,他们都采用模糊匹配，故不需要输入全命令和全文件名  
 例如:在文件shiluodechenai.c中查找func_word  
 
@@ -73,13 +76,13 @@ tags: [Sublime Text 2, Usage]
 
 甚至可能更短
 
-### Package Control(扩展包管理器)  
+## Package Control(扩展包管理器)  
 用来管理（安装，卸载）插件，皮肤的管理器，和vim中Vundle差不多，不过看起来更简单  
 默认不含有此管理器，我们需要自己手动安装  
 
-#### 安装
+### 安装
 
-##### 手动版(复杂点)  
+#### 手动版(复杂点)  
 
 1. 在 SublimeText2 的目录里面找到 `Data > Installed Packages` 的文件夹 (如没有请手动新建)  
 
@@ -89,7 +92,7 @@ tags: [Sublime Text 2, Usage]
 
 4. 重新启动 Sublime Text 即可
 
-##### 自动版(保持网络，简单)  
+#### 自动版(保持网络，简单)  
 
 如果你按照上面的方法确实搞不定，  
 可以试试按键盘 Ctrl+~ （数字1左边的按键）调出控制台，  
@@ -98,7 +101,7 @@ tags: [Sublime Text 2, Usage]
 
 	import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print 'Please restart Sublime Text to finish installation'
 
-#### 使用
+### 使用
 
 如果 Package Control 已经安装成功，  
 那么 Ctrl+Shift+P 调用命令面板，我们就会找到一些以“Package Control:”开头的命令:  
@@ -114,7 +117,7 @@ tags: [Sublime Text 2, Usage]
 
 此外，你还可以[在这里看到 Web 版的扩展列表和详细的说明](https://sublime.wbond.net/) （这俩列表的数据应该是同步的)  
 
-#### 一些比较好的插件  
+### 一些比较好的插件  
 
 __Emmet__: 以前被称作为Zen Coding,如果你从事Web前端开发的话，对该插件一定不会陌生。  
 它使用仿CSS选择器的语法来快速开发HTML和CSS,在一个扩展框中输入符合规范的表达式，它会动态生成相应的代码 ,或者直接在文本中使用表达式，按扩展键(Tab)进行扩展

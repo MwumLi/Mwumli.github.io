@@ -3,7 +3,7 @@ layout: post
 title: "Vim的安装与配置"
 description: ""
 category: 记录
-tags: [vim, linux]
+tags: [Vim, Linux]
 ---
 {% include LU/setup %}
 
@@ -16,7 +16,7 @@ tags: [vim, linux]
 
 ## 编写配置文件
 
-vim用户自定义配置文件$(HOME)/.vimrc(若没有,请自行创建)  
+vim用户自定义配置文件`$(HOME)/.vimrc`(若没有,请自行创建)  
 vim系统级配置文件/usr/share/vim/vimrc  
 而我们一般只修改~/.vimrc
 

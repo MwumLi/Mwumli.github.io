@@ -1,11 +1,14 @@
 ---
 layout: post
 title: "Linux下php扩展安装"
+toc: "true"
+modifyTime: "2015-09-25 17:02:32"
 description: ""
 category: 记录
-tags: [web, php, apache]
+tags: [Web, Php, Apache]
 ---
 {% include LU/setup %}
+{% include LU/gen_toc %}
 
 * menu
 {:toc}

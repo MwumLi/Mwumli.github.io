@@ -3,9 +3,9 @@ layout: post
 title: "Vim的一些操作"
 toc: "true"
 modifyTime: "2015-05-22 00:29:43"
-description: ""
+description: "Vim 中的一些操作: 快捷键, 帮助文档, 加密文件, 多窗口操作"
 category: 记录
-tags: [vim,operations,linux]
+tags: [Vim, Linux]
 ---
 {% include LU/setup %}
 

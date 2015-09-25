@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "LAMP 环境搭建"
+toc: "true"
+modifyTime: "2015-09-25 16:47:17"
 description: ""
 category: 记录
-tags: [LAMP, linux, apache, mysql, php, web]
+tags: [LAMP, Linux, Apache, Mysql, Php, Web]
 ---
 {% include LU/setup %}
 
@@ -16,6 +18,7 @@ tags: [LAMP, linux, apache, mysql, php, web]
 安装完成，在浏览器中输入`http://localhost`,出现`It works`okay,安装完成  
 
 #### 默认工作目录  
+
 不同版本的apache，工作目录有点差异  
 我的机器apache版本:`Server version: Apache/2.4.7 (Ubuntu)`  
 所以默认工作目录是：  

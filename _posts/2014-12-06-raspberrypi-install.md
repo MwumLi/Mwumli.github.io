@@ -1,11 +1,15 @@
 ---
 layout: post
 title: "Raspberry Pi安装Debian Wheezy系统"
+toc: "true"
+modifyTime: "2015-09-25 17:01:30"
 description: ""
 category: 记录
-tags: [raspberrypi, 树莓派]
+tags: [Raspberrypi, 树莓派]
 ---
 {% include LU/setup %}
+{% include LU/gen_toc %}
+
 
 ### 碎碎念  
 

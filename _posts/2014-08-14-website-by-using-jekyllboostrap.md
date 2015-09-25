@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "静态博客系统-->JekyllBootstrap"
+toc: "true"
+modifyTime: "2015-09-25 16:52:48"
 description: ""
 category: 记录
-tags: [website, web, jekyll]
+tags: [Website, Web, Jekyll]
 ---
 {% include LU/setup %}
  

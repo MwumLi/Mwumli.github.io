@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "如何改变世界(转载)"
-description: ""
 toc: "true"
+modifyTime: "2015-09-25 15:38:05"
+description: "我们就是世界的一部分, 改变自己, 也就改变了世界, 尽管微不足道"
 category: 情绪
 tags: [内圣外王,改变世界,回归自身]
 ---

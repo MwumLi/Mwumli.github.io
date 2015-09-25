@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "Sublime Text 2的安装与配置"
-description: ""
+toc: "true"
+modifyTime: "2015-09-25 16:27:51"
+description: " Sublime Text 2 是一个不错的编辑器, 有很棒的插件安装机制, 也有很多优秀的插件"
 category: 软件
-tags: [Sulime Text 2,前端,编辑器]
+tags: [Sulime Text 2, 前端, 编辑器]
 ---
 {% include LU/setup %}
 
