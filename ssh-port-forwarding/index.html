@@ -1,0 +1,557 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		<title>倘若微小 - 构建 SSH 隧道 -- 端口转发</title>
+
+  		
+		<meta name="description" content="使用 SSH 进行端口转发被称作 SSH 隧道, 即 SSH Tunnel">
+        
+
+	    <meta name="author" content="Luo">
+	
+        <!-- syntax highlighting CSS -->
+		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- Custom CSS -->
+		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
+        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+
+    </head>
+    <body>
+        <div id="all">
+<!--            header start-->
+            <div id="header">
+                <div id="title">
+                <h1 >
+                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
+					</a>                     	   
+				</h1>
+                </div>
+                <!--hr/ -->
+                <div id="top-nav">
+                    <ul>
+					
+
+
+
+    
+  	
+  
+  
+  
+	  
+	  			
+
+  
+	  
+	  
+  	 		
+      		
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+	  
+	  			
+
+  
+
+  
+  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
+  
+
+
+
+					<li><a href="/pages/articles/index.html">文章</a></li>
+					<li><a href="/pages/categories/index.html">分类</a></li>
+					<li><a href="/pages/tags/index.html">标签</a></li>
+					<li><a href="/rss.xml">rss订阅</a></li>
+					</ul>   
+                </div>
+            </div> 
+<!--            header end-->
+            <!--hr /-->
+            <div class="content">
+                
+
+
+<div class="page-header">
+	<h1>构建 SSH 隧道 -- 端口转发 <small></small></h1>
+	<div id="article_header">
+		
+		
+		<div>
+			<span>分类: </span>
+			<a href="/pages/categories/index.html#记录-ref" class="tag">记录</a> 
+			
+				<span>标签: </span>
+			
+			
+				<a href="/pages/tags/index.html#Linux-ref" class="tag">Linux</a>
+    		
+				<a href="/pages/tags/index.html#Tunnel-ref" class="tag">Tunnel</a>
+    		
+				<a href="/pages/tags/index.html#cmd-ref" class="tag">cmd</a>
+    		
+				<a href="/pages/tags/index.html#SSH-ref" class="tag">SSH</a>
+    		
+				<a href="/pages/tags/index.html#端口转发-ref" class="tag">端口转发</a>
+    		
+				<a href="/pages/tags/index.html#Port-ref" class="tag">Port</a>
+    		
+				<a href="/pages/tags/index.html#Forwarding-ref" class="tag">Forwarding</a>
+    		
+		</div>		
+		<div>
+			Last Modify in
+			
+			<span>2015-09-25</span>,
+			
+			published in <span>2015-09-25</span> 
+			by <span> Luo</span>
+		</div>
+
+		
+		
+	</div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#ssh-" id="markdown-toc-ssh-">SSH 隧道</a>    <ul>
+      <li><a href="#ssh--1" id="markdown-toc-ssh--1">SSH 隧道的类型</a></li>
+    </ul>
+  </li>
+  <li><a href="#section" id="markdown-toc-section">参数提前说明</a></li>
+  <li><a href="#socks-" id="markdown-toc-socks-">动态端口转发 – SOCKS 代理</a>    <ul>
+      <li><a href="#section-1" id="markdown-toc-section-1">假设</a></li>
+      <li><a href="#section-2" id="markdown-toc-section-2">命令原型</a></li>
+      <li><a href="#section-3" id="markdown-toc-section-3">实际使用</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-4" id="markdown-toc-section-4">本地端口转发</a>    <ul>
+      <li><a href="#section-5" id="markdown-toc-section-5">假设</a></li>
+      <li><a href="#section-6" id="markdown-toc-section-6">命令原型</a></li>
+      <li><a href="#section-7" id="markdown-toc-section-7">实际使用</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-8" id="markdown-toc-section-8">远程端口转发</a>    <ul>
+      <li><a href="#section-9" id="markdown-toc-section-9">假设</a></li>
+      <li><a href="#section-10" id="markdown-toc-section-10">命令原型</a></li>
+      <li><a href="#section-11" id="markdown-toc-section-11">实际应用</a></li>
+    </ul>
+  </li>
+  <li><a href="#ssh--2" id="markdown-toc-ssh--2">SSH 一些辅助参数</a></li>
+  <li><a href="#section-12" id="markdown-toc-section-12">相关命令</a></li>
+  <li><a href="#section-13" id="markdown-toc-section-13">代理软件</a></li>
+</ul>
+
+<h2 id="ssh-">SSH 隧道</h2>
+
+<p>使用 SSH 可以进行端口转发，从而实现流往某端口的数据被加密后传向另一机器,这个过程形似构造了一条通道，因此也称之为 SSH 隧道(SSH Tunnel)</p>
+
+<p>使用 SSH 隧道可以让数据被加密并透明地传输到远端系统</p>
+
+<h3 id="ssh--1">SSH 隧道的类型</h3>
+
+<p>SSH 隧道有三种类型 :</p>
+
+<ol>
+  <li>动态端口转发 (socks 代理)</li>
+  <li>本地端口转发</li>
+  <li>远程端口转发</li>
+</ol>
+
+<h2 id="section">参数提前说明</h2>
+
+<ul>
+  <li><code>bind_address</code> – 可选的, 监听的网卡地址
+    <ol>
+      <li>省略 – 取决于  <code>GatewayPorts</code> 的设置(man 手册可以看到，但是没有在 Ubuntu 14.04中找到)</li>
+      <li><code>localhost</code>/<code>127.0.0.1</code> – 监听 127.0.0.1, 仅能用于本地</li>
+      <li><code>0.0.0.0</code>/<code>*</code> – 监听本机所有网络接口</li>
+    </ol>
+  </li>
+  <li><code>hostX</code> – 主机 hostX 的 ip 或 域名</li>
+  <li><code>hostX_port</code> – 主机hostX 的空闲端口
+    <ol>
+      <li>0 - 1023 : 特权端口,只能 root 用户才能进行端口转发<br />
+<a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports">特权端口列表</a></li>
+      <li>1024 - 65535 : 选择一个没被占用的端口</li>
+    </ol>
+  </li>
+  <li><code>user@hostX</code> – 用户名为 <code>user</code> 可以登录主机 hostX</li>
+</ul>
+
+<h2 id="socks-">动态端口转发 – SOCKS 代理</h2>
+
+<p>支持 SOCKS4 和 SOCKS5 代理</p>
+
+<h3 id="section-1">假设</h3>
+
+<ol>
+  <li>
+    <p>存在两台主机 host1, host2</p>
+  </li>
+  <li>
+    <p>host1 可以 SSH 连接 host2</p>
+  </li>
+</ol>
+
+<p>可以使 host1 某端口的数据发往 host2, host2 根据其应用程序协议发出到指定地址, 就好像是从 host2 直接发出的数据</p>
+
+<p>可以认为我们搭建了一个<a href="https://en.wikipedia.org/wiki/Proxy_server">代理服务器(Proxy Server)</a></p>
+
+<p>于是就有了下面这个命令 (<code>host1上执行</code>)</p>
+
+<h3 id="section-2">命令原型</h3>
+
+<pre><code>host1 $ ssh -D [bind_address:]host1_port user@host2
+</code></pre>
+
+<p>动态端口转发的过程 :</p>
+
+<ol>
+  <li>
+    <p>host1 申请了一个 socket 来监听 <code>bind_address:host1_port</code></p>
+  </li>
+  <li>
+    <p>host1 与 host2 建立一条 ssh 隧道</p>
+  </li>
+  <li>
+    <p>当 host1 有请求 <code>bind_address:host1_port</code>, 请求数据会从 ssh 隧道发往 host2</p>
+  </li>
+  <li>
+    <p>host2 收到数据, 根据数据的应用程序协议去发送数据到指定的地址</p>
+  </li>
+  <li>
+    <p>返回数据会按原有路径返还</p>
+  </li>
+</ol>
+
+<h3 id="section-3">实际使用</h3>
+
+<pre><code>host1 $ ssh -D 127.0.0.1:7070 user@host2
+</code></pre>
+
+<ol>
+  <li>chrome 上使用 proxy SwitchySharp 进行代理设置
+    <ol>
+      <li>新建情景模式 <code>proxy</code>, 在 <code>socks代理</code> 那行填入 <code>127.0.0.1</code> 和 端口那栏填入 <code>7070</code></li>
+      <li>点击 proxy SwitchySharp 的头标, 勾选 <code>proxy</code></li>
+    </ol>
+  </li>
+  <li>Ubuntu 下使用 proxychains 为应用程序设置代理
+    <ol>
+      <li>安装 – <code>sudo apt-get install proxychains</code></li>
+      <li>修改配置文件(<code>/etc/proxychains.conf</code>)的 <code>[ProxyList]</code> 为自己的代理 : <code>socks4 127.0.0.1 7070</code></li>
+      <li>让程序使用代理 : <code>proxychains program-name</code></li>
+    </ol>
+  </li>
+  <li>
+    <p>可以使用 <code>curl</code> 进行下载验证</p>
+
+    <pre><code> $ curl --sock5 localhost:7070 download-link
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="section-4">本地端口转发</h2>
+
+<h3 id="section-5">假设</h3>
+
+<ol>
+  <li>存在三台主机 host1, host2, host3</li>
+  <li>host1 和 host3 不能通信</li>
+  <li>host2 可以同时和 host1 与 host3 通信</li>
+</ol>
+
+<p>因此, 我们可以借助 host2 实现 host1 和 host3 的通信</p>
+
+<p>于是就有了下面这个命令原型(<code>host1 上执行</code>)</p>
+
+<h3 id="section-6">命令原型</h3>
+
+<pre><code>host1 $ ssh -L [bind_address:]host1_port:host3:host3_port user@host2
+</code></pre>
+
+<p>本地端口转发的过程 :</p>
+
+<ol>
+  <li>
+    <p>绑定 host1 的 <code>bind_address:host1_port</code>, 与 host2 构建一条 SSH 隧道</p>
+  </li>
+  <li>
+    <p>当我们请求 <code>bind_address:host1_port</code> 时, 请求的数据通过 SSH 隧道到达 host2，host2 就会把数据发送到 host3 的 <code>host3_port</code></p>
+  </li>
+  <li>
+    <p>返回的数据按照原路返回</p>
+  </li>
+</ol>
+
+<h3 id="section-7">实际使用</h3>
+
+<ol>
+  <li>
+    <p>通过访问 host1 本地 8080 端口来访问 host3 的 80 端口(host3 已经安装 Web 服务)</p>
+
+    <pre><code> host1 $ ssh -L 8080:host3:80 user@host2
+</code></pre>
+
+    <p>执行完成，在 host1 浏览器中 输入 <code>localhost:8080</code> 即可看到 host3 的 Web 页面<br />
+如果使用 xshell 等工具访问 host1, 那么可以使用 <code>curl localhost:8080</code> 来查看 Web 内容</p>
+  </li>
+  <li>
+    <p>host1 使用 ssh 登录 host3 :</p>
+
+    <pre><code> host1 $ ssh -L 2030:host3:22 user@host2
+</code></pre>
+
+    <p>现在你可以在另开一个 host1 终端输入 : <code>ssh -p 2030 user@host3</code> 去登录 host3</p>
+  </li>
+</ol>
+
+<h2 id="section-8">远程端口转发</h2>
+
+<h3 id="section-9">假设</h3>
+
+<ol>
+  <li>存在三台主机 host1, host2, host3</li>
+  <li>host1 和 host3 不能相互访问</li>
+  <li>host2 可以和 host3 相互访问</li>
+  <li>host2 可以 ssh 访问 host1</li>
+  <li>host1 不可以访问 host2</li>
+</ol>
+
+<p>这样的话, host1 就不可以 ssh 连接 host2 了，所以本地端口转发就不能用了<br />
+而 host2 可以 ssh 连接 host1, 那么 host1 就可以借助这条连接与 host3 进行通信</p>
+
+<p>这就是 SSH 的远程端口转发</p>
+
+<p>于是就有了下面这个命令原型 (<code>host2 上执行</code>)</p>
+
+<h3 id="section-10">命令原型</h3>
+
+<pre><code>host2 $ ssh -R [bind_address:]host1_port:host3:host3_port user@host1
+</code></pre>
+
+<p>远程端口转发的过程 :</p>
+
+<ol>
+  <li>
+    <p>host2 与 host1 构建了一条 ssh 隧道</p>
+  </li>
+  <li>
+    <p>host1 申请了一个 socket 随时监听 <code>bind_address:host1_port</code></p>
+  </li>
+  <li>
+    <p>当 host1 有请求 <code>bind_address:host1_port</code> 时, 请求的数据会从 ssh 隧道 发往 host2</p>
+  </li>
+  <li>
+    <p>host2 收到数据, 然后转发数据到 <code>host3:host3_port</code></p>
+  </li>
+  <li>
+    <p>返回数据按原路径返还</p>
+  </li>
+</ol>
+
+<h3 id="section-11">实际应用</h3>
+
+<ol>
+  <li>
+    <p>通过访问 host1 本地 8080 端口来访问 host3 的 80 端口(host3 已经安装 Web 服务)</p>
+
+    <pre><code> host2 $ ssh -R 8080:host3:80 user@host1
+</code></pre>
+
+    <p>执行完成，在 host1 浏览器中 输入 <code>localhost:8080</code> 即可看到 host3 的 Web 页面<br />
+如果使用 xshell 等工具访问 host1, 那么可以使用 <code>curl localhost:8080</code> 来查看 Web 内容</p>
+  </li>
+  <li>
+    <p>host1 使用 ssh 登录 host3 :</p>
+
+    <pre><code> host2 $ ssh -R 2030:host3:22 user@host1
+</code></pre>
+
+    <p>现在你可以在另开一个 host1 终端输入 : <code>ssh -p 2030 user@host3</code> 去登录 host3</p>
+  </li>
+</ol>
+
+<h2 id="ssh--2">SSH 一些辅助参数</h2>
+<ul>
+  <li><code>-q</code> – 安静模式. 抑制警告和诊断信息</li>
+  <li><code>-T</code> – 不分配伪终端，只是使用隧道</li>
+  <li><code>-N</code> – 不运行远程命令(仅对端口转发有用)</li>
+  <li><code>-f</code> – 后台运行
+    <ul>
+      <li>配合 <code>-N</code> 一起使用, 否则产生 <code>Cannot fork into background without a command to execute.</code>的错误</li>
+      <li>或者在命令末尾加上一个简单的命令 : <code>sleep 30</code></li>
+    </ul>
+  </li>
+  <li><code>-n</code> – 重定向标准输入到 <code>/dev/null</code>(阻止从标准输入读)</li>
+  <li><code>-o ServerAliveInterval=60</code> – 让 SSH 每隔一段时间发送一些消息,避免隧道关闭 <code>Write failed: Broken pipe</code></li>
+  <li>
+    <p><code>-v</code> – 打印调试信息</p>
+
+    <pre><code>  ssh -qTfnN -D 7070 xxx@yyy.com	//ssh 后台动态端口转发
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="section-12">相关命令</h2>
+
+<ul>
+  <li>查看端口是否占用 : <code>sudo lsof -i :port</code></li>
+  <li>使用 <code>curl</code> 下载文档</li>
+</ul>
+
+<h2 id="section-13">代理软件</h2>
+
+<ol>
+  <li><a href="http://www.proxycap.com/download.html">proxycap</a> – windows</li>
+  <li><a href="http://www.proxifier.com/">Proxifier</a> – windows/OS – 全局代理</li>
+  <li><a href="http://proxychains.sourceforge.net/">proxychains</a> – Linux</li>
+  <li><a href="https://github.com/darkk/redsocks">readsocks</a> – Linux</li>
+  <li><a href="http://tsocks.sourceforge.net/">tsocks</a> – Linux – 全局代理</li>
+  <li><a href="https://chrome.google.com/webstore/detail/proxy-switchysharp/dpplabbmogkhghncfbfdeeokoefdjegm?utm_source=chrome-app-launcher-info-dialog">Proxy SwitchySharp</a> – chrome</li>
+  <li><code>curl</code> 支持 socks4/SOCKS5 等代理下载  – 太棒了, 命令行用起来很方便</li>
+</ol>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/ssh-remote-run-cmd" title="使用 SSH 进行远程操作">使用 SSH 进行远程操作</a></li>
+      
+      
+        <li class="next-disabled">下一篇: 让时间加速吧
+      
+      </ul>
+    </div>
+    <hr>
+	<div id="to_comments">
+	
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+								     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+	</div>
+
+ </div>
+
+
+   
+            </div>
+            <hr />
+            <div id="footer">
+                <p>
+                <span>&copy;2014 Luo</span>
+                </p>
+            </div>
+        </div>
+		
+		<!-- site top -->
+		<div class="nav-bottom">
+			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+		</div>
+
+		
+
+
+		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
+
+		
+		<script src="/assets/themes/custom_me/js/copy.js"></script>
+		
+		
+		
+
+		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+		<script src="/assets/themes/custom_me/js/toc.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
+		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	
+		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
+		<script src="/assets/themes/custom_me/js/toComments.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+//				if(navigator.userAgent.indexOf("Firefox") != -1) {
+//					$("li p").parent().css("list-style-position", "outside");
+//				}
+					
+				
+				addCopy("pre", "copy", "Copy");
+				
+
+				tocEffect();
+				toComments();
+				var bigfoot=$.bigfoot({
+					preventPageScroll: true
+					})
+
+			})
+		</script>	
+ </div>
+    </body>
+</html>
+
+
+
+

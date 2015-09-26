@@ -9,10 +9,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		
-		<title>倘若微小 - Vim插件管理及安装</title>
+		<title>倘若微小 - 使用 Vundle 对 Vim 插件进行管理及安装</title>
 
   		
-		<meta name="description" content="">
+		<meta name="description" content="使用 Vundle 对 Vim 插件管理">
         
 
 	    <meta name="author" content="Luo">
@@ -113,7 +113,7 @@
 
 
 <div class="page-header">
-	<h1>Vim插件管理及安装 <small></small></h1>
+	<h1>使用 Vundle 对 Vim 插件进行管理及安装 <small></small></h1>
 	<div id="article_header">
 		
 		
@@ -124,17 +124,15 @@
 				<span>标签: </span>
 			
 			
-				<a href="/pages/tags/index.html#vim-ref" class="tag">vim</a>
+				<a href="/pages/tags/index.html#Vim-ref" class="tag">Vim</a>
     		
-				<a href="/pages/tags/index.html#plugin-ref" class="tag">plugin</a>
-    		
-				<a href="/pages/tags/index.html#manage-ref" class="tag">manage</a>
+				<a href="/pages/tags/index.html#Plugin-ref" class="tag">Plugin</a>
     		
 		</div>		
 		<div>
 			Last Modify in
 			
-			<span>2014-06-01</span>,
+			<span>2015-09-25</span>,
 			
 			published in <span>2014-06-01</span> 
 			by <span> Luo</span>
@@ -148,32 +146,32 @@
 <div id="page-content">
     
 <ul id="markdown-toc">
-  <li><a href="#vim---vundle" id="markdown-toc-vim---vundle">Vim插件管理插件—&gt;Vundle</a>    <ul>
-      <li><a href="#github" id="markdown-toc-github">Github地址</a></li>
-      <li><a href="#section" id="markdown-toc-section">安装</a></li>
-      <li><a href="#section-1" id="markdown-toc-section-1">配置</a></li>
-      <li><a href="#vundle" id="markdown-toc-vundle">四种添加插件到Vundle管理的方式</a></li>
-      <li><a href="#vundle-1" id="markdown-toc-vundle-1">使用Vundle安装插件</a></li>
-      <li><a href="#vundle-2" id="markdown-toc-vundle-2">Vundle的其他使用</a></li>
-    </ul>
-  </li>
+  <li><a href="#github" id="markdown-toc-github">Github地址</a></li>
+  <li><a href="#vundle-" id="markdown-toc-vundle-">Vundle 的安装</a></li>
+  <li><a href="#vundle--vimrc-" id="markdown-toc-vundle--vimrc-">Vundle 在 .vimrc 的配置</a></li>
+  <li><a href="#vim--vundle-" id="markdown-toc-vim--vundle-">将 Vim 插件纳入 Vundle 的管理</a></li>
+  <li><a href="#vundle--1" id="markdown-toc-vundle--1">使用 Vundle 安装插件</a></li>
+  <li><a href="#vundle--2" id="markdown-toc-vundle--2">Vundle 的其他操作</a></li>
 </ul>
 
-<h2 id="vim---vundle">Vim插件管理插件—&gt;Vundle</h2>
+<p>Vundle – Vim 的一个强大的管理插件的插件 <br />
+可以很方便地管理 Vim 其他插件的安装、卸载和禁用</p>
 
-<h3 id="github">Github地址</h3>
+<p>用起来很简单, 只需要一丁点的配置</p>
+
+<h2 id="github">Github地址</h2>
 
 <pre><code>https://github.com/gmarik/vundle.git 
 </code></pre>
 
-<h3 id="section">安装</h3>
+<h2 id="vundle-">Vundle 的安装</h2>
 
 <pre><code>$ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim  
 </code></pre>
 
-<h3 id="section-1">配置</h3>
+<h2 id="vundle--vimrc-">Vundle 在 .vimrc 的配置</h2>
 
-<p>把下面这些放在你的<code>.vimrc</code>中去使用<code>Vundle</code><br />
+<p>把下面这些放在你的 <code>.vimrc</code> 中去使用 <code>Vundle</code><br />
 移除下面不必要的插件，他们仅仅是为了演示效果</p>
 
 <pre><code>set nocompatible              " be iMproved, required
@@ -216,12 +214,14 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 </code></pre>
 
-<h3 id="vundle">四种添加插件到Vundle管理的方式</h3>
+<h2 id="vim--vundle-">将 Vim 插件纳入 Vundle 的管理</h2>
+
+<p>有 4 种方式, 下面一一列举 :</p>
 
 <ol>
   <li>
-    <p>指定Github中用户仓库的插件，使用“用户名/插件名称”的方式指定<br />
- 插件名中的空格使用“-”代替</p>
+    <p>指定 Github 中用户仓库的插件，使用“用户名/插件名称”的方式指定<br />
+插件名中的空格使用“-”代替</p>
 
     <pre><code> Plugin 'tpope/vim-fugitive'
 </code></pre>
@@ -233,9 +233,8 @@ filetype plugin indent on    " required
 </code></pre>
   </li>
   <li>
-    <p>指定Github中vim-scripts仓库中的插件<br />
- 即在http://vim-scripts.org/vim/scripts.html列出的插件<br />
- 直接指定插件名称即可</p>
+    <p>指定 Github 中 <a href="http://vim-scripts.org/vim/scripts.html">vim-scripts 仓库</a>的插件
+直接指定插件名称即可</p>
 
     <pre><code> Plugin 'L9'
 </code></pre>
@@ -246,24 +245,24 @@ filetype plugin indent on    " required
 </code></pre>
   </li>
   <li>
-    <p>指定非Github的Git仓库的插件，需要使用git地址</p>
+    <p>指定非 Github 的 Git 仓库的插件，需要使用 git 地址</p>
 
     <pre><code> Plugin 'git://git.wincent.com/command-t.git'
 </code></pre>
   </li>
   <li>
-    <p>指定本地Git仓库中的插件</p>
+    <p>指定本地 Git 仓库中的插件</p>
 
     <pre><code> Plugin 'file:///home/gmarik/path/to/plugin'
 </code></pre>
   </li>
 </ol>
 
-<h3 id="vundle-1">使用Vundle安装插件</h3>
+<h2 id="vundle--1">使用 Vundle 安装插件</h2>
 
 <ol>
   <li>
-    <p>启动vim,并且运行:</p>
+    <p>启动 vim ,并且运行:</p>
 
     <pre><code> :PluginInstall
 </code></pre>
@@ -276,11 +275,11 @@ filetype plugin indent on    " required
   </li>
 </ol>
 
-<h3 id="vundle-2">Vundle的其他使用</h3>
+<h2 id="vundle--2">Vundle 的其他操作</h2>
 
 <ol>
   <li>
-    <p>预览模式列出已配置的Plugins</p>
+    <p>预览模式列出已配置的 Plugins</p>
 
     <pre><code> :PluginList          - list configured plugins
 </code></pre>
@@ -288,8 +287,8 @@ filetype plugin indent on    " required
   <li>
     <p>安装(更新)插件</p>
 
-    <pre><code> :PluginInstall(!)    - install plugins
- :PluginInstall!		 - update all plugins
+    <pre><code> :PluginInstall(!)	- install plugins
+ :PluginInstall!		- update all plugins
 </code></pre>
   </li>
   <li>
@@ -314,7 +313,7 @@ filetype plugin indent on    " required
         <li class="prev">上一篇: <a href="/three-big-things" title="不早不晚，当下最好(转载)">不早不晚，当下最好(转载)</a></li>
       
       
-        <li class="next">下一篇: <a href="/ctags" title="ctags">ctags</a></li>
+        <li class="next">下一篇: <a href="/ctags" title="ctags 在 Vim 中的使用">ctags 在 Vim 中的使用</a></li>
       
       </ul>
     </div>

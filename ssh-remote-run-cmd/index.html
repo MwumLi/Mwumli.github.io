@@ -9,10 +9,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		
-		<title>倘若微小 - Linux下MASM汇编环境搭建</title>
+		<title>倘若微小 - 使用 SSH 进行远程操作</title>
 
   		
-		<meta name="description" content="">
+		<meta name="description" content="使用 ssh 进行远程操作，而不用登录进服务器">
         
 
 	    <meta name="author" content="Luo">
@@ -113,30 +113,30 @@
 
 
 <div class="page-header">
-	<h1>Linux下MASM汇编环境搭建 <small></small></h1>
+	<h1>使用 SSH 进行远程操作 <small></small></h1>
 	<div id="article_header">
 		
 		
 		<div>
 			<span>分类: </span>
-			<a href="/pages/categories/index.html#软件-ref" class="tag">软件</a> 
+			<a href="/pages/categories/index.html#记录-ref" class="tag">记录</a> 
 			
 				<span>标签: </span>
 			
 			
-				<a href="/pages/tags/index.html#Masm-ref" class="tag">Masm</a>
+				<a href="/pages/tags/index.html#SSH-ref" class="tag">SSH</a>
     		
-				<a href="/pages/tags/index.html#Assembly-ref" class="tag">Assembly</a>
+				<a href="/pages/tags/index.html#Linux-ref" class="tag">Linux</a>
     		
-				<a href="/pages/tags/index.html#汇编-ref" class="tag">汇编</a>
+				<a href="/pages/tags/index.html#cmd-ref" class="tag">cmd</a>
     		
 		</div>		
 		<div>
 			Last Modify in
 			
-			<span>2015-09-25</span>,
+			<span>2015-09-23</span>,
 			
-			published in <span>2014-12-05</span> 
+			published in <span>2015-09-23</span> 
 			by <span> Luo</span>
 		</div>
 
@@ -148,136 +148,136 @@
 <div id="page-content">
     
 <ul id="markdown-toc">
-  <li><a href="#section" id="markdown-toc-section">碎碎念</a></li>
-  <li><a href="#dosbox" id="markdown-toc-dosbox">安装dosbox</a></li>
-  <li><a href="#masm" id="markdown-toc-masm">下载MASM软件包</a></li>
-  <li><a href="#dosbox-1" id="markdown-toc-dosbox-1">启动dosbox</a></li>
-  <li><a href="#dosbox-2" id="markdown-toc-dosbox-2">使用脚本启动dosbox</a></li>
-  <li><a href="#helloworld" id="markdown-toc-helloworld">写个汇编版的HelloWorld</a>    <ul>
-      <li><a href="#dosbox-3" id="markdown-toc-dosbox-3">在dosbox中编译连接</a></li>
+  <li><a href="#ssh-copy-id-" id="markdown-toc-ssh-copy-id-">ssh-copy-id 做了什么</a></li>
+  <li><a href="#section" id="markdown-toc-section">做些什么(几个实例)</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">远程自动化脚本的实现</a>    <ul>
+      <li><a href="#section-2" id="markdown-toc-section-2">是否允许分配伪终端</a></li>
+      <li><a href="#section-3" id="markdown-toc-section-3">参考链接</a></li>
     </ul>
   </li>
-  <li><a href="#section-1" id="markdown-toc-section-1">一些自言自语</a></li>
-  <li><a href="#section-2" id="markdown-toc-section-2">推荐</a></li>
 </ul>
 
-<h2 id="section">碎碎念</h2>
+<p>使用 SSH 可以实现直接在本地对远程主机执行操作</p>
 
-<p><code>MASM</code>是Microsoft Macro Assembler的缩写，它是微软为x86微处理器家族缩写的一套宏编译器</p>
+<h2 id="ssh-copy-id-">ssh-copy-id 做了什么</h2>
 
-<p><code>dosbox</code>是一款x86/DOS环境模拟器，可以很好模拟DOS环境,方便我们运行DOS程序</p>
-
-<p><code>.asm</code>是汇编代码的后缀</p>
-
-<p>好了，现在开始吧！</p>
-
-<h2 id="dosbox">安装dosbox</h2>
-
-<pre><code>$ sudo apt-get install dosbox  
+<pre><code>$ ssh-copy-id ifmicro@remote-host  
 </code></pre>
 
-<h2 id="masm">下载MASM软件包</h2>
+<p>它实现了这样一个功能 :</p>
 
-<p>从这里下载<a href="http://yun.baidu.com/share/link?shareid=507770005&amp;uk=388194121" title="masm.tar.bz2">masm.tar.bz2</a></p>
-
-<pre><code>$ cd ~
-$ mkdir -p masm/tools
-$ tar xjf Download/masm.tar.bz2 -C masm/tools 
+<pre><code>把 `~/.ssh/id_rsa.pub` 内容添加到 remote-host 的用户 ifmicro 的用户主目录下的文件 `~/.ssh/authorized_keys` 的末尾  
 </code></pre>
 
-<p>下载的文件，解压到新建的文件夹masm/tools下<br />
-masm即将作为dosbox的C盘</p>
+<p>通过命令组合, 我们也可以实现同样的功能 :</p>
 
-<h2 id="dosbox-1">启动dosbox</h2>
-
-<pre><code>$ dosbox -c "mount C: ~/masm/tools" -c "path %path%;C:\tools\"
+<pre><code>$ ssh ifmicro@remote-host 'mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys &amp;&amp; chmod 600 .ssh/authorized_keys' &lt; ~/.ssh/id_rsa.pub
 </code></pre>
 
-<p>好了，dosbox应该出现了，你可以使用<code>debug.exe</code>,<code>masm.exe</code>了<br />
-<code>-c</code>: 指定dosbox的启动参数<br />
-<code>mount C: ~/masm/tools</code>: 把我们用户主目录下的masm/tools作为dosbox的C盘<br />
-<code>path %path%;C:\tools</code> : 给path(<em>可执行文件搜索路径</em>)环境变量添加值，这样，我们无论在哪个目录都可以使用masm软件包的工具了</p>
+<p>因此, 我们可以得出这样一个结论 :</p>
 
-<h2 id="dosbox-2">使用脚本启动dosbox</h2>
+<pre><code>SSH 可以在用户和服务器之间，建立一条通道来实现命令和数据的传输  
+</code></pre>
 
-<p><strong>dosbox_setup.sh</strong></p>
+<h2 id="section">做些什么(几个实例)</h2>
+
+<ol>
+  <li>
+    <p>复制 <code>hello-cpp/</code> 目录下的东西到远程主机的 <code>~/hello-cpp</code> 目录下 :</p>
+
+    <pre><code> $ tar czv hello-cpp | ssh ifmicro@remote-host 'tar xz'
+</code></pre>
+  </li>
+  <li>
+    <p>将服务器 <code>~/hello-cpp/</code> 下的东西复制到本地当前目录 :</p>
+
+    <pre><code> $ ssh ifmicro@remote-host 'tar czv hello-cpp' | tar xz
+</code></pre>
+  </li>
+  <li>
+    <p>查看服务器的有多少个用户 :</p>
+
+    <pre><code> $ ssh ifmicro@remote-host 'ls .. | wc -w'
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="section-1">远程自动化脚本的实现</h2>
 
 <pre><code>#!/bin/bash
-dosbox -c "mount C: ~masm" -c "path %path%;C:\tools\" &amp;
+# 这只是一个远程自动化脚本的架构  
+remote_auto(){
+	ssh -T $1 &lt;&lt;"EOF"
+	echo "Hi, I'm in $1, my name is"$(whoami);
+	pwd;
+	# 这里可以添加更多的命令
+	EOF
+}
+
+# 这里可以继续添加更多其他服务器执行任务
+remote_auto ifmicro@remote-host-1 &amp;
+remote_auto ifmicro@remote-host-1 &amp;
+...
+
+# 等待所有后台进程结束
+wait 
+# 做些结果处理
 </code></pre>
 
-<p>为dosbox_setup.sh添加执行权限</p>
+<ol>
+  <li>自行填充这个脚本中的内容</li>
+  <li>请学习 <a href="http://www.tldp.org/LDP/abs/html/here-docs.html">here Document</a> 的语法</li>
+  <li>根据需求使用 <code>ssh -T</code> 或 <code>ssh -t</code> 、<code>ssh -tt</code></li>
+</ol>
 
-<pre><code>$ chmod a+x dosbox_setup.sh
+<h3 id="section-2">是否允许分配伪终端</h3>
+
+<p>当采用 Here Document 执行命令的时候，可能会出现 :</p>
+
+<pre><code>Pseudo-terminal will not be allocated because stdin is not a terminal.
 </code></pre>
 
-<p>好了，你可以通过运行此脚本打开dosbox,而且路径已经配置好了</p>
+<p>意思是无法分配一个伪终端给这个 ssh 链接</p>
 
-<h2 id="helloworld">写个汇编版的HelloWorld</h2>
+<p>在伪终端中执行脚本, 可以进行交互<br />
+而没有伪终端, 则不能进行交互</p>
 
-<p><strong>hello.asm</strong></p>
+<p>因此对于此的解决方案就呼之欲出了 :</p>
 
-<pre><code>assume cs:codes, ds:datas
-datas segment
-		str db 'hello,world',13,10,'$'
-datas ends
-codes segment
-	start:
-		mov ax, datas
-		mov ds, ax
-		lea dx, str
-		mov ah, 9
-		int 21h
-		mov ah, 4ch
-		int 21h
-codes ends
-	end start
+<ol>
+  <li>禁止分配伪终端 – 使用 <code>ssh -T</code></li>
+  <li>强制分配伪终端 – 使用 <code>ssh -t</code>  或 <code>ssh -tt</code></li>
+</ol>
+
+<p>这里是 <code>man ssh</code> 中这两个参数的描述 :</p>
+
+<pre><code>-T	Disable pseudo-terminal allocation.
+-t	Force pseudo-terminal allocation. This can be used to execute arbitrary screen-based 
+	programs on a remote machine, which can be very useful, e.g. when implementing menu 
+	services. Multiple -t options force tty allocation, even if ssh has no local tty
 </code></pre>
 
-<p>可以使用vim写代码(当然如果你嫌影响你的心情的话，可以使用<code>EDIT.COM</code>)</p>
+<p>我们上面的自动化脚本框架中使用了 <code>ssh -T</code>, 是因为对于自动化来说，基本上不用交互的<br />
+当然也有可能需要交互, 可以考虑 <code>expect</code> 来实现自动交互</p>
 
-<h3 id="dosbox-3">在dosbox中编译连接</h3>
+<h3 id="section-3">参考链接</h3>
 
-<pre><code>C:\&gt; masm hello.asm
-</code></pre>
-
-<p>编译生成hello.obj的连接文件</p>
-
-<pre><code>C:\&gt; link hello.obj
-</code></pre>
-
-<p>连接生成hello.exe的可执行文件</p>
-
-<pre><code>C:\&gt; hello.exe
-hello,world
-</code></pre>
-
-<p>至此结束</p>
-
-<h2 id="section-1">一些自言自语</h2>
-
-<p><em>为什么选择MASM呢？</em><br />
-事实上，各大高校的汇编语言学习都是使用MASM的语法，而Linux下的NASM的语法和其还是有些差异的<br />
-(不要问我为何在Linux下使用MASM，我能告诉你这是我的偏执吗?嘿嘿…)</p>
-
-<p><em>为什么还要学习汇编?</em>  <br />
-这个各人有个人的理由吧，而我只是单纯想了解一下底层程序的运行机制</p>
-
-<h2 id="section-2">推荐</h2>
-
-<p>对于汇编学习，推荐王爽先生的《汇编语言》<br />
-对于dosbox的其他用法，请使用Linux下的<code>man dosbox</code><br />
-对于其它问题，请留言或者google</p>
+<ul>
+  <li><a href="http://www.unixmantra.com/2014/03/a-simple-way-to-send-multiple-line-commands-over-ssh.html">a-simple-way-to-send-multiple-line-commands-over-ssh</a></li>
+  <li><a href="http://www.tldp.org/LDP/abs/html/here-docs.html">Here Document-en</a></li>
+  <li><a href="http://shouce.jb51.net/shell/here-docs.html">Here Document-zh</a></li>
+  <li><a href="http://www.open-open.com/lib/view/open1415793400445.html">shell 操作之 read、cat 和 here document</a></li>
+</ul>
 
 
     <hr>
     <div class="pagination">
       <ul>
       
-        <li class="prev">上一篇: <a href="/dns" title="简单的DNS讲解">简单的DNS讲解</a></li>
+        <li class="prev">上一篇: <a href="/ssh-login-server" title="使用 SSH 登录服务器">使用 SSH 登录服务器</a></li>
       
       
-        <li class="next">下一篇: <a href="/raspberrypi-install" title="Raspberry Pi安装Debian Wheezy系统">Raspberry Pi安装Debian Wheezy系统</a></li>
+        <li class="next">下一篇: <a href="/ssh-port-forwarding" title="构建 SSH 隧道 -- 端口转发">构建 SSH 隧道 -- 端口转发</a></li>
       
       </ul>
     </div>

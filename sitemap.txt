@@ -10,6 +10,9 @@ http://mwumli.github.io/index.html
 http://mwumli.github.io/rss.xml
 http://mwumli.github.io/sitemap.txt
 
+http://mwumli.github.io/ssh-port-forwarding
+http://mwumli.github.io/ssh-remote-run-cmd
+http://mwumli.github.io/ssh-login-server
 http://mwumli.github.io/gitbook
 http://mwumli.github.io/tmux
 http://mwumli.github.io/leave-beijing

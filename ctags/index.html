@@ -9,10 +9,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		
-		<title>倘若微小 - ctags</title>
+		<title>倘若微小 - ctags 在 Vim 中的使用</title>
 
   		
-		<meta name="description" content="">
+		<meta name="description" content="使用 Ctags 生成标签文件 tags, Vim 可以利用 tags 来进行代码填充">
         
 
 	    <meta name="author" content="Luo">
@@ -113,7 +113,7 @@
 
 
 <div class="page-header">
-	<h1>ctags <small></small></h1>
+	<h1>ctags 在 Vim 中的使用 <small></small></h1>
 	<div id="article_header">
 		
 		
@@ -124,15 +124,15 @@
 				<span>标签: </span>
 			
 			
-				<a href="/pages/tags/index.html#vim-ref" class="tag">vim</a>
+				<a href="/pages/tags/index.html#Vim-ref" class="tag">Vim</a>
     		
-				<a href="/pages/tags/index.html#ctags-ref" class="tag">ctags</a>
+				<a href="/pages/tags/index.html#Ctags-ref" class="tag">Ctags</a>
     		
 		</div>		
 		<div>
 			Last Modify in
 			
-			<span>2014-06-02</span>,
+			<span>2015-09-25</span>,
 			
 			published in <span>2014-06-02</span> 
 			by <span> Luo</span>
@@ -145,15 +145,15 @@
 
 <div id="page-content">
     
-<h3 id="ctags">Ctags</h3>
+<h2 id="ctags">Ctags</h2>
 
-<h4 id="section">简述</h4>
+<h3 id="section">简述</h3>
 
 <p>Ctags,为源码建立标签文件<code>tags</code> ,以帮助在源文件中定位 <br />
 vim往往可以通过其他插件实现函数，变量等的查找，或者实现源码间切换<br />
 而这些插件依赖于<code>tags</code>文件</p>
 
-<h4 id="section-1">安装</h4>
+<h3 id="section-1">安装</h3>
 
 <p>Ubuntu上可以通过一下命令安装:</p>
 
@@ -162,7 +162,7 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
 
 <p>其他平台，待续</p>
 
-<h4 id="tags">tags中对象列表</h4>
+<h3 id="tags">tags中对象列表</h3>
 
 <pre><code>用#define定义的宏  
 枚举型变量的值  
@@ -173,7 +173,7 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
 类、结构和联合中成员变量或函数  
 </code></pre>
 
-<h4 id="tags-1">用参数生成我们需要的tags文件　　</h4>
+<h3 id="tags-1">用参数生成我们需要的tags文件　　</h3>
 
 <p>具体详细的参数，就不再写了，直接使用下面这条略显完备commmand:</p>
 
@@ -194,7 +194,7 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
 	以要求ctags对同一个语法元素再记一行，这样可以保证在VIM中多个同名函数可以通过路径不同来区分。
 </code></pre>
 
-<h4 id="section-2">插件和使用</h4>
+<h3 id="section-2">插件和使用</h3>
 
 <ol>
   <li>
@@ -216,7 +216,7 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
     <div class="pagination">
       <ul>
       
-        <li class="prev">上一篇: <a href="/vim-plugin-manage" title="Vim插件管理及安装">Vim插件管理及安装</a></li>
+        <li class="prev">上一篇: <a href="/vim-plugin-manage" title="使用 Vundle 对 Vim 插件进行管理及安装">使用 Vundle 对 Vim 插件进行管理及安装</a></li>
       
       
         <li class="next">下一篇: <a href="/vim-some-operations" title="Vim的一些操作">Vim的一些操作</a></li>

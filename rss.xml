@@ -5,10 +5,764 @@
         <description>倘若微小 - Luo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-09-11T02:19:23+00:00</lastBuildDate>
-        <pubDate>2015-09-11T02:19:23+00:00</pubDate>
+        <lastBuildDate>2015-09-26T00:49:03+00:00</lastBuildDate>
+        <pubDate>2015-09-26T00:49:03+00:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>构建 SSH 隧道 -- 端口转发</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#ssh-&quot; id=&quot;markdown-toc-ssh-&quot;&gt;SSH 隧道&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#ssh--1&quot; id=&quot;markdown-toc-ssh--1&quot;&gt;SSH 隧道的类型&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;参数提前说明&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#socks-&quot; id=&quot;markdown-toc-socks-&quot;&gt;动态端口转发 – SOCKS 代理&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;假设&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;命令原型&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;实际使用&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;本地端口转发&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;假设&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;命令原型&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;实际使用&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-8&quot; id=&quot;markdown-toc-section-8&quot;&gt;远程端口转发&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-9&quot; id=&quot;markdown-toc-section-9&quot;&gt;假设&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-10&quot; id=&quot;markdown-toc-section-10&quot;&gt;命令原型&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-11&quot; id=&quot;markdown-toc-section-11&quot;&gt;实际应用&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ssh--2&quot; id=&quot;markdown-toc-ssh--2&quot;&gt;SSH 一些辅助参数&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-12&quot; id=&quot;markdown-toc-section-12&quot;&gt;相关命令&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-13&quot; id=&quot;markdown-toc-section-13&quot;&gt;代理软件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ssh-&quot;&gt;SSH 隧道&lt;/h2&gt;
+
+&lt;p&gt;使用 SSH 可以进行端口转发，从而实现流往某端口的数据被加密后传向另一机器,这个过程形似构造了一条通道，因此也称之为 SSH 隧道(SSH Tunnel)&lt;/p&gt;
+
+&lt;p&gt;使用 SSH 隧道可以让数据被加密并透明地传输到远端系统&lt;/p&gt;
+
+&lt;h3 id=&quot;ssh--1&quot;&gt;SSH 隧道的类型&lt;/h3&gt;
+
+&lt;p&gt;SSH 隧道有三种类型 :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;动态端口转发 (socks 代理)&lt;/li&gt;
+  &lt;li&gt;本地端口转发&lt;/li&gt;
+  &lt;li&gt;远程端口转发&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;参数提前说明&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;bind_address&lt;/code&gt; – 可选的, 监听的网卡地址
+    &lt;ol&gt;
+      &lt;li&gt;省略 – 取决于  &lt;code&gt;GatewayPorts&lt;/code&gt; 的设置(man 手册可以看到，但是没有在 Ubuntu 14.04中找到)&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;localhost&lt;/code&gt;/&lt;code&gt;127.0.0.1&lt;/code&gt; – 监听 127.0.0.1, 仅能用于本地&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;0.0.0.0&lt;/code&gt;/&lt;code&gt;*&lt;/code&gt; – 监听本机所有网络接口&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;hostX&lt;/code&gt; – 主机 hostX 的 ip 或 域名&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;hostX_port&lt;/code&gt; – 主机hostX 的空闲端口
+    &lt;ol&gt;
+      &lt;li&gt;0 - 1023 : 特权端口,只能 root 用户才能进行端口转发&lt;br /&gt;
+&lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports&quot;&gt;特权端口列表&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;1024 - 65535 : 选择一个没被占用的端口&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;user@hostX&lt;/code&gt; – 用户名为 &lt;code&gt;user&lt;/code&gt; 可以登录主机 hostX&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;socks-&quot;&gt;动态端口转发 – SOCKS 代理&lt;/h2&gt;
+
+&lt;p&gt;支持 SOCKS4 和 SOCKS5 代理&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;假设&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;存在两台主机 host1, host2&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;host1 可以 SSH 连接 host2&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;可以使 host1 某端口的数据发往 host2, host2 根据其应用程序协议发出到指定地址, 就好像是从 host2 直接发出的数据&lt;/p&gt;
+
+&lt;p&gt;可以认为我们搭建了一个&lt;a href=&quot;https://en.wikipedia.org/wiki/Proxy_server&quot;&gt;代理服务器(Proxy Server)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;于是就有了下面这个命令 (&lt;code&gt;host1上执行&lt;/code&gt;)&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;命令原型&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;host1 $ ssh -D [bind_address:]host1_port user@host2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;动态端口转发的过程 :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;host1 申请了一个 socket 来监听 &lt;code&gt;bind_address:host1_port&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;host1 与 host2 建立一条 ssh 隧道&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当 host1 有请求 &lt;code&gt;bind_address:host1_port&lt;/code&gt;, 请求数据会从 ssh 隧道发往 host2&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;host2 收到数据, 根据数据的应用程序协议去发送数据到指定的地址&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;返回数据会按原有路径返还&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;实际使用&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;host1 $ ssh -D 127.0.0.1:7070 user@host2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;chrome 上使用 proxy SwitchySharp 进行代理设置
+    &lt;ol&gt;
+      &lt;li&gt;新建情景模式 &lt;code&gt;proxy&lt;/code&gt;, 在 &lt;code&gt;socks代理&lt;/code&gt; 那行填入 &lt;code&gt;127.0.0.1&lt;/code&gt; 和 端口那栏填入 &lt;code&gt;7070&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;点击 proxy SwitchySharp 的头标, 勾选 &lt;code&gt;proxy&lt;/code&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Ubuntu 下使用 proxychains 为应用程序设置代理
+    &lt;ol&gt;
+      &lt;li&gt;安装 – &lt;code&gt;sudo apt-get install proxychains&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;修改配置文件(&lt;code&gt;/etc/proxychains.conf&lt;/code&gt;)的 &lt;code&gt;[ProxyList]&lt;/code&gt; 为自己的代理 : &lt;code&gt;socks4 127.0.0.1 7070&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;让程序使用代理 : &lt;code&gt;proxychains program-name&lt;/code&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;可以使用 &lt;code&gt;curl&lt;/code&gt; 进行下载验证&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ curl --sock5 localhost:7070 download-link
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;本地端口转发&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;假设&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;存在三台主机 host1, host2, host3&lt;/li&gt;
+  &lt;li&gt;host1 和 host3 不能通信&lt;/li&gt;
+  &lt;li&gt;host2 可以同时和 host1 与 host3 通信&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;因此, 我们可以借助 host2 实现 host1 和 host3 的通信&lt;/p&gt;
+
+&lt;p&gt;于是就有了下面这个命令原型(&lt;code&gt;host1 上执行&lt;/code&gt;)&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;命令原型&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;host1 $ ssh -L [bind_address:]host1_port:host3:host3_port user@host2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;本地端口转发的过程 :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;绑定 host1 的 &lt;code&gt;bind_address:host1_port&lt;/code&gt;, 与 host2 构建一条 SSH 隧道&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当我们请求 &lt;code&gt;bind_address:host1_port&lt;/code&gt; 时, 请求的数据通过 SSH 隧道到达 host2，host2 就会把数据发送到 host3 的 &lt;code&gt;host3_port&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;返回的数据按照原路返回&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;实际使用&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;通过访问 host1 本地 8080 端口来访问 host3 的 80 端口(host3 已经安装 Web 服务)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; host1 $ ssh -L 8080:host3:80 user@host2
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;执行完成，在 host1 浏览器中 输入 &lt;code&gt;localhost:8080&lt;/code&gt; 即可看到 host3 的 Web 页面&lt;br /&gt;
+如果使用 xshell 等工具访问 host1, 那么可以使用 &lt;code&gt;curl localhost:8080&lt;/code&gt; 来查看 Web 内容&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;host1 使用 ssh 登录 host3 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; host1 $ ssh -L 2030:host3:22 user@host2
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;现在你可以在另开一个 host1 终端输入 : &lt;code&gt;ssh -p 2030 user@host3&lt;/code&gt; 去登录 host3&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;远程端口转发&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;假设&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;存在三台主机 host1, host2, host3&lt;/li&gt;
+  &lt;li&gt;host1 和 host3 不能相互访问&lt;/li&gt;
+  &lt;li&gt;host2 可以和 host3 相互访问&lt;/li&gt;
+  &lt;li&gt;host2 可以 ssh 访问 host1&lt;/li&gt;
+  &lt;li&gt;host1 不可以访问 host2&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这样的话, host1 就不可以 ssh 连接 host2 了，所以本地端口转发就不能用了&lt;br /&gt;
+而 host2 可以 ssh 连接 host1, 那么 host1 就可以借助这条连接与 host3 进行通信&lt;/p&gt;
+
+&lt;p&gt;这就是 SSH 的远程端口转发&lt;/p&gt;
+
+&lt;p&gt;于是就有了下面这个命令原型 (&lt;code&gt;host2 上执行&lt;/code&gt;)&lt;/p&gt;
+
+&lt;h3 id=&quot;section-10&quot;&gt;命令原型&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;host2 $ ssh -R [bind_address:]host1_port:host3:host3_port user@host1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;远程端口转发的过程 :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;host2 与 host1 构建了一条 ssh 隧道&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;host1 申请了一个 socket 随时监听 &lt;code&gt;bind_address:host1_port&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当 host1 有请求 &lt;code&gt;bind_address:host1_port&lt;/code&gt; 时, 请求的数据会从 ssh 隧道 发往 host2&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;host2 收到数据, 然后转发数据到 &lt;code&gt;host3:host3_port&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;返回数据按原路径返还&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;实际应用&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;通过访问 host1 本地 8080 端口来访问 host3 的 80 端口(host3 已经安装 Web 服务)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; host2 $ ssh -R 8080:host3:80 user@host1
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;执行完成，在 host1 浏览器中 输入 &lt;code&gt;localhost:8080&lt;/code&gt; 即可看到 host3 的 Web 页面&lt;br /&gt;
+如果使用 xshell 等工具访问 host1, 那么可以使用 &lt;code&gt;curl localhost:8080&lt;/code&gt; 来查看 Web 内容&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;host1 使用 ssh 登录 host3 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; host2 $ ssh -R 2030:host3:22 user@host1
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;现在你可以在另开一个 host1 终端输入 : &lt;code&gt;ssh -p 2030 user@host3&lt;/code&gt; 去登录 host3&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;ssh--2&quot;&gt;SSH 一些辅助参数&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;-q&lt;/code&gt; – 安静模式. 抑制警告和诊断信息&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;-T&lt;/code&gt; – 不分配伪终端，只是使用隧道&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;-N&lt;/code&gt; – 不运行远程命令(仅对端口转发有用)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;-f&lt;/code&gt; – 后台运行
+    &lt;ul&gt;
+      &lt;li&gt;配合 &lt;code&gt;-N&lt;/code&gt; 一起使用, 否则产生 &lt;code&gt;Cannot fork into background without a command to execute.&lt;/code&gt;的错误&lt;/li&gt;
+      &lt;li&gt;或者在命令末尾加上一个简单的命令 : &lt;code&gt;sleep 30&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;-n&lt;/code&gt; – 重定向标准输入到 &lt;code&gt;/dev/null&lt;/code&gt;(阻止从标准输入读)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;-o ServerAliveInterval=60&lt;/code&gt; – 让 SSH 每隔一段时间发送一些消息,避免隧道关闭 &lt;code&gt;Write failed: Broken pipe&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;-v&lt;/code&gt; – 打印调试信息&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  ssh -qTfnN -D 7070 xxx@yyy.com	//ssh 后台动态端口转发
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-12&quot;&gt;相关命令&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;查看端口是否占用 : &lt;code&gt;sudo lsof -i :port&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;使用 &lt;code&gt;curl&lt;/code&gt; 下载文档&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-13&quot;&gt;代理软件&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.proxycap.com/download.html&quot;&gt;proxycap&lt;/a&gt; – windows&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.proxifier.com/&quot;&gt;Proxifier&lt;/a&gt; – windows/OS – 全局代理&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://proxychains.sourceforge.net/&quot;&gt;proxychains&lt;/a&gt; – Linux&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/darkk/redsocks&quot;&gt;readsocks&lt;/a&gt; – Linux&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://tsocks.sourceforge.net/&quot;&gt;tsocks&lt;/a&gt; – Linux – 全局代理&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://chrome.google.com/webstore/detail/proxy-switchysharp/dpplabbmogkhghncfbfdeeokoefdjegm?utm_source=chrome-app-launcher-info-dialog&quot;&gt;Proxy SwitchySharp&lt;/a&gt; – chrome&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;curl&lt;/code&gt; 支持 socks4/SOCKS5 等代理下载  – 太棒了, 命令行用起来很方便&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+                <link>http://mwumli.github.io/ssh-port-forwarding</link>
+                <guid>http://mwumli.github.io/ssh-port-forwarding</guid>
+                <pubDate>2015-09-25T00:00:00+00:00</pubDate>
+        </item>
+
+        <item>
+                <title>使用 SSH 进行远程操作</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#ssh-copy-id-&quot; id=&quot;markdown-toc-ssh-copy-id-&quot;&gt;ssh-copy-id 做了什么&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;做些什么(几个实例)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;远程自动化脚本的实现&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;是否允许分配伪终端&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;使用 SSH 可以实现直接在本地对远程主机执行操作&lt;/p&gt;
+
+&lt;h2 id=&quot;ssh-copy-id-&quot;&gt;ssh-copy-id 做了什么&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh-copy-id ifmicro@remote-host  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;它实现了这样一个功能 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;把 `~/.ssh/id_rsa.pub` 内容添加到 remote-host 的用户 ifmicro 的用户主目录下的文件 `~/.ssh/authorized_keys` 的末尾  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过命令组合, 我们也可以实现同样的功能 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh ifmicro@remote-host &#39;mkdir -p .ssh &amp;amp;&amp;amp; cat &amp;gt;&amp;gt; .ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 .ssh/authorized_keys&#39; &amp;lt; ~/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;因此, 我们可以得出这样一个结论 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SSH 可以在用户和服务器之间，建立一条通道来实现命令和数据的传输  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;做些什么(几个实例)&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;复制 &lt;code&gt;hello-cpp/&lt;/code&gt; 目录下的东西到远程主机的 &lt;code&gt;~/hello-cpp&lt;/code&gt; 目录下 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ tar czv hello-cpp | ssh ifmicro@remote-host &#39;tar xz&#39;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;将服务器 &lt;code&gt;~/hello-cpp/&lt;/code&gt; 下的东西复制到本地当前目录 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ ssh ifmicro@remote-host &#39;tar czv hello-cpp&#39; | tar xz
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看服务器的有多少个用户 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ ssh ifmicro@remote-host &#39;ls .. | wc -w&#39;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;远程自动化脚本的实现&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+# 这只是一个远程自动化脚本的架构  
+remote_auto(){
+	ssh -T $1 &amp;lt;&amp;lt;&quot;EOF&quot;
+	echo &quot;Hi, I&#39;m in $1, my name is&quot;$(whoami);
+	pwd;
+	# 这里可以添加更多的命令
+	EOF
+}
+
+# 这里可以继续添加更多其他服务器执行任务
+remote_auto ifmicro@remote-host-1 &amp;amp;
+remote_auto ifmicro@remote-host-1 &amp;amp;
+...
+
+# 等待所有后台进程结束
+wait 
+# 做些结果处理
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;自行填充这个脚本中的内容&lt;/li&gt;
+  &lt;li&gt;请学习 &lt;a href=&quot;http://www.tldp.org/LDP/abs/html/here-docs.html&quot;&gt;here Document&lt;/a&gt; 的语法&lt;/li&gt;
+  &lt;li&gt;根据需求使用 &lt;code&gt;ssh -T&lt;/code&gt; 或 &lt;code&gt;ssh -t&lt;/code&gt; 、&lt;code&gt;ssh -tt&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;是否允许分配伪终端&lt;/h3&gt;
+
+&lt;p&gt;当采用 Here Document 执行命令的时候，可能会出现 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Pseudo-terminal will not be allocated because stdin is not a terminal.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;意思是无法分配一个伪终端给这个 ssh 链接&lt;/p&gt;
+
+&lt;p&gt;在伪终端中执行脚本, 可以进行交互&lt;br /&gt;
+而没有伪终端, 则不能进行交互&lt;/p&gt;
+
+&lt;p&gt;因此对于此的解决方案就呼之欲出了 :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;禁止分配伪终端 – 使用 &lt;code&gt;ssh -T&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;强制分配伪终端 – 使用 &lt;code&gt;ssh -t&lt;/code&gt;  或 &lt;code&gt;ssh -tt&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这里是 &lt;code&gt;man ssh&lt;/code&gt; 中这两个参数的描述 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-T	Disable pseudo-terminal allocation.
+-t	Force pseudo-terminal allocation. This can be used to execute arbitrary screen-based 
+	programs on a remote machine, which can be very useful, e.g. when implementing menu 
+	services. Multiple -t options force tty allocation, even if ssh has no local tty
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们上面的自动化脚本框架中使用了 &lt;code&gt;ssh -T&lt;/code&gt;, 是因为对于自动化来说，基本上不用交互的&lt;br /&gt;
+当然也有可能需要交互, 可以考虑 &lt;code&gt;expect&lt;/code&gt; 来实现自动交互&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;参考链接&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.unixmantra.com/2014/03/a-simple-way-to-send-multiple-line-commands-over-ssh.html&quot;&gt;a-simple-way-to-send-multiple-line-commands-over-ssh&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.tldp.org/LDP/abs/html/here-docs.html&quot;&gt;Here Document-en&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://shouce.jb51.net/shell/here-docs.html&quot;&gt;Here Document-zh&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.open-open.com/lib/view/open1415793400445.html&quot;&gt;shell 操作之 read、cat 和 here document&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+                <link>http://mwumli.github.io/ssh-remote-run-cmd</link>
+                <guid>http://mwumli.github.io/ssh-remote-run-cmd</guid>
+                <pubDate>2015-09-23T00:00:00+00:00</pubDate>
+        </item>
+
+        <item>
+                <title>使用 SSH 登录服务器</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#ssh-&quot; id=&quot;markdown-toc-ssh-&quot;&gt;SSH 是什么&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ssh&quot; id=&quot;markdown-toc-ssh&quot;&gt;安装 SSH&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;两种登陆方式&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;使用密码口令登录服务器&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;使用&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;验证流程&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;使用公钥实现无密码登录&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;使用&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;登录流程&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;第一次登录服务器&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-8&quot; id=&quot;markdown-toc-section-8&quot;&gt;中间人攻击&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-9&quot; id=&quot;markdown-toc-section-9&quot;&gt;公钥加密技术&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-10&quot; id=&quot;markdown-toc-section-10&quot;&gt;一些思考&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-11&quot; id=&quot;markdown-toc-section-11&quot;&gt;一些相关的文件&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-12&quot; id=&quot;markdown-toc-section-12&quot;&gt;待补充&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ssh-&quot;&gt;SSH 是什么&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Secure_Shell&quot;&gt;SSH&lt;/a&gt; 是一个允许两台电脑之间通过安全的连接进行数据交换的网络协议&lt;br /&gt;
+它采用公钥加密技术对传输的数据进行加密, 保证了数据的保密性和完整性&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/OpenSSH&quot;&gt;OpenSSH&lt;/a&gt; 是 SSH 协议的一种实现，是一种比较 popular 的远程登录服务器的软件&lt;/p&gt;
+
+&lt;h2 id=&quot;ssh&quot;&gt;安装 SSH&lt;/h2&gt;
+
+&lt;p&gt;Linux 主机普遍默认安装 OpenSSH&lt;/p&gt;
+
+&lt;p&gt;客户端安装 ssh client 去登录服务器 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install openssh-client
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;服务器端安装 ssh server 用以验证客户端的登录 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install openssh-server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;两种登陆方式&lt;/h2&gt;
+
+&lt;p&gt;SSH 提供两种登录服务器的方式 :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;使用密码口令&lt;/li&gt;
+  &lt;li&gt;使用公钥实现无密码登录&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在此，做出以下假定 :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;服务器上的用户名 : &lt;code&gt;ifmicro&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;服务器地址 : &lt;code&gt;remote-host&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;服务器的 SSH 服务监听端口 : &lt;code&gt;22&lt;/code&gt;(默认)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;使用密码口令登录服务器&lt;/h3&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;使用&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh ifmicro@remote-host
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果本地用户名也是 &lt;code&gt;ifmicro&lt;/code&gt; , 那么 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh ifmicro
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;假如你的服务器 SSH 服务监听端口是 &lt;code&gt;2222&lt;/code&gt; , 那么 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh -p 2222 ifmicro@remote-host
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;验证流程&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;客户端想服务器发送登录请求&lt;/li&gt;
+  &lt;li&gt;服务器收到请求，把自己的公钥发给用户&lt;/li&gt;
+  &lt;li&gt;用户使用这个公钥，对自己的密码进行加密，然后发送给服务器&lt;/li&gt;
+  &lt;li&gt;服务器用自己的私钥对收到加密后的密码进行解密，如果密码正确，就同意用户登录&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;使用公钥实现无密码登录&lt;/h3&gt;
+
+&lt;h4 id=&quot;section-5&quot;&gt;使用&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;生成公钥和私钥(如果存在，请忽略) :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;
+
+ Generating public/private rsa key pair.
+ Enter file in which to save the key (/home/vagrant/.ssh/id_rsa):
+ Enter passphrase (empty for no passphrase):
+ Enter same passphrase again:
+ Your identification has been saved in /home/vagrant/.ssh/id_rsa.
+ Your public key has been saved in /home/vagrant/.ssh/id_rsa.pub.
+ The key fingerprint is:
+ 2e:a3:02:c9:f1:bd:bd:d3:2e:85:26:4c:4a:b6:d1:11 your_email@example.com
+ The key&#39;s randomart image is:
+ +--[ RSA 4096]----+
+ |     E.          |
+ |     .           |
+ |    . .          |
+ | . + o           |
+ |..= B   S        |
+ |o. + + + .       |
+ | .    B +        |
+ |  .  o * .       |
+ |   ..  .=.       |
+ +-----------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;一路默认即可，生成的私钥和公钥位于 &lt;code&gt;~/.ssh/&lt;/code&gt; : &lt;code&gt;id_rsa&lt;/code&gt;(私钥) 和 &lt;code&gt;id_rsa.pub&lt;/code&gt;(公钥)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;把公钥添加到服务器的 &lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt; 末尾:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ ssh-copy-id -i id_rsa.pub ifmicro@remote-host
+ /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+ /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+ ifmicro@remote-host&#39;s password:
+
+ Number of key(s) added: 1
+
+ Now try logging into the machine, with:   &quot;ssh &#39;ifmicro@remote-host&#39;&quot;
+ and check to make sure that only the key(s) you wanted were added.
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;可以看到已经成功添加&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用 ssh 登录服务器 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ ssh -i ~/.ssh/id_rsa ifmicro@remote-host
+ Last login: Tue Sep 22 06:39:30 2015 from 10.18.61.57
+ ifmicro@remmote-host $ 
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;如果私钥是 &lt;code&gt;~/.ssh/id_rsa&lt;/code&gt; ，那么可以忽略 &lt;code&gt;-i ~/.ssh/id_isa&lt;/code&gt;  选项&lt;br /&gt;
+否则，请用 &lt;code&gt;-i private_key&lt;/code&gt; 指定私钥&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;section-6&quot;&gt;登录流程&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;客户端向服务器发送登录请求&lt;/li&gt;
+  &lt;li&gt;服务器收到请求后, 向客户端发送一断随机字符串&lt;/li&gt;
+  &lt;li&gt;客户端收到字符串，然后用自己的私钥进行加密，发送给服务器&lt;/li&gt;
+  &lt;li&gt;服务器用实现客户给的公钥进行解密, 如果解密成功, 证明用户可信，登录成功&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;第一次登录服务器&lt;/h3&gt;
+
+&lt;p&gt;第一次登录服务器 , 系统会有如下提示 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The authenticity of host &#39;remote-host (10.108.79.5)&#39; can&#39;t be established.
+RSA key fingerprint is 31:51:f8:e3:53:01:c4:76:af:60:9c:3b:b3:1b:5e:37.
+Are you sure you want to continue connecting (yes/no)?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这段话意思是本地主机在这之前没有与服务器 remote-host 建立过链接, 无法确定服务器的真实性&lt;br /&gt;
+只知道 RSA 公钥的指纹&lt;sup id=&quot;fnref:fingerprint&quot;&gt;&lt;a href=&quot;#fn:fingerprint&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;，是否要继续连接&lt;/p&gt;
+
+&lt;p&gt;使用 &lt;code&gt;ssh-keygen&lt;/code&gt; 工具可以生成 SSH 密钥对，其中公钥的长度很长，对于用户来说不容易比较&lt;br /&gt;
+因此对其进行 MD5 计算生成的 128 位指纹进行比较就非常容易了&lt;/p&gt;
+
+&lt;p&gt;为了确认主机的真实性，这里就要求我们事先知道服务器的公钥指纹&lt;/p&gt;
+
+&lt;p&gt;如果你确定这是你要登录的那台服务器，那么输入 &lt;code&gt;yes&lt;/code&gt; 继续连接&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果你采用密码口令登录服务器，那么&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; Warning: Permanently added &#39;remote-host,10.108.79.5&#39; (RSA) to the list of known hosts.
+ Enter passphrase for key &#39;/home/vagrant/.ssh/id_rsa&#39;:
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;输入密码，如果密码正确，那么登录成功&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果你采用公钥认证登录服务器, 那么输出上面这条 &lt;code&gt;Warning&lt;/code&gt;, 就直接登录上服务器&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;第一次登录成功后, 服务器的公钥会被保存到文件 &lt;code&gt;$HOME/.ssh/known_hosts&lt;/code&gt; 中&lt;br /&gt;
+下次登录服务器，&lt;code&gt;Warning&lt;/code&gt; 消失&lt;/p&gt;
+
+&lt;p&gt;每个 SSH 用户都有自己的 &lt;code&gt;known_hosts&lt;/code&gt; 文件&lt;br /&gt;
+系统也有一个这样的文件，通常是 &lt;code&gt;/etc/ssh/ssh_known_hosts&lt;/code&gt; 保存一些对所有用户都可信赖的服务器的公钥&lt;/p&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;中间人攻击&lt;/h3&gt;
+
+&lt;p&gt;SSH 之所以可以保证安全，是因为采用了公钥加密信息&lt;/p&gt;
+
+&lt;p&gt;在上面我们可以看到，使用密码口令的真个过程本身是安全的, 但是存在这个一个风险 ：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;如果有攻击者截获了用户的登录请求，然后冒充服务器，将伪造后的公钥发送给用户  
+用户在不知情或难辨真伪的情况下,用这个伪造密钥进行加密，然后发送给服务器  
+然后攻击者又一次截获，获得用伪造密钥加密的密码，然后用自己的私钥进行解密，就得到了用户在服务器上的账号和密码  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对于使用口令进行 ssh 登录的情况下，伪造的公钥很难辨别真伪&lt;br /&gt;
+因为公钥都是自己签发的, 没有证书中心 (CA) 公正&lt;/p&gt;
+
+&lt;p&gt;可以设想一下 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;如果攻击者在用户登录服务器时, 截获登录请求，并用伪造的公钥欺骗用户, 那么很容易获取用户在服务上的登录密码  
+然后攻击者就可以在服务器上为所欲为(如果有权限的话)
+这样, SSH 的安全机制就荡然无存  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这就是著名的 &lt;a href=&quot;https://en.wikipedia.org/wiki/Man-in-the-middle_attack&quot;&gt;中间人攻击&lt;/a&gt;(Man-in-the-middle attack)&lt;/p&gt;
+
+&lt;p&gt;所以，基于密码的安全认证是无法避免中间人攻击&lt;/p&gt;
+
+&lt;h2 id=&quot;section-9&quot;&gt;公钥加密技术&lt;/h2&gt;
+
+&lt;p&gt;公钥加密技术提供两个密钥 : 公钥(id_rsa.pub) 和 私钥(id_rsa)&lt;/p&gt;
+
+&lt;p&gt;公钥加密技术主要是利用公钥和私钥的互相加密和解密的非对成性 :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;公钥加密的文件，只能被私钥解密&lt;/li&gt;
+  &lt;li&gt;私钥加密的文件，只能被公钥解密&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;普通的加密技术的加密运算和解密运算使用同样的密钥, 被称作对称密码学&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html&quot;&gt;数字签名是什么&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-10&quot;&gt;一些思考&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;为什么要修改 ssh 服务的默认端口 22 ?&lt;br /&gt;
+默认情况下, ssh 服务的端口为 22, 所以那些骇客们都会先从 22 端口入手, 通过 “暴力手段” 获取登录密码&lt;br /&gt;
+所以, 建议修改 ssh 服务默认端口, 这样能一定程度上过滤掉一些不怀好意的访客&lt;br /&gt;
+(虽然说对有心者并没什么鸟用,但是多做点防护总没坏处)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;ssh-copy-id&lt;/code&gt; 到底做了什么?&lt;br /&gt;
+事实上, ssh-copy-id 做了下面脚本做的事 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ ssh ifmicro@remote-host &#39;mkdir -p .ssh &amp;amp;&amp;amp; cat &amp;gt;&amp;gt; .ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 .ssh/authorized_keys&#39; &amp;lt; ~/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-11&quot;&gt;一些相关的文件&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code&gt;id_rsa&lt;/code&gt;(私钥) 和 &lt;code&gt;id_rsa.pub&lt;/code&gt;(公钥)
+    &lt;ul&gt;
+      &lt;li&gt;默认情况下, 位于 &lt;code&gt;~/.ssh/id_rsa&lt;/code&gt;、&lt;code&gt;~/.ssh/id_rsa.pub&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;这是使用 &lt;code&gt;ssh-keygen&lt;/code&gt; 指定 &lt;code&gt;-t rsa&lt;/code&gt; 默认生成的私钥和公钥, 可以在过程中指定生成的文件名&lt;/li&gt;
+      &lt;li&gt;默认情况下, ssh 只会读取 &lt;code&gt;~/.sss/id_rsa&lt;/code&gt; 去加密&lt;br /&gt;
+如果使用非默认的私钥, 那么需要在 &lt;code&gt;ssh -i private-key&lt;/code&gt; 或者使用 &lt;code&gt;ssh-agent&lt;/code&gt; 去管理&lt;/li&gt;
+      &lt;li&gt;要保持当前文件权限为 &lt;code&gt;600&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;authorized_keys&lt;/code&gt; – 存储来自客户端的公钥
+    &lt;ul&gt;
+      &lt;li&gt;默认情况下, 位于 &lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;把来自客户端的公钥添加到这个文件中，就可以实现无密码登录&lt;/li&gt;
+      &lt;li&gt;要保持当前文件权限为 &lt;code&gt;600&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-12&quot;&gt;待补充&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;ssh-agent 和 ssh 之间的关系&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ssh 端口转发&lt;br /&gt;
+&lt;a href=&quot;http://www.ruanyifeng.com/blog/2011/12/ssh_port_forwarding.html&quot;&gt;SSH原理与运用（二）：远程操作与端口转发&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Secure_Shell_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&quot;&gt;Arch Linux&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://help.github.com/articles/generating-ssh-keys/&quot;&gt;Generating SSH keys&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;s. &lt;a href=&quot;http://www.ibm.com/developerworks/cn/aix/library/1006_lisali_sshlogon/#major6&quot;&gt;开发自动化脚本&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fingerprint&quot;&gt;
+      &lt;p&gt;对 RSA 公钥进行 MD5 计算生成的一个 128 位的指纹 &lt;a href=&quot;#fnref:fingerprint&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+                <link>http://mwumli.github.io/ssh-login-server</link>
+                <guid>http://mwumli.github.io/ssh-login-server</guid>
+                <pubDate>2015-09-21T00:00:00+00:00</pubDate>
+        </item>
 
         <item>
                 <title>用 gitbook 来写书</title>
@@ -1071,6 +1825,10 @@ set -g prefix C-a
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;menu&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;section&quot;&gt;碎碎念&lt;/h2&gt;
 
 &lt;p&gt;进行简单的 web 动态网站开发，只需快速搭建一个 LAMP 环境即可&lt;/p&gt;
@@ -1243,6 +2001,30 @@ set -g prefix C-a
         <item>
                 <title>Raspberry Pi安装Debian Wheezy系统</title>
                 <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;碎碎念&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;系统安装&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;不同平台下的镜像写入&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;访问&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;和正常计算机一样访问&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#ssh&quot; id=&quot;markdown-toc-ssh&quot;&gt;通过ssh远程访问&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;一些必要的小贴士&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#vnc&quot; id=&quot;markdown-toc-vnc&quot;&gt;使用VNC远程图形化访问&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;配置&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;更换软件源&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-8&quot; id=&quot;markdown-toc-section-8&quot;&gt;配置自动连接你的局域网&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#localhost&quot; id=&quot;markdown-toc-localhost&quot;&gt;使用localhost&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-9&quot; id=&quot;markdown-toc-section-9&quot;&gt;后记&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h3 id=&quot;section&quot;&gt;碎碎念&lt;/h3&gt;
 
 &lt;p&gt;Raspberry Pi，是一款基于Linux系统的、信用卡大小的单板机电脑&lt;br /&gt;
@@ -1547,7 +2329,21 @@ iface default inet dhcp
         <item>
                 <title>Linux下MASM汇编环境搭建</title>
                 <description>
-&lt;h3 id=&quot;section&quot;&gt;碎碎念&lt;/h3&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;碎碎念&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#dosbox&quot; id=&quot;markdown-toc-dosbox&quot;&gt;安装dosbox&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#masm&quot; id=&quot;markdown-toc-masm&quot;&gt;下载MASM软件包&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#dosbox-1&quot; id=&quot;markdown-toc-dosbox-1&quot;&gt;启动dosbox&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#dosbox-2&quot; id=&quot;markdown-toc-dosbox-2&quot;&gt;使用脚本启动dosbox&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#helloworld&quot; id=&quot;markdown-toc-helloworld&quot;&gt;写个汇编版的HelloWorld&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#dosbox-3&quot; id=&quot;markdown-toc-dosbox-3&quot;&gt;在dosbox中编译连接&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;一些自言自语&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;推荐&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;碎碎念&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;MASM&lt;/code&gt;是Microsoft Macro Assembler的缩写，它是微软为x86微处理器家族缩写的一套宏编译器&lt;/p&gt;
 
@@ -1557,12 +2353,12 @@ iface default inet dhcp
 
 &lt;p&gt;好了，现在开始吧！&lt;/p&gt;
 
-&lt;h3 id=&quot;dosbox&quot;&gt;安装dosbox&lt;/h3&gt;
+&lt;h2 id=&quot;dosbox&quot;&gt;安装dosbox&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;$ sudo apt-get install dosbox  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;masm&quot;&gt;下载MASM软件包&lt;/h3&gt;
+&lt;h2 id=&quot;masm&quot;&gt;下载MASM软件包&lt;/h2&gt;
 
 &lt;p&gt;从这里下载&lt;a href=&quot;http://yun.baidu.com/share/link?shareid=507770005&amp;amp;uk=388194121&quot; title=&quot;masm.tar.bz2&quot;&gt;masm.tar.bz2&lt;/a&gt;&lt;/p&gt;
 
@@ -1574,7 +2370,7 @@ $ tar xjf Download/masm.tar.bz2 -C masm/tools
 &lt;p&gt;下载的文件，解压到新建的文件夹masm/tools下&lt;br /&gt;
 masm即将作为dosbox的C盘&lt;/p&gt;
 
-&lt;h3 id=&quot;dosbox-1&quot;&gt;启动dosbox&lt;/h3&gt;
+&lt;h2 id=&quot;dosbox-1&quot;&gt;启动dosbox&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;$ dosbox -c &quot;mount C: ~/masm/tools&quot; -c &quot;path %path%;C:\tools\&quot;
 &lt;/code&gt;&lt;/pre&gt;
@@ -1584,7 +2380,7 @@ masm即将作为dosbox的C盘&lt;/p&gt;
 &lt;code&gt;mount C: ~/masm/tools&lt;/code&gt;: 把我们用户主目录下的masm/tools作为dosbox的C盘&lt;br /&gt;
 &lt;code&gt;path %path%;C:\tools&lt;/code&gt; : 给path(&lt;em&gt;可执行文件搜索路径&lt;/em&gt;)环境变量添加值，这样，我们无论在哪个目录都可以使用masm软件包的工具了&lt;/p&gt;
 
-&lt;h3 id=&quot;dosbox-2&quot;&gt;使用脚本启动dosbox&lt;/h3&gt;
+&lt;h2 id=&quot;dosbox-2&quot;&gt;使用脚本启动dosbox&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;dosbox_setup.sh&lt;/strong&gt;&lt;/p&gt;
 
@@ -1599,7 +2395,7 @@ dosbox -c &quot;mount C: ~masm&quot; -c &quot;path %path%;C:\tools\&quot; &amp;a
 
 &lt;p&gt;好了，你可以通过运行此脚本打开dosbox,而且路径已经配置好了&lt;/p&gt;
 
-&lt;h3 id=&quot;helloworld&quot;&gt;写个汇编版的HelloWorld&lt;/h3&gt;
+&lt;h2 id=&quot;helloworld&quot;&gt;写个汇编版的HelloWorld&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;hello.asm&lt;/strong&gt;&lt;/p&gt;
 
@@ -1622,7 +2418,7 @@ codes ends
 
 &lt;p&gt;可以使用vim写代码(当然如果你嫌影响你的心情的话，可以使用&lt;code&gt;EDIT.COM&lt;/code&gt;)&lt;/p&gt;
 
-&lt;h4 id=&quot;dosbox-3&quot;&gt;在dosbox中编译连接&lt;/h4&gt;
+&lt;h3 id=&quot;dosbox-3&quot;&gt;在dosbox中编译连接&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;C:\&amp;gt; masm hello.asm
 &lt;/code&gt;&lt;/pre&gt;
@@ -1640,7 +2436,7 @@ hello,world
 
 &lt;p&gt;至此结束&lt;/p&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;一些自言自语&lt;/h3&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;一些自言自语&lt;/h2&gt;
 
 &lt;p&gt;&lt;em&gt;为什么选择MASM呢？&lt;/em&gt;&lt;br /&gt;
 事实上，各大高校的汇编语言学习都是使用MASM的语法，而Linux下的NASM的语法和其还是有些差异的&lt;br /&gt;
@@ -1649,7 +2445,7 @@ hello,world
 &lt;p&gt;&lt;em&gt;为什么还要学习汇编?&lt;/em&gt;  &lt;br /&gt;
 这个各人有个人的理由吧，而我只是单纯想了解一下底层程序的运行机制&lt;/p&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;推荐&lt;/h3&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;推荐&lt;/h2&gt;
 
 &lt;p&gt;对于汇编学习，推荐王爽先生的《汇编语言》&lt;br /&gt;
 对于dosbox的其他用法，请使用Linux下的&lt;code&gt;man dosbox&lt;/code&gt;&lt;br /&gt;
@@ -1664,7 +2460,17 @@ hello,world
         <item>
                 <title>简单的DNS讲解</title>
                 <description>
-&lt;h3 id=&quot;dns&quot;&gt;DNS是什么&lt;/h3&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#dns&quot; id=&quot;markdown-toc-dns&quot;&gt;DNS是什么&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#linuxdns&quot; id=&quot;markdown-toc-linuxdns&quot;&gt;Linux下的一些用于DNS查询的命令&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#tcpdumpdns&quot; id=&quot;markdown-toc-tcpdumpdns&quot;&gt;使用tcpdump观察DNS通信过程&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#dns-1&quot; id=&quot;markdown-toc-dns-1&quot;&gt;修改DNS&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;dns&quot;&gt;DNS是什么&lt;/h2&gt;
+
 &lt;p&gt;DNS，可以看作Domain Name Service，Domain Name Server, Domain Name System的缩写，网上也没有统一的解释,说明是哪一种的缩写,我们暂且先不管它&lt;/p&gt;
 
 &lt;p&gt;早期互联网的时代，我们使用IP地址访问网站&lt;br /&gt;
@@ -2744,6 +3550,7 @@ $ git push
 &lt;p&gt;安装完成，在浏览器中输入&lt;code&gt;http://localhost&lt;/code&gt;,出现&lt;code&gt;It works&lt;/code&gt;okay,安装完成&lt;/p&gt;
 
 &lt;h4 id=&quot;section&quot;&gt;默认工作目录&lt;/h4&gt;
+
 &lt;p&gt;不同版本的apache，工作目录有点差异&lt;br /&gt;
 我的机器apache版本:&lt;code&gt;Server version: Apache/2.4.7 (Ubuntu)&lt;/code&gt;&lt;br /&gt;
 所以默认工作目录是：&lt;/p&gt;
@@ -3288,11 +4095,11 @@ $ sudo umount dir
         </item>
 
         <item>
-                <title>Sublime Text 2的使用</title>
+                <title>Sublime Text 2 的使用</title>
                 <description>
 &lt;p&gt;假如你还没安装ST2,那么去&lt;a href=&quot;/记录/2014/06/08/st2_install_config/&quot; title=&quot;Sublime Text 2的安装与配置&quot;&gt;安装它&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;多项选择，多项编辑&lt;/h3&gt;
+&lt;h2 id=&quot;section&quot;&gt;多项选择，多项编辑&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -3312,7 +4119,7 @@ $ sudo umount dir
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;command-palette&quot;&gt;命令行面板(Command Palette)&lt;/h3&gt;
+&lt;h2 id=&quot;command-palette&quot;&gt;命令行面板(Command Palette)&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;Ctrl+Shift+P&lt;/strong&gt;唤醒Command Palette　　　
 输入：&lt;/p&gt;
@@ -3322,16 +4129,16 @@ $ sudo umount dir
 
 &lt;p&gt;当然，还有很多命令，使用过程中慢慢发现吧&lt;/p&gt;
 
-&lt;h3 id=&quot;goto-anything&quot;&gt;快速导航面板(Goto Anything)&lt;/h3&gt;
+&lt;h2 id=&quot;goto-anything&quot;&gt;快速导航面板(Goto Anything)&lt;/h2&gt;
 
-&lt;h4 id=&quot;section-1&quot;&gt;快速切换文件&lt;/h4&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;快速切换文件&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Ctrl+p&lt;/strong&gt;唤醒&lt;em&gt;Goto Anything&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;输入文件名，面板下拉框将出现所有匹配的文件名(当然，在这之前必须线打开一个目录作为搜索根目录)&lt;/p&gt;
 
 &lt;p&gt;可以试着在使用Up和Down滚动条目，会有意外的发现哦&lt;/p&gt;
 
-&lt;h4 id=&quot;section-2&quot;&gt;在指定文件中快速查找函数，文本，跳转指定行&lt;/h4&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;在指定文件中快速查找函数，文本，跳转指定行&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -3356,7 +4163,7 @@ $ sudo umount dir
 
 &lt;p&gt;当&lt;em&gt;file&lt;/em&gt;省略时，默认当前编辑文件&lt;/p&gt;
 
-&lt;h3 id=&quot;section-3&quot;&gt;打开一个项目&lt;/h3&gt;
+&lt;h2 id=&quot;section-3&quot;&gt;打开一个项目&lt;/h2&gt;
 &lt;p&gt;使用ST2可以打开一个项目，这样我们就可以很方便的对一个项目进行编辑，修改了&lt;br /&gt;
 打开的项目文件会展示在左侧的&lt;code&gt;side bar&lt;/code&gt;&lt;br /&gt;
 当我们编辑某文件时，希望&lt;code&gt;Side bar&lt;/code&gt;在我们需要时候展示，在我们不需要的时候消失，你可以这样做&lt;/p&gt;
@@ -3366,7 +4173,8 @@ $ sudo umount dir
 
 &lt;p&gt;当然，你也可以使用鼠标进行选择，但是那样不可避免降低你的速度&lt;/p&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;模糊匹配&lt;/h3&gt;
+&lt;h2 id=&quot;section-4&quot;&gt;模糊匹配&lt;/h2&gt;
+
 &lt;p&gt;无论是Command Palette还是Goto Anything,他们都采用模糊匹配，故不需要输入全命令和全文件名&lt;br /&gt;
 例如:在文件shiluodechenai.c中查找func_word&lt;/p&gt;
 
@@ -3375,13 +4183,13 @@ $ sudo umount dir
 
 &lt;p&gt;甚至可能更短&lt;/p&gt;
 
-&lt;h3 id=&quot;package-control&quot;&gt;Package Control(扩展包管理器)&lt;/h3&gt;
+&lt;h2 id=&quot;package-control&quot;&gt;Package Control(扩展包管理器)&lt;/h2&gt;
 &lt;p&gt;用来管理（安装，卸载）插件，皮肤的管理器，和vim中Vundle差不多，不过看起来更简单&lt;br /&gt;
 默认不含有此管理器，我们需要自己手动安装&lt;/p&gt;
 
-&lt;h4 id=&quot;section-5&quot;&gt;安装&lt;/h4&gt;
+&lt;h3 id=&quot;section-5&quot;&gt;安装&lt;/h3&gt;
 
-&lt;h5 id=&quot;section-6&quot;&gt;手动版(复杂点)&lt;/h5&gt;
+&lt;h4 id=&quot;section-6&quot;&gt;手动版(复杂点)&lt;/h4&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -3398,7 +4206,7 @@ $ sudo umount dir
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h5 id=&quot;section-7&quot;&gt;自动版(保持网络，简单)&lt;/h5&gt;
+&lt;h4 id=&quot;section-7&quot;&gt;自动版(保持网络，简单)&lt;/h4&gt;
 
 &lt;p&gt;如果你按照上面的方法确实搞不定，&lt;br /&gt;
 可以试试按键盘 Ctrl+~ （数字1左边的按键）调出控制台，&lt;br /&gt;
@@ -3408,7 +4216,7 @@ $ sudo umount dir
 &lt;pre&gt;&lt;code&gt;import urllib2,os; pf=&#39;Package Control.sublime-package&#39;; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),&#39;wb&#39;).write(urllib2.urlopen(&#39;http://sublime.wbond.net/&#39;+pf.replace(&#39; &#39;,&#39;%20&#39;)).read()); print &#39;Please restart Sublime Text to finish installation&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-8&quot;&gt;使用&lt;/h4&gt;
+&lt;h3 id=&quot;section-8&quot;&gt;使用&lt;/h3&gt;
 
 &lt;p&gt;如果 Package Control 已经安装成功，&lt;br /&gt;
 那么 Ctrl+Shift+P 调用命令面板，我们就会找到一些以“Package Control:”开头的命令:&lt;/p&gt;
@@ -3425,7 +4233,7 @@ $ sudo umount dir
 
 &lt;p&gt;此外，你还可以&lt;a href=&quot;https://sublime.wbond.net/&quot;&gt;在这里看到 Web 版的扩展列表和详细的说明&lt;/a&gt; （这俩列表的数据应该是同步的)&lt;/p&gt;
 
-&lt;h4 id=&quot;section-9&quot;&gt;一些比较好的插件&lt;/h4&gt;
+&lt;h3 id=&quot;section-9&quot;&gt;一些比较好的插件&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Emmet&lt;/strong&gt;: 以前被称作为Zen Coding,如果你从事Web前端开发的话，对该插件一定不会陌生。&lt;br /&gt;
 它使用仿CSS选择器的语法来快速开发HTML和CSS,在一个扩展框中输入符合规范的表达式，它会动态生成相应的代码 ,或者直接在文本中使用表达式，按扩展键(Tab)进行扩展&lt;/p&gt;
@@ -3776,7 +4584,7 @@ B98FC99C 8FAC73EE D2B95564 DF450523
         </item>
 
         <item>
-                <title>Vim下fancy的插件</title>
+                <title>Vim 下的 fancy 插件</title>
                 <description>
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;简要声明&lt;/a&gt;&lt;/li&gt;
@@ -3843,26 +4651,27 @@ B98FC99C 8FAC73EE D2B95564 DF450523
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;简要声明&lt;/h3&gt;
+&lt;h2 id=&quot;section&quot;&gt;简要声明&lt;/h2&gt;
+
 &lt;p&gt;以下介绍的插件的安装，均使用&lt;code&gt;Vundle管理&lt;/code&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;taglist&quot;&gt;TagList&lt;/h3&gt;
+&lt;h2 id=&quot;taglist&quot;&gt;TagList&lt;/h2&gt;
 
-&lt;h4 id=&quot;section-1&quot;&gt;简述&lt;/h4&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;简述&lt;/h3&gt;
 
 &lt;p&gt;TagList是一个标签浏览器&lt;br /&gt;
 所谓标签，就是那些具有表示意义的标示符，像变量，函数名，宏等&lt;br /&gt;
 TagList通过一个简单窗口，展示了当前文件下的所有相关的标签&lt;br /&gt;
 &lt;code&gt;PS&lt;/code&gt;: &lt;strong&gt;TagsList依赖于ctags产生的tags文件&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;vundle&quot;&gt;添加到Vundle管理&lt;/h4&gt;
+&lt;h3 id=&quot;vundle&quot;&gt;添加到Vundle管理&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;Plugin &#39;vim-scripts/taglist.vim&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;vimrc&quot;&gt;.vimrc中的一些配置&lt;/h4&gt;
+&lt;h3 id=&quot;vimrc&quot;&gt;.vimrc中的一些配置&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;let Tlist_Ctags_Cmd=&#39;ctags&#39;         &quot;taglist依赖于ctags,设置ctags位置
 let Tlist_Use_Right_Window=0        &quot;窗口显示:1--右边，0--左边
@@ -3875,7 +4684,7 @@ let Tlist_Inc_Winwidth=0
 nmap &amp;lt;leader&amp;gt;tl :Tlist&amp;lt;CR&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-2&quot;&gt;使用&lt;/h4&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;使用&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -3900,19 +4709,19 @@ nmap &amp;lt;leader&amp;gt;tl :Tlist&amp;lt;CR&amp;gt;
 
 &lt;p&gt;原型结果会显示在Vim命令行&lt;/p&gt;
 
-&lt;h3 id=&quot;echofunc&quot;&gt;echofunc&lt;/h3&gt;
+&lt;h2 id=&quot;echofunc&quot;&gt;echofunc&lt;/h2&gt;
 
-&lt;h4 id=&quot;section-3&quot;&gt;简述&lt;/h4&gt;
+&lt;h3 id=&quot;section-3&quot;&gt;简述&lt;/h3&gt;
 
 &lt;p&gt;echofunc可以帮助我们在插入函数的时候,提示当前输入函数的原型&lt;br /&gt;
 提示结果显示在command line里&lt;/p&gt;
 
-&lt;h4 id=&quot;vundle-1&quot;&gt;添加到Vundle管理&lt;/h4&gt;
+&lt;h3 id=&quot;vundle-1&quot;&gt;添加到Vundle管理&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;Plugin &#39;mbbill/echofunc&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-4&quot;&gt;使用&lt;/h4&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;使用&lt;/h3&gt;
 
 &lt;p&gt;需要tags文件的支持, 并且在创建tags文件的时候要加选项”–fields=+lS”（OmniCppComplete创建的tag文件也能用）&lt;br /&gt;
 整个创建tags文件的命令如下:&lt;/p&gt;
@@ -3928,9 +4737,9 @@ nmap &amp;lt;leader&amp;gt;tl :Tlist&amp;lt;CR&amp;gt;
 &lt;p&gt;如果你在编译vim时加上了”+balloon_eval”特性&lt;br /&gt;
 那么当你把鼠标放在函数名上的时候会有一个tip窗口弹出, 该窗口中也会有函数的声明&lt;/p&gt;
 
-&lt;h3 id=&quot;winmanager&quot;&gt;WinManager&lt;/h3&gt;
+&lt;h2 id=&quot;winmanager&quot;&gt;WinManager&lt;/h2&gt;
 
-&lt;h4 id=&quot;section-5&quot;&gt;简述&lt;/h4&gt;
+&lt;h3 id=&quot;section-5&quot;&gt;简述&lt;/h3&gt;
 
 &lt;p&gt;WinManager是一个窗口管理器 &lt;br /&gt;
 在Vim中，通常使用其管理文件浏览器(netrw)和缓冲区(buffer)&lt;br /&gt;
@@ -3940,12 +4749,12 @@ nmap &amp;lt;leader&amp;gt;tl :Tlist&amp;lt;CR&amp;gt;
 netrw是标准的vim插件, 已经随vim一起安装进系统里了, 不需要我们自行下载安装。&lt;br /&gt;
 而Taglist我们刚刚已经安装完成了&lt;/p&gt;
 
-&lt;h4 id=&quot;vundle-2&quot;&gt;加入Vundle管理&lt;/h4&gt;
+&lt;h3 id=&quot;vundle-2&quot;&gt;加入Vundle管理&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;Plugin &#39;MwumLi/WinManager&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;vimrc-1&quot;&gt;.vimrc中的一些配置&lt;/h4&gt;
+&lt;h3 id=&quot;vimrc-1&quot;&gt;.vimrc中的一些配置&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;&quot; 设置我们要管理的插件
 let g:winManagerWindowLayout=&#39;FileExplorer|TagList&#39; 	&quot;FileExplorer和TagList同时在左边窗口显示
@@ -3957,7 +4766,7 @@ nmap wm :WMToggle&amp;lt;cr&amp;gt; 	&quot; 打开/关闭WinManager
 &lt;p&gt;个人觉得&lt;code&gt;let g:winManagerWindowLayout=&#39;FileExplorer,TagList&#39;&lt;/code&gt;看起来比较好点,大气&lt;br /&gt;
 虽然&lt;code&gt;let g:winManagerWindowLayout=&#39;FileExplorer|TagList&#39;&lt;/code&gt;可能看起来更像是一个IDE&lt;/p&gt;
 
-&lt;h4 id=&quot;section-6&quot;&gt;使用&lt;/h4&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;使用&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -3987,19 +4796,19 @@ nmap wm :WMToggle&amp;lt;cr&amp;gt; 	&quot; 打开/关闭WinManager
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;minibufexpl&quot;&gt;minibufexpl&lt;/h3&gt;
+&lt;h2 id=&quot;minibufexpl&quot;&gt;minibufexpl&lt;/h2&gt;
 
-&lt;h4 id=&quot;section-7&quot;&gt;简述&lt;/h4&gt;
+&lt;h3 id=&quot;section-7&quot;&gt;简述&lt;/h3&gt;
 
 &lt;p&gt;minibufexpl,一个缓冲区显示器，假如仅仅看它的效果，更像是浏览器的多个标签页&lt;br /&gt;
 这个往往在编辑多个文件时显示&lt;/p&gt;
 
-&lt;h4 id=&quot;vundle-3&quot;&gt;加入Vundle管理&lt;/h4&gt;
+&lt;h3 id=&quot;vundle-3&quot;&gt;加入Vundle管理&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;Plugin &#39;vim-scripts/minibufexpl.vim&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;vimrc-2&quot;&gt;.vimrc中的一些配置&lt;/h4&gt;
+&lt;h3 id=&quot;vimrc-2&quot;&gt;.vimrc中的一些配置&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;let g:miniBufExplMapWindowNavVim = 1    &quot; 按下Ctrl+h/j/k/l，可以切换到当前窗口的上下左右窗口
 let g:miniBufExplMapWindowNavArrows = 1 &quot; 按下Ctrl+箭头，可以切换到当前窗口的上下左右窗口
@@ -4007,48 +4816,48 @@ let g:miniBufExplMapCTabSwitchBufs = 1  &quot;Ubuntu不适用
 let g:miniBufExplModSelTarget = 1   &quot; 不要在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-8&quot;&gt;使用&lt;/h4&gt;
+&lt;h3 id=&quot;section-8&quot;&gt;使用&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;&#39;Ctrl + h/j/k/l&#39;	---&amp;gt;左/下/上/右窗口切换
 &#39;Ctrl + Arrow&#39;		---&amp;gt;same as &#39;Ctrl + h/j/k/l&#39;
 &#39;Tab&#39;				---&amp;gt;缓冲区间切换
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;minibufexpl-1&quot;&gt;minibufexpl引发的血案(窗口大小变化)&lt;/h3&gt;
+&lt;h2 id=&quot;minibufexpl-1&quot;&gt;minibufexpl引发的血案(窗口大小变化)&lt;/h2&gt;
 
 &lt;p&gt;在这之前，我们一切都感觉很好(真像一个IDE)&lt;br /&gt;
 但是在安装了minibufexpl后，我们的美好感觉破灭了(毕竟还不是IDE)&lt;br /&gt;
 文件浏览器的窗口显得异常小，在打开多个文件时，更小，哎，愁…&lt;br /&gt;
 还好，有解决办法，不过都不是很完美  a&lt;/p&gt;
 
-&lt;h4 id=&quot;vimrc-3&quot;&gt;在.vimrc进行设置&lt;/h4&gt;
+&lt;h3 id=&quot;vimrc-3&quot;&gt;在.vimrc进行设置&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;let g:bufExplorerMaxHeight=30
 let g:miniBufExplorerMoreThanOne=0 这样倒是可以解决问题，但是也引来一些新的问题(至于什么，你试试呗),所以果断启用  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-9&quot;&gt;设置快捷键&lt;/h4&gt;
+&lt;h3 id=&quot;section-9&quot;&gt;设置快捷键&lt;/h3&gt;
 
 &lt;p&gt;对WinManager设置快捷键,比如&lt;code&gt;nmap wm :WMToggle&amp;lt;cr&amp;gt;&lt;/code&gt;&lt;br /&gt;
 然后，我们只要在文件浏览器变小的时候，按动&lt;em&gt;两次wm&lt;/em&gt;即可(先关闭，在开启)&lt;br /&gt;
 这个方法还是可以接收的&lt;/p&gt;
 
-&lt;h4 id=&quot;tagsfiles&quot;&gt;使用之前的分开显示tags和files的方式&lt;/h4&gt;
+&lt;h3 id=&quot;tagsfiles&quot;&gt;使用之前的分开显示tags和files的方式&lt;/h3&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;powerline&quot;&gt;Powerline&lt;/h3&gt;
+&lt;h2 id=&quot;powerline&quot;&gt;Powerline&lt;/h2&gt;
 
-&lt;h4 id=&quot;section-10&quot;&gt;简述&lt;/h4&gt;
+&lt;h3 id=&quot;section-10&quot;&gt;简述&lt;/h3&gt;
 
 &lt;p&gt;Powerline,一个终极Vim状态栏工具&lt;/p&gt;
 
-&lt;h4 id=&quot;vundle-4&quot;&gt;添加到Vundle管理&lt;/h4&gt;
+&lt;h3 id=&quot;vundle-4&quot;&gt;添加到Vundle管理&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;Plugin &#39;Lokaltog/vim-powerline&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;vimrc-4&quot;&gt;.vimrc中的一些配置&lt;/h4&gt;
+&lt;h3 id=&quot;vimrc-4&quot;&gt;.vimrc中的一些配置&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;$HOME/.vimrc&lt;/code&gt;:&lt;/p&gt;
 
@@ -4058,11 +4867,11 @@ let g:Powerline_symbols = &#39;unicode&#39;
 set encoding=utf8
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;themes-and-colorschemes&quot;&gt;Themes and ColorSchemes&lt;/h4&gt;
+&lt;h3 id=&quot;themes-and-colorschemes&quot;&gt;Themes and ColorSchemes&lt;/h3&gt;
 
 &lt;p&gt;主题在目录&lt;code&gt;autoload/Powerline/Themes&lt;/code&gt;下,配色在&lt;code&gt;autoload/Powerline/Colorschemes&lt;/code&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;tmuxvim&quot;&gt;在tmux中的vim状态栏不颜色并不那么好看？&lt;/h4&gt;
+&lt;h3 id=&quot;tmuxvim&quot;&gt;在tmux中的vim状态栏不颜色并不那么好看？&lt;/h3&gt;
 
 &lt;p&gt;确保你在.tmux.conf中启用了256color:&lt;/p&gt;
 
@@ -4073,18 +4882,18 @@ set t_Co=256
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;markdown&quot;&gt;Markdown&lt;/h3&gt;
+&lt;h2 id=&quot;markdown&quot;&gt;Markdown&lt;/h2&gt;
 
-&lt;h4 id=&quot;section-11&quot;&gt;简述&lt;/h4&gt;
+&lt;h3 id=&quot;section-11&quot;&gt;简述&lt;/h3&gt;
 
 &lt;p&gt;为vim下.md文件设置语法高亮，规则匹配,方便md文档的撰写&lt;/p&gt;
 
-&lt;h4 id=&quot;vundle-5&quot;&gt;添加到Vundle管理&lt;/h4&gt;
+&lt;h3 id=&quot;vundle-5&quot;&gt;添加到Vundle管理&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;Plugin &#39;plasticboy/vim-markdown&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;vimrc-5&quot;&gt;.vimrc中的一些配置&lt;/h4&gt;
+&lt;h3 id=&quot;vimrc-5&quot;&gt;.vimrc中的一些配置&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;let g:vim_markdown_folding_disabled=1  			&quot;禁用折叠
 let g:vim_markdown_initial_foldlevel=1
@@ -4093,7 +4902,7 @@ let g:vim_markdown_initial_foldlevel=1
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-12&quot;&gt;一些默认快捷键&lt;/h4&gt;
+&lt;h3 id=&quot;section-12&quot;&gt;一些默认快捷键&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;code&gt;]]&lt;/code&gt;: go to next header. &lt;code&gt;&amp;lt;Plug&amp;gt;(Markdown_MoveToNextHeader)&lt;/code&gt;&lt;/li&gt;
@@ -4104,7 +4913,7 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
   &lt;li&gt;&lt;code&gt;]u&lt;/code&gt;: go to parent header (Up). &lt;code&gt;&amp;lt;Plug&amp;gt;(Markdown_MoveToParentHeader)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;with-&quot;&gt;生成目录 with ‘#’&lt;/h4&gt;
+&lt;h3 id=&quot;with-&quot;&gt;生成目录 with ‘#’&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;:Toc 	---&amp;gt;创建一个快速垂直窗口显示文档目录  
 :Toch	---&amp;gt;创建一个快速水平窗口显示文档目录  
@@ -4117,20 +4926,20 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 :Tocv	---&amp;gt;Same as `:Toc` for symmetry with `:Toch` and `Tocv`.   
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;fencview&quot;&gt;fencview&lt;/h3&gt;
+&lt;h2 id=&quot;fencview&quot;&gt;fencview&lt;/h2&gt;
 
-&lt;h4 id=&quot;section-13&quot;&gt;简述&lt;/h4&gt;
+&lt;h3 id=&quot;section-13&quot;&gt;简述&lt;/h3&gt;
 
 &lt;p&gt;不同系统，不同平台下，文件编码往往不太一样&lt;br /&gt;
 故在一个系统下为gb2312的文件，放在另一个系统下以utf-8的方式打开,往往会产生乱码&lt;br /&gt;
 好了，我(fencview)来了,fencview应运而生&lt;/p&gt;
 
-&lt;h4 id=&quot;vundle-6&quot;&gt;添加到Vundle管理&lt;/h4&gt;
+&lt;h3 id=&quot;vundle-6&quot;&gt;添加到Vundle管理&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;Plugin `Mwumli/fencview`  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-14&quot;&gt;使用&lt;/h4&gt;
+&lt;h3 id=&quot;section-14&quot;&gt;使用&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -4147,9 +4956,9 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;tohtml&quot;&gt;tohtml&lt;/h3&gt;
+&lt;h2 id=&quot;tohtml&quot;&gt;tohtml&lt;/h2&gt;
 
-&lt;h4 id=&quot;section-15&quot;&gt;简述&lt;/h4&gt;
+&lt;h3 id=&quot;section-15&quot;&gt;简述&lt;/h3&gt;
 
 &lt;p&gt;我们往往需要把我们的代码展示给别人看，但是直接copy代码，可能查看效果并不如意&lt;br /&gt;
 现在有这么一个插件，可以把你的代码转化成html,并且如在你的vim中格式那样显示(&lt;em&gt;代码高亮&lt;/em&gt;)&lt;br /&gt;
@@ -4158,12 +4967,12 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
 
 &lt;p&gt;此插件已经内置在vim的最新版本，故不需要手动安装&lt;/p&gt;
 
-&lt;h4 id=&quot;ubuntu&quot;&gt;ubuntu下的位置&lt;/h4&gt;
+&lt;h3 id=&quot;ubuntu&quot;&gt;ubuntu下的位置&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;/usr/share/vim/vim74/autoload/tohtml.vim  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-16&quot;&gt;使用&lt;/h4&gt;
+&lt;h3 id=&quot;section-16&quot;&gt;使用&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -4478,17 +5287,17 @@ Vim 并不具备检验密码正确性的机制 (这一点使得破译密码更�
         </item>
 
         <item>
-                <title>ctags</title>
+                <title>ctags 在 Vim 中的使用</title>
                 <description>
-&lt;h3 id=&quot;ctags&quot;&gt;Ctags&lt;/h3&gt;
+&lt;h2 id=&quot;ctags&quot;&gt;Ctags&lt;/h2&gt;
 
-&lt;h4 id=&quot;section&quot;&gt;简述&lt;/h4&gt;
+&lt;h3 id=&quot;section&quot;&gt;简述&lt;/h3&gt;
 
 &lt;p&gt;Ctags,为源码建立标签文件&lt;code&gt;tags&lt;/code&gt; ,以帮助在源文件中定位 &lt;br /&gt;
 vim往往可以通过其他插件实现函数，变量等的查找，或者实现源码间切换&lt;br /&gt;
 而这些插件依赖于&lt;code&gt;tags&lt;/code&gt;文件&lt;/p&gt;
 
-&lt;h4 id=&quot;section-1&quot;&gt;安装&lt;/h4&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;安装&lt;/h3&gt;
 
 &lt;p&gt;Ubuntu上可以通过一下命令安装:&lt;/p&gt;
 
@@ -4497,7 +5306,7 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
 
 &lt;p&gt;其他平台，待续&lt;/p&gt;
 
-&lt;h4 id=&quot;tags&quot;&gt;tags中对象列表&lt;/h4&gt;
+&lt;h3 id=&quot;tags&quot;&gt;tags中对象列表&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;用#define定义的宏  
 枚举型变量的值  
@@ -4508,7 +5317,7 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
 类、结构和联合中成员变量或函数  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;tags-1&quot;&gt;用参数生成我们需要的tags文件　　&lt;/h4&gt;
+&lt;h3 id=&quot;tags-1&quot;&gt;用参数生成我们需要的tags文件　　&lt;/h3&gt;
 
 &lt;p&gt;具体详细的参数，就不再写了，直接使用下面这条略显完备commmand:&lt;/p&gt;
 
@@ -4529,7 +5338,7 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
 	以要求ctags对同一个语法元素再记一行，这样可以保证在VIM中多个同名函数可以通过路径不同来区分。
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-2&quot;&gt;插件和使用&lt;/h4&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;插件和使用&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -4553,35 +5362,35 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
         </item>
 
         <item>
-                <title>Vim插件管理及安装</title>
+                <title>使用 Vundle 对 Vim 插件进行管理及安装</title>
                 <description>
 &lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#vim---vundle&quot; id=&quot;markdown-toc-vim---vundle&quot;&gt;Vim插件管理插件—&amp;gt;Vundle&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#github&quot; id=&quot;markdown-toc-github&quot;&gt;Github地址&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;安装&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;配置&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#vundle&quot; id=&quot;markdown-toc-vundle&quot;&gt;四种添加插件到Vundle管理的方式&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#vundle-1&quot; id=&quot;markdown-toc-vundle-1&quot;&gt;使用Vundle安装插件&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#vundle-2&quot; id=&quot;markdown-toc-vundle-2&quot;&gt;Vundle的其他使用&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#github&quot; id=&quot;markdown-toc-github&quot;&gt;Github地址&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vundle-&quot; id=&quot;markdown-toc-vundle-&quot;&gt;Vundle 的安装&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vundle--vimrc-&quot; id=&quot;markdown-toc-vundle--vimrc-&quot;&gt;Vundle 在 .vimrc 的配置&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim--vundle-&quot; id=&quot;markdown-toc-vim--vundle-&quot;&gt;将 Vim 插件纳入 Vundle 的管理&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vundle--1&quot; id=&quot;markdown-toc-vundle--1&quot;&gt;使用 Vundle 安装插件&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vundle--2&quot; id=&quot;markdown-toc-vundle--2&quot;&gt;Vundle 的其他操作&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;vim---vundle&quot;&gt;Vim插件管理插件—&amp;gt;Vundle&lt;/h2&gt;
+&lt;p&gt;Vundle – Vim 的一个强大的管理插件的插件 &lt;br /&gt;
+可以很方便地管理 Vim 其他插件的安装、卸载和禁用&lt;/p&gt;
 
-&lt;h3 id=&quot;github&quot;&gt;Github地址&lt;/h3&gt;
+&lt;p&gt;用起来很简单, 只需要一丁点的配置&lt;/p&gt;
+
+&lt;h2 id=&quot;github&quot;&gt;Github地址&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;https://github.com/gmarik/vundle.git 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;安装&lt;/h3&gt;
+&lt;h2 id=&quot;vundle-&quot;&gt;Vundle 的安装&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;$ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;配置&lt;/h3&gt;
+&lt;h2 id=&quot;vundle--vimrc-&quot;&gt;Vundle 在 .vimrc 的配置&lt;/h2&gt;
 
-&lt;p&gt;把下面这些放在你的&lt;code&gt;.vimrc&lt;/code&gt;中去使用&lt;code&gt;Vundle&lt;/code&gt;&lt;br /&gt;
+&lt;p&gt;把下面这些放在你的 &lt;code&gt;.vimrc&lt;/code&gt; 中去使用 &lt;code&gt;Vundle&lt;/code&gt;&lt;br /&gt;
 移除下面不必要的插件，他们仅仅是为了演示效果&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;set nocompatible              &quot; be iMproved, required
@@ -4624,12 +5433,14 @@ filetype plugin indent on    &quot; required
 &quot; Put your non-Plugin stuff after this line
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;vundle&quot;&gt;四种添加插件到Vundle管理的方式&lt;/h3&gt;
+&lt;h2 id=&quot;vim--vundle-&quot;&gt;将 Vim 插件纳入 Vundle 的管理&lt;/h2&gt;
+
+&lt;p&gt;有 4 种方式, 下面一一列举 :&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;指定Github中用户仓库的插件，使用“用户名/插件名称”的方式指定&lt;br /&gt;
- 插件名中的空格使用“-”代替&lt;/p&gt;
+    &lt;p&gt;指定 Github 中用户仓库的插件，使用“用户名/插件名称”的方式指定&lt;br /&gt;
+插件名中的空格使用“-”代替&lt;/p&gt;
 
     &lt;pre&gt;&lt;code&gt; Plugin &#39;tpope/vim-fugitive&#39;
 &lt;/code&gt;&lt;/pre&gt;
@@ -4641,9 +5452,8 @@ filetype plugin indent on    &quot; required
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;指定Github中vim-scripts仓库中的插件&lt;br /&gt;
- 即在http://vim-scripts.org/vim/scripts.html列出的插件&lt;br /&gt;
- 直接指定插件名称即可&lt;/p&gt;
+    &lt;p&gt;指定 Github 中 &lt;a href=&quot;http://vim-scripts.org/vim/scripts.html&quot;&gt;vim-scripts 仓库&lt;/a&gt;的插件
+直接指定插件名称即可&lt;/p&gt;
 
     &lt;pre&gt;&lt;code&gt; Plugin &#39;L9&#39;
 &lt;/code&gt;&lt;/pre&gt;
@@ -4654,24 +5464,24 @@ filetype plugin indent on    &quot; required
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;指定非Github的Git仓库的插件，需要使用git地址&lt;/p&gt;
+    &lt;p&gt;指定非 Github 的 Git 仓库的插件，需要使用 git 地址&lt;/p&gt;
 
     &lt;pre&gt;&lt;code&gt; Plugin &#39;git://git.wincent.com/command-t.git&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;指定本地Git仓库中的插件&lt;/p&gt;
+    &lt;p&gt;指定本地 Git 仓库中的插件&lt;/p&gt;
 
     &lt;pre&gt;&lt;code&gt; Plugin &#39;file:///home/gmarik/path/to/plugin&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;vundle-1&quot;&gt;使用Vundle安装插件&lt;/h3&gt;
+&lt;h2 id=&quot;vundle--1&quot;&gt;使用 Vundle 安装插件&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;启动vim,并且运行:&lt;/p&gt;
+    &lt;p&gt;启动 vim ,并且运行:&lt;/p&gt;
 
     &lt;pre&gt;&lt;code&gt; :PluginInstall
 &lt;/code&gt;&lt;/pre&gt;
@@ -4684,11 +5494,11 @@ filetype plugin indent on    &quot; required
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;vundle-2&quot;&gt;Vundle的其他使用&lt;/h3&gt;
+&lt;h2 id=&quot;vundle--2&quot;&gt;Vundle 的其他操作&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;预览模式列出已配置的Plugins&lt;/p&gt;
+    &lt;p&gt;预览模式列出已配置的 Plugins&lt;/p&gt;
 
     &lt;pre&gt;&lt;code&gt; :PluginList          - list configured plugins
 &lt;/code&gt;&lt;/pre&gt;
@@ -4696,8 +5506,8 @@ filetype plugin indent on    &quot; required
   &lt;li&gt;
     &lt;p&gt;安装(更新)插件&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; :PluginInstall(!)    - install plugins
- :PluginInstall!		 - update all plugins
+    &lt;pre&gt;&lt;code&gt; :PluginInstall(!)	- install plugins
+ :PluginInstall!		- update all plugins
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -5133,7 +5943,7 @@ filetype plugin indent on    &quot; required
 
 &lt;h2 id=&quot;section&quot;&gt;编写配置文件&lt;/h2&gt;
 
-&lt;p&gt;vim用户自定义配置文件$(HOME)/.vimrc(若没有,请自行创建)&lt;br /&gt;
+&lt;p&gt;vim用户自定义配置文件&lt;code&gt;$(HOME)/.vimrc&lt;/code&gt;(若没有,请自行创建)&lt;br /&gt;
 vim系统级配置文件/usr/share/vim/vimrc&lt;br /&gt;
 而我们一般只修改~/.vimrc&lt;/p&gt;
 
