@@ -1,7 +1,7 @@
 book-name = micro_cmd		#书名和分支名
 book-dir = book-$(book-name)
 html-master = html-hub
-commit-m = "update book cmd"
+commit-m = "update book_cmd"
 
 ## 本地安装 book.json 中配置的插件
 plugin:  
@@ -13,9 +13,7 @@ site:
 
 ## push html to github
 move_html:
-	echo ../$(html-master)/$(book-dir)
-	echo $(book-dir)\/*
-#	mkdir -p ../$(html-master)/$(book-dir) && cp -Ruv $(book-dir)/* ../$(html-master)/$(book-dir)
+	mkdir -p ../$(html-master)/$(book-dir) && cp -Ruv $(book-dir) ../$(html-master)
 
 ##  push book to github
 push:
