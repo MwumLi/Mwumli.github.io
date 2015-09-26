@@ -85,6 +85,10 @@ SSH 隧道有三种类型 :
    2. 修改配置文件(`/etc/proxychains.conf`)的 `[ProxyList]` 为自己的代理 : `socks4 127.0.0.1 7070`
    3. 让程序使用代理 : `proxychains program-name`
 
+3. 可以使用 `curl` 进行下载验证  
+
+		$ curl --sock5 localhost:7070 download-link
+
 ## 本地端口转发
 
 ### 假设
@@ -188,9 +192,10 @@ SSH 隧道有三种类型 :
    * 或者在命令末尾加上一个简单的命令 : `sleep 30`  
 	
 * `-n` -- 重定向标准输入到 `/dev/null`(阻止从标准输入读)
-	
+* `-o ServerAliveInterval=60` -- 让 SSH 每隔一段时间发送一些消息,避免隧道关闭 `Write failed: Broken pipe`	
+* `-v` -- 打印调试信息
 
-		ssh -qTfnN -D 7070 xxx@yyy.com	//ssh 后台端口转发
+		ssh -qTfnN -D 7070 xxx@yyy.com	//ssh 后台动态端口转发
 
 
 ## 相关命令  
@@ -207,6 +212,5 @@ SSH 隧道有三种类型 :
 4. [readsocks](https://github.com/darkk/redsocks) -- Linux
 5. [tsocks](http://tsocks.sourceforge.net/) -- Linux -- 全局代理
 6. [Proxy SwitchySharp](https://chrome.google.com/webstore/detail/proxy-switchysharp/dpplabbmogkhghncfbfdeeokoefdjegm?utm_source=chrome-app-launcher-info-dialog) -- chrome
-
-
+7. `curl` 支持 socks4/SOCKS5 等代理下载  -- 太棒了, 命令行用起来很方便  
 

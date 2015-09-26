@@ -116,8 +116,6 @@ dt {
 img {
     border: none;
 	max-width: 100%;
-//	width: 800px;
-//	height: 400px;
 }
 
 code {
@@ -145,24 +143,17 @@ blockquote, pre {
 
 }
 blockquote {
-    background:  rgba(40, 158, 137, 0.48);
-    border: 1px solid rgba(230,0,20,0.2);
-	margin: 0 30px;
+    background: #13313C;
+	border: 2px dotted rgb(84, 84, 72);
+	border: 2px dotted rgba(214, 203, 29, 0.2);
+	color: #D0D6B9;
+}
 
-}
-blockquote:hover {
-	background: rgba(40, 158, 176, 0.5);
-	margin: 0 20px;
-	color: rgb(247, 221, 23)
-}
 pre:hover {
-//    color: #eee;
-//    background: rgba(255,30,120,0.25);
 	 border: 1.5px solid rgba(14, 139, 125, 1);
 }
 
 pre {
-//    border-left: 1px solid #c26;
     margin-left: 1em;
     padding: 0.4em 0.8em;
     overflow-x: auto;
