@@ -9,7 +9,7 @@ plugin:
 
 ## 生成网站
 site:
-	gitbook build . $(book-dir)
+	gitbook build . $(book-dir) 
 
 ## push html to github
 move_html:
@@ -21,7 +21,7 @@ push:
 
 ## 本地服务  
 serve:
-	gitbook serve
+	gitbook serve --port 4040
 
 ## 初始化书籍结构
 init:
