@@ -1,7 +1,7 @@
 book-name = micro_puzzles		#书名和分支名
 book-dir = book-$(book-name)
 html-master = html-hub
-commit-m = "update book micro_puzzles"
+commit-m = "update book "$(book-name)
 
 ## 本地安装 book.json 中配置的插件
 plugin:  
@@ -9,7 +9,7 @@ plugin:
 
 ## 生成网站
 site:
-	gitbook build . $(book-dir)
+	gitbook build . $(book-dir) 
 
 ## push html to github
 move_html:
@@ -21,7 +21,7 @@ push:
 
 ## 本地服务  
 serve:
-	gitbook serve
+	gitbook serve --port 4040
 
 ## 初始化书籍结构
 init:
