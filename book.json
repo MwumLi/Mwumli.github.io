@@ -1,0 +1,18 @@
+{
+	"gitbook" : "2.2.0",
+	"language" : "cn",
+	"links" : {
+		"sidebar" : {
+			"倘若微小" : "http://www.ifmicro.com/"
+		}
+	},
+	"styles" : {
+		"website": "assets/css/myStyle.css"
+	},
+	"plugins" : ["disqus","maxiang"],
+	"pluginsConfig" : {
+		"disqus" : {
+			"shortName" : "ifmicro"
+		}
+	}
+ }
