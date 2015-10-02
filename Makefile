@@ -1,7 +1,7 @@
 book-name = micro_puzzles		#书名和分支名
 book-dir = book-$(book-name)
 html-master = html-hub
-commit-m = "update book micro_puzzles"
+commit-m = "update book "$(book-name)
 
 ## 本地安装 book.json 中配置的插件
 plugin:  
