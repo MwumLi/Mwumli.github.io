@@ -5,9 +5,9 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>介绍 | 微尘的问题集</title>
+        <title>为用户增加 sudo 权限 | 微尘的问题集</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="沧海无垠，学海无涯，微尘一枚以有限探究无限，疑惑滋生...">
+        <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
         
         
@@ -15,24 +15,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
-        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
         
-    <link rel="stylesheet" href="gitbook/style.css">
+    <link rel="stylesheet" href="../../gitbook/style.css">
     
         
-        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-maxiang/maxiang.css">
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-maxiang/maxiang.css">
         
     
     
-        <link rel="stylesheet" href="./assets/css/myStyle.css">
+        <link rel="stylesheet" href="../../assets/css/myStyle.css">
     
 
         
     
     
-    <link rel="next" href="./puzzles/web-font-end/index.html" />
     
+    <link rel="prev" href="../../puzzles/linux/index.html" />
     
 
         <!-- head:end -->
@@ -40,7 +40,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="0" data-basepath="." data-revision="Fri Oct 02 2015 13:36:52 GMT+0000 (UTC)">
+    <div class="book" data-level="2.1" data-basepath="../.." data-revision="Fri Oct 02 2015 13:36:52 GMT+0000 (UTC)">
     
 
 <div class="book-summary">
@@ -64,10 +64,10 @@
 
         
     
-        <li class="chapter active" data-level="0" data-path="index.html">
+        <li class="chapter " data-level="0" data-path="index.html">
             
                 
-                    <a href="./index.html">
+                    <a href="../../index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -80,7 +80,7 @@
         <li class="chapter " data-level="1" data-path="puzzles/web-font-end/index.html">
             
                 
-                    <a href="./puzzles/web-font-end/index.html">
+                    <a href="../../puzzles/web-font-end/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -95,7 +95,7 @@
         <li class="chapter " data-level="2" data-path="puzzles/linux/index.html">
             
                 
-                    <a href="./puzzles/linux/index.html">
+                    <a href="../../puzzles/linux/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -108,10 +108,10 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1" data-path="puzzles/linux/add_sudo_permission.html">
+        <li class="chapter active" data-level="2.1" data-path="puzzles/linux/add_sudo_permission.html">
             
                 
-                    <a href="./puzzles/linux/add_sudo_permission.html">
+                    <a href="../../puzzles/linux/add_sudo_permission.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -223,7 +223,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" >微尘的问题集</a>
+        <a href="../../" >微尘的问题集</a>
     </h1>
 </div>
 
@@ -233,9 +233,29 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="%E5%BE%AE%E5%B0%98%E7%9A%84%E9%97%AE%E9%A2%98%E9%9B%86">&#x5FAE;&#x5C18;&#x7684;&#x95EE;&#x9898;&#x96C6;</h2>
-<p>&#x6CA7;&#x6D77;&#x65E0;&#x57A0;&#xFF0C;&#x5B66;&#x6D77;&#x65E0;&#x6DAF;&#xFF0C;&#x5FAE;&#x5C18;&#x4E00;&#x679A;<br>&#x4EE5;&#x6709;&#x9650;&#x63A2;&#x7A76;&#x65E0;&#x9650;&#xFF0C;&#x7591;&#x60D1;&#x6ECB;&#x751F;...</p>
-<p>&#x8FD9;&#x91CC;&#x8BB0;&#x5F55;&#x4E00;&#x4E9B;&#x5B66;&#x4E60;&#x8FC7;&#x7A0B;&#x9047;&#x5230;&#x95EE;&#x9898;&#x548C;&#x89E3;&#x51B3;&#x529E;&#x6CD5;  </p>
+                        <h1 id="%E4%B8%BA%E7%94%A8%E6%88%B7%E5%A2%9E%E5%8A%A0-sudo-%E6%9D%83%E9%99%90">&#x4E3A;&#x7528;&#x6237;&#x589E;&#x52A0; sudo &#x6743;&#x9650;</h1>
+<p>2015-10-02 12:24:42 by Mwumli</p>
+<hr>
+<p>&#x8BA9;&#x666E;&#x901A;&#x7528;&#x6237;&#x5728;&#x67D0;&#x4E9B;&#x65F6;&#x523B;&#x53EF;&#x4EE5;&#x62E5;&#x6709;&#x8D85;&#x7EA7;&#x7528;&#x6237;&#x7684;&#x6743;&#x9650;&#x53BB;&#x505A;&#x67D0;&#x4E9B;&#x4E8B;&#x60C5;<br>&#x9700;&#x8981;&#x4E3A;&#x666E;&#x901A;&#x7528;&#x6237;&#x589E;&#x52A0; <code>sudo</code> &#x6743;&#x9650;  </p>
+<p>&#x5047;&#x8BBE;&#x7528;&#x6237;&#x540D;&#x4E3A; : <code>hello</code>  </p>
+<p><strong>&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;</strong> : </p>
+<ol>
+<li><p>&#x4FEE;&#x6539; <code>/etc/sudoers</code> &#x6587;&#x4EF6;   </p>
+<ol>
+<li>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; : <code>vim /etc/sudoers</code><br>&#x6216;&#x8005;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5185;&#x7F6E;&#x547D;&#x4EE4; : <code>visudo</code>  </li>
+<li>&#x5728; <code>root ALL=(ALL) ALL</code> &#x4E4B;&#x540E;&#x6DFB;&#x52A0; : <code>hello ALL=(ALL) ALL</code></li>
+</ol>
+<p>&#x5982;&#x679C;&#x8F6F;&#x4EF6;&#x5347;&#x7EA7;, <code>/etc/sudoers</code> &#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x8986;&#x76D6;&#x6389;, &#x6240;&#x4EE5;&#x6839;&#x636E;&#x4F60;&#x7684;&#x60C5;&#x51B5;&#x614E;&#x91CD;&#x4F7F;&#x7528;  </p>
+</li>
+<li><p>&#x5728; <code>/etc/sudoers.d/</code> &#x76EE;&#x5F55;&#x6DFB;&#x52A0;&#x7528;&#x6237; </p>
+<ol>
+<li>&#x65B0;&#x5EFA;&#x6587;&#x4EF6; <code>/etc/sudoers.d/hello</code>  </li>
+<li>&#x4F7F;&#x7528; <code>chmod</code> &#x4FEE;&#x6539;&#x6587;&#x4EF6;&#x6743;&#x9650;&#x4E3A; <code>0440</code>  </li>
+<li>&#x5728;&#x6B64;&#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0; : <code>hello ALL=(ALL) ALL</code></li>
+</ol>
+<p>&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#x662F;&#x4E2A;&#x597D;&#x7684;&#x4E60;&#x60EF;, &#x6709;&#x70B9;&#x6A21;&#x5757;&#x5316;&#x7684;&#x611F;&#x89C9;  </p>
+</li>
+</ol>
 
                     
                     </section>
@@ -246,21 +266,21 @@
         </div>
 
         
+        <a href="../../puzzles/linux/index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Linux 系统"><i class="fa fa-angle-left"></i></a>
         
-        <a href="./puzzles/web-font-end/index.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Web前端"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
 
         
-<script src="gitbook/app.js"></script>
+<script src="../../gitbook/app.js"></script>
 
     
-    <script src="gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    <script src="../../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
     
 
     
-    <script src="gitbook/plugins/gitbook-plugin-maxiang/maxiang.js"></script>
+    <script src="../../gitbook/plugins/gitbook-plugin-maxiang/maxiang.js"></script>
     
 
 <script>
