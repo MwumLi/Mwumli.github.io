@@ -52,8 +52,7 @@ title: 微尘
 
 [^iryt]:一种新的行走方式，据说可以逆转时空...
 
-* [明无梦][Susu]
-* [latelan][ZhangLingjun]
+* [明无梦][Susu] 
 
 [Susu]:http://www.dreamxu.com/ "明无梦"
-[ZhangLingjun]:http://latelan.github.io "latelan's blog"
+
