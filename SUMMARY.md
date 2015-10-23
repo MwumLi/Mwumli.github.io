@@ -4,4 +4,6 @@
 * [清晨健身房中的仁孝](memory_360/renxiao_health.md)
 * [角落里孤单的亚君](memory_360/yajun_lonely.md)
 * [酒桌上的大彬](memory_360/dabin_cooperation.md)
+* [Happy到爆](memory_360/happy_more.md)
+* [服务端测试四人组](memory_360/taoge_generous.md)
 

@@ -1,4 +1,4 @@
-book-name = micro_puzzles		#书名和分支名
+book-name = micro_memory360		#书名和分支名
 book-dir = book-$(book-name)
 html-master = html-hub
 commit-m = "update book "$(book-name)
