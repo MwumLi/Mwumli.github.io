@@ -13,7 +13,7 @@ site:
 
 ## push html to github
 move_html:
-	mkdir -p ../$(html-master)/$(book-dir) && cp -Ruv $(book-dir) ../$(html-master)
+	mkdir -p ../$(html-master)/$(book-dir) && cp -Rfv $(book-dir) ../$(html-master)
 
 ##  push book to github
 push:

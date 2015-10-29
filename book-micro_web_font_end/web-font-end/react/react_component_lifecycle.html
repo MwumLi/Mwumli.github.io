@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>JavaScript | 微尘的 Web 前端之旅</title>
+        <title>组件的声明周期 | 微尘的 Web 前端之旅</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -31,10 +31,10 @@
         
     
     
-    <link rel="next" href="../../web-font-end/js/quick_start.html" />
+    <link rel="next" href="../../web-font-end/react/react_form_event.html" />
     
     
-    <link rel="prev" href="../../index.html" />
+    <link rel="prev" href="../../web-font-end/react/react_component_state.html" />
     
 
         <!-- head:end -->
@@ -42,7 +42,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
+    <div class="book" data-level="2.3.3" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -79,7 +79,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1" data-path="web-font-end/js/index.html">
+        <li class="chapter " data-level="1" data-path="web-font-end/js/index.html">
             
                 
                     <a href="../../web-font-end/js/index.html">
@@ -489,7 +489,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3.3" data-path="web-font-end/react/react_component_lifecycle.html">
+        <li class="chapter active" data-level="2.3.3" data-path="web-font-end/react/react_component_lifecycle.html">
             
                 
                     <a href="../../web-font-end/react/react_component_lifecycle.html">
@@ -664,18 +664,84 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="javascript">JavaScript</h1>
-<p>2015-09-28 01:55:40 by MwumLi</p>
+                        <h1 id="%E7%BB%84%E4%BB%B6%E7%9A%84%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F">&#x7EC4;&#x4EF6;&#x7684;&#x58F0;&#x660E;&#x5468;&#x671F;</h1>
+<p>2015-10-27 16:48:56 by MwumLi</p>
 <hr>
-<ol>
-<li><p>1995 &#x5E74;, &#x7F51;&#x666F;&#x516C;&#x53F8;&#x7684; Brendan Eich &#x82B1;&#x4E86; 10 &#x5929;&#x8BBE;&#x8BA1;&#x51FA; JavaScript &#x8BED;&#x8A00;  </p>
+<p>&#x5B98;&#x65B9;&#x6587;&#x6863; : <a href="https://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle" target="_blank">https://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle</a>  </p>
+<p>&#x7EC4;&#x4EF6;&#x7684;&#x58F0;&#x660E;&#x5468;&#x671F;&#x5206;&#x6210;&#x4E09;&#x4E2A;&#x72B6;&#x6001;&#x4EE5;&#x53CA;&#x5404;&#x72B6;&#x6001;&#x4E0B;&#x7684;&#x65B9;&#x6CD5; :</p>
+<ul>
+<li><p><code>Mounting</code> : &#x7EC4;&#x4EF6;&#x5DF2;&#x63D2;&#x5165;&#x771F;&#x5B9E; DOM  </p>
+<ul>
+<li><code>getInitialState()</code> : &#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;&#x72B6;&#x6001;  </li>
+<li><code>componentWillMount()</code>  </li>
+<li><code>componentDidMount()</code>  </li>
+</ul>
 </li>
-<li><p>&#x4E3A;&#x4E86;&#x8BA9; JavaScript &#x6210;&#x4E3A;&#x5168;&#x7403;&#x6807;&#x51C6;, &#x51E0;&#x4E2A;&#x516C;&#x53F8;&#x8054;&#x5408; ECMA &#x7EC4;&#x7EC7;&#x5B9A;&#x5236;&#x4E86; JavaScript &#x8BED;&#x8A00;&#x7684;&#x6807;&#x51C6;, &#x88AB;&#x79F0;&#x4E3A; ECMAScript &#x6807;&#x51C6;<br>&#x56E0;&#x6B64;, ECMAScript &#x662F;&#x4E00;&#x79CD;&#x8BED;&#x8A00;&#x6807;&#x51C6;, &#x800C; JavaScript &#x662F;&#x5176;&#x7684;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;  </p>
+<li><p><code>Updating</code> : &#x6B63;&#x5728;&#x88AB;&#x91CD;&#x65B0;&#x6E32;&#x67D3;  </p>
+<ul>
+<li><code>componentWillReceiveProps(object nextProps)</code> : &#x5DF2;&#x52A0;&#x8F7D;&#x7EC4;&#x4EF6;&#x6536;&#x5230;&#x65B0;&#x7684;&#x53C2;&#x6570;&#x65F6;&#x8C03;&#x7528;  </li>
+<li><code>shouldComponentUpdate(object nextProps, object nextState)</code> : &#x7EC4;&#x4EF6;&#x5224;&#x65AD;&#x662F;&#x5426;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x65F6;&#x8C03;&#x7528;<br>&#x5047;&#x5982;&#x8FD4;&#x56DE; false, &#x5219;&#x4E0D;&#x66F4;&#x65B0;<br>&#x5982;&#x679C;&#x8FD4;&#x56DE; true, &#x5219;&#x66F4;&#x65B0; UI  </li>
+<li><code>componentWillUpdate(object nextProps, object nextState)</code><br>&#x4E0D;&#x80FD;&#x5728;&#x8FD9;&#x513F;&#x8C03;&#x7528; <code>this.setState()</code>  </li>
+<li><code>componentDidUpdate(object prevProps, object prevState)</code>  </li>
+</ul>
 </li>
-<li><p>&#x6700;&#x65B0;&#x7248;&#x7684; ECMAScript 6(&#x7B80;&#x79F0; ES6)&#x6807;&#x51C6;&#x5728; 2015&#x5E74; 6&#x6708;&#x53D1;&#x5E03;<br>JavaScript &#x7684;&#x7248;&#x672C;&#x5B9E;&#x9645;&#x4E0A;&#x8BF4;&#x5B83;&#x5B9E;&#x73B0;&#x4E86; ECMAScript &#x6807;&#x51C6;&#x7684;&#x54EA;&#x4E2A;&#x7248;&#x672C;  </p>
+<li><p><code>Unmounting</code> : &#x7EC4;&#x4EF6;&#x5DF2;&#x4ECE;&#x771F;&#x5B9E; DOM &#x4E2D;&#x79FB;&#x9664;  </p>
+<ul>
+<li><code>componentWillUnmount</code><br>&#x6E05;&#x7406;&#x4EE3;&#x7801;&#x5E94;&#x8BE5;&#x653E;&#x5728;&#x8FD9;&#x513F;  </li>
+</ul>
 </li>
-</ol>
+</ul>
+<p>&#x4E0A;&#x9762;&#x65B9;&#x6CD5;&#x4E2D;&#x6709;&#x4E24;&#x79CD;&#x7279;&#x522B;&#x7684;&#x51FD;&#x6570; :  </p>
+<blockquote>
+<p><code>will</code> &#x51FD;&#x6570;&#x5728;&#x8FDB;&#x5165;&#x72B6;&#x6001;&#x4E4B;&#x524D;&#x8C03;&#x7528;<br><code>did</code> &#x51FD;&#x6570;&#x5728;&#x8FDB;&#x5165;&#x72B6;&#x6001;&#x4E4B;&#x540E;&#x8C03;&#x7528;  </p>
+</blockquote>
+<h2 id="%E4%B8%80%E4%BB%BD%E7%AE%80%E5%8D%95%E7%9A%84%E4%BB%A3%E7%A0%81">&#x4E00;&#x4EFD;&#x7B80;&#x5355;&#x7684;&#x4EE3;&#x7801;</h2>
+<pre><code>&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/babel&quot;&gt;
+var i=1;
+  var Hello = React.createClass({
+    getInitialState: function () {
+      return {
+        opacity: 1.0
+      };
+    },
 
+    componentDidMount: function () {
+      console.log(&quot;did mount&quot;);
+      this.timer = setInterval(function () {
+        var opacity = this.state.opacity;
+        opacity -= .05;
+        if (opacity &lt; 0.1) {
+          opacity = 1.0;
+        }
+        this.setState({
+          opacity: opacity
+        });
+      }.bind(this), 1000);
+    },
+    componentWillMount: function() {
+      console.log(&quot;will mount&quot;);
+    },
+    componentWillUpdate: function(nextProps, nextState){
+      console.log(&quot;will update&quot;);
+    },
+    componentDidUpdate: function(nextProps, nextState ){
+      console.log(&quot;did update&quot;);
+    },        
+    render: function () {
+      return (
+        &lt;div style={{opacity: this.state.opacity}}&gt;
+          Hello {this.props.name}
+        &lt;/div&gt;
+      );
+    }
+  });
+
+  ReactDOM.render(
+    &lt;Hello name=&quot;world&quot;/&gt;,
+    document.getElementById(&quot;example&quot;)
+  );
+</code></pre>
                     
                     </section>
                 
@@ -685,10 +751,10 @@
         </div>
 
         
-        <a href="../../index.html" class="navigation navigation-prev " aria-label="Previous page: 介绍"><i class="fa fa-angle-left"></i></a>
+        <a href="../../web-font-end/react/react_component_state.html" class="navigation navigation-prev " aria-label="Previous page: 组件状态"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../web-font-end/js/quick_start.html" class="navigation navigation-next " aria-label="Next page: 快速开始"><i class="fa fa-angle-right"></i></a>
+        <a href="../../web-font-end/react/react_form_event.html" class="navigation navigation-next " aria-label="Next page: 表单与事件"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

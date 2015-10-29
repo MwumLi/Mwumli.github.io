@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>JavaScript | 微尘的 Web 前端之旅</title>
+        <title>组件 | 微尘的 Web 前端之旅</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -31,10 +31,10 @@
         
     
     
-    <link rel="next" href="../../web-font-end/js/quick_start.html" />
+    <link rel="next" href="../../web-font-end/react/react_component_prop.html" />
     
     
-    <link rel="prev" href="../../index.html" />
+    <link rel="prev" href="../../web-font-end/react/react_dom_basic.html" />
     
 
         <!-- head:end -->
@@ -42,7 +42,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
+    <div class="book" data-level="2.3" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -79,7 +79,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1" data-path="web-font-end/js/index.html">
+        <li class="chapter " data-level="1" data-path="web-font-end/js/index.html">
             
                 
                     <a href="../../web-font-end/js/index.html">
@@ -443,7 +443,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="web-font-end/react/react_component.html">
+        <li class="chapter active" data-level="2.3" data-path="web-font-end/react/react_component.html">
             
                 
                     <a href="../../web-font-end/react/react_component.html">
@@ -664,17 +664,24 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="javascript">JavaScript</h1>
-<p>2015-09-28 01:55:40 by MwumLi</p>
+                        <h1 id="%E7%BB%84%E4%BB%B6">&#x7EC4;&#x4EF6;</h1>
+<p>2015-10-27 14:31:24 by MwumLi</p>
 <hr>
-<ol>
-<li><p>1995 &#x5E74;, &#x7F51;&#x666F;&#x516C;&#x53F8;&#x7684; Brendan Eich &#x82B1;&#x4E86; 10 &#x5929;&#x8BBE;&#x8BA1;&#x51FA; JavaScript &#x8BED;&#x8A00;  </p>
-</li>
-<li><p>&#x4E3A;&#x4E86;&#x8BA9; JavaScript &#x6210;&#x4E3A;&#x5168;&#x7403;&#x6807;&#x51C6;, &#x51E0;&#x4E2A;&#x516C;&#x53F8;&#x8054;&#x5408; ECMA &#x7EC4;&#x7EC7;&#x5B9A;&#x5236;&#x4E86; JavaScript &#x8BED;&#x8A00;&#x7684;&#x6807;&#x51C6;, &#x88AB;&#x79F0;&#x4E3A; ECMAScript &#x6807;&#x51C6;<br>&#x56E0;&#x6B64;, ECMAScript &#x662F;&#x4E00;&#x79CD;&#x8BED;&#x8A00;&#x6807;&#x51C6;, &#x800C; JavaScript &#x662F;&#x5176;&#x7684;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;  </p>
-</li>
-<li><p>&#x6700;&#x65B0;&#x7248;&#x7684; ECMAScript 6(&#x7B80;&#x79F0; ES6)&#x6807;&#x51C6;&#x5728; 2015&#x5E74; 6&#x6708;&#x53D1;&#x5E03;<br>JavaScript &#x7684;&#x7248;&#x672C;&#x5B9E;&#x9645;&#x4E0A;&#x8BF4;&#x5B83;&#x5B9E;&#x73B0;&#x4E86; ECMAScript &#x6807;&#x51C6;&#x7684;&#x54EA;&#x4E2A;&#x7248;&#x672C;  </p>
-</li>
-</ol>
+<p>React &#x5141;&#x8BB8;&#x5C06;&#x4EE3;&#x7801;&#x5C01;&#x88C5;&#x6210;&#x7EC4;&#x4EF6;(component), &#x7136;&#x540E;&#x50CF;&#x666E;&#x901A; HTML &#x6807;&#x7B7E;&#x4E00;&#x6837;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x63D2;&#x5165;&#x5230;&#x7F51;&#x9875;&#x4E2D;  </p>
+<p><code>React.creatClass()</code> &#x7528;&#x4E8E;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x7C7B;<br>&#x800C;&#x5B9E;&#x4F8B;&#x5316;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x7C7B;&#x5C31;&#x751F;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;  </p>
+<p>&#x6BCF;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x90FD;&#x4E00;&#x4E2A; <code>render()</code> &#x65B9;&#x6CD5;&#x5728;&#x7B2C;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x4EE5;&#x53CA;&#x7EC4;&#x4EF6;&#x72B6;&#x6001;&#x6539;&#x53D8;&#x7684;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x6765;&#x6E32;&#x67D3;&#x7EC4;&#x4EF6;  </p>
+<pre><code>var HelloMessage = React.createClass({
+  render: function() {
+    return &lt;h1&gt;Hello {this.props.name}&lt;/h1&gt;;
+  }
+});
+
+ReactDOM.render(
+  &lt;HelloMessage name=&quot;John&quot; /&gt;,
+  document.getElementById(&apos;example&apos;)
+);
+</code></pre><p>&#x53D8;&#x91CF; <code>HelloMessage</code> &#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x7C7B;<br>&#x6A21;&#x677F;&#x63D2;&#x5165; <code>&lt;HelloMessage /&gt;</code> &#x65F6;, &#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x4E00;&#x4E2A; <code>HelloMessage</code> &#x5B9E;&#x4F8B;, &#x5373;&#x7EC4;&#x4EF6;  </p>
+<p><code>name</code> &#x662F;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x4E3A;&#x7EC4;&#x4EF6;&#x6DFB;&#x52A0;&#x7684;&#x5C5E;&#x6027;  </p>
 
                     
                     </section>
@@ -685,10 +692,10 @@
         </div>
 
         
-        <a href="../../index.html" class="navigation navigation-prev " aria-label="Previous page: 介绍"><i class="fa fa-angle-left"></i></a>
+        <a href="../../web-font-end/react/react_dom_basic.html" class="navigation navigation-prev " aria-label="Previous page: ReactDOM"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../web-font-end/js/quick_start.html" class="navigation navigation-next " aria-label="Next page: 快速开始"><i class="fa fa-angle-right"></i></a>
+        <a href="../../web-font-end/react/react_component_prop.html" class="navigation navigation-next " aria-label="Next page: 组件属性"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>JavaScript | 微尘的 Web 前端之旅</title>
+        <title>表单与事件 | 微尘的 Web 前端之旅</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -31,10 +31,10 @@
         
     
     
-    <link rel="next" href="../../web-font-end/js/quick_start.html" />
+    <link rel="next" href="../../web-font-end/react/react_style_object.html" />
     
     
-    <link rel="prev" href="../../index.html" />
+    <link rel="prev" href="../../web-font-end/react/react_component_lifecycle.html" />
     
 
         <!-- head:end -->
@@ -42,7 +42,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
+    <div class="book" data-level="2.4" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -79,7 +79,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1" data-path="web-font-end/js/index.html">
+        <li class="chapter " data-level="1" data-path="web-font-end/js/index.html">
             
                 
                     <a href="../../web-font-end/js/index.html">
@@ -509,7 +509,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="web-font-end/react/react_form_event.html">
+        <li class="chapter active" data-level="2.4" data-path="web-font-end/react/react_form_event.html">
             
                 
                     <a href="../../web-font-end/react/react_form_event.html">
@@ -664,17 +664,35 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="javascript">JavaScript</h1>
-<p>2015-09-28 01:55:40 by MwumLi</p>
+                        <h1 id="%E8%A1%A8%E5%8D%95%E4%B8%8E%E4%BA%8B%E4%BB%B6">&#x8868;&#x5355;&#x4E0E;&#x4E8B;&#x4EF6;</h1>
+<p>2015-10-27 16:30:27 by MwumLi</p>
 <hr>
-<ol>
-<li><p>1995 &#x5E74;, &#x7F51;&#x666F;&#x516C;&#x53F8;&#x7684; Brendan Eich &#x82B1;&#x4E86; 10 &#x5929;&#x8BBE;&#x8BA1;&#x51FA; JavaScript &#x8BED;&#x8A00;  </p>
-</li>
-<li><p>&#x4E3A;&#x4E86;&#x8BA9; JavaScript &#x6210;&#x4E3A;&#x5168;&#x7403;&#x6807;&#x51C6;, &#x51E0;&#x4E2A;&#x516C;&#x53F8;&#x8054;&#x5408; ECMA &#x7EC4;&#x7EC7;&#x5B9A;&#x5236;&#x4E86; JavaScript &#x8BED;&#x8A00;&#x7684;&#x6807;&#x51C6;, &#x88AB;&#x79F0;&#x4E3A; ECMAScript &#x6807;&#x51C6;<br>&#x56E0;&#x6B64;, ECMAScript &#x662F;&#x4E00;&#x79CD;&#x8BED;&#x8A00;&#x6807;&#x51C6;, &#x800C; JavaScript &#x662F;&#x5176;&#x7684;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;  </p>
-</li>
-<li><p>&#x6700;&#x65B0;&#x7248;&#x7684; ECMAScript 6(&#x7B80;&#x79F0; ES6)&#x6807;&#x51C6;&#x5728; 2015&#x5E74; 6&#x6708;&#x53D1;&#x5E03;<br>JavaScript &#x7684;&#x7248;&#x672C;&#x5B9E;&#x9645;&#x4E0A;&#x8BF4;&#x5B83;&#x5B9E;&#x73B0;&#x4E86; ECMAScript &#x6807;&#x51C6;&#x7684;&#x54EA;&#x4E2A;&#x7248;&#x672C;  </p>
-</li>
-</ol>
+<p>&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x4EE3;&#x7801; :  </p>
+<pre><code>&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/label&quot;&gt;
+var Input = React.createClass({
+  getInitialState: function() {
+    return {value: &apos;Hello!&apos;};
+  },
+  handleChange: function(event) {
+    this.setState({value: event.target.value});
+  },
+  render: function () {
+    var value = this.state.value;
+    return (
+      &lt;div&gt;
+        &lt;input type=&quot;text&quot; value={value} onChange={this.handleChange} /&gt;
+        &lt;p&gt;{value}&lt;/p&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+ReactDOM.render(&lt;Input/&gt;, document.body);
+&lt;/script&gt;
+</code></pre><p>&#x7EC4;&#x4EF6;&#x4E2D;&#x4F1A;&#x6709;&#x4E00;&#x4E9B;&#x8868;&#x5355; UI, &#x4F8B;&#x5982; <code>&lt;input&gt;</code>&#x3001;<code>&lt;textarea&gt;</code> &#x548C; <code>&lt;option&gt;</code><br>&#x5B83;&#x4EEC;&#x7684;&#x503C;&#x6839;&#x636E;&#x7528;&#x6237;&#x548C;&#x7EC4;&#x4EF6;&#x7684;&#x4E92;&#x52A8;&#x800C;&#x6539;&#x53D8;  </p>
+<p>&#x5728;&#x7EC4;&#x4EF6;&#x4E2D;&#x53EA;&#x80FD;&#x901A;&#x8FC7;&#x4E8B;&#x4EF6;&#x6765;&#x5B9E;&#x73B0;&#x5BF9;&#x4E8E;&#x5176;&#x503C;&#x6539;&#x53D8;&#x8FDB;&#x884C;&#x67D0;&#x4E9B;&#x54CD;&#x5E94;  </p>
+<p>&#x5BF9;&#x4E8E; <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, and <code>&lt;option&gt;</code> &#x90FD;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E; <code>onChange</code> &#x4E8B;&#x4EF6;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x6765;&#x76F8;&#x5E94;&#x5176;&#x503C;&#x7684;&#x53D8;&#x5316;  </p>
+<p><a href="http://facebook.github.io/react/docs/forms.html" target="_blank">form-&#x5B98;&#x65B9;&#x6587;&#x6863;</a><br><a href="http://facebook.github.io/react/docs/events.html" target="_blank">events-&#x5B98;&#x65B9;&#x6587;&#x6863;</a>  </p>
 
                     
                     </section>
@@ -685,10 +703,10 @@
         </div>
 
         
-        <a href="../../index.html" class="navigation navigation-prev " aria-label="Previous page: 介绍"><i class="fa fa-angle-left"></i></a>
+        <a href="../../web-font-end/react/react_component_lifecycle.html" class="navigation navigation-prev " aria-label="Previous page: 组件的声明周期"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../web-font-end/js/quick_start.html" class="navigation navigation-next " aria-label="Next page: 快速开始"><i class="fa fa-angle-right"></i></a>
+        <a href="../../web-font-end/react/react_style_object.html" class="navigation navigation-next " aria-label="Next page: 组件的 style 属性不是字符串"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

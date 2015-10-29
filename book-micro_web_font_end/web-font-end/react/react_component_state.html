@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>JavaScript | 微尘的 Web 前端之旅</title>
+        <title>组件状态 | 微尘的 Web 前端之旅</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -31,10 +31,10 @@
         
     
     
-    <link rel="next" href="../../web-font-end/js/quick_start.html" />
+    <link rel="next" href="../../web-font-end/react/react_component_lifecycle.html" />
     
     
-    <link rel="prev" href="../../index.html" />
+    <link rel="prev" href="../../web-font-end/react/react_component_prop.html" />
     
 
         <!-- head:end -->
@@ -42,7 +42,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
+    <div class="book" data-level="2.3.2" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -79,7 +79,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1" data-path="web-font-end/js/index.html">
+        <li class="chapter " data-level="1" data-path="web-font-end/js/index.html">
             
                 
                     <a href="../../web-font-end/js/index.html">
@@ -474,7 +474,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3.2" data-path="web-font-end/react/react_component_state.html">
+        <li class="chapter active" data-level="2.3.2" data-path="web-font-end/react/react_component_state.html">
             
                 
                     <a href="../../web-font-end/react/react_component_state.html">
@@ -664,17 +664,42 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="javascript">JavaScript</h1>
-<p>2015-09-28 01:55:40 by MwumLi</p>
+                        <h1 id="%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81">&#x7EC4;&#x4EF6;&#x72B6;&#x6001;</h1>
+<p>2015-10-27 14:31:24 by MwumLi</p>
 <hr>
-<ol>
-<li><p>1995 &#x5E74;, &#x7F51;&#x666F;&#x516C;&#x53F8;&#x7684; Brendan Eich &#x82B1;&#x4E86; 10 &#x5929;&#x8BBE;&#x8BA1;&#x51FA; JavaScript &#x8BED;&#x8A00;  </p>
-</li>
-<li><p>&#x4E3A;&#x4E86;&#x8BA9; JavaScript &#x6210;&#x4E3A;&#x5168;&#x7403;&#x6807;&#x51C6;, &#x51E0;&#x4E2A;&#x516C;&#x53F8;&#x8054;&#x5408; ECMA &#x7EC4;&#x7EC7;&#x5B9A;&#x5236;&#x4E86; JavaScript &#x8BED;&#x8A00;&#x7684;&#x6807;&#x51C6;, &#x88AB;&#x79F0;&#x4E3A; ECMAScript &#x6807;&#x51C6;<br>&#x56E0;&#x6B64;, ECMAScript &#x662F;&#x4E00;&#x79CD;&#x8BED;&#x8A00;&#x6807;&#x51C6;, &#x800C; JavaScript &#x662F;&#x5176;&#x7684;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;  </p>
-</li>
-<li><p>&#x6700;&#x65B0;&#x7248;&#x7684; ECMAScript 6(&#x7B80;&#x79F0; ES6)&#x6807;&#x51C6;&#x5728; 2015&#x5E74; 6&#x6708;&#x53D1;&#x5E03;<br>JavaScript &#x7684;&#x7248;&#x672C;&#x5B9E;&#x9645;&#x4E0A;&#x8BF4;&#x5B83;&#x5B9E;&#x73B0;&#x4E86; ECMAScript &#x6807;&#x51C6;&#x7684;&#x54EA;&#x4E2A;&#x7248;&#x672C;  </p>
-</li>
-</ol>
+<p>&#x4E00;&#x4EFD;&#x7B80;&#x5355;&#x7684;&#x4EE3;&#x7801; :  </p>
+<pre><code>var LikeButton = React.createClass({
+  // &#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;&#x72B6;&#x6001;
+  getInitialState: function() {
+    return {liked: false};
+  },
+  // &#x5F53;&#x70B9;&#x51FB;&#x65F6;, &#x66F4;&#x6539;&#x7EC4;&#x4EF6;&#x7684;&#x72B6;&#x6001;&#x6765;&#x5237;&#x65B0; UI
+  handleClick: function(event) {
+
+    this.state.liked= !this.state.liked;
+    this.setState(this.state);
+  },
+  render: function() {
+    var text = this.state.liked ? &apos;like&apos; : &apos;haven\&apos;t liked&apos;;
+    return (
+      &lt;p onClick={this.handleClick}&gt;
+        You {text} this. Click to toggle.
+      &lt;/p&gt;
+    );
+  }
+});
+
+ReactDOM.render(
+  &lt;LikeButton /&gt;,
+  document.getElementById(&apos;example&apos;)
+);  
+</code></pre><p>React &#x628A;&#x7EC4;&#x4EF6;&#x770B;&#x4F5C;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x673A;<br>&#x521D;&#x59CB;&#x5316;&#x65F6;&#x6709;&#x4E00;&#x4E2A;&#x521D;&#x59CB;&#x72B6;&#x6001;<br>&#x4E00;&#x65E6;&#x72B6;&#x6001;&#x53D8;&#x5316;, &#x5C31;&#x4F1A;&#x89E6;&#x53D1;&#x91CD;&#x65B0;&#x6E32;&#x67D3; UI(&#x7EC4;&#x4EF6;&#x7684; <code>render()</code>)  </p>
+<p>&#x7EC4;&#x4EF6;&#x72B6;&#x6001;&#x662F;&#x4E00;&#x4E2A; json &#x5BF9;&#x8C61;, <code>this.state</code> &#x5C5E;&#x6027;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x548C;&#x66F4;&#x6539;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;  </p>
+<p>&#x76F4;&#x63A5;&#x4FEE;&#x6539; <code>this.state</code> &#x5C5E;&#x6027;&#x6765;&#x4FEE;&#x6539;&#x72B6;&#x6001;&#x503C;, &#x5E76;&#x4E0D;&#x4F1A;&#x6E32;&#x67D3;<br>&#x53EA;&#x6709;&#x663E;&#x793A;&#x8C03;&#x7528; <code>this.setState()</code> &#x624D;&#x4F1A;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x7EC4;&#x4EF6;<br><code>setState()</code>&#x4FEE;&#x6539;&#x72B6;&#x6001;&#x503C;&#x5E76;&#x5728;&#x6BCF;&#x6B21;&#x8C03;&#x7528;&#x4E4B;&#x540E;&#x81EA;&#x52A8;&#x8C03;&#x7528; <code>this.render()</code> &#x65B9;&#x6CD5;&#x53BB;&#x6E32;&#x67D3;&#x7EC4;&#x4EF6;<br>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x4E00;&#x70B9; :</p>
+<blockquote>
+<p><code>setState()</code> &#x6BCF;&#x6B21;&#x9700;&#x8981;&#x662F;&#x7684;&#x6240;&#x6709;&#x72B6;&#x6001;&#x503C;, &#x800C;&#x6211;&#x4EEC;&#x5F80;&#x5F80;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;&#x53EA;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x503C;<br>&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4FEE;&#x6539; this.state &#x7684;&#x503C;, &#x7136;&#x540E;&#x628A; <code>this.state</code> &#x5F53;&#x505A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7ED9; <code>setState</code>  </p>
+</blockquote>
+<p>&#x901A;&#x5E38;&#x4F7F;&#x7528; <code>getInitialState()</code> &#x6765;&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;&#x72B6;&#x6001;  </p>
 
                     
                     </section>
@@ -685,10 +710,10 @@
         </div>
 
         
-        <a href="../../index.html" class="navigation navigation-prev " aria-label="Previous page: 介绍"><i class="fa fa-angle-left"></i></a>
+        <a href="../../web-font-end/react/react_component_prop.html" class="navigation navigation-prev " aria-label="Previous page: 组件属性"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../web-font-end/js/quick_start.html" class="navigation navigation-next " aria-label="Next page: 快速开始"><i class="fa fa-angle-right"></i></a>
+        <a href="../../web-font-end/react/react_component_lifecycle.html" class="navigation navigation-next " aria-label="Next page: 组件的声明周期"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

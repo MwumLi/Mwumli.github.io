@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>JavaScript | 微尘的 Web 前端之旅</title>
+        <title>组件属性 | 微尘的 Web 前端之旅</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -31,10 +31,10 @@
         
     
     
-    <link rel="next" href="../../web-font-end/js/quick_start.html" />
+    <link rel="next" href="../../web-font-end/react/react_component_state.html" />
     
     
-    <link rel="prev" href="../../index.html" />
+    <link rel="prev" href="../../web-font-end/react/react_component.html" />
     
 
         <!-- head:end -->
@@ -42,7 +42,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
+    <div class="book" data-level="2.3.1" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -79,7 +79,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1" data-path="web-font-end/js/index.html">
+        <li class="chapter " data-level="1" data-path="web-font-end/js/index.html">
             
                 
                     <a href="../../web-font-end/js/index.html">
@@ -459,7 +459,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.3.1" data-path="web-font-end/react/react_component_prop.html">
+        <li class="chapter active" data-level="2.3.1" data-path="web-font-end/react/react_component_prop.html">
             
                 
                     <a href="../../web-font-end/react/react_component_prop.html">
@@ -664,18 +664,73 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="javascript">JavaScript</h1>
-<p>2015-09-28 01:55:40 by MwumLi</p>
+                        <h1 id="%E7%BB%84%E4%BB%B6%E5%B1%9E%E6%80%A7">&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;</h1>
+<p>2015-10-27 14:31:24 by MwumLi</p>
 <hr>
-<ol>
-<li><p>1995 &#x5E74;, &#x7F51;&#x666F;&#x516C;&#x53F8;&#x7684; Brendan Eich &#x82B1;&#x4E86; 10 &#x5929;&#x8BBE;&#x8BA1;&#x51FA; JavaScript &#x8BED;&#x8A00;  </p>
-</li>
-<li><p>&#x4E3A;&#x4E86;&#x8BA9; JavaScript &#x6210;&#x4E3A;&#x5168;&#x7403;&#x6807;&#x51C6;, &#x51E0;&#x4E2A;&#x516C;&#x53F8;&#x8054;&#x5408; ECMA &#x7EC4;&#x7EC7;&#x5B9A;&#x5236;&#x4E86; JavaScript &#x8BED;&#x8A00;&#x7684;&#x6807;&#x51C6;, &#x88AB;&#x79F0;&#x4E3A; ECMAScript &#x6807;&#x51C6;<br>&#x56E0;&#x6B64;, ECMAScript &#x662F;&#x4E00;&#x79CD;&#x8BED;&#x8A00;&#x6807;&#x51C6;, &#x800C; JavaScript &#x662F;&#x5176;&#x7684;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;  </p>
-</li>
-<li><p>&#x6700;&#x65B0;&#x7248;&#x7684; ECMAScript 6(&#x7B80;&#x79F0; ES6)&#x6807;&#x51C6;&#x5728; 2015&#x5E74; 6&#x6708;&#x53D1;&#x5E03;<br>JavaScript &#x7684;&#x7248;&#x672C;&#x5B9E;&#x9645;&#x4E0A;&#x8BF4;&#x5B83;&#x5B9E;&#x73B0;&#x4E86; ECMAScript &#x6807;&#x51C6;&#x7684;&#x54EA;&#x4E2A;&#x7248;&#x672C;  </p>
-</li>
-</ol>
+<p>&#x6BCF;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x662F;&#x6709;&#x5C5E;&#x6027;&#x7684;, &#x7528;&#x6765;&#x663E;&#x793A;&#x7EC4;&#x4EF6;&#x7684;&#x67D0;&#x4E9B;&#x7279;&#x6027;<br>&#x901A;&#x8FC7; <code>this.props.[propName]</code>&#x6765;&#x8BBF;&#x95EE;  </p>
+<p>&#x5BF9;&#x4E8E; React &#x6765;&#x8BF4;, &#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x662F;&#x53EA;&#x8BFB;&#x7684;<br>&#x56E0;&#x6B64;, &#x53EA;&#x80FD;&#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x7EC4;&#x4EF6;&#x7C7B;&#x7684;&#x65F6;&#x5019;<strong>&#x6DFB;&#x52A0;&#x5C5E;&#x6027;</strong><br>&#x6216;&#x8BBE;&#x5B9A;<a href="http://facebook.github.io/react/docs/reusable-components.html#default-prop-values" target="_blank">&#x9ED8;&#x8BA4;&#x7684;&#x5C5E;&#x6027;&#x503C;</a>(<code>getDefaultProps()</code>)  </p>
+<p>&#x6DFB;&#x52A0;&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x7684;&#x65F6;&#x5019;, &#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F; js &#x7684;&#x4FDD;&#x7559;&#x5B57;&#x4E0D;&#x80FD;&#x7528;&#x4E8E;&#x547D;&#x540D;&#x4E3A;&#x5C5E;&#x6027;&#x540D;<br>&#x6BD4;&#x5982; <code>class</code> &#x5C5E;&#x6027;&#x9700;&#x8981;&#x5199;&#x6210; <code>className</code>, <code>for</code> &#x5C5E;&#x6027;&#x9700;&#x8981;&#x5199;&#x6210; <code>htmlFor</code>  </p>
+<p><code>this.props</code> &#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x4E0E;&#x7EC4;&#x4EF6;&#x7684;&#x5C5E;&#x6027;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;<br>&#x4F46;&#x662F;&#x6709;&#x4E2A;&#x4F8B;&#x5916;, &#x90A3;&#x5C31;&#x662F; <code>this.props.children</code> &#x5C5E;&#x6027;&#x8868;&#x793A;&#x7EC4;&#x4EF6;&#x7684;&#x6240;&#x6709;&#x5B50;&#x8282;&#x70B9;<br>&#x5982;&#x679C;&#x5B50;&#x8282;&#x70B9;&#x591A;&#x4F59; 1 &#x4E2A;&#x65F6;, <code>this.props.children</code> &#x624D;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;  </p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x7EC4;&#x4EF6;&#x7C7B;&#x4E2D;&#x901A;&#x8FC7; <code>propTypes</code> &#x5C5E;&#x6027;&#x6765;&#x5BF9;&#x7EC4;&#x4EF6;&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x9A8C;&#x8BC1;&#x9650;&#x5236;<br>&#x5982;&#x679C;&#x4E0D;&#x7B26;&#x5408;&#x8981;&#x6C42;, web &#x9875;&#x9762;&#x4E0A;&#x6216;&#x8BB8;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x660E;&#x663E;&#x7684;&#x63D0;&#x793A;, &#x4F46;&#x662F;&#x6709;&#x9519;&#x8BEF;&#x5C06;&#x51FA;&#x73B0;&#x5728;&#x63A7;&#x5236;&#x53F0;<br><a href="http://facebook.github.io/react/docs/reusable-components.html#prop-validation" target="_blank">&#x66F4;&#x591A;</a>  </p>
+<pre><code>&lt;div id=&quot;example1&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;example2&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;example3&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/babel&quot;&gt;
+var NotesList = React.createClass({
+ propTypes: {
+   title: React.PropTypes.string.isRequired,
+ },
+ getDefaultProps : function () {
+   return {
+     title : &apos;type is string and require&apos;
+   };
+ },
+ render: function() {
+   return (
+     &lt;div&gt;
+        &lt;h3&gt;{this.props.title}&lt;/h3&gt;
+        &lt;ol&gt;
+        {
+          this.props.children.map(function (child) {
+            return &lt;li&gt;{child}&lt;/li&gt;
+          })
+        }
+        &lt;/ol&gt;
+     &lt;/div&gt;
+   );
+ }
+});
 
+// &#x6DFB;&#x52A0;&#x81EA;&#x5B9A;&#x4E49;&#x5C5E;&#x6027; title
+ReactDOM.render(
+ &lt;NotesList title=&quot;Show Children&quot;&gt;
+   &lt;span&gt;hello&lt;/span&gt;
+   &lt;span&gt;world&lt;/span&gt;
+ &lt;/NotesList&gt;,
+ document.getElementById(&quot;example1&quot;)
+);
+
+// &#x5C5E;&#x6027;&#x8981;&#x6C42;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;, &#x5374;&#x8D4B;&#x7ED9;&#x5C5E;&#x6027;&#x4E00;&#x4E2A;&#x6570;&#x5B57;
+var data=23;
+ReactDOM.render(
+ &lt;NotesList title={data} &gt;
+   &lt;span&gt;some&lt;/span&gt;
+   &lt;span&gt;other&lt;/span&gt;
+ &lt;/NotesList&gt;,
+ document.getElementById(&quot;example2&quot;)
+);
+
+//&#x6CA1;&#x6709;&#x6307;&#x5B9A;&#x5C5E;&#x6027;, &#x4F7F;&#x7528;&#x5C5E;&#x6027;&#x7684;&#x9ED8;&#x8BA4;&#x503C;
+ReactDOM.render(
+ &lt;NotesList&gt;
+   &lt;span&gt;one&lt;/span&gt;
+   &lt;span&gt;two&lt;/span&gt;
+ &lt;/NotesList&gt;,
+ document.getElementById(&quot;example3&quot;)
+);
+
+&lt;/script&gt;
+</code></pre>
                     
                     </section>
                 
@@ -685,10 +740,10 @@
         </div>
 
         
-        <a href="../../index.html" class="navigation navigation-prev " aria-label="Previous page: 介绍"><i class="fa fa-angle-left"></i></a>
+        <a href="../../web-font-end/react/react_component.html" class="navigation navigation-prev " aria-label="Previous page: 组件"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../web-font-end/js/quick_start.html" class="navigation navigation-next " aria-label="Next page: 快速开始"><i class="fa fa-angle-right"></i></a>
+        <a href="../../web-font-end/react/react_component_state.html" class="navigation navigation-next " aria-label="Next page: 组件状态"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
