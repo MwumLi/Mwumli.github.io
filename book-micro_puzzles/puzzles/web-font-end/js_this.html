@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>为终端开启 256 色 | 微尘的问题集</title>
+        <title>js 中的 this 对象 | 微尘的问题集</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -31,10 +31,10 @@
         
     
     
-    <link rel="next" href="../../puzzles/linux/sync_zone.html" />
+    <link rel="next" href="../../puzzles/web-font-end/data_URI_browser_editor.html" />
     
     
-    <link rel="prev" href="../../puzzles/linux/add_sudo_permission.html" />
+    <link rel="prev" href="../../puzzles/web-font-end/index.html" />
     
 
         <!-- head:end -->
@@ -42,7 +42,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Fri Oct 30 2015 16:36:35 GMT+0800 (CST)">
+    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Fri Oct 30 2015 16:36:35 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -95,7 +95,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.1" data-path="puzzles/web-font-end/js_this.html">
+        <li class="chapter active" data-level="1.1" data-path="puzzles/web-font-end/js_this.html">
             
                 
                     <a href="../../puzzles/web-font-end/js_this.html">
@@ -161,7 +161,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2" data-path="puzzles/linux/setup_256_colors_for_term.html">
+        <li class="chapter " data-level="2.2" data-path="puzzles/linux/setup_256_colors_for_term.html">
             
                 
                     <a href="../../puzzles/linux/setup_256_colors_for_term.html">
@@ -316,32 +316,66 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="%E4%B8%BA%E7%BB%88%E7%AB%AF%E5%BC%80%E5%90%AF-256-%E8%89%B2">&#x4E3A;&#x7EC8;&#x7AEF;&#x5F00;&#x542F; 256 &#x8272;</h1>
-<p>2015-10-03 03:55:01 by MwumLi</p>
+                        <h1 id="js-%E4%B8%AD%E7%9A%84-this-%E5%AF%B9%E8%B1%A1">js &#x4E2D;&#x7684; this &#x5BF9;&#x8C61;</h1>
+<p>2015-10-29 13:49:17 by MwumLi</p>
 <hr>
-<h2 id="%E5%90%AF%E7%94%A8-256-%E8%89%B2">&#x542F;&#x7528; 256 &#x8272;</h2>
+<p>&#x5728;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x8A00;&#x4E2D;, &#x90FD;&#x4E00;&#x4E2A;&#x5F88;&#x7279;&#x6B8A;&#x7684;&#x5BF9;&#x8C61;&#x6216;&#x53D8;&#x91CF;&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x5F53;&#x524D;&#x4E0A;&#x4E0B;&#x6587;&#x73AF;&#x5883;, &#x90A3;&#x5C31;&#x662F; <code>this</code>  </p>
+<p>&#x6BEB;&#x65E0;&#x7591;&#x95EE;, js &#x662F;&#x4E00;&#x4E2A;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x8A00;  </p>
+<h2 id="%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A-this-%E5%AF%B9%E8%B1%A1">&#x5982;&#x4F55;&#x786E;&#x5B9A; this &#x5BF9;&#x8C61;</h2>
+<p>&#x5728; C++, Java &#x7B49;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8BED;&#x8A00;&#x4E2D;, this &#x6307;&#x7684;&#x5C31;&#x662F;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x5BF9;&#x8C61;<br>&#x4F46;&#x662F; js &#x4E0D;&#x540C;, &#x5C3D;&#x7BA1;&#x5728;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x64CD;&#x4F5C;, this &#x5BF9;&#x8C61;&#x4E5F;&#x53EF;&#x80FD;&#x4E0D;&#x540C;<br>&#x5B83;&#x662F;&#x57FA;&#x4E8E;&#x5F53;&#x524D;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x7684;  </p>
+<p>&#x770B;&#x770B;&#x5982;&#x4E0B;&#x4EE3;&#x7801; :  </p>
+<pre><code>var name = &quot;Here is Global&quot;;
+
+var local = {
+    name : &quot;Here is Local&quot;,
+    getNameFunction : function() {
+        console.log(this.name);
+        return function(){
+            console.log(this.name);
+        }
+    }
+}
+
+local.getNameFunction()();
+</code></pre><p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x5982;&#x4E0B; :  </p>
+<pre><code>Here is Local
+Here is Global
+</code></pre><p>&#x4ECE;&#x8FD0;&#x884C;&#x89D2;&#x5EA6;&#x5206;&#x6790; :  </p>
 <ol>
-<li><p>&#x5728; <code>~/.bashrc</code> &#x672B;&#x5C3E;&#x6DFB;&#x52A0; :  </p>
-<pre><code> export TERM=xterm-256color        # &#x6216; export TERM=screen-256color
-</code></pre></li>
-<li><p>&#x4F7F; <code>~/.bashrc</code> &#x751F;&#x6548; : <code>source ~/.bashrc</code>  </p>
+<li><p>&#x6267;&#x884C; <code>getNameFunction()</code> &#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#x662F;&#x57FA;&#x4E8E; <code>local</code> &#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684; 
+&#x56E0;&#x6B64;&#x7B2C;&#x4E00;&#x4E2A; <code>this.name</code> &#x7684;&#x503C;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027; <code>name</code> &#x7684;&#x503C; <code>Here is Local</code>  </p>
+</li>
+<li><p><code>getNameFunction()</code> &#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x533F;&#x540D;&#x51FD;&#x6570;, &#x56E0;&#x6B64;, <code>local.getNameFunction()()</code>&#x5B9E;&#x9645;&#x4E0A;&#x6267;&#x884C;&#x7684;&#x662F;&#x8FD9;&#x4E2A;&#x533F;&#x540D;&#x51FD;&#x6570;<br>&#x800C;&#x8FD9;&#x4E2A;&#x533F;&#x540D;&#x51FD;&#x6570;&#x662F;&#x5728;&#x5168;&#x5C40;&#x73AF;&#x5883;&#x4E0B;&#x6267;&#x884C;&#x7684;, &#x6240;&#x4EE5;&#x6B64;&#x65F6; this &#x5C31;&#x662F; Global (&#x5982;&#x679C;&#x662F;&#x6D4F;&#x89C8;&#x5668;&#x5C31;&#x662F; window)<br>&#x6700;&#x540E;&#x53EF;&#x4EE5;&#x5F97;&#x5230;, &#x7B2C;&#x4E8C;&#x4E2A; <code>name</code> &#x7684;&#x503C;&#x5C31;&#x662F; <code>Here is Global</code>  </p>
 </li>
 </ol>
-<h2 id="%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86">&#x76F8;&#x5173;&#x77E5;&#x8BC6;</h2>
-<p>&#x73B0;&#x5728;&#x7684;&#x7EC8;&#x7AEF;&#x9ED8;&#x8BA4;&#x53EF;&#x80FD;&#x8FD8;&#x662F; 8 &#x8272;&#x7684;, &#x4F46;&#x662F;&#x57FA;&#x672C;&#x4E0A;&#x5DF2;&#x7ECF;&#x652F;&#x6301; 256 &#x8272;  </p>
-<p>&#x652F;&#x6301;&#x7684;&#x8272;&#x5EA6;&#x8D8A;&#x9AD8;, &#x610F;&#x5473;&#x7740;&#x6211;&#x4EEC;&#x5728;&#x7EC8;&#x7AEF;&#x4E0A;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x66F4;&#x591A;&#x7684;&#x8272;&#x5F69;  </p>
-<p><strong>&#x67E5;&#x770B;&#x4F60;&#x7684;&#x7EC8;&#x7AEF;&#x7C7B;&#x578B;</strong> :  </p>
-<pre><code>$ echo $TERM
-xterm
-</code></pre><p><strong>&#x67E5;&#x770B;&#x4F60;&#x7684;&#x5F53;&#x524D;&#x7EC8;&#x7AEF;&#x542F;&#x7528;&#x7684;&#x8272;&#x5EA6;</strong> :  </p>
-<pre><code>$ tput colors
-8
-</code></pre><p>&#x53EA;&#x8981;&#x66F4;&#x6539;&#x7EC8;&#x7AEF;&#x7C7B;&#x578B;&#x4E3A; 256 &#x8272;&#x7EC8;&#x7AEF;&#x5373;&#x53EF;&#x4E3A;&#x7EC8;&#x7AEF;&#x5F00;&#x542F; 256 &#x8272;  </p>
-<p>&#x5F53;&#x524D;&#x7CFB;&#x7EDF;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x7EC8;&#x7AEF;&#x90FD;&#x4F4D;&#x4E8E; <code>/lib/terminfo/</code> &#x548C; <code>/usr/share/terminfo/</code><br>&#x4F60;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;<strong>&#x67E5;&#x627E;&#x6240;&#x6709;&#x7684; 256 &#x8272;&#x7EC8;&#x7AEF;</strong> : <code>find /lib/terminfo/ /usr/share/terminfo/ -name &quot;*256*&quot;</code></p>
-<p><code>screen-256color</code> &#x548C; <code>xterm-256color</code> &#x662F;&#x5176;&#x4E2D;&#x7684;&#x4E24;&#x4E2A; 256 &#x8272;&#x7EC8;&#x7AEF;  </p>
-<p>&#x5047;&#x5982;&#x4F60;&#x673A;&#x5668;&#x5E76;&#x6CA1;&#x6709;, &#x90A3;&#x4E48;&#x4F60;&#x53EF;&#x4EE5;<strong>&#x5B89;&#x88C5;&#x7EC8;&#x7AEF;&#x56FE;&#x5F62;&#x6570;&#x636E;&#x5E93;</strong> :  </p>
-<pre><code>$ sudo apt-get install ncurses-term
-</code></pre>
+<p><strong>&#x7ED3;&#x8BBA;</strong> :   </p>
+<blockquote>
+<p>js &#x7684; this &#x5BF9;&#x8C61;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x57FA;&#x4E8E;&#x51FD;&#x6570;&#x7684;&#x6267;&#x884C;&#x73AF;&#x5883;&#x7ED1;&#x5B9A;&#x7684;</p>
+</blockquote>
+<h2 id="%E5%A6%82%E4%BD%95%E5%8F%96%E5%BE%97%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%A4%96%E7%9A%84-this-%E5%AF%B9%E8%B1%A1">&#x5982;&#x4F55;&#x53D6;&#x5F97;&#x4F5C;&#x7528;&#x57DF;&#x5916;&#x7684; this &#x5BF9;&#x8C61;</h2>
+<p>&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x662F;&#x4E0A;&#x4E00;&#x95EE;&#x9898;&#x7684;&#x5EF6;&#x4F38;<br>&#x4E0A;&#x9762;&#x95EE;&#x9898;&#x7684;&#x4EE3;&#x7801;&#x4E2D;, &#x7B2C;&#x4E8C;&#x4E2A; <code>this.name</code> &#x7684;&#x503C;&#x59CB;&#x7EC8;&#x662F;&#x5168;&#x5C40;<br>&#x5982;&#x679C;&#x60F3;&#x8BBF;&#x95EE; <code>local</code> &#x4E2D;&#x7684; <code>name</code> &#x5C5E;&#x6027;, &#x5C31;&#x5FC5;&#x987B;&#x53E6;&#x4F5C;&#x5904;&#x7406;, &#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837; :  </p>
+<pre><code>var name = &quot;Here is Global&quot;;
+
+var local = {
+    name : &quot;Here is Local&quot;,
+    getNameFunction : function() {
+        console.log(this.name);
+        var that = this;
+        return function(){
+            console.log(that.name);
+        }
+    }
+}
+
+local.getNameFunction()();
+</code></pre><p>&#x8FD0;&#x884C;&#x7ED3;&#x679C; :  </p>
+<pre><code>Here is Local
+Here is Local
+</code></pre><p><strong>&#x7ED3;&#x8BBA;</strong> :  </p>
+<blockquote>
+<p>&#x628A;&#x5916;&#x90E8;&#x4F5C;&#x7528;&#x57DF;&#x7684; this &#x5BF9;&#x8C61;&#x4FDD;&#x5B58;&#x5230;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x4F5C;&#x7528;&#x57DF;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7684;&#x53D8;&#x91CF;&#x91CC;<br>&#x5BF9;&#x4E8E;&#x5185;&#x90E8;&#x4F5C;&#x7528;&#x57DF;&#x6765;&#x8BF4;, &#x5916;&#x90E8;&#x4F5C;&#x7528;&#x57DF;&#x7684;&#x53D8;&#x91CF;&#x603B;&#x662F;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7684;  </p>
+</blockquote>
+
                     
                     </section>
                 
@@ -351,10 +385,10 @@ xterm
         </div>
 
         
-        <a href="../../puzzles/linux/add_sudo_permission.html" class="navigation navigation-prev " aria-label="Previous page: 为用户增加 sudo 权限"><i class="fa fa-angle-left"></i></a>
+        <a href="../../puzzles/web-font-end/index.html" class="navigation navigation-prev " aria-label="Previous page: Web前端"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../puzzles/linux/sync_zone.html" class="navigation navigation-next " aria-label="Next page: 调整时区"><i class="fa fa-angle-right"></i></a>
+        <a href="../../puzzles/web-font-end/data_URI_browser_editor.html" class="navigation navigation-next " aria-label="Next page: data URI 之 浏览器编辑器"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

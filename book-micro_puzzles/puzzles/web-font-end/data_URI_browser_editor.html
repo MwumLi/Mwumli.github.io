@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>为终端开启 256 色 | 微尘的问题集</title>
+        <title>data URI 之 浏览器编辑器 | 微尘的问题集</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -31,10 +31,10 @@
         
     
     
-    <link rel="next" href="../../puzzles/linux/sync_zone.html" />
+    <link rel="next" href="../../puzzles/linux/index.html" />
     
     
-    <link rel="prev" href="../../puzzles/linux/add_sudo_permission.html" />
+    <link rel="prev" href="../../puzzles/web-font-end/js_this.html" />
     
 
         <!-- head:end -->
@@ -42,7 +42,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Fri Oct 30 2015 16:36:35 GMT+0800 (CST)">
+    <div class="book" data-level="1.2" data-basepath="../.." data-revision="Fri Oct 30 2015 16:36:35 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -110,7 +110,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="puzzles/web-font-end/data_URI_browser_editor.html">
+        <li class="chapter active" data-level="1.2" data-path="puzzles/web-font-end/data_URI_browser_editor.html">
             
                 
                     <a href="../../puzzles/web-font-end/data_URI_browser_editor.html">
@@ -161,7 +161,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2" data-path="puzzles/linux/setup_256_colors_for_term.html">
+        <li class="chapter " data-level="2.2" data-path="puzzles/linux/setup_256_colors_for_term.html">
             
                 
                     <a href="../../puzzles/linux/setup_256_colors_for_term.html">
@@ -316,32 +316,67 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="%E4%B8%BA%E7%BB%88%E7%AB%AF%E5%BC%80%E5%90%AF-256-%E8%89%B2">&#x4E3A;&#x7EC8;&#x7AEF;&#x5F00;&#x542F; 256 &#x8272;</h1>
-<p>2015-10-03 03:55:01 by MwumLi</p>
-<hr>
-<h2 id="%E5%90%AF%E7%94%A8-256-%E8%89%B2">&#x542F;&#x7528; 256 &#x8272;</h2>
+                        <h1 id="data-uri-%E4%B9%8B-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%96%E8%BE%91%E5%99%A8">data URI &#x4E4B; &#x6D4F;&#x89C8;&#x5668;&#x7F16;&#x8F91;&#x5668;</h1>
+<h2 id="%E4%BD%93%E9%AA%8C">&#x4F53;&#x9A8C;</h2>
 <ol>
-<li><p>&#x5728; <code>~/.bashrc</code> &#x672B;&#x5C3E;&#x6DFB;&#x52A0; :  </p>
-<pre><code> export TERM=xterm-256color        # &#x6216; export TERM=screen-256color
-</code></pre></li>
-<li><p>&#x4F7F; <code>~/.bashrc</code> &#x751F;&#x6548; : <code>source ~/.bashrc</code>  </p>
+<li><p><a href="data:text/html, &lt;html contenteditable&gt;" target="_blank">&#x6781;&#x7B80;&#x7F16;&#x8F91;&#x5668;</a><br>&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x7684;&#x4E66;&#x5199;</p>
+</li>
+<li><p><a href="data:text/html, &lt;html&gt;&lt;head&gt;&lt;link href=&quot;http://fonts.googleapis.com/css?family=Open+Sans&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&lt;style type=&quot;text/css&quot;&gt; html { font-family: &quot;Open Sans&quot; } * { -webkit-transition: all linear 1s; }&lt;/style&gt;&lt;script&gt;window.onload=function(){var e=false;var t=0;setInterval(function(){if(!e){t=Math.round(Math.max(0,t-Math.max(t/3,1)))}var n=(255-t*2).toString(16);document.body.style.backgroundColor=&quot;#ff&quot;+n+&quot;&quot;+n},1e3);var n=null;document.onkeydown=function(){t=Math.min(128,t+2);e=true;clearTimeout(n);n=setTimeout(function(){e=false},1500)}}&lt;/script&gt;&lt;/head&gt;&lt;body contenteditable style=&quot;font-size:2rem;line-height:1.4;max-width:60rem;margin:0 auto;padding:4rem;&quot;&gt;" target="_blank">&#x901F;&#x5EA6;&#x7F16;&#x8F91;&#x5668;</a><br>&#x968F;&#x4F60;&#x952E;&#x5165;&#x5B57;&#x7B26;&#x7684;&#x901F;&#x5EA6;&#xFF0C;&#x989C;&#x8272;&#x53D1;&#x751F;&#x6539;&#x53D8;
+&#x901F;&#x5EA6;&#x8D8A;&#x5FEB;, &#x989C;&#x8272;&#x8D8A;&#x7EA2;</p>
+</li>
+<li><p><a href="data:text/html,&lt;style type=&quot;text/css&quot;&gt;.e{position:absolute;top:0;right:50%;bottom:0;left:0;} .c{position:absolute;overflow:auto;top:0;right:0;bottom:0;left:50%;}&lt;/style&gt;&lt;div class=&quot;e&quot; id=&quot;editor&quot;&gt;&lt;/div&gt;&lt;div class=&quot;c&quot;&gt;&lt;/div&gt;&lt;script src=&quot;http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;script src=&quot;http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js&quot;&gt;&lt;/script&gt;&lt;script&gt; function showResult(e){consoleEl.innerHTML=e}var e=ace.edit(&quot;editor&quot;);e.setTheme(&quot;ace/theme/monokai&quot;);e.getSession().setMode(&quot;ace/mode/markdown&quot;);var consoleEl=document.getElementsByClassName(&quot;c&quot;)[0];var converter=new Showdown.converter;e.commands.addCommand({name:&quot;markdown&quot;,bindKey:{win:&quot;Ctrl-M&quot;,mac:&quot;Command-M&quot;},exec:function(t){var n=e.getSession().getMode().$id;if(n==&quot;ace/mode/markdown&quot;){showResult(converter.makeHtml(t.getValue()))}},readOnly:true})&lt;/script&gt;" target="_blank">Markdown &#x7F16;&#x8F91;&#x5668;</a><br>&#x652F;&#x6301; Markdown &#x7F16;&#x8F91;
+&#x6309;&#x4E0B; <code>ctrl+m</code> &#x53EF;&#x4EE5;&#x5728;&#x53F3;&#x8FB9;&#x7A97;&#x53E3;&#x9884;&#x89C8;&#x6548;&#x679C;</p>
+</li>
+<li><p><a href="data:text/html, &lt;style type=&quot;text/css&quot;&gt;.e{position:absolute;top:0;right:0;bottom:0;left:0;}&lt;/style&gt;&lt;div class=&quot;e&quot; id=&quot;editor&quot;&gt;&lt;/div&gt;&lt;script src=&quot;http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;script&gt;var e=ace.edit(&quot;editor&quot;);e.setTheme(&quot;ace/theme/monokai&quot;);e.getSession().setMode(&quot;ace/mode/c_cpp&quot;);&lt;/script&gt;" target="_blank">&#x652F;&#x6301;&#x591A;&#x79CD;&#x8BED;&#x8A00;&#x7684;&#x7F16;&#x8F91;&#x5668;</a><br>&#x652F;&#x6301;&#x591A;&#x79CD;&#x8BED;&#x8A00;&#x8BED;&#x6CD5;&#x9AD8;&#x4EAE;</p>
 </li>
 </ol>
-<h2 id="%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86">&#x76F8;&#x5173;&#x77E5;&#x8BC6;</h2>
-<p>&#x73B0;&#x5728;&#x7684;&#x7EC8;&#x7AEF;&#x9ED8;&#x8BA4;&#x53EF;&#x80FD;&#x8FD8;&#x662F; 8 &#x8272;&#x7684;, &#x4F46;&#x662F;&#x57FA;&#x672C;&#x4E0A;&#x5DF2;&#x7ECF;&#x652F;&#x6301; 256 &#x8272;  </p>
-<p>&#x652F;&#x6301;&#x7684;&#x8272;&#x5EA6;&#x8D8A;&#x9AD8;, &#x610F;&#x5473;&#x7740;&#x6211;&#x4EEC;&#x5728;&#x7EC8;&#x7AEF;&#x4E0A;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x66F4;&#x591A;&#x7684;&#x8272;&#x5F69;  </p>
-<p><strong>&#x67E5;&#x770B;&#x4F60;&#x7684;&#x7EC8;&#x7AEF;&#x7C7B;&#x578B;</strong> :  </p>
-<pre><code>$ echo $TERM
-xterm
-</code></pre><p><strong>&#x67E5;&#x770B;&#x4F60;&#x7684;&#x5F53;&#x524D;&#x7EC8;&#x7AEF;&#x542F;&#x7528;&#x7684;&#x8272;&#x5EA6;</strong> :  </p>
-<pre><code>$ tput colors
-8
-</code></pre><p>&#x53EA;&#x8981;&#x66F4;&#x6539;&#x7EC8;&#x7AEF;&#x7C7B;&#x578B;&#x4E3A; 256 &#x8272;&#x7EC8;&#x7AEF;&#x5373;&#x53EF;&#x4E3A;&#x7EC8;&#x7AEF;&#x5F00;&#x542F; 256 &#x8272;  </p>
-<p>&#x5F53;&#x524D;&#x7CFB;&#x7EDF;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x7EC8;&#x7AEF;&#x90FD;&#x4F4D;&#x4E8E; <code>/lib/terminfo/</code> &#x548C; <code>/usr/share/terminfo/</code><br>&#x4F60;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;<strong>&#x67E5;&#x627E;&#x6240;&#x6709;&#x7684; 256 &#x8272;&#x7EC8;&#x7AEF;</strong> : <code>find /lib/terminfo/ /usr/share/terminfo/ -name &quot;*256*&quot;</code></p>
-<p><code>screen-256color</code> &#x548C; <code>xterm-256color</code> &#x662F;&#x5176;&#x4E2D;&#x7684;&#x4E24;&#x4E2A; 256 &#x8272;&#x7EC8;&#x7AEF;  </p>
-<p>&#x5047;&#x5982;&#x4F60;&#x673A;&#x5668;&#x5E76;&#x6CA1;&#x6709;, &#x90A3;&#x4E48;&#x4F60;&#x53EF;&#x4EE5;<strong>&#x5B89;&#x88C5;&#x7EC8;&#x7AEF;&#x56FE;&#x5F62;&#x6570;&#x636E;&#x5E93;</strong> :  </p>
-<pre><code>$ sudo apt-get install ncurses-term
-</code></pre>
+<h2 id="%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%96%E8%BE%91%E5%99%A8">&#x6D4F;&#x89C8;&#x5668;&#x7F16;&#x8F91;&#x5668;</h2>
+<p>&#x4EC5;&#x4EC5;&#x5728;&#x4F60;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5730;&#x5740;&#x680F;&#x4E2D;&#x8F93;&#x5165; :</p>
+<pre><code>data:text/html, &lt;html contenteditable&gt;
+</code></pre><p>&#x770B;&#x5230;&#x4EC0;&#x4E48;&#x4E86;, &#x53EF;&#x4EE5;&#x7F16;&#x8F91;&#x4E86;, &#x50CF;&#x6700;&#x539F;&#x59CB;&#x7684;&#x7F16;&#x8F91;&#x5668;</p>
+<h2 id="more">More</h2>
+<h3 id="%E9%80%9F%E5%BA%A6%E7%BC%96%E8%BE%91%E5%99%A8">&#x901F;&#x5EA6;&#x7F16;&#x8F91;&#x5668;</h3>
+<p>&#x968F;&#x7740;&#x4F60;&#x8F93;&#x5165;&#x6587;&#x5B57;&#x7684;&#x901F;&#x5EA6;&#x8D8A;&#x6765;&#x8D8A;&#x5FEB;, &#x7F16;&#x8F91;&#x5668;&#x7684;&#x989C;&#x8272;&#x4E5F;&#x8D8A;&#x6765;&#x8D8A;&#x5FEB;
+code &#x5982;&#x4E0B; :</p>
+<pre><code>data:text/html, &lt;html&gt;&lt;head&gt;&lt;link href=&apos;http://fonts.googleapis.com/css?family=Open+Sans&apos; rel=&apos;stylesheet&apos; type=&apos;text/css&apos;&gt;&lt;style type=&quot;text/css&quot;&gt; html { font-family: &quot;Open Sans&quot; } * { -webkit-transition: all linear 1s; }&lt;/style&gt;&lt;script&gt;window.onload=function(){var e=false;var t=0;setInterval(function(){if(!e){t=Math.round(Math.max(0,t-Math.max(t/3,1)))}var n=(255-t*2).toString(16);document.body.style.backgroundColor=&quot;#ff&quot;+n+&quot;&quot;+n},1e3);var n=null;document.onkeydown=function(){t=Math.min(128,t+2);e=true;clearTimeout(n);n=setTimeout(function(){e=false},1500)}}&lt;/script&gt;&lt;/head&gt;&lt;body contenteditable style=&quot;font-size:2rem;line-height:1.4;max-width:60rem;margin:0 auto;padding:4rem;&quot;&gt;
+</code></pre><h3 id="markdown-%E7%BC%96%E8%BE%91%E5%99%A8">Markdown &#x7F16;&#x8F91;&#x5668;</h3>
+<p>&#x53EF;&#x4EE5;&#x9884;&#x89C8;&#x7684; Markdown &#x7F16;&#x8F91;&#x5668;
+&#x4F7F;&#x7528; <code>ctrl+m</code>, &#x53F3;&#x8FB9;&#x53EF;&#x4EE5;&#x9884;&#x89C8; :
+code &#x5982;&#x4E0B;:</p>
+<pre><code>data:text/html,&lt;style type=&quot;text/css&quot;&gt;.e{position:absolute;top:0;right:50%;bottom:0;left:0;} .c{position:absolute;overflow:auto;top:0;right:0;bottom:0;left:50%;}&lt;/style&gt;&lt;div class=&quot;e&quot; id=&quot;editor&quot;&gt;&lt;/div&gt;&lt;div class=&quot;c&quot;&gt;&lt;/div&gt;&lt;script src=&quot;http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;script src=&quot;http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js&quot;&gt;&lt;/script&gt;&lt;script&gt; function showResult(e){consoleEl.innerHTML=e}var e=ace.edit(&quot;editor&quot;);e.setTheme(&quot;ace/theme/monokai&quot;);e.getSession().setMode(&quot;ace/mode/markdown&quot;);var consoleEl=document.getElementsByClassName(&quot;c&quot;)[0];var converter=new Showdown.converter;e.commands.addCommand({name:&quot;markdown&quot;,bindKey:{win:&quot;Ctrl-M&quot;,mac:&quot;Command-M&quot;},exec:function(t){var n=e.getSession().getMode().$id;if(n==&quot;ace/mode/markdown&quot;){showResult(converter.makeHtml(t.getValue()))}},readOnly:true})&lt;/script&gt;
+</code></pre><h3 id="%E6%94%AF%E6%8C%81%E5%A4%9A%E7%A7%8D%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E8%BE%91%E5%99%A8">&#x652F;&#x6301;&#x591A;&#x79CD;&#x8BED;&#x8A00;&#x7684;&#x7F16;&#x8F91;&#x5668;</h3>
+<p>&#x652F;&#x6301;&#x591A;&#x79CD;&#x8BED;&#x8A00;&#x9AD8;&#x4EAE;
+&#x57FA;&#x672C; code &#x5982;&#x4E0B; :</p>
+<pre><code>data:text/html, &lt;style type=&quot;text/css&quot;&gt;.e{position:absolute;top:0;right:0;bottom:0;left:0;}&lt;/style&gt;&lt;div class=&quot;e&quot; id=&quot;editor&quot;&gt;&lt;/div&gt;&lt;script src=&quot;http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;script&gt;var e=ace.edit(&quot;editor&quot;);e.setTheme(&quot;ace/theme/monokai&quot;);e.getSession().setMode(&quot;ace/mode/java&quot;);&lt;/script&gt;
+</code></pre><p>&#x5207;&#x6362;&#x8BED;&#x8A00;&#x652F;&#x6301; : &#x66F4;&#x6539; <code>ace/mode/java</code> &#x4E3A;&#x4EE5;&#x4E0B;&#x503C;</p>
+<pre><code>Markdown -&gt; `ace/mode/markdown`
+Python -&gt; `ace/mode/ruby`
+C/C++ -&gt; `ace/mode/c_cpp`
+Javscript -&gt; `ace/mode/javascript`
+Java -&gt; `ace/mode/java`
+Scala- -&gt; `ace/mode/scala`
+CoffeeScript -&gt; `ace/mode/coffee`
+and
+css, html, php, latex,
+tex, sh, sql, lua, clojure, dart, typescript, go, groovy, json, jsp, less,lisp,
+lucene, perl, powershell, scss, textile, xml, yaml, xquery, liquid, diff and many more...
+</code></pre><p>&#x66F4;&#x6362;&#x4E3B;&#x9898; : &#x66F4;&#x6539; <code>ace/theme/monokai</code> &#x4E3A;&#x4EE5;&#x4E0B;&#x503C;</p>
+<pre><code>Eclipse -&gt; ace/theme/eclipse
+GitHub -&gt; ace/theme/github
+TextMate -&gt; ace/theme/textmate
+and
+ambiance, dawn, chaos, chrome, dreamweaver, xcode, vibrant_ink, solarized_dark, solarized_light, tomorrow, tomorrow_night, tomorrow_night_blue,
+twilight, tomorrow_night_eighties, pastel_on_dark and many more..
+</code></pre><h2 id="%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90">&#x53C2;&#x8003;&#x8D44;&#x6E90;</h2>
+<ol>
+<li><p><a href="https://coderwall.com/p/lhsrcq/one-line-browser-notepad?utm_source=textarea.com&amp;utm_medium=textarea.com&amp;utm_campaign=article" target="_blank">One line browser notepad</a>  </p>
+</li>
+<li><p><a href="https://www.nczonline.net/blog/2009/10/27/data-uris-explained/" target="_blank">Data URI&apos;s format</a>  </p>
+</li>
+<li><p><a href="http://a5.gg/" target="_blank">a5</a></p>
+</li>
+</ol>
+
                     
                     </section>
                 
@@ -351,10 +386,10 @@ xterm
         </div>
 
         
-        <a href="../../puzzles/linux/add_sudo_permission.html" class="navigation navigation-prev " aria-label="Previous page: 为用户增加 sudo 权限"><i class="fa fa-angle-left"></i></a>
+        <a href="../../puzzles/web-font-end/js_this.html" class="navigation navigation-prev " aria-label="Previous page: js 中的 this 对象"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../puzzles/linux/sync_zone.html" class="navigation navigation-next " aria-label="Next page: 调整时区"><i class="fa fa-angle-right"></i></a>
+        <a href="../../puzzles/linux/index.html" class="navigation navigation-next " aria-label="Next page: Linux 系统"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
