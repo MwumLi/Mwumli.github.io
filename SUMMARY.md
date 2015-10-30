@@ -20,6 +20,7 @@
     * [js 函数提升](web-font-end/js/func_hoisting.md)
   * [一些特殊的值](web-font-end/js/special_value.md)  
   * [前端JavaScript规范](web-font-end/js/js_standard.md)
+  * [JavaScript 编程风格](web-font-end/js/js_programming_style.md)
 * [React](web-font-end/react/react.md)
   * [React 网页模板](web-font-end/react/basic_tpl.md)
   * [ReactDOM](web-font-end/react/react_dom_basic.md)
@@ -30,3 +31,4 @@
   * [表单与事件](web-font-end/react/react_form_event.md)
   * [组件的 style 属性不是字符串](web-font-end/react/react_style_object.md)
 * [web 学习资源](web-font-end/resources.md)
+* [前端模块化管理](web-font-end/module.md)
