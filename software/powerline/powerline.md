@@ -25,7 +25,7 @@ Powerline 是一个状态栏插件
 
 ## 查看安装路径  
 
-	$ pip status powerline-status
+	$ pip show powerline-status
 	---
 	Name: powerline-status
 	Version: 2.2
@@ -46,15 +46,15 @@ Powerline 是一个状态栏插件
 
 在配置文件 `~/.tmux.conf` 末尾增添 :  
 
-	source-file /home/mwumli/.local/lib/python2.7/site-packages/powerline/ bindings/tmux/powerline.conf
-	source-file /home/mwumli/.local/lib/python2.7/site-packages/powerline/ bindings/tmux/powerline_tmux_1.8_plus.conf
+	source-file /home/mwumli/.local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf
+	source-file /home/mwumli/.local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline_tmux_1.8_plus.conf
 
 ### zsh
 
 在配置文件 `~/.zshrc` 末尾增添 :  
 
 	export PATH=$PATH:$HOME/.local/bin
-	 . /home/mwumli/.local/lib/python2.7/site-packages/powerline/bindings/z sh/powerline.zsh
+	 . /home/mwumli/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 
 如果使用了 [oh-my-zsh](../zsh/oh_my_zsh.html)  
