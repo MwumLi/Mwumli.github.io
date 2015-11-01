@@ -1,5 +1,7 @@
 # 调整时区
 
+2015-11-01 17:02:25 by MwumLi
+
 ---
 
 一个系统的时区决定了系统显示的本地时间  
@@ -11,7 +13,7 @@
 * Debian 系统下 :  `sudo dpkg-reconfigure tzdata`  
 * 替换时区文件, 比如中国 :  
 
-        $  sudo cp/usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+        $  sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
   `/usr/share/zoneinfo/` 目录下存储各个地区的时区文件  
   `/etc/localtime` 则是你当前系统所采用的时区信息文件  
@@ -26,6 +28,7 @@
 如果设置了, 则会根据 `TZ` 值就会从 `/usr/share/zoneinfo/$TZ` 下获取本地时间  
 
 **如何获取 TZ 的值**  
+
 1. 可以去 `/etc/share/zoneinfo/` 目录下寻找相应的时区信息文件  
    比如你的时区信息文件为 `/usr/share/zoneinfo/Asia/Shanghai`, 那么 `TZ` 的值就是 `Asia/Shanghai`  
 
@@ -35,9 +38,9 @@
 
 1. 查看当前用户时区 :  
 
-    $ date -R
-    Mon, 05 Oct 2015 13:36:50 +0800
+        $ date -R
+        Mon, 05 Oct 2015 13:36:50 +0800
 
-`+0800` 表示的正是中国所处的时区  
+   `+0800` 表示的正是中国所处的时区  
 
 2. 使用 `tzselect` 选择你想查看的时区时间  
