@@ -172,10 +172,10 @@
 </code></pre>
 
 <p>当然，你可以自定义虚拟主机目录:<br />
-1. 修改<em>/etc/apache2/sites-enabled/000-default.conf</em>的<code>DocumentRoot /home/ya/LAMP</code>为<code>DocumentRoot /home/ya/LAMP</code><br />
+1. 修改<em>/etc/apache2/sites-enabled/000-default.conf</em>的<code>DocumentRoot /var/www/html</code>为<code>DocumentRoot /home/ya/LAMP</code><br />
 2. 添加目录权限，需要添加下面这句：</p>
 
-<pre><code>&lt;Directory /home/ya/LAMP/&gt;
+<pre><code>&lt;Directory /home/ya/LAMP &gt;
 	Options Indexes FollowSymLinks
 	AllowOverride None
 	Require all granted
@@ -393,7 +393,7 @@ $cfg['Servers'][$i]['compress']='false';
 
 <p>编辑php配置文件</p>
 
-<pre><code>$ sudo vim etc/php5/apache2/php.ini
+<pre><code>$ sudo vim /etc/php5/apache2/php.ini
 </code></pre>
 
 <p>在<code>extension</code>下面加上（任意独立一行）:</p>

@@ -5,8 +5,8 @@
         <description>倘若微小 - Luo</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-10-11T09:37:16+08:00</lastBuildDate>
-        <pubDate>2015-10-11T09:37:16+08:00</pubDate>
+        <lastBuildDate>2015-11-02T20:23:45+08:00</lastBuildDate>
+        <pubDate>2015-11-02T20:23:45+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -346,7 +346,7 @@
 
 &lt;p&gt;通过命令组合, 我们也可以实现同样的功能 :&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ ssh ifmicro@remote-host 'mkdir -p .ssh &amp;amp;&amp;amp; cat &amp;gt;&amp;gt; .ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 .ssh/authorized_keys' &amp;lt; ~/.ssh/id_rsa.pub
+&lt;pre&gt;&lt;code&gt;$ ssh ifmicro@remote-host &#39;mkdir -p .ssh &amp;amp;&amp;amp; cat &amp;gt;&amp;gt; .ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 .ssh/authorized_keys&#39; &amp;lt; ~/.ssh/id_rsa.pub
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;因此, 我们可以得出这样一个结论 :&lt;/p&gt;
@@ -360,19 +360,19 @@
   &lt;li&gt;
     &lt;p&gt;复制 &lt;code&gt;hello-cpp/&lt;/code&gt; 目录下的东西到远程主机的 &lt;code&gt;~/hello-cpp&lt;/code&gt; 目录下 :&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; $ tar czv hello-cpp | ssh ifmicro@remote-host 'tar xz'
+    &lt;pre&gt;&lt;code&gt; $ tar czv hello-cpp | ssh ifmicro@remote-host &#39;tar xz&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;将服务器 &lt;code&gt;~/hello-cpp/&lt;/code&gt; 下的东西复制到本地当前目录 :&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; $ ssh ifmicro@remote-host 'tar czv hello-cpp' | tar xz
+    &lt;pre&gt;&lt;code&gt; $ ssh ifmicro@remote-host &#39;tar czv hello-cpp&#39; | tar xz
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;查看服务器的有多少个用户 :&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; $ ssh ifmicro@remote-host 'ls .. | wc -w'
+    &lt;pre&gt;&lt;code&gt; $ ssh ifmicro@remote-host &#39;ls .. | wc -w&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -383,7 +383,7 @@
 # 这只是一个远程自动化脚本的架构  
 remote_auto(){
 	ssh -T $1 &amp;lt;&amp;lt;&quot;EOF&quot;
-	echo &quot;Hi, I'm in $1, my name is&quot;$(whoami);
+	echo &quot;Hi, I&#39;m in $1, my name is&quot;$(whoami);
 	pwd;
 	# 这里可以添加更多的命令
 	EOF
@@ -559,7 +559,7 @@ wait
  Your public key has been saved in /home/vagrant/.ssh/id_rsa.pub.
  The key fingerprint is:
  2e:a3:02:c9:f1:bd:bd:d3:2e:85:26:4c:4a:b6:d1:11 your_email@example.com
- The key's randomart image is:
+ The key&#39;s randomart image is:
  +--[ RSA 4096]----+
  |     E.          |
  |     .           |
@@ -581,11 +581,11 @@ wait
     &lt;pre&gt;&lt;code&gt; $ ssh-copy-id -i id_rsa.pub ifmicro@remote-host
  /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
  /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
- ifmicro@remote-host's password:
+ ifmicro@remote-host&#39;s password:
 
  Number of key(s) added: 1
 
- Now try logging into the machine, with:   &quot;ssh 'ifmicro@remote-host'&quot;
+ Now try logging into the machine, with:   &quot;ssh &#39;ifmicro@remote-host&#39;&quot;
  and check to make sure that only the key(s) you wanted were added.
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -617,7 +617,7 @@ wait
 
 &lt;p&gt;第一次登录服务器 , 系统会有如下提示 :&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;The authenticity of host 'remote-host (10.108.79.5)' can't be established.
+&lt;pre&gt;&lt;code&gt;The authenticity of host &#39;remote-host (10.108.79.5)&#39; can&#39;t be established.
 RSA key fingerprint is 31:51:f8:e3:53:01:c4:76:af:60:9c:3b:b3:1b:5e:37.
 Are you sure you want to continue connecting (yes/no)?
 &lt;/code&gt;&lt;/pre&gt;
@@ -636,8 +636,8 @@ Are you sure you want to continue connecting (yes/no)?
   &lt;li&gt;
     &lt;p&gt;如果你采用密码口令登录服务器，那么&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; Warning: Permanently added 'remote-host,10.108.79.5' (RSA) to the list of known hosts.
- Enter passphrase for key '/home/vagrant/.ssh/id_rsa':
+    &lt;pre&gt;&lt;code&gt; Warning: Permanently added &#39;remote-host,10.108.79.5&#39; (RSA) to the list of known hosts.
+ Enter passphrase for key &#39;/home/vagrant/.ssh/id_rsa&#39;:
 &lt;/code&gt;&lt;/pre&gt;
 
     &lt;p&gt;输入密码，如果密码正确，那么登录成功&lt;/p&gt;
@@ -706,7 +706,7 @@ Are you sure you want to continue connecting (yes/no)?
     &lt;p&gt;&lt;code&gt;ssh-copy-id&lt;/code&gt; 到底做了什么?&lt;br /&gt;
 事实上, ssh-copy-id 做了下面脚本做的事 :&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; $ ssh ifmicro@remote-host 'mkdir -p .ssh &amp;amp;&amp;amp; cat &amp;gt;&amp;gt; .ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 .ssh/authorized_keys' &amp;lt; ~/.ssh/id_rsa.pub
+    &lt;pre&gt;&lt;code&gt; $ ssh ifmicro@remote-host &#39;mkdir -p .ssh &amp;amp;&amp;amp; cat &amp;gt;&amp;gt; .ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 .ssh/authorized_keys&#39; &amp;lt; ~/.ssh/id_rsa.pub
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -1697,7 +1697,7 @@ set -g prefix C-a
 
 &lt;p&gt;我们可以在 &lt;code&gt;.bashrc&lt;/code&gt; 末尾添加:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;alias tmux='tmux -2'
+&lt;pre&gt;&lt;code&gt;alias tmux=&#39;tmux -2&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;这样，每次使用 tmux 就会很方便啦&lt;/p&gt;
@@ -2122,7 +2122,7 @@ set -g prefix C-a
 &lt;p&gt;Debian Wheezy系统默认已经开启ssh服务，所以我们可以通过ssh进行远程访问，对于很多操作，那已足够&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ ssh pi@192.168.199.244
-pi@192.168.199.244's password: 
+pi@192.168.199.244&#39;s password: 
 Linux raspberrypi 3.12.28+ #709 PREEMPT Mon Sep 8 15:28:00 BST 2014 armv6l
 
 The programs included with the Debian GNU/Linux system are free software;
@@ -2233,7 +2233,7 @@ VNC端口地址：&lt;code&gt;基础端口(默认5900)+屏幕ID&lt;/code&gt; &lt
 &lt;pre&gt;&lt;code&gt;	$ xtightvncviewer 192.168.199.227:1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;其他客户端访问一样，在输入地址区域输入:&lt;code&gt;Pi's IP:[base port]+Screen ID&lt;/code&gt; &lt;br /&gt;
+&lt;p&gt;其他客户端访问一样，在输入地址区域输入:&lt;code&gt;Pi&#39;s IP:[base port]+Screen ID&lt;/code&gt; &lt;br /&gt;
 然后选择连接即可&lt;/p&gt;
 
 &lt;h3 id=&quot;section-6&quot;&gt;配置&lt;/h3&gt;
@@ -2407,7 +2407,7 @@ dosbox -c &quot;mount C: ~masm&quot; -c &quot;path %path%;C:\tools\&quot; &amp;a
 
 &lt;pre&gt;&lt;code&gt;assume cs:codes, ds:datas
 datas segment
-		str db 'hello,world',13,10,'$'
+		str db &#39;hello,world&#39;,13,10,&#39;$&#39;
 datas ends
 codes segment
 	start:
@@ -2710,7 +2710,7 @@ Linux命令如下:&lt;/p&gt;
 
 &lt;p&gt;同样，我们可以在cp.txt文件中看到下面一段：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;COLLECT_GCC_OPTIONS='-v' '-mtune=generic' '-march=x86-64'
+&lt;pre&gt;&lt;code&gt;COLLECT_GCC_OPTIONS=&#39;-v&#39; &#39;-mtune=generic&#39; &#39;-march=x86-64&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;section-2&quot;&gt;链接&lt;/h3&gt;
@@ -2849,8 +2849,8 @@ void func2(){}
 &lt;p&gt;我们还有两个文件，一个是main.c, 一个是test_static.c，这两文件我们都引用了&lt;strong&gt;test_static.h&lt;/strong&gt;,然后我们执行下面指令：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ gcc -o main main.c test_static.c test_static.h
-/tmp/ccSrEpb2.o: In function `func2':
-test_static.c:(.text+0x6): multiple definition of `func2'
+/tmp/ccSrEpb2.o: In function `func2&#39;:
+test_static.c:(.text+0x6): multiple definition of `func2&#39;
 /tmp/cc54UVtA.o:main.c:(.text+0x6): first defined here
 collect2: error: ld returned 1 exit status
 &lt;/code&gt;&lt;/pre&gt;
@@ -3424,7 +3424,7 @@ $ git push
 &amp;lt;html&amp;gt;
 &amp;lt;body&amp;gt;
 &amp;lt;h1&amp;gt;Hello World&amp;lt;/h1&amp;gt;
-&amp;lt;p&amp;gt;I'm hosted with GitHub Pages.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;I&#39;m hosted with GitHub Pages.&amp;lt;/p&amp;gt;
 &amp;lt;/body&amp;gt;
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -3565,10 +3565,10 @@ $ git push
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;当然，你可以自定义虚拟主机目录:&lt;br /&gt;
-1. 修改&lt;em&gt;/etc/apache2/sites-enabled/000-default.conf&lt;/em&gt;的&lt;code&gt;DocumentRoot /home/ya/LAMP&lt;/code&gt;为&lt;code&gt;DocumentRoot /home/ya/LAMP&lt;/code&gt;&lt;br /&gt;
+1. 修改&lt;em&gt;/etc/apache2/sites-enabled/000-default.conf&lt;/em&gt;的&lt;code&gt;DocumentRoot /var/www/html&lt;/code&gt;为&lt;code&gt;DocumentRoot /home/ya/LAMP&lt;/code&gt;&lt;br /&gt;
 2. 添加目录权限，需要添加下面这句：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;Directory /home/ya/LAMP/&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;Directory /home/ya/LAMP &amp;gt;
 	Options Indexes FollowSymLinks
 	AllowOverride None
 	Require all granted
@@ -3656,7 +3656,7 @@ Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
 owners.
 
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
 
 mysql&amp;gt; 
 &lt;/code&gt;&lt;/pre&gt;
@@ -3694,7 +3694,7 @@ mysql&amp;gt;
   &lt;li&gt;
     &lt;p&gt;创建一个受限用户 这个用户(testuser)只有一个数据库(这里是test库)的访问写入权限，这个数据库创建与删除表的权限，并且只能在本地登入，密码为userpasswd&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; grant select,insert,update,delete,create,alter on test.* to 'test'@'localhost' IDENTIFIED BY 'userpasswd';
+    &lt;pre&gt;&lt;code&gt; grant select,insert,update,delete,create,alter on test.* to &#39;test&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;userpasswd&#39;;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -3768,15 +3768,15 @@ $ vim config.inc.php
 
 &lt;p&gt;找到“blowfish_secret”在后面填上任意字母&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$cfg['Servers'][$i]['auth_type']='cookie';
-$cfg['Servers'][$i]['host']='localhost';
-$cfg['Servers'][$i]['connect_type']='tcp';
-$cfg['Servers'][$i]['compress']='false';
+&lt;pre&gt;&lt;code&gt;$cfg[&#39;Servers&#39;][$i][&#39;auth_type&#39;]=&#39;cookie&#39;;
+$cfg[&#39;Servers&#39;][$i][&#39;host&#39;]=&#39;localhost&#39;;
+$cfg[&#39;Servers&#39;][$i][&#39;connect_type&#39;]=&#39;tcp&#39;;
+$cfg[&#39;Servers&#39;][$i][&#39;compress&#39;]=&#39;false&#39;;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;上面这四句基本都有，只需添加下面这句即可&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$cfg['Servers'][$i]['extension']='mysql';	
+&lt;pre&gt;&lt;code&gt;$cfg[&#39;Servers&#39;][$i][&#39;extension&#39;]=&#39;mysql&#39;;	
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;保存退出，继续安装php5-mcrypt&lt;/p&gt;
@@ -3786,7 +3786,7 @@ $cfg['Servers'][$i]['compress']='false';
 
 &lt;p&gt;编辑php配置文件&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ sudo vim etc/php5/apache2/php.ini
+&lt;pre&gt;&lt;code&gt;$ sudo vim /etc/php5/apache2/php.ini
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;在&lt;code&gt;extension&lt;/code&gt;下面加上（任意独立一行）:&lt;/p&gt;
@@ -3806,7 +3806,7 @@ $cfg['Servers'][$i]['compress']='false';
 1. 修改 &lt;code&gt;phpMyAdmin/&lt;/code&gt; 文件下所有文件权限:  &lt;code&gt;sudo chmod -R 755 phpMyAdmin&lt;/code&gt;&lt;br /&gt;
 2. 可以通过修改 phpMyAdmin 的配置文件(&lt;code&gt;phpMyAdmin/libraries/config.default.php&lt;/code&gt;)解决:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$cfg['CheckConfigurationPermissions']=false
+&lt;pre&gt;&lt;code&gt;$cfg[&#39;CheckConfigurationPermissions&#39;]=false
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;section-3&quot;&gt;配置文件路径&lt;/h3&gt;
@@ -4219,7 +4219,7 @@ $ sudo umount dir
 然后拷贝下面的代码进去并回车，  它会自动帮你新建文件夹并下载文件的，与上面的方法最终效果是一样的&lt;br /&gt;
 代码如下：　　&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print 'Please restart Sublime Text to finish installation'
+&lt;pre&gt;&lt;code&gt;import urllib2,os; pf=&#39;Package Control.sublime-package&#39;; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),&#39;wb&#39;).write(urllib2.urlopen(&#39;http://sublime.wbond.net/&#39;+pf.replace(&#39; &#39;,&#39;%20&#39;)).read()); print &#39;Please restart Sublime Text to finish installation&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;section-8&quot;&gt;使用&lt;/h3&gt;
@@ -4346,7 +4346,7 @@ $ sudo apt-get install sublime-text
 	
 	[Desktop Action Document]
 	Name=New File
-	Exec=bash -c 'LD_PRELOAD=/usr/lib/libsublime-imfix.so /usr/bin/subl' --com mand new_file
+	Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /usr/bin/subl&#39; --com mand new_file
 	OnlyShowIn=Unity
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -4517,7 +4517,7 @@ $ sudo apt-get install sublime-text
 
         &lt;p&gt;修改为&lt;/p&gt;
 
-        &lt;pre&gt;&lt;code&gt;  Exec=bash -c 'LD_PRELOAD=/usr/lib/libsublime-imfix.so /usr/bin/subl %F'
+        &lt;pre&gt;&lt;code&gt;  Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /usr/bin/subl %F&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
         &lt;p&gt;将&lt;/p&gt;
@@ -4527,7 +4527,7 @@ $ sudo apt-get install sublime-text
 
         &lt;p&gt;修改为&lt;/p&gt;
 
-        &lt;pre&gt;&lt;code&gt;  Exec=bash -c 'LD_PRELOAD=/usr/lib/libsublime-imfix.so /usr/bin/subl' -n
+        &lt;pre&gt;&lt;code&gt;  Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /usr/bin/subl&#39; -n
 &lt;/code&gt;&lt;/pre&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -4674,12 +4674,12 @@ TagList通过一个简单窗口，展示了当前文件下的所有相关的标�
 
 &lt;h3 id=&quot;vundle&quot;&gt;添加到Vundle管理&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;Plugin 'vim-scripts/taglist.vim'
+&lt;pre&gt;&lt;code&gt;Plugin &#39;vim-scripts/taglist.vim&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;vimrc&quot;&gt;.vimrc中的一些配置&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;let Tlist_Ctags_Cmd='ctags'         &quot;taglist依赖于ctags,设置ctags位置
+&lt;pre&gt;&lt;code&gt;let Tlist_Ctags_Cmd=&#39;ctags&#39;         &quot;taglist依赖于ctags,设置ctags位置
 let Tlist_Use_Right_Window=0        &quot;窗口显示:1--右边，0--左边
 let Tlist_Show_One_File=1           &quot;显示一个文件:1--是 0--否
 let Tlist_File_Fold_Auto_Close=1    &quot;非当前文件，函数列表折叠隐藏
@@ -4696,19 +4696,19 @@ nmap &amp;lt;leader&amp;gt;tl :Tlist&amp;lt;CR&amp;gt;
   &lt;li&gt;
     &lt;p&gt;打开Taglist窗口&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt;  :Tlist	或者 	使用定义的快捷键 '\+t+l'
+    &lt;pre&gt;&lt;code&gt;  :Tlist	或者 	使用定义的快捷键 &#39;\+t+l&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;跳跃到某一item定义处&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt;  选中item，点击'Enter'
+    &lt;pre&gt;&lt;code&gt;  选中item，点击&#39;Enter&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;仅仅查看item原型&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt;  选中要查看的item,点击'Space'
+    &lt;pre&gt;&lt;code&gt;  选中要查看的item,点击&#39;Space&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -4724,7 +4724,7 @@ nmap &amp;lt;leader&amp;gt;tl :Tlist&amp;lt;CR&amp;gt;
 
 &lt;h3 id=&quot;vundle-1&quot;&gt;添加到Vundle管理&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;Plugin 'mbbill/echofunc'
+&lt;pre&gt;&lt;code&gt;Plugin &#39;mbbill/echofunc&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;section-4&quot;&gt;使用&lt;/h3&gt;
@@ -4757,20 +4757,20 @@ netrw是标准的vim插件, 已经随vim一起安装进系统里了, 不需要�
 
 &lt;h3 id=&quot;vundle-2&quot;&gt;加入Vundle管理&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;Plugin 'MwumLi/WinManager'
+&lt;pre&gt;&lt;code&gt;Plugin &#39;MwumLi/WinManager&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;vimrc-1&quot;&gt;.vimrc中的一些配置&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;&quot; 设置我们要管理的插件
-let g:winManagerWindowLayout='FileExplorer|TagList' 	&quot;FileExplorer和TagList同时在左边窗口显示
-let g:winManagerWindowLayout='FileExplorer,TagList' 	&quot;FileExplorer和TagList同时仅有一个在左边窗口显示,使用Ctrl+n/p切换
+let g:winManagerWindowLayout=&#39;FileExplorer|TagList&#39; 	&quot;FileExplorer和TagList同时在左边窗口显示
+let g:winManagerWindowLayout=&#39;FileExplorer,TagList&#39; 	&quot;FileExplorer和TagList同时仅有一个在左边窗口显示,使用Ctrl+n/p切换
 let g:persistentBehaviour=0 &quot; 如果所有编辑文件都关闭了，退出vim
 nmap wm :WMToggle&amp;lt;cr&amp;gt; 	&quot; 打开/关闭WinManager
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;个人觉得&lt;code&gt;let g:winManagerWindowLayout='FileExplorer,TagList'&lt;/code&gt;看起来比较好点,大气&lt;br /&gt;
-虽然&lt;code&gt;let g:winManagerWindowLayout='FileExplorer|TagList'&lt;/code&gt;可能看起来更像是一个IDE&lt;/p&gt;
+&lt;p&gt;个人觉得&lt;code&gt;let g:winManagerWindowLayout=&#39;FileExplorer,TagList&#39;&lt;/code&gt;看起来比较好点,大气&lt;br /&gt;
+虽然&lt;code&gt;let g:winManagerWindowLayout=&#39;FileExplorer|TagList&#39;&lt;/code&gt;可能看起来更像是一个IDE&lt;/p&gt;
 
 &lt;h3 id=&quot;section-6&quot;&gt;使用&lt;/h3&gt;
 
@@ -4778,26 +4778,26 @@ nmap wm :WMToggle&amp;lt;cr&amp;gt; 	&quot; 打开/关闭WinManager
   &lt;li&gt;
     &lt;p&gt;打开WinMananger&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt;  'w + m'
+    &lt;pre&gt;&lt;code&gt;  &#39;w + m&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;假如采用第二种分开显示tags和files，则按以下方式切换:&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt;  'Ctrl + n' 	---&amp;gt;下一页
-  'Ctrl + p' 	---&amp;gt;前一页
+    &lt;pre&gt;&lt;code&gt;  &#39;Ctrl + n&#39; 	---&amp;gt;下一页
+  &#39;Ctrl + p&#39; 	---&amp;gt;前一页
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;假如还没有安装minibufexpl(即将安装),则使用一下方式在不同窗口切换:&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt;  'Ctrl + w + w'
+    &lt;pre&gt;&lt;code&gt;  &#39;Ctrl + w + w&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;假如安装了minibufexpl,则切换窗口变得很简单:&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt;  'Ctrl + h/j/k/l'  ==  'Ctrl + Arrow left/down/up/right'  //左-下-上-右移动
+    &lt;pre&gt;&lt;code&gt;  &#39;Ctrl + h/j/k/l&#39;  ==  &#39;Ctrl + Arrow left/down/up/right&#39;  //左-下-上-右移动
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -4811,7 +4811,7 @@ nmap wm :WMToggle&amp;lt;cr&amp;gt; 	&quot; 打开/关闭WinManager
 
 &lt;h3 id=&quot;vundle-3&quot;&gt;加入Vundle管理&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;Plugin 'vim-scripts/minibufexpl.vim'
+&lt;pre&gt;&lt;code&gt;Plugin &#39;vim-scripts/minibufexpl.vim&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;vimrc-2&quot;&gt;.vimrc中的一些配置&lt;/h3&gt;
@@ -4824,9 +4824,9 @@ let g:miniBufExplModSelTarget = 1   &quot; 不要在不可编辑内容的窗口�
 
 &lt;h3 id=&quot;section-8&quot;&gt;使用&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;'Ctrl + h/j/k/l'	---&amp;gt;左/下/上/右窗口切换
-'Ctrl + Arrow'		---&amp;gt;same as 'Ctrl + h/j/k/l'
-'Tab'				---&amp;gt;缓冲区间切换
+&lt;pre&gt;&lt;code&gt;&#39;Ctrl + h/j/k/l&#39;	---&amp;gt;左/下/上/右窗口切换
+&#39;Ctrl + Arrow&#39;		---&amp;gt;same as &#39;Ctrl + h/j/k/l&#39;
+&#39;Tab&#39;				---&amp;gt;缓冲区间切换
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&quot;minibufexpl-1&quot;&gt;minibufexpl引发的血案(窗口大小变化)&lt;/h2&gt;
@@ -4860,7 +4860,7 @@ let g:miniBufExplorerMoreThanOne=0 这样倒是可以解决问题，但是也引
 
 &lt;h3 id=&quot;vundle-4&quot;&gt;添加到Vundle管理&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;Plugin 'Lokaltog/vim-powerline'
+&lt;pre&gt;&lt;code&gt;Plugin &#39;Lokaltog/vim-powerline&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;vimrc-4&quot;&gt;.vimrc中的一些配置&lt;/h3&gt;
@@ -4869,7 +4869,7 @@ let g:miniBufExplorerMoreThanOne=0 这样倒是可以解决问题，但是也引
 
 &lt;pre&gt;&lt;code&gt;set laststatus=2    &quot;一直展示两行状态
 set t_Co=256        &quot;告诉vim这个终端支持256色
-let g:Powerline_symbols = 'unicode'
+let g:Powerline_symbols = &#39;unicode&#39;
 set encoding=utf8
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -4896,7 +4896,7 @@ set t_Co=256
 
 &lt;h3 id=&quot;vundle-5&quot;&gt;添加到Vundle管理&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;Plugin 'plasticboy/vim-markdown'
+&lt;pre&gt;&lt;code&gt;Plugin &#39;plasticboy/vim-markdown&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&quot;vimrc-5&quot;&gt;.vimrc中的一些配置&lt;/h3&gt;
@@ -5406,27 +5406,27 @@ filetype off                  &quot; required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 &quot; alternatively, pass a path where Vundle should install plugins
-&quot;call vundle#begin('~/some/path/here')
+&quot;call vundle#begin(&#39;~/some/path/here&#39;)
 &quot;所有的插件管理必须被添加在以上这行之后
 
 &quot; let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin &#39;gmarik/Vundle.vim&#39;
 
 &quot; Powerline---&amp;gt;The ultimate vim statusline utility  
 &quot; https://github.com/Lokaltog/vim-powerline
-Plugin 'Lokaltog/vim-powerline
+Plugin &#39;Lokaltog/vim-powerline
 
 &quot; Markdown--Syntax highlighting, matching rules and mappings for .md file
 &quot; https://github.com/plasticboy/vim-markdown/
-Plugin 'plasticboy/vim-markdown'
+Plugin &#39;plasticboy/vim-markdown&#39;
 
 &quot; echofunc---&amp;gt;automatically display function 
 &quot; https://github.com/mbbill/echofunc 
-Plugin 'mbbill/echofunc'
+Plugin &#39;mbbill/echofunc&#39;
 
 &quot; taglist---&amp;gt; 列出当前文件中所有标签(宏，全局变量，函数名) 
 &quot; https://github.com/vim-scripts/taglist.vim 
-Plugin 'vim-scripts/taglist.vim'  
+Plugin &#39;vim-scripts/taglist.vim&#39;  
 
 &quot; 所有的插件必须被添加在以下这行之前
 call vundle#end()            &quot; required
@@ -5448,37 +5448,37 @@ filetype plugin indent on    &quot; required
     &lt;p&gt;指定 Github 中用户仓库的插件，使用“用户名/插件名称”的方式指定&lt;br /&gt;
 插件名中的空格使用“-”代替&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; Plugin 'tpope/vim-fugitive'
+    &lt;pre&gt;&lt;code&gt; Plugin &#39;tpope/vim-fugitive&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
     &lt;p&gt;插件名中的空格使用“-”代替&lt;br /&gt;
  当插件位于仓库的某一子目录时，需用rtp指定子目录&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+    &lt;pre&gt;&lt;code&gt; Plugin &#39;rstacruz/sparkup&#39;, {&#39;rtp&#39;: &#39;vim/&#39;}
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;指定 Github 中 &lt;a href=&quot;http://vim-scripts.org/vim/scripts.html&quot;&gt;vim-scripts 仓库&lt;/a&gt;的插件
 直接指定插件名称即可&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; Plugin 'L9'
+    &lt;pre&gt;&lt;code&gt; Plugin &#39;L9&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
     &lt;p&gt;避免插件名称与L9有冲突&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; Plugin 'user/L9', {'name': 'newL9'}
+    &lt;pre&gt;&lt;code&gt; Plugin &#39;user/L9&#39;, {&#39;name&#39;: &#39;newL9&#39;}
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;指定非 Github 的 Git 仓库的插件，需要使用 git 地址&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; Plugin 'git://git.wincent.com/command-t.git'
+    &lt;pre&gt;&lt;code&gt; Plugin &#39;git://git.wincent.com/command-t.git&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;指定本地 Git 仓库中的插件&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; Plugin 'file:///home/gmarik/path/to/plugin'
+    &lt;pre&gt;&lt;code&gt; Plugin &#39;file:///home/gmarik/path/to/plugin&#39;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
