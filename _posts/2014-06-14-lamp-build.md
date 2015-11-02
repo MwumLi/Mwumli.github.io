@@ -26,10 +26,10 @@ tags: [LAMP, Linux, Apache, Mysql, Php, Web]
 	/var/www/html
 
 当然，你可以自定义虚拟主机目录:  
-1. 修改*/etc/apache2/sites-enabled/000-default.conf*的`DocumentRoot /home/ya/LAMP`为`DocumentRoot /home/ya/LAMP`  
+1. 修改*/etc/apache2/sites-enabled/000-default.conf*的`DocumentRoot /var/www/html`为`DocumentRoot /home/ya/LAMP`  
 2. 添加目录权限，需要添加下面这句：  
 
-	<Directory /home/ya/LAMP/>
+	<Directory /home/ya/LAMP >
 		Options Indexes FollowSymLinks
 		AllowOverride None
 		Require all granted
@@ -218,7 +218,7 @@ phpmyadmin是一个图形化的数据库管理软件
 
 编辑php配置文件  
 
-	$ sudo vim etc/php5/apache2/php.ini
+	$ sudo vim /etc/php5/apache2/php.ini
 
 在`extension`下面加上（任意独立一行）:  
 
