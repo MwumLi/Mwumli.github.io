@@ -2,102 +2,97 @@
 layout: post
 title: "LAMP 环境搭建"
 toc: "true"
-modifyTime: "2015-09-25 16:47:17"
-description: ""
+modifyTime: "2015-12-04"
+description: "Linux 下 Apache, Mysql, Php, phpMyAdmin 的安装与简单使用"
 category: 记录
 tags: [LAMP, Linux, Apache, Mysql, Php, Web]
 ---
 {% include LU/setup %}
+{% include LU/gen_toc %}
 
-## Ubuntu下LAMP环境搭建  
+{:toc}
 
-### 安装apache服务器 
+在 Linux 搭建一个可运行 php, 并且可以访问 mysql 数据库的服务端环境, 服务器是 Apache  
+这就是 `LAMP`    
+
+这里只是讲述了 Ubuntu 下的搭建, 并不包括所有的 Linux 发行版  
+
+
+Linux 下 php 扩展安装 : [请点这里](/php-extension-install/)
+
+## apache 服务器 
+
+### 安装  
 
 	$ sudo apt-get install apache2
 
-安装完成，在浏览器中输入`http://localhost`,出现`It works`okay,安装完成  
+安装完成，访问 `http://localhost`  
+如果出现`It works`,安装成功  
 
-#### 默认工作目录  
+### 重定义工作目录  
 
 不同版本的apache，工作目录有点差异  
-我的机器apache版本:`Server version: Apache/2.4.7 (Ubuntu)`  
-所以默认工作目录是：  
 
-	/var/www/html
+`/etc/apache2/sites-enabled/000-default.conf` 中 `DocumentRoot` 后就是 Apache 的工作目录  
 
-当然，你可以自定义虚拟主机目录:  
-1. 修改*/etc/apache2/sites-enabled/000-default.conf*的`DocumentRoot /var/www/html`为`DocumentRoot /home/ya/LAMP`  
-2. 添加目录权限，需要添加下面这句：  
+**重定义工作目录需要** : 
 
-	<Directory /home/ya/LAMP >
-		Options Indexes FollowSymLinks
-		AllowOverride None
-		Require all granted
-	</Directory>
+1. `DocumentRoot /var/www/html` 改为 `DocumentRoot /home/ya/LAMP`  
 
-添加的地方有两处，任选一处即可：  
- * 刚才修改的那句之后添加  
- * 在*/etc/apache2/apache2.conf*中寻找`Directory`字眼，在这之后添加，其实也无所谓，只是放着之后，方便管理  
+2. 添加目录权限 :
 
+    	<Directory /home/ya/LAMP >
+	    	Options Indexes FollowSymLinks
+		    AllowOverride None
+    		Require all granted
+        </Directory>
 
-#### apache2的配置布局  	
+   添加的地方有两处，任选一处即可：  
+   * 刚才修改的那句之后添加  
+   * 在 `/etc/apache2/apache2.conf` 中寻找 `Directory` 字眼，在这之后添加  
+     (其实也无所谓，只是放着之后，方便管理)  
+
+### 配置文件布局  	
 
 	/etc/apache2/
 	|-- apache2.conf
-	|       `--  ports.conf
-	|-- mods-enabled
-	|       |-- *.load
-	|       `-- *.conf
-	|-- conf-enabled
-	|       `-- *.conf
-	|-- sites-enabled
-	|       `-- *.conf
+	|
+    |-- ports.conf
+    |
+	|-- mods-enabled/
+	|   
+	|-- conf-enabled/
+	|   
+	|-- sites-enabled/
 
 * `apache2.conf` 主配置文件  
-当web服务器启动时，加载此文件，而此文件包含了其他配置文件  
+  当web服务器启动时，加载此文件，而此文件包含了其他配置文件  
 * `ports.conf` 定制监听端口    
-被包含在`apache2.conf`,并且可以随时修改  
-* `mods-enabled/*.conf`, `conf-enabled/*.conf`,`sites-enabled/*.conf`下的配置文件分别是用来管理模块，全局配置片段，虚拟主机配置  
+  被包含在`apache2.conf`,并且可以随时修改  
+* `mods-enabled/`, `conf-enabled/`, `sites-enabled/` 下的配置文件分别是用来管理模块，全局配置片段，虚拟主机配置  
 
 
-#### apache2的启动和停止  
-由于环境变量和加载配置的原因，我们不能直接使用`/usr/bin/apache2`,需要使用`/etc/init.d/apache2`,或者启用服务`service apache2`  
+### apache2 的启动和停止  
 
-##### apache2的启动  
+    $ service apache2 status        # 查看apache2的状态  
+	$ sudo service apache2 start    # 启动
+	$ sudo service apache2 stop     # 停止
+	$ sudo service apache2 restart  # 重新启动
 
-	$ sudo /usr/bin/apache2 -k start	或者  	
-	$ sudo service apache2 start
+## mysql 数据库 
 
-##### apache2的停止
+### 安装
 
-	$ sudo /usr/bin/apache2 -k stop	或者  	
-	$ sudo service apache2 stop  
+	$ sudo apt-get install mysql-server mysql-client
 
-##### apache2的再启动
+同时安装了服务端和客户端  
 
-	$ sudo /usr/bin/apache2 -k restart	或者  	
-	$ sudo service apache2 restart
-
-##### 查看apache2的状态  
-
-	$ service apache2 status
-
-或者， 直接访问`http://localhost`  
-
-### 安装MySQL数据库 
-
-	$ sudo apt-get install mysql-server  
-
-安装mysql服务器的过程中，会自动安装mysql的命令行工具mysql-client，还有其他的一些工具  
-同时安装途中，需要为mysql设置root用户密码  
-
-#### 测试  
 输入下面命令，按提示输入密码  
 
 	$ mysql -uroot -p
 	Enter password: 
 
-加入安装成功，出现下面画面:  
+安装成功，出现下面画面:  
 
 	Welcome to the MySQL monitor.  Commands end with ; or \g.
 	Your MySQL connection id is 53
@@ -113,137 +108,73 @@ tags: [LAMP, Linux, Apache, Mysql, Php, Web]
 
 	mysql> 
 
-#### 配置MySQL
+### mysql 服务的启动和停止
+ 
+    $ service mysql status        # 查看mysql 服务的状态  
+	$ sudo service mysql start    # 启动
+	$ sudo service mysql stop     # 停止
+	$ sudo service mysql restart  # 重新启动
 
-##### MySQL常用命令
-MySQL大部分命令是以`;`结尾  
-1. 进入mysql  
+### mysql 客户端访问 mysql 服务
 
-		$ mysql -h [服务器地址] -u [用户名〕-p
+1. root 用户, 密码为 hello, 登录 192.168.1.2 上的 mysql 数据库 :  
 
-这是访问本地服务器  
+        mysql -h 192.167.1.2 -uroot -phello 	
 
-		$ mysql -h 127.0.0.1 -u [用户名〕 -p
+2. 以 root 用户登录 127.0.0.1(默认), 密码等待输入
+ 
+        $ mysql -uroot -p 
+        Enter Password:
 
-如：`$ mysql -h 127.0.0.1 -u root -p`
-认证成功之后就进入mysql的命令控制台，以下都是在mysql的命令控制台的命令。
-
-2. 显示已经存在的数据库  
-
-		mysql> SHOW DATABASES;
-
-3. 创建数据库(linux下是区分大小写)  
-
-		CREATE DATABASE [数据库名];
-
-4. 创建一个受限用户 这个用户(testuser)只有一个数据库(这里是test库)的访问写入权限，这个数据库创建与删除表的权限，并且只能在本地登入，密码为userpasswd  
-
-
-		grant select,insert,update,delete,create,alter on test.* to 'test'@'localhost' IDENTIFIED BY 'userpasswd';
-
-5.退出数据库  
-
-		quit 或者 \q
-
-##### MySQL配置文件（新手、无特殊要求勿动）
+### 是否只允许本机访问
 	
-	sudo vim /etc/mysql/my.cnf
+`/etc/mysql/my.cnf` 是 Mysql 的配置文件  
 
-这里有一个地方要注意: 默认情况下，只允许本地访问数据库 ,其它机子不能直接访问MySQL   
+里面有一项 `bind-address 127.0.0.1`, 指定 Mysql 数据库默认只允许本地访问数据库
 
-	bind-address 127.0.0.1
-
-如果需要其他机器访问，应这样做:
+如果需要其他机器访问，应使用 `#` 注释掉 : 
 	
-	# bind-address 127.0.0.1		// 把这 "bind-address 127.0.0.1" 句话用"#"注释掉  
+	# bind-address 127.0.0.1
 	
 
 
-### 安装PHP以及一些必要的模块  
+## PHP
 
-	$ sudo apt-get install php5 libapache2-mod-php5 php5-mysql
+### 安装
 
-*为什么安装`libapache2-mod-php5`?*    
+	$ sudo apt-get install php5 php5-dev libapache2-mod-php5 php5-mysql
 
-安装这个软件包时，它会自动向`/etc/apache2/mods-available`写入PHP的配置文件`php5.conf`和 `php5.load`，并把它们链接到了`/etc/apache2/mods-enabled`目录。  
-安装的最后，软件包自动重新载入apache配置，php就可以在apache上跑了。无需手动的把Apache与PHP关联到一起。  
-没有它，会出现`无法解析php文件，浏览器提示下载所要打开的php文件`
+* `php5` : php 解释器
+* `php5-dev` : php5 module 开发的一些文件, 包含了 `phpize` 命令  
+* `libapache2-mod-php5` : Apache2 的 php5 module  
+  没有或disable,会出现 `无法解析php文件，浏览器提示下载所要打开的php文件`  
+  `a2enmod` 和 `a2dismod` enable or disable an apache2 module  
+* `php5-mysql` : Mysql module for php
 
-	$ sudo a2enmod php5
 
-假如没安装`libapache2-mod-php5`,则提示  
+### 测试  
 
-	This module does not exist!
-
-`a2enmod`和 `a2dismod`  enable or disable an apache2 module  
-
-*为什么要安装`php5-mysql`？*  
-
-因为该软件包会向`/etc/php5/conf.d`目录写入配置文件，使得PHP能够支持mysql。
-
-#### 测试  
-在apache的默认工作目录下(/var/www/html)中新建文件phpinfo.php,内容为:  
+在 apache 的工作根目录中新建文件 `phpinfo.php` ,内容为:  
 
 	<?php phpinfo() ?>
 	
-在浏览器窗口输入`http://localhost/phpinfo.php`,若出现php的相关信息，则安装成功  
+访问 `http://localhost/phpinfo.php`  
+若出现 php 的相关信息，则安装成功  
 
-### 安装phpmyadmin
-phpmyadmin是一个图形化的数据库管理软件  
-推荐从官网下载安装与配置  
-首先从[官网下载](http://www.phpmyadmin.net/home_page/ "phpMyAdmin官网")  
+## phpMyadmin
 
-然后解压缩到`apache`工作目录(默认为/var/www/html)下的`phpMyAdmin`(没有，自行创建)  
+phpMyadmin 是一个基于 Web 的图形化数据库管理软件  
 
-修改其配置文件(config.sample.inc.php)为`config.inc.php`  
+1. 下载 : <http://www.phpmyadmin.net/home_page/>
 
-	$ cd /var/www/html/phpMyAdmin
-	$ sudo cp config.sample.inc.php config.inc.php
-	$ vim config.inc.php
+2. 解压, 重命名为 `phpMyAdmin`, 移动到 apache 工作根目录下  
 
-找到“blowfish_secret”在后面填上任意字母  
+3. 生成配置文件 `config.inc.php`  
 
-	$cfg['Servers'][$i]['auth_type']='cookie';
-	$cfg['Servers'][$i]['host']='localhost';
-	$cfg['Servers'][$i]['connect_type']='tcp';
-	$cfg['Servers'][$i]['compress']='false';
-	
-上面这四句基本都有，只需添加下面这句即可  
+        $ cd phpMyAdmin
+        $ cp config.sample.inc.php config.inc.php
 
-	$cfg['Servers'][$i]['extension']='mysql';	
-
-保存退出，继续安装php5-mcrypt  
-
-	$ sudo apt-get install php5-mcrypt  
-
-编辑php配置文件  
-
-	$ sudo vim /etc/php5/apache2/php.ini
-
-在`extension`下面加上（任意独立一行）:  
-
-	extension=php_mcrypt.so
-
-保存后，重启apache2  
-
-	$ sudo service apache2 restart
-
-在浏览器里输入`http://localhost/phpMyAdmin`   
-出现登陆数据库界面，嗯，成功了，终于不用面对那么冷淡的终端了  
-
-如果浏览器中显示 `配置文件权限错误，不应任何用户都能修改！`,那么可以这样解决:  
-1. 修改 `phpMyAdmin/` 文件下所有文件权限:  `sudo chmod -R 755 phpMyAdmin`  
-2. 可以通过修改 phpMyAdmin 的配置文件(`phpMyAdmin/libraries/config.default.php`)解决:  
-
-	$cfg['CheckConfigurationPermissions']=false
-	
-### 配置文件路径
-1. apache 的配置文件路径 `/etc/apache2/apache2.conf`  
-2. apache 网站字符编码配置路径 `/etc/apache2/conf-enabled/charset.conf`  
-
-3. php.ini 路径 `/etc/php5/apache2/php.ini`  
-
-4. mysql配置文件 路径 `/etc/mysql/my.cnf`   一般不要使用，尤其是新手
-
-5. 默认网站根目录`/var/www/html`(据说网站根目录应该是`/var/www`，但我安装完之后，却不是这样的，难道改变了?)
+4. 修改 `config.inc.php`  
+   * 填写 : `$cfg['blowfish_secret'] = 'ED34DFGFF';  // 必须填写,但可以随意填写`  
+   * 添加 mysql 访问 : `$cfg['Servers'][$i]['extension']='mysql';`	
 
