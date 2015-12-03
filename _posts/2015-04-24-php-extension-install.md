@@ -98,7 +98,18 @@ php 有一个变量定义了 extension 在你的系统中的存放位置, 那就
 
 3. 重启web服务器
 
-### redis 扩展的安装[^redis-github]  
+### igbinary 扩展的安装  
+
+1. 安装 : `sudo pecl install igbinary`  
+
+2. 添加配置 `/etc/php5/apache2/php.ini`:  
+
+       [igbinary]
+       extension=igbinary.so
+
+3. 重启web服务器
+
+### redis 扩展的安装 
 
 官方文档 : <https://github.com/phpredis/phpredis#installingconfiguring>  
 
@@ -110,6 +121,7 @@ php 有一个变量定义了 extension 在你的系统中的存放位置, 那就
 		$ make && sudo make install
 	
    这样 redis 就被安装在合适的位置  
+   如果需要 `--enable-redis-igbinary`, 请先进行 `igbinary 扩展的安装`    
 
 2. 添加扩展到配置文件`/etc/php5/apache2/php.ini`  
 
