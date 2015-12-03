@@ -94,7 +94,8 @@ php 有一个变量定义了 extension 在你的系统中的存放位置, 那就
 
 2. 添加配置 `/etc/php5/apache2/php.ini`:  
 
-       extension=php_mcrypt.so
+        [mcrypt]
+        extension=mcrypt.so
 
 3. 重启web服务器
 
