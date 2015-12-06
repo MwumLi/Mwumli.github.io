@@ -12,10 +12,10 @@
 		<title>倘若微小 - Linux下php扩展安装</title>
 
   		
-		<meta name="description" content="">
+		<meta name="description" content="Linux 下 php 扩展的安装,extension_dir 的获取,mongo,redis 等php扩展安装">
         
 
-	    <meta name="author" content="Luo">
+	    <meta name="author" content="MwumLi">
 	
         <!-- syntax highlighting CSS -->
 		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
@@ -134,10 +134,10 @@
 		<div>
 			Last Modify in
 			
-			<span>2015-09-25</span>,
+			<span>2015-12-04</span>,
 			
 			published in <span>2015-04-24</span> 
-			by <span> Luo</span>
+			by <span> MwumLi</span>
 		</div>
 
 		
@@ -149,71 +149,85 @@
     
 <ul id="markdown-toc">
   <li><a href="#section" id="markdown-toc-section">碎碎念</a></li>
-  <li><a href="#php" id="markdown-toc-php">检验php是否安装某个扩展</a>    <ul>
-      <li><a href="#section-1" id="markdown-toc-section-1">没有搜索到扩展</a></li>
+  <li><a href="#extensiondir--extension" id="markdown-toc-extensiondir--extension">extension_dir 和 extension</a>    <ul>
+      <li><a href="#extensiondir-" id="markdown-toc-extensiondir-">extension_dir 实际生效值</a></li>
+      <li><a href="#section-1" id="markdown-toc-section-1">检验扩展是否应用</a></li>
     </ul>
   </li>
-  <li><a href="#php-1" id="markdown-toc-php-1">安装并添加php扩展</a>    <ul>
-      <li><a href="#section-2" id="markdown-toc-section-2">几个扩展安装案例</a>        <ul>
-          <li><a href="#redis-redis-github" id="markdown-toc-redis-redis-github">redis 扩展的安装</a></li>
-          <li><a href="#mongo-" id="markdown-toc-mongo-">mongo 扩展的安装</a></li>
-          <li><a href="#section-3" id="markdown-toc-section-3">待续…</a></li>
-        </ul>
-      </li>
-      <li><a href="#section-4" id="markdown-toc-section-4">安装需要</a>        <ul>
-          <li><a href="#phpize-" id="markdown-toc-phpize-">phpize 的安装</a></li>
-        </ul>
-      </li>
+  <li><a href="#php" id="markdown-toc-php">安装并添加php扩展</a></li>
+  <li><a href="#phpize-" id="markdown-toc-phpize-">phpize 的安装</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">几个扩展常用扩展安装</a>    <ul>
+      <li><a href="#mccrypt-" id="markdown-toc-mccrypt-">MCcrypt 扩展的安装</a></li>
+      <li><a href="#igbinary-" id="markdown-toc-igbinary-">igbinary 扩展的安装</a></li>
+      <li><a href="#redis-" id="markdown-toc-redis-">redis 扩展的安装</a></li>
+      <li><a href="#mongo-" id="markdown-toc-mongo-">mongo 扩展的安装</a></li>
     </ul>
   </li>
-</ul>
-
-<ul>
-  <li>menu</li>
 </ul>
 
 <h2 id="section">碎碎念</h2>
 
-<p>进行简单的 web 动态网站开发，只需快速搭建一个 LAMP 环境即可</p>
+<p>通过搭建 <a href="/lamp-build">LAMP 环境</a>, 就可以使用 php 进行动态网站开发</p>
 
-<p>但有的时候还需要一些特别的功能，这时候需要安装相应扩展<sup id="fnref:extension"><a href="#fn:extension" class="footnote">1</a></sup></p>
+<p>但有的时候增强 php 对某些特殊功能, 比如对 mongodb 的操纵, redis 的访问等</p>
 
-<p>这里以 LAMP<sup id="fnref:LAMP"><a href="#fn:LAMP" class="footnote">2</a></sup> 环境为例</p>
+<p>这时候, 你就需要为 php 安装并配置相应扩展, 即 extension</p>
 
-<h2 id="php">检验php是否安装某个扩展</h2>
+<h2 id="extensiondir--extension">extension_dir 和 extension</h2>
+
+<p>php 有一个变量定义了 extension 在你的系统中的存放位置, 那就是 <code>extension_dir</code><br />
+只有 extension 存放到 <code>extension_dir</code> 的指定路径, 那么 php 才能正确读取</p>
+
+<p>关于 <code>extension_dir</code> :</p>
+
+<ol>
+  <li>默认值 : <code>php -i | grep extension_dir</code></li>
+  <li>
+    <p>重新指定<br />
+在  <code>/etc/php5/apache2/php.ini</code> 进行指定, 比如 :</p>
+
+    <pre><code>extension_dir="/usr/share/php_extension"
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="extensiondir-">extension_dir 实际生效值</h3>
 
 <ol>
   <li>
-    <p>检验你某个扩展是否安装，可以在你的 Apache 目录下新建文件 <code>phpinfo.php</code> :</p>
+    <p>在你的 Apache 目录下新建文件 <code>phpinfo.php</code>, 内容如下 :</p>
 
     <pre><code> &lt;?php
      phpinfo();
- &gt;
+ ?&gt;
 </code></pre>
   </li>
   <li>
-    <p>访问此网页，使用浏览器查找功能查找你的扩展，比如 <code>redis</code></p>
-  </li>
-  <li>
-    <p>如果你的扩展已经安装成功，并添加到 php 的 apache 配置文件，那么就会搜索到</p>
+    <p>访问 <code>phpinfo.php</code>, 搜索 <code>extension_dir</code>, 可以看到当前 php 寻找 extension 的路径</p>
   </li>
 </ol>
 
-<h3 id="section-1">没有搜索到扩展</h3>
+<h3 id="section-1">检验扩展是否应用</h3>
+
+<p>访问 <code>phpinfo.php</code>，搜索你的扩展，比如 <code>redis</code></p>
+
+<p>如果你的扩展放到 <code>extension_dir</code> 并且已经添加到 php 的 apache 配置文件，那么就会搜索到<br />
+如果没有搜索到 :</p>
 
 <ol>
+  <li>查看 <code>extension_dir</code> 下有没有你的 extension</li>
   <li>
-    <p>重启了下服务器: <code>sudo service apache2 restart</code></p>
+    <p>确认是否在 <code>/etc/php5/apache2/php.ini</code> 中添加此 extension, 比如 redis :</p>
+
+    <pre><code> [redis]
+ extension=redis.so
+</code></pre>
   </li>
-  <li>
-    <p>检查配置文件 <code>/etc/php5/apache2/php.ini</code> 是否正确添加扩展</p>
-  </li>
-  <li>
-    <p>可能没有安装成功，请检查网络，请百度，请谷歌…</p>
-  </li>
+  <li>重启服务器 : <code>sudo service apache2 restart</code></li>
+  <li>可以留言共同讨论或者谷歌</li>
 </ol>
 
-<h2 id="php-1">安装并添加php扩展</h2>
+<h2 id="php">安装并添加php扩展</h2>
 
 <ol>
   <li>
@@ -240,30 +254,72 @@
   </li>
 </ol>
 
-<h3 id="section-2">几个扩展安装案例</h3>
+<h2 id="phpize-">phpize 的安装</h2>
 
-<h4 id="redis-redis-github">redis 扩展的安装<sup id="fnref:redis-github"><a href="#fn:redis-github" class="footnote">3</a></sup></h4>
+<p>用 C 开发的 PHP 扩展使用动态链接库的方式编译扩展模块，需要用到 <code>phpize</code></p>
+
+<p>这个工具在使用 <code>apt-get install php5</code> 默认情况也是没安装的</p>
+
+<p>执行以下命令去安装 :</p>
+
+<pre><code>$ sudo apt-get install php5-dev
+</code></pre>
+
+<h2 id="section-2">几个扩展常用扩展安装</h2>
+
+<h3 id="mccrypt-">MCcrypt 扩展的安装</h3>
 
 <ol>
   <li>
-    <p>使用git下载</p>
+    <p>安装 : <code>sudo apt-get install php5-mcrypt</code></p>
+  </li>
+  <li>
+    <p>添加配置 <code>/etc/php5/apache2/php.ini</code>:</p>
 
-    <pre><code> $ git clone https://github.com/phpredis/phpredis.git
+    <pre><code> [mcrypt]
+ extension=mcrypt.so
 </code></pre>
   </li>
   <li>
-    <p>编译扩展模块,需要<code>phpize</code></p>
-
-    <pre><code> $ phpize
- $ ./configure [--enable-redis-igbinary]
- $ make &amp;&amp; make install
-</code></pre>
+    <p>重启web服务器</p>
   </li>
 </ol>
 
-<p>这样 redis 就被安装在合适的位置</p>
+<h3 id="igbinary-">igbinary 扩展的安装</h3>
 
 <ol>
+  <li>
+    <p>安装 : <code>sudo pecl install igbinary</code></p>
+  </li>
+  <li>
+    <p>添加配置 <code>/etc/php5/apache2/php.ini</code>:</p>
+
+    <pre><code>[igbinary]
+extension=igbinary.so
+</code></pre>
+  </li>
+  <li>
+    <p>重启web服务器</p>
+  </li>
+</ol>
+
+<h3 id="redis-">redis 扩展的安装</h3>
+
+<p>官方文档 : <a href="https://github.com/phpredis/phpredis#installingconfiguring">https://github.com/phpredis/phpredis#installingconfiguring</a></p>
+
+<ol>
+  <li>
+    <p>下载, 编辑, 安装 :</p>
+
+    <pre><code> $ git clone https://github.com/phpredis/phpredis.git
+ $ phpize
+ $ ./configure [--enable-redis-igbinary]
+ $ make &amp;&amp; sudo make install
+</code></pre>
+
+    <p>这样 redis 就被安装在合适的位置<br />
+如果需要 <code>--enable-redis-igbinary</code>, 请先进行 <code>igbinary 扩展的安装</code></p>
+  </li>
   <li>
     <p>添加扩展到配置文件<code>/etc/php5/apache2/php.ini</code></p>
 
@@ -276,26 +332,23 @@
   </li>
 </ol>
 
-<h4 id="mongo-">mongo 扩展的安装</h4>
+<h3 id="mongo-">mongo 扩展的安装</h3>
+
+<p>官方文档: <a href="http://php.net/manual/zh/mongo.installation.php">http://php.net/manual/zh/mongo.installation.php</a></p>
 
 <ol>
   <li>
-    <p>下载，编译，安装，查看:</p>
+    <p>下载，编译，安装:</p>
 
-    <pre><code> $ git clone https://github.com/mongodb/mongo-php-driver.git
- $ cd mongo-php-driver
+    <pre><code> $ git clone https://github.com/mongodb/mongo-php-driver-legacy.git
+ $ cd mongo-php-driver-legacy
  $ phpize
  $ ./configure
- $ sudo make install
+ $ make all &amp;&amp; sudo make install
  ...
  Installing shared extensions:     
  /usr/lib/php5/20121212+lfs/
- $ ls /usr/lib/php5/20121212+lfs/
- json.so   mysqli.so  opcache.so    pdo.so       redis.so
- mongo.so  mysql.so   pdo_mysql.so  readline.so
 </code></pre>
-
-    <p>可以看到<code>mongo.so</code></p>
   </li>
   <li>
     <p>添加配置 <code>/etc/php5/apache2/php.ini</code>:</p>
@@ -309,32 +362,6 @@
   </li>
 </ol>
 
-<h4 id="section-3">待续…</h4>
-
-<h3 id="section-4">安装需要</h3>
-
-<h4 id="phpize-">phpize 的安装</h4>
-
-<p>用 C 开发 PHP 扩展的时候如果用动态链接库的方式编译扩展模块，需要用到 <code>phpize</code><br />
-这个工具在使用 <code>apt-get install php5</code> 默认情况也是没安装的<br />
-可以执行以下命令:</p>
-
-<pre><code>$ sudo apt-get install php5-dev
-</code></pre>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:extension">
-      <p>php扩展列表:<a href="http://php.net/manual/zh/extensions.php">http://php.net/manual/zh/extensions.php</a> <a href="#fnref:extension" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:LAMP">
-      <p>Linux+Apache+Mysql+Php, 安装请参考<a href="/记录/2014/06/14/lamp-build/ LAMP环境搭建">LAMP环境搭建</a> <a href="#fnref:LAMP" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:redis-github">
-      <p>可参考<a href="https://github.com/phpredis/phpredis#installation"><code>&lt;</code>一篇来自github的安装指南-redis<code>&gt;</code></a> <a href="#fnref:redis-github" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
 
     <hr>
     <div class="pagination">
@@ -379,7 +406,7 @@
             <hr />
             <div id="footer">
                 <p>
-                <span>&copy;2014 Luo</span>
+                <span>&copy;2014 MwumLi</span>
                 </p>
             </div>
         </div>

@@ -9,10 +9,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		
-		<title>倘若微小 - 使用 Vundle 对 Vim 插件进行管理及安装</title>
+		<title>倘若微小 - Ubuntu 下安装 nodejs</title>
 
   		
-		<meta name="description" content="使用 Vundle 对 Vim 插件管理">
+		<meta name="description" content="简述 nodejs 在各大平台的安装以及 Ubuntu 14.04 的下具体安装">
         
 
 	    <meta name="author" content="MwumLi">
@@ -113,7 +113,7 @@
 
 
 <div class="page-header">
-	<h1>使用 Vundle 对 Vim 插件进行管理及安装 <small></small></h1>
+	<h1>Ubuntu 下安装 nodejs <small></small></h1>
 	<div id="article_header">
 		
 		
@@ -124,17 +124,15 @@
 				<span>标签: </span>
 			
 			
-				<a href="/pages/tags/index.html#Vim-ref" class="tag">Vim</a>
-    		
-				<a href="/pages/tags/index.html#Plugin-ref" class="tag">Plugin</a>
+				<a href="/pages/tags/index.html#nodejs Linux-ref" class="tag">nodejs Linux</a>
     		
 		</div>		
 		<div>
 			Last Modify in
 			
-			<span>2015-09-25</span>,
+			<span>2015-11-03</span>,
 			
-			published in <span>2014-06-01</span> 
+			published in <span>2015-11-03</span> 
 			by <span> MwumLi</span>
 		</div>
 
@@ -146,174 +144,143 @@
 <div id="page-content">
     
 <ul id="markdown-toc">
-  <li><a href="#github" id="markdown-toc-github">Github地址</a></li>
-  <li><a href="#vundle-" id="markdown-toc-vundle-">Vundle 的安装</a></li>
-  <li><a href="#vundle--vimrc-" id="markdown-toc-vundle--vimrc-">Vundle 在 .vimrc 的配置</a></li>
-  <li><a href="#vim--vundle-" id="markdown-toc-vim--vundle-">将 Vim 插件纳入 Vundle 的管理</a></li>
-  <li><a href="#vundle--1" id="markdown-toc-vundle--1">使用 Vundle 安装插件</a></li>
-  <li><a href="#vundle--2" id="markdown-toc-vundle--2">Vundle 的其他操作</a></li>
+  <li><a href="#ubuntu-" id="markdown-toc-ubuntu-">Ubuntu 下的安装</a>    <ul>
+      <li><a href="#section" id="markdown-toc-section">源安装</a></li>
+      <li><a href="#node-version-manager" id="markdown-toc-node-version-manager">Node Version Manager</a>        <ul>
+          <li><a href="#section-1" id="markdown-toc-section-1">安装</a></li>
+          <li><a href="#section-2" id="markdown-toc-section-2">使用</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
-<p>Vundle – Vim 的一个强大的管理插件的插件 <br />
-可以很方便地管理 Vim 其他插件的安装、卸载和禁用</p>
+<p>各大平台下 nodejs 的安装看这里 : <a href="https://nodejs.org/en/download/package-manager/#windows">https://nodejs.org/en/download/package-manager/#windows</a></p>
 
-<p>用起来很简单, 只需要一丁点的配置</p>
+<p>Nodejs 发展比较快, 所以版本更新迭代快</p>
 
-<h2 id="github">Github地址</h2>
+<h2 id="ubuntu-">Ubuntu 下的安装</h2>
 
-<pre><code>https://github.com/gmarik/vundle.git 
+<h3 id="section">源安装</h3>
+
+<p><strong>Nodejs v5.x</strong>:</p>
+
+<pre><code>curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+sudo apt-get install -y nodejs
 </code></pre>
 
-<h2 id="vundle-">Vundle 的安装</h2>
+<p><strong>Nodejs v4.x</strong>:</p>
 
-<pre><code>$ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim  
+<pre><code>curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get install -y nodejs
 </code></pre>
 
-<h2 id="vundle--vimrc-">Vundle 在 .vimrc 的配置</h2>
+<p>假如你在使用 Ubuntu 12.04 以及更低版本,请升级你的系统, 再进行安装<br />
+至于原因，看这里 : <a href="https://github.com/nodesource/distributions/blob/master/OLDER_DISTROS.md">https://github.com/nodesource/distributions/blob/master/OLDER_DISTROS.md</a></p>
 
-<p>把下面这些放在你的 <code>.vimrc</code> 中去使用 <code>Vundle</code><br />
-移除下面不必要的插件，他们仅仅是为了演示效果</p>
+<h3 id="node-version-manager">Node Version Manager</h3>
 
-<pre><code>set nocompatible              " be iMproved, required
-filetype off                  " required
+<p>Nodejs 升级迭代很快, 不同的 Nodejs 项目，可能使用的是不同版本的 Nodejs<br />
+因此, 要维持多个 Nodejs 项目, 那就需要一种工具来管理 nodejs</p>
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-"所有的插件管理必须被添加在以上这行之后
+<p>这就是 Node Version Manager</p>
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+<p>目前, 有两个比较有名的 Node Version Manager : <a href="https://github.com/tj/n">n</a> 和 <a href="https://github.com/creationix/nvm">nvm</a></p>
 
-" Powerline---&gt;The ultimate vim statusline utility  
-" https://github.com/Lokaltog/vim-powerline
-Plugin 'Lokaltog/vim-powerline
+<p>Github 上 nvm 的 Star 明显是 n 的 2 倍多<br />
+因此, 这里讲述一下 nvm 的安装与使用</p>
 
-" Markdown--Syntax highlighting, matching rules and mappings for .md file
-" https://github.com/plasticboy/vim-markdown/
-Plugin 'plasticboy/vim-markdown'
+<p>nvm 项目地址 : <a href="https://github.com/creationix/nvm">https://github.com/creationix/nvm</a></p>
 
-" echofunc---&gt;automatically display function 
-" https://github.com/mbbill/echofunc 
-Plugin 'mbbill/echofunc'
+<h4 id="section-1">安装</h4>
 
-" taglist---&gt; 列出当前文件中所有标签(宏，全局变量，函数名) 
-" https://github.com/vim-scripts/taglist.vim 
-Plugin 'vim-scripts/taglist.vim'  
+<p>nvm 给出了自动安装的脚本, 因此你可以用过 <code>wget</code>, <code>curl</code> 实现自动安装, 看这里 :
+<a href="https://github.com/creationix/nvm#install-script">https://github.com/creationix/nvm#install-script</a></p>
 
-" 所有的插件必须被添加在以下这行之前
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-</code></pre>
-
-<h2 id="vim--vundle-">将 Vim 插件纳入 Vundle 的管理</h2>
-
-<p>有 4 种方式, 下面一一列举 :</p>
+<p>这里主要讲一下手动安装<br />
+手动安装可以使你明白自动安装到底做了什么</p>
 
 <ol>
   <li>
-    <p>指定 Github 中用户仓库的插件，使用“用户名/插件名称”的方式指定<br />
-插件名中的空格使用“-”代替</p>
+    <p>安装前的准备 :</p>
 
-    <pre><code> Plugin 'tpope/vim-fugitive'
-</code></pre>
-
-    <p>插件名中的空格使用“-”代替<br />
- 当插件位于仓库的某一子目录时，需用rtp指定子目录</p>
-
-    <pre><code> Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+    <pre><code> sudo apt-get install build-essential libssl-dev -y
 </code></pre>
   </li>
   <li>
-    <p>指定 Github 中 <a href="http://vim-scripts.org/vim/scripts.html">vim-scripts 仓库</a>的插件
-直接指定插件名称即可</p>
+    <p>克隆仓库到 <code>~/.nvm</code> :</p>
 
-    <pre><code> Plugin 'L9'
-</code></pre>
-
-    <p>避免插件名称与L9有冲突</p>
-
-    <pre><code> Plugin 'user/L9', {'name': 'newL9'}
+    <pre><code> git clone https://github.com/creationix/nvm.git ~/.nvm &amp;&amp; cd ~/.nvm &amp;&amp; git checkout `git describe --abbrev=0 --tags`
 </code></pre>
   </li>
   <li>
-    <p>指定非 Github 的 Git 仓库的插件，需要使用 git 地址</p>
+    <p>添加下面到 <code>~/.bashrc</code>(<code>~/.profile</code>或 <code>~/.zshrc</code>) :</p>
 
-    <pre><code> Plugin 'git://git.wincent.com/command-t.git'
-</code></pre>
-  </li>
-  <li>
-    <p>指定本地 Git 仓库中的插件</p>
-
-    <pre><code> Plugin 'file:///home/gmarik/path/to/plugin'
+    <pre><code> export NVM_DIR="$HOME/.nvm"
+ [ -s "$NVM_DIR/nvm.sh" ] &amp;&amp; . "$NVM_DIR/nvm.sh" # This loads nvm
 </code></pre>
   </li>
 </ol>
 
-<h2 id="vundle--1">使用 Vundle 安装插件</h2>
+<h4 id="section-2">使用</h4>
 
 <ol>
   <li>
-    <p>启动 vim ,并且运行:</p>
+    <p>安装一个指定的版本 : <code>nvm install v0.10.32</code></p>
+  </li>
+  <li>
+    <p>安装最新的 0.10.x 版本 : <code>nvm install 0.10</code></p>
+  </li>
+  <li>
+    <p>使用 v0.10.32 版本的 nodejs 去运行 app.js :</p>
 
-    <pre><code> :PluginInstall
+    <pre><code> nvm run 0.10.32 node app.js
 </code></pre>
   </li>
   <li>
-    <p>从命令行安装:</p>
+    <p>显示已安装的 v0.10.32 node 的安装路径 :</p>
 
-    <pre><code> $ vim +PluginInstall +qall
+    <pre><code> nvm which v0.10.32
+</code></pre>
+  </li>
+  <li>
+    <p><code>node</code> 代表最新版本的 node, 因此你可以直接在 <code>nvm use</code>, <code>nvm install</code>, <code>nvm exec</code>, <code>nvm which</code> 中使用</p>
+  </li>
+  <li>
+    <p>在一个 nodejs 中集成其他版本的 <code>npm</code> :</p>
+
+    <pre><code> nvm install v5.0 --reinstall-packages-from=4.2
+</code></pre>
+  </li>
+  <li>
+    <p>使用系统安装的 node :</p>
+
+    <pre><code> nvm use system
+ nvm run system --version
+</code></pre>
+  </li>
+  <li>
+    <p>列出当前已经安装的 node :</p>
+
+    <pre><code> nvm ls
+</code></pre>
+  </li>
+  <li>
+    <p>列出当前可以获得的 node :</p>
+
+    <pre><code> nvm ls-remote
 </code></pre>
   </li>
 </ol>
-
-<h2 id="vundle--2">Vundle 的其他操作</h2>
-
-<ol>
-  <li>
-    <p>预览模式列出已配置的 Plugins</p>
-
-    <pre><code> :PluginList          - list configured plugins
-</code></pre>
-  </li>
-  <li>
-    <p>安装(更新)插件</p>
-
-    <pre><code> :PluginInstall(!)	- install plugins
- :PluginInstall!		- update all plugins
-</code></pre>
-  </li>
-  <li>
-    <p>搜索(首先刷新缓存)</p>
-
-    <pre><code> :PluginSearch(!) foo - search (or refresh cache first) for foo
-</code></pre>
-  </li>
-  <li>
-    <p>清除未使用的插件</p>
-
-    <pre><code> :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-</code></pre>
-  </li>
-</ol>
-
 
     <hr>
     <div class="pagination">
       <ul>
       
-        <li class="prev">上一篇: <a href="/three-big-things" title="不早不晚，当下最好(转载)">不早不晚，当下最好(转载)</a></li>
+        <li class="prev">上一篇: <a href="/ssh-port-forwarding" title="构建 SSH 隧道 -- 端口转发">构建 SSH 隧道 -- 端口转发</a></li>
       
       
-        <li class="next">下一篇: <a href="/ctags" title="ctags 在 Vim 中的使用">ctags 在 Vim 中的使用</a></li>
+        <li class="next">下一篇: <a href="/run-go-in-ubuntu" title="Ubuntu 下搭建 go 运行环境">Ubuntu 下搭建 go 运行环境</a></li>
       
       </ul>
     </div>

@@ -9,10 +9,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		
-		<title>倘若微小 - 使用 Vundle 对 Vim 插件进行管理及安装</title>
+		<title>倘若微小 - Ubuntu 下搭建 go 运行环境</title>
 
   		
-		<meta name="description" content="使用 Vundle 对 Vim 插件管理">
+		<meta name="description" content="Ubuntu 14.04 下搭建 go 运行编译环境">
         
 
 	    <meta name="author" content="MwumLi">
@@ -113,28 +113,32 @@
 
 
 <div class="page-header">
-	<h1>使用 Vundle 对 Vim 插件进行管理及安装 <small></small></h1>
+	<h1>Ubuntu 下搭建 go 运行环境 <small></small></h1>
 	<div id="article_header">
 		
 		
 		<div>
 			<span>分类: </span>
-			<a href="/pages/categories/index.html#记录-ref" class="tag">记录</a> 
+			<a href="/pages/categories/index.html#搭建-ref" class="tag">搭建</a> 
 			
 				<span>标签: </span>
 			
 			
-				<a href="/pages/tags/index.html#Vim-ref" class="tag">Vim</a>
+				<a href="/pages/tags/index.html#Go-ref" class="tag">Go</a>
     		
-				<a href="/pages/tags/index.html#Plugin-ref" class="tag">Plugin</a>
+				<a href="/pages/tags/index.html#安装-ref" class="tag">安装</a>
+    		
+				<a href="/pages/tags/index.html#编译-ref" class="tag">编译</a>
+    		
+				<a href="/pages/tags/index.html#运行环境-ref" class="tag">运行环境</a>
     		
 		</div>		
 		<div>
 			Last Modify in
 			
-			<span>2015-09-25</span>,
+			<span>2015-11-10</span>,
 			
-			published in <span>2014-06-01</span> 
+			published in <span>2015-11-10</span> 
 			by <span> MwumLi</span>
 		</div>
 
@@ -146,174 +150,126 @@
 <div id="page-content">
     
 <ul id="markdown-toc">
-  <li><a href="#github" id="markdown-toc-github">Github地址</a></li>
-  <li><a href="#vundle-" id="markdown-toc-vundle-">Vundle 的安装</a></li>
-  <li><a href="#vundle--vimrc-" id="markdown-toc-vundle--vimrc-">Vundle 在 .vimrc 的配置</a></li>
-  <li><a href="#vim--vundle-" id="markdown-toc-vim--vundle-">将 Vim 插件纳入 Vundle 的管理</a></li>
-  <li><a href="#vundle--1" id="markdown-toc-vundle--1">使用 Vundle 安装插件</a></li>
-  <li><a href="#vundle--2" id="markdown-toc-vundle--2">Vundle 的其他操作</a></li>
+  <li><a href="#go" id="markdown-toc-go">二进制安装 Go</a></li>
+  <li><a href="#go-1" id="markdown-toc-go-1">升级 Go</a></li>
+  <li><a href="#go-2" id="markdown-toc-go-2">卸载 Go</a></li>
+  <li><a href="#go--helloworld" id="markdown-toc-go--helloworld">go 语言版的 HelloWorld</a></li>
+  <li><a href="#section" id="markdown-toc-section">参考链接</a></li>
 </ul>
 
-<p>Vundle – Vim 的一个强大的管理插件的插件 <br />
-可以很方便地管理 Vim 其他插件的安装、卸载和禁用</p>
+<p>这里介绍一下如何搭建 go 语言的编译运行环境以及一个初始 Hello 程序</p>
 
-<p>用起来很简单, 只需要一丁点的配置</p>
+<p>Go 有两种构建方式 : 源码安装和二进制安装</p>
 
-<h2 id="github">Github地址</h2>
+<p>二进制安装比较简单, 这里主要讲述二进制安装</p>
 
-<pre><code>https://github.com/gmarik/vundle.git 
-</code></pre>
+<h2 id="go">二进制安装 Go</h2>
 
-<h2 id="vundle-">Vundle 的安装</h2>
+<p>下载适合你系统的 Go : <a href="https://golang.org/dl/#featured">https://golang.org/dl/#featured</a></p>
 
-<pre><code>$ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim  
-</code></pre>
-
-<h2 id="vundle--vimrc-">Vundle 在 .vimrc 的配置</h2>
-
-<p>把下面这些放在你的 <code>.vimrc</code> 中去使用 <code>Vundle</code><br />
-移除下面不必要的插件，他们仅仅是为了演示效果</p>
-
-<pre><code>set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-"所有的插件管理必须被添加在以上这行之后
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" Powerline---&gt;The ultimate vim statusline utility  
-" https://github.com/Lokaltog/vim-powerline
-Plugin 'Lokaltog/vim-powerline
-
-" Markdown--Syntax highlighting, matching rules and mappings for .md file
-" https://github.com/plasticboy/vim-markdown/
-Plugin 'plasticboy/vim-markdown'
-
-" echofunc---&gt;automatically display function 
-" https://github.com/mbbill/echofunc 
-Plugin 'mbbill/echofunc'
-
-" taglist---&gt; 列出当前文件中所有标签(宏，全局变量，函数名) 
-" https://github.com/vim-scripts/taglist.vim 
-Plugin 'vim-scripts/taglist.vim'  
-
-" 所有的插件必须被添加在以下这行之前
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-</code></pre>
-
-<h2 id="vim--vundle-">将 Vim 插件纳入 Vundle 的管理</h2>
-
-<p>有 4 种方式, 下面一一列举 :</p>
+<p>Go 的二进制的会默认假定安装到 <code>/usr/local/go/</code> 中</p>
 
 <ol>
   <li>
-    <p>指定 Github 中用户仓库的插件，使用“用户名/插件名称”的方式指定<br />
-插件名中的空格使用“-”代替</p>
+    <p>如果你 <strong>安装 Go 到默认位置</strong> , 那么你需要这样做 :</p>
 
-    <pre><code> Plugin 'tpope/vim-fugitive'
-</code></pre>
-
-    <p>插件名中的空格使用“-”代替<br />
- 当插件位于仓库的某一子目录时，需用rtp指定子目录</p>
-
-    <pre><code> Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+    <pre><code> $ sudo tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+ $ echo "export PATH=$PATH:/usr/local/go/bin" &gt;&gt; ~/.bashrc
 </code></pre>
   </li>
   <li>
-    <p>指定 Github 中 <a href="http://vim-scripts.org/vim/scripts.html">vim-scripts 仓库</a>的插件
-直接指定插件名称即可</p>
+    <p>如果你需要 <strong>安装 Go 到指定位置</strong> (Eg: <code>~/go/</code>), 那么这样做 :</p>
 
-    <pre><code> Plugin 'L9'
+    <pre><code> $ tar -C ~/ -xzf go$VERSION.$OS-$ARCH.tar.gz
 </code></pre>
 
-    <p>避免插件名称与L9有冲突</p>
+    <p>然后在 <code>~/.bashrc</code> 末尾添加 :</p>
 
-    <pre><code> Plugin 'user/L9', {'name': 'newL9'}
-</code></pre>
-  </li>
-  <li>
-    <p>指定非 Github 的 Git 仓库的插件，需要使用 git 地址</p>
-
-    <pre><code> Plugin 'git://git.wincent.com/command-t.git'
-</code></pre>
-  </li>
-  <li>
-    <p>指定本地 Git 仓库中的插件</p>
-
-    <pre><code> Plugin 'file:///home/gmarik/path/to/plugin'
+    <pre><code> export GOROOT=$HOME/go
+ export PATH=$PATH:$GOROOT/bin
 </code></pre>
   </li>
 </ol>
 
-<h2 id="vundle--1">使用 Vundle 安装插件</h2>
+<p><strong>注意</strong> : <code>GOROOT</code> 仅仅在安装 go 到指定位置的时候才需要设置</p>
+
+<p>只要你的 <code>.bashrc</code> 生效, 那么你可以通过 <code>go version</code> 打印当前 go 的版本号来确定是否安装成功</p>
+
+<h2 id="go-1">升级 Go</h2>
+
+<ol>
+  <li>必须卸载已存在的旧的版本</li>
+  <li>按照上述方法安装新的 Go</li>
+</ol>
+
+<h2 id="go-2">卸载 Go</h2>
+
+<ol>
+  <li>删除 go 安装目录, 默认 <code>/usr/local/go/</code></li>
+  <li>在 shell 配置文件中去掉 Go 环境变量 <code>GOROOT</code> 以及 <code>PATH</code> 中 go 路径的配置</li>
+</ol>
+
+<h2 id="go--helloworld">go 语言版的 HelloWorld</h2>
+
+<p><code>hello.go</code> :</p>
+
+<pre><code>package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, Wolrd. 你好, 世界.")
+}
+</code></pre>
+
+<p>然后命令行中直接运行 :</p>
+
+<pre><code>$ go run hello.go
+Hello,World. 你好, 世界!
+</code></pre>
+
+<p><code>go run</code> 包含编译和运行两步</p>
+
+<p>你可以先生成可执行文件, 然后执行可执行文件, 比如这样 :</p>
+
+<pre><code>$ go build hello.go
+$ ls
+hello hello.go
+$ ./hello
+Hello,World. 你好, 世界!
+</code></pre>
+
+<h2 id="section">参考链接</h2>
 
 <ol>
   <li>
-    <p>启动 vim ,并且运行:</p>
-
-    <pre><code> :PluginInstall
-</code></pre>
+    <p><a href="http://docscn.studygolang.com/doc/install">Go 的安装起步</a><br />
+这里有各种系统下 Go 的安装与配置</p>
   </li>
   <li>
-    <p>从命令行安装:</p>
-
-    <pre><code> $ vim +PluginInstall +qall
-</code></pre>
+    <p><a href="http://docscn.studygolang.com/doc/code.html">如何使用 Go 编程</a><br />
+在这里你可以看到一个简单 Go 包的开发<br />
+并介绍用 go 工具来获取、 构建并安装 Go 包及命令的标准方式</p>
+  </li>
+  <li>
+    <p><a href="http://docscn.studygolang.com/">Go 语言中文官方文档</a></p>
+  </li>
+  <li>
+    <p><a href="http://docs.studygolang.com/">Go 语言英文官方文档</a></p>
+  </li>
+  <li>
+    <p><a href="http://studygolang.com/">Go 语言中文网</a></p>
   </li>
 </ol>
-
-<h2 id="vundle--2">Vundle 的其他操作</h2>
-
-<ol>
-  <li>
-    <p>预览模式列出已配置的 Plugins</p>
-
-    <pre><code> :PluginList          - list configured plugins
-</code></pre>
-  </li>
-  <li>
-    <p>安装(更新)插件</p>
-
-    <pre><code> :PluginInstall(!)	- install plugins
- :PluginInstall!		- update all plugins
-</code></pre>
-  </li>
-  <li>
-    <p>搜索(首先刷新缓存)</p>
-
-    <pre><code> :PluginSearch(!) foo - search (or refresh cache first) for foo
-</code></pre>
-  </li>
-  <li>
-    <p>清除未使用的插件</p>
-
-    <pre><code> :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-</code></pre>
-  </li>
-</ol>
-
 
     <hr>
     <div class="pagination">
       <ul>
       
-        <li class="prev">上一篇: <a href="/three-big-things" title="不早不晚，当下最好(转载)">不早不晚，当下最好(转载)</a></li>
+        <li class="prev">上一篇: <a href="/install-nodejs-on-ubuntu" title="Ubuntu 下安装 nodejs">Ubuntu 下安装 nodejs</a></li>
       
       
-        <li class="next">下一篇: <a href="/ctags" title="ctags 在 Vim 中的使用">ctags 在 Vim 中的使用</a></li>
+        <li class="next-disabled">下一篇: 让时间加速吧
       
       </ul>
     </div>

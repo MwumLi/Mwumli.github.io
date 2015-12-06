@@ -2,13 +2,272 @@
 <rss version="2.0">
 <channel>
         <title>倘若微小</title>
-        <description>倘若微小 - Luo</description>
+        <description>倘若微小 - MwumLi</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-11-02T20:23:45+08:00</lastBuildDate>
-        <pubDate>2015-11-02T20:23:45+08:00</pubDate>
+        <lastBuildDate>2015-12-06T21:37:41+08:00</lastBuildDate>
+        <pubDate>2015-12-06T21:37:41+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>Ubuntu 下搭建 go 运行环境</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#go&quot; id=&quot;markdown-toc-go&quot;&gt;二进制安装 Go&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#go-1&quot; id=&quot;markdown-toc-go-1&quot;&gt;升级 Go&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#go-2&quot; id=&quot;markdown-toc-go-2&quot;&gt;卸载 Go&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#go--helloworld&quot; id=&quot;markdown-toc-go--helloworld&quot;&gt;go 语言版的 HelloWorld&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这里介绍一下如何搭建 go 语言的编译运行环境以及一个初始 Hello 程序&lt;/p&gt;
+
+&lt;p&gt;Go 有两种构建方式 : 源码安装和二进制安装&lt;/p&gt;
+
+&lt;p&gt;二进制安装比较简单, 这里主要讲述二进制安装&lt;/p&gt;
+
+&lt;h2 id=&quot;go&quot;&gt;二进制安装 Go&lt;/h2&gt;
+
+&lt;p&gt;下载适合你系统的 Go : &lt;a href=&quot;https://golang.org/dl/#featured&quot;&gt;https://golang.org/dl/#featured&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Go 的二进制的会默认假定安装到 &lt;code&gt;/usr/local/go/&lt;/code&gt; 中&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果你 &lt;strong&gt;安装 Go 到默认位置&lt;/strong&gt; , 那么你需要这样做 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ sudo tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+ $ echo &quot;export PATH=$PATH:/usr/local/go/bin&quot; &amp;gt;&amp;gt; ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果你需要 &lt;strong&gt;安装 Go 到指定位置&lt;/strong&gt; (Eg: &lt;code&gt;~/go/&lt;/code&gt;), 那么这样做 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ tar -C ~/ -xzf go$VERSION.$OS-$ARCH.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;然后在 &lt;code&gt;~/.bashrc&lt;/code&gt; 末尾添加 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; export GOROOT=$HOME/go
+ export PATH=$PATH:$GOROOT/bin
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt; : &lt;code&gt;GOROOT&lt;/code&gt; 仅仅在安装 go 到指定位置的时候才需要设置&lt;/p&gt;
+
+&lt;p&gt;只要你的 &lt;code&gt;.bashrc&lt;/code&gt; 生效, 那么你可以通过 &lt;code&gt;go version&lt;/code&gt; 打印当前 go 的版本号来确定是否安装成功&lt;/p&gt;
+
+&lt;h2 id=&quot;go-1&quot;&gt;升级 Go&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;必须卸载已存在的旧的版本&lt;/li&gt;
+  &lt;li&gt;按照上述方法安装新的 Go&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;go-2&quot;&gt;卸载 Go&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;删除 go 安装目录, 默认 &lt;code&gt;/usr/local/go/&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;在 shell 配置文件中去掉 Go 环境变量 &lt;code&gt;GOROOT&lt;/code&gt; 以及 &lt;code&gt;PATH&lt;/code&gt; 中 go 路径的配置&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;go--helloworld&quot;&gt;go 语言版的 HelloWorld&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;hello.go&lt;/code&gt; :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import &quot;fmt&quot;
+
+func main() {
+    fmt.Println(&quot;Hello, Wolrd. 你好, 世界.&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后命令行中直接运行 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go run hello.go
+Hello,World. 你好, 世界!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;go run&lt;/code&gt; 包含编译和运行两步&lt;/p&gt;
+
+&lt;p&gt;你可以先生成可执行文件, 然后执行可执行文件, 比如这样 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go build hello.go
+$ ls
+hello hello.go
+$ ./hello
+Hello,World. 你好, 世界!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;参考链接&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://docscn.studygolang.com/doc/install&quot;&gt;Go 的安装起步&lt;/a&gt;&lt;br /&gt;
+这里有各种系统下 Go 的安装与配置&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://docscn.studygolang.com/doc/code.html&quot;&gt;如何使用 Go 编程&lt;/a&gt;&lt;br /&gt;
+在这里你可以看到一个简单 Go 包的开发&lt;br /&gt;
+并介绍用 go 工具来获取、 构建并安装 Go 包及命令的标准方式&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://docscn.studygolang.com/&quot;&gt;Go 语言中文官方文档&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://docs.studygolang.com/&quot;&gt;Go 语言英文官方文档&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://studygolang.com/&quot;&gt;Go 语言中文网&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+                <link>http://mwumli.github.io/run-go-in-ubuntu</link>
+                <guid>http://mwumli.github.io/run-go-in-ubuntu</guid>
+                <pubDate>2015-11-10T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>Ubuntu 下安装 nodejs</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#ubuntu-&quot; id=&quot;markdown-toc-ubuntu-&quot;&gt;Ubuntu 下的安装&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;源安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#node-version-manager&quot; id=&quot;markdown-toc-node-version-manager&quot;&gt;Node Version Manager&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;安装&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;使用&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;各大平台下 nodejs 的安装看这里 : &lt;a href=&quot;https://nodejs.org/en/download/package-manager/#windows&quot;&gt;https://nodejs.org/en/download/package-manager/#windows&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Nodejs 发展比较快, 所以版本更新迭代快&lt;/p&gt;
+
+&lt;h2 id=&quot;ubuntu-&quot;&gt;Ubuntu 下的安装&lt;/h2&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;源安装&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Nodejs v5.x&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+sudo apt-get install -y nodejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Nodejs v4.x&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get install -y nodejs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;假如你在使用 Ubuntu 12.04 以及更低版本,请升级你的系统, 再进行安装&lt;br /&gt;
+至于原因，看这里 : &lt;a href=&quot;https://github.com/nodesource/distributions/blob/master/OLDER_DISTROS.md&quot;&gt;https://github.com/nodesource/distributions/blob/master/OLDER_DISTROS.md&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;node-version-manager&quot;&gt;Node Version Manager&lt;/h3&gt;
+
+&lt;p&gt;Nodejs 升级迭代很快, 不同的 Nodejs 项目，可能使用的是不同版本的 Nodejs&lt;br /&gt;
+因此, 要维持多个 Nodejs 项目, 那就需要一种工具来管理 nodejs&lt;/p&gt;
+
+&lt;p&gt;这就是 Node Version Manager&lt;/p&gt;
+
+&lt;p&gt;目前, 有两个比较有名的 Node Version Manager : &lt;a href=&quot;https://github.com/tj/n&quot;&gt;n&lt;/a&gt; 和 &lt;a href=&quot;https://github.com/creationix/nvm&quot;&gt;nvm&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Github 上 nvm 的 Star 明显是 n 的 2 倍多&lt;br /&gt;
+因此, 这里讲述一下 nvm 的安装与使用&lt;/p&gt;
+
+&lt;p&gt;nvm 项目地址 : &lt;a href=&quot;https://github.com/creationix/nvm&quot;&gt;https://github.com/creationix/nvm&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;安装&lt;/h4&gt;
+
+&lt;p&gt;nvm 给出了自动安装的脚本, 因此你可以用过 &lt;code&gt;wget&lt;/code&gt;, &lt;code&gt;curl&lt;/code&gt; 实现自动安装, 看这里 :
+&lt;a href=&quot;https://github.com/creationix/nvm#install-script&quot;&gt;https://github.com/creationix/nvm#install-script&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这里主要讲一下手动安装&lt;br /&gt;
+手动安装可以使你明白自动安装到底做了什么&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装前的准备 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; sudo apt-get install build-essential libssl-dev -y
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;克隆仓库到 &lt;code&gt;~/.nvm&lt;/code&gt; :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; git clone https://github.com/creationix/nvm.git ~/.nvm &amp;amp;&amp;amp; cd ~/.nvm &amp;amp;&amp;amp; git checkout `git describe --abbrev=0 --tags`
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加下面到 &lt;code&gt;~/.bashrc&lt;/code&gt;(&lt;code&gt;~/.profile&lt;/code&gt;或 &lt;code&gt;~/.zshrc&lt;/code&gt;) :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; export NVM_DIR=&quot;$HOME/.nvm&quot;
+ [ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;amp;&amp;amp; . &quot;$NVM_DIR/nvm.sh&quot; # This loads nvm
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;使用&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装一个指定的版本 : &lt;code&gt;nvm install v0.10.32&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装最新的 0.10.x 版本 : &lt;code&gt;nvm install 0.10&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用 v0.10.32 版本的 nodejs 去运行 app.js :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; nvm run 0.10.32 node app.js
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;显示已安装的 v0.10.32 node 的安装路径 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; nvm which v0.10.32
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;node&lt;/code&gt; 代表最新版本的 node, 因此你可以直接在 &lt;code&gt;nvm use&lt;/code&gt;, &lt;code&gt;nvm install&lt;/code&gt;, &lt;code&gt;nvm exec&lt;/code&gt;, &lt;code&gt;nvm which&lt;/code&gt; 中使用&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在一个 nodejs 中集成其他版本的 &lt;code&gt;npm&lt;/code&gt; :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; nvm install v5.0 --reinstall-packages-from=4.2
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用系统安装的 node :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; nvm use system
+ nvm run system --version
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;列出当前已经安装的 node :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; nvm ls
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;列出当前可以获得的 node :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; nvm ls-remote
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+                <link>http://mwumli.github.io/install-nodejs-on-ubuntu</link>
+                <guid>http://mwumli.github.io/install-nodejs-on-ubuntu</guid>
+                <pubDate>2015-11-03T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>构建 SSH 隧道 -- 端口转发</title>
@@ -1812,71 +2071,85 @@ set -g prefix C-a
                 <description>
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;碎碎念&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#php&quot; id=&quot;markdown-toc-php&quot;&gt;检验php是否安装某个扩展&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;没有搜索到扩展&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#extensiondir--extension&quot; id=&quot;markdown-toc-extensiondir--extension&quot;&gt;extension_dir 和 extension&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#extensiondir-&quot; id=&quot;markdown-toc-extensiondir-&quot;&gt;extension_dir 实际生效值&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;检验扩展是否应用&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#php-1&quot; id=&quot;markdown-toc-php-1&quot;&gt;安装并添加php扩展&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;几个扩展安装案例&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#redis-redis-github&quot; id=&quot;markdown-toc-redis-redis-github&quot;&gt;redis 扩展的安装&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#mongo-&quot; id=&quot;markdown-toc-mongo-&quot;&gt;mongo 扩展的安装&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;待续…&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;安装需要&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#phpize-&quot; id=&quot;markdown-toc-phpize-&quot;&gt;phpize 的安装&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#php&quot; id=&quot;markdown-toc-php&quot;&gt;安装并添加php扩展&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#phpize-&quot; id=&quot;markdown-toc-phpize-&quot;&gt;phpize 的安装&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;几个扩展常用扩展安装&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#mccrypt-&quot; id=&quot;markdown-toc-mccrypt-&quot;&gt;MCcrypt 扩展的安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#igbinary-&quot; id=&quot;markdown-toc-igbinary-&quot;&gt;igbinary 扩展的安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#redis-&quot; id=&quot;markdown-toc-redis-&quot;&gt;redis 扩展的安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#mongo-&quot; id=&quot;markdown-toc-mongo-&quot;&gt;mongo 扩展的安装&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;menu&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;碎碎念&lt;/h2&gt;
 
-&lt;p&gt;进行简单的 web 动态网站开发，只需快速搭建一个 LAMP 环境即可&lt;/p&gt;
+&lt;p&gt;通过搭建 &lt;a href=&quot;/lamp-build&quot;&gt;LAMP 环境&lt;/a&gt;, 就可以使用 php 进行动态网站开发&lt;/p&gt;
 
-&lt;p&gt;但有的时候还需要一些特别的功能，这时候需要安装相应扩展&lt;sup id=&quot;fnref:extension&quot;&gt;&lt;a href=&quot;#fn:extension&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;但有的时候增强 php 对某些特殊功能, 比如对 mongodb 的操纵, redis 的访问等&lt;/p&gt;
 
-&lt;p&gt;这里以 LAMP&lt;sup id=&quot;fnref:LAMP&quot;&gt;&lt;a href=&quot;#fn:LAMP&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; 环境为例&lt;/p&gt;
+&lt;p&gt;这时候, 你就需要为 php 安装并配置相应扩展, 即 extension&lt;/p&gt;
 
-&lt;h2 id=&quot;php&quot;&gt;检验php是否安装某个扩展&lt;/h2&gt;
+&lt;h2 id=&quot;extensiondir--extension&quot;&gt;extension_dir 和 extension&lt;/h2&gt;
+
+&lt;p&gt;php 有一个变量定义了 extension 在你的系统中的存放位置, 那就是 &lt;code&gt;extension_dir&lt;/code&gt;&lt;br /&gt;
+只有 extension 存放到 &lt;code&gt;extension_dir&lt;/code&gt; 的指定路径, 那么 php 才能正确读取&lt;/p&gt;
+
+&lt;p&gt;关于 &lt;code&gt;extension_dir&lt;/code&gt; :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;默认值 : &lt;code&gt;php -i | grep extension_dir&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;重新指定&lt;br /&gt;
+在  &lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt; 进行指定, 比如 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;extension_dir=&quot;/usr/share/php_extension&quot;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;extensiondir-&quot;&gt;extension_dir 实际生效值&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;检验你某个扩展是否安装，可以在你的 Apache 目录下新建文件 &lt;code&gt;phpinfo.php&lt;/code&gt; :&lt;/p&gt;
+    &lt;p&gt;在你的 Apache 目录下新建文件 &lt;code&gt;phpinfo.php&lt;/code&gt;, 内容如下 :&lt;/p&gt;
 
     &lt;pre&gt;&lt;code&gt; &amp;lt;?php
      phpinfo();
- &amp;gt;
+ ?&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;访问此网页，使用浏览器查找功能查找你的扩展，比如 &lt;code&gt;redis&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;如果你的扩展已经安装成功，并添加到 php 的 apache 配置文件，那么就会搜索到&lt;/p&gt;
+    &lt;p&gt;访问 &lt;code&gt;phpinfo.php&lt;/code&gt;, 搜索 &lt;code&gt;extension_dir&lt;/code&gt;, 可以看到当前 php 寻找 extension 的路径&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;没有搜索到扩展&lt;/h3&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;检验扩展是否应用&lt;/h3&gt;
+
+&lt;p&gt;访问 &lt;code&gt;phpinfo.php&lt;/code&gt;，搜索你的扩展，比如 &lt;code&gt;redis&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;如果你的扩展放到 &lt;code&gt;extension_dir&lt;/code&gt; 并且已经添加到 php 的 apache 配置文件，那么就会搜索到&lt;br /&gt;
+如果没有搜索到 :&lt;/p&gt;
 
 &lt;ol&gt;
+  &lt;li&gt;查看 &lt;code&gt;extension_dir&lt;/code&gt; 下有没有你的 extension&lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;重启了下服务器: &lt;code&gt;sudo service apache2 restart&lt;/code&gt;&lt;/p&gt;
+    &lt;p&gt;确认是否在 &lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt; 中添加此 extension, 比如 redis :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; [redis]
+ extension=redis.so
+&lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;检查配置文件 &lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt; 是否正确添加扩展&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;可能没有安装成功，请检查网络，请百度，请谷歌…&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;重启服务器 : &lt;code&gt;sudo service apache2 restart&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;可以留言共同讨论或者谷歌&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;php-1&quot;&gt;安装并添加php扩展&lt;/h2&gt;
+&lt;h2 id=&quot;php&quot;&gt;安装并添加php扩展&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -1903,30 +2176,72 @@ set -g prefix C-a
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;几个扩展安装案例&lt;/h3&gt;
+&lt;h2 id=&quot;phpize-&quot;&gt;phpize 的安装&lt;/h2&gt;
 
-&lt;h4 id=&quot;redis-redis-github&quot;&gt;redis 扩展的安装&lt;sup id=&quot;fnref:redis-github&quot;&gt;&lt;a href=&quot;#fn:redis-github&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/h4&gt;
+&lt;p&gt;用 C 开发的 PHP 扩展使用动态链接库的方式编译扩展模块，需要用到 &lt;code&gt;phpize&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;这个工具在使用 &lt;code&gt;apt-get install php5&lt;/code&gt; 默认情况也是没安装的&lt;/p&gt;
+
+&lt;p&gt;执行以下命令去安装 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install php5-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;几个扩展常用扩展安装&lt;/h2&gt;
+
+&lt;h3 id=&quot;mccrypt-&quot;&gt;MCcrypt 扩展的安装&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;使用git下载&lt;/p&gt;
+    &lt;p&gt;安装 : &lt;code&gt;sudo apt-get install php5-mcrypt&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加配置 &lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt;:&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; $ git clone https://github.com/phpredis/phpredis.git
+    &lt;pre&gt;&lt;code&gt; [mcrypt]
+ extension=mcrypt.so
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;编译扩展模块,需要&lt;code&gt;phpize&lt;/code&gt;&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ phpize
- $ ./configure [--enable-redis-igbinary]
- $ make &amp;amp;&amp;amp; make install
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;重启web服务器&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;这样 redis 就被安装在合适的位置&lt;/p&gt;
+&lt;h3 id=&quot;igbinary-&quot;&gt;igbinary 扩展的安装&lt;/h3&gt;
 
 &lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装 : &lt;code&gt;sudo pecl install igbinary&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加配置 &lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt;:&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;[igbinary]
+extension=igbinary.so
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;重启web服务器&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;redis-&quot;&gt;redis 扩展的安装&lt;/h3&gt;
+
+&lt;p&gt;官方文档 : &lt;a href=&quot;https://github.com/phpredis/phpredis#installingconfiguring&quot;&gt;https://github.com/phpredis/phpredis#installingconfiguring&lt;/a&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载, 编辑, 安装 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ git clone https://github.com/phpredis/phpredis.git
+ $ phpize
+ $ ./configure [--enable-redis-igbinary]
+ $ make &amp;amp;&amp;amp; sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;这样 redis 就被安装在合适的位置&lt;br /&gt;
+如果需要 &lt;code&gt;--enable-redis-igbinary&lt;/code&gt;, 请先进行 &lt;code&gt;igbinary 扩展的安装&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;添加扩展到配置文件&lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt;&lt;/p&gt;
 
@@ -1939,26 +2254,23 @@ set -g prefix C-a
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h4 id=&quot;mongo-&quot;&gt;mongo 扩展的安装&lt;/h4&gt;
+&lt;h3 id=&quot;mongo-&quot;&gt;mongo 扩展的安装&lt;/h3&gt;
+
+&lt;p&gt;官方文档: &lt;a href=&quot;http://php.net/manual/zh/mongo.installation.php&quot;&gt;http://php.net/manual/zh/mongo.installation.php&lt;/a&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;下载，编译，安装，查看:&lt;/p&gt;
+    &lt;p&gt;下载，编译，安装:&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; $ git clone https://github.com/mongodb/mongo-php-driver.git
- $ cd mongo-php-driver
+    &lt;pre&gt;&lt;code&gt; $ git clone https://github.com/mongodb/mongo-php-driver-legacy.git
+ $ cd mongo-php-driver-legacy
  $ phpize
  $ ./configure
- $ sudo make install
+ $ make all &amp;amp;&amp;amp; sudo make install
  ...
  Installing shared extensions:     
  /usr/lib/php5/20121212+lfs/
- $ ls /usr/lib/php5/20121212+lfs/
- json.so   mysqli.so  opcache.so    pdo.so       redis.so
- mongo.so  mysql.so   pdo_mysql.so  readline.so
 &lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;可以看到&lt;code&gt;mongo.so&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;添加配置 &lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt;:&lt;/p&gt;
@@ -1972,32 +2284,6 @@ set -g prefix C-a
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h4 id=&quot;section-3&quot;&gt;待续…&lt;/h4&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;安装需要&lt;/h3&gt;
-
-&lt;h4 id=&quot;phpize-&quot;&gt;phpize 的安装&lt;/h4&gt;
-
-&lt;p&gt;用 C 开发 PHP 扩展的时候如果用动态链接库的方式编译扩展模块，需要用到 &lt;code&gt;phpize&lt;/code&gt;&lt;br /&gt;
-这个工具在使用 &lt;code&gt;apt-get install php5&lt;/code&gt; 默认情况也是没安装的&lt;br /&gt;
-可以执行以下命令:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install php5-dev
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:extension&quot;&gt;
-      &lt;p&gt;php扩展列表:&lt;a href=&quot;http://php.net/manual/zh/extensions.php&quot;&gt;http://php.net/manual/zh/extensions.php&lt;/a&gt; &lt;a href=&quot;#fnref:extension&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:LAMP&quot;&gt;
-      &lt;p&gt;Linux+Apache+Mysql+Php, 安装请参考&lt;a href=&quot;/记录/2014/06/14/lamp-build/ LAMP环境搭建&quot;&gt;LAMP环境搭建&lt;/a&gt; &lt;a href=&quot;#fnref:LAMP&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:redis-github&quot;&gt;
-      &lt;p&gt;可参考&lt;a href=&quot;https://github.com/phpredis/phpredis#installation&quot;&gt;&lt;code&gt;&amp;lt;&lt;/code&gt;一篇来自github的安装指南-redis&lt;code&gt;&amp;gt;&lt;/code&gt;&lt;/a&gt; &lt;a href=&quot;#fnref:redis-github&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
 </description>
                 <link>http://mwumli.github.io/php-extension-install</link>
                 <guid>http://mwumli.github.io/php-extension-install</guid>
@@ -3546,51 +3832,87 @@ $ git push
         <item>
                 <title>LAMP 环境搭建</title>
                 <description>
-&lt;h2 id=&quot;ubuntulamp&quot;&gt;Ubuntu下LAMP环境搭建&lt;/h2&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#apache-&quot; id=&quot;markdown-toc-apache-&quot;&gt;apache 服务器&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;重定义工作目录&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;配置文件布局&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#apache2-&quot; id=&quot;markdown-toc-apache2-&quot;&gt;apache2 的启动和停止&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#mysql-&quot; id=&quot;markdown-toc-mysql-&quot;&gt;mysql 数据库&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#mysql--1&quot; id=&quot;markdown-toc-mysql--1&quot;&gt;mysql 服务的启动和停止&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#mysql--mysql-&quot; id=&quot;markdown-toc-mysql--mysql-&quot;&gt;mysql 客户端访问 mysql 服务&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;是否只允许本机访问&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#php&quot; id=&quot;markdown-toc-php&quot;&gt;PHP&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;测试&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#phpmyadmin&quot; id=&quot;markdown-toc-phpmyadmin&quot;&gt;phpMyadmin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3 id=&quot;apache&quot;&gt;安装apache服务器&lt;/h3&gt;
+&lt;p&gt;在 Linux 搭建一个可运行 php, 并且可以访问 mysql 数据库的服务端环境, 服务器是 Apache&lt;br /&gt;
+这就是 &lt;code&gt;LAMP&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;这里只是讲述了 Ubuntu 下的搭建, 并不包括所有的 Linux 发行版&lt;/p&gt;
+
+&lt;p&gt;Linux 下 php 扩展安装 : &lt;a href=&quot;/php-extension-install/&quot;&gt;请点这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;apache-&quot;&gt;apache 服务器&lt;/h2&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;安装&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;$ sudo apt-get install apache2
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;安装完成，在浏览器中输入&lt;code&gt;http://localhost&lt;/code&gt;,出现&lt;code&gt;It works&lt;/code&gt;okay,安装完成&lt;/p&gt;
+&lt;p&gt;安装完成，访问 &lt;code&gt;http://localhost&lt;/code&gt;&lt;br /&gt;
+如果出现&lt;code&gt;It works&lt;/code&gt;,安装成功&lt;/p&gt;
 
-&lt;h4 id=&quot;section&quot;&gt;默认工作目录&lt;/h4&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;重定义工作目录&lt;/h3&gt;
 
-&lt;p&gt;不同版本的apache，工作目录有点差异&lt;br /&gt;
-我的机器apache版本:&lt;code&gt;Server version: Apache/2.4.7 (Ubuntu)&lt;/code&gt;&lt;br /&gt;
-所以默认工作目录是：&lt;/p&gt;
+&lt;p&gt;不同版本的apache，工作目录有点差异&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;/var/www/html
+&lt;p&gt;&lt;code&gt;/etc/apache2/sites-enabled/000-default.conf&lt;/code&gt; 中 &lt;code&gt;DocumentRoot&lt;/code&gt; 后就是 Apache 的工作目录&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;重定义工作目录需要&lt;/strong&gt; :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;DocumentRoot /var/www/html&lt;/code&gt; 改为 &lt;code&gt;DocumentRoot /home/ya/LAMP&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加目录权限 :&lt;/p&gt;
+
+ 	&amp;lt;Directory /home/ya/LAMP &amp;gt;
+    &lt;pre&gt;&lt;code&gt; 	Options Indexes FollowSymLinks
+     AllowOverride None
+ 		Require all granted
+ &amp;lt;/Directory&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;当然，你可以自定义虚拟主机目录:&lt;br /&gt;
-1. 修改&lt;em&gt;/etc/apache2/sites-enabled/000-default.conf&lt;/em&gt;的&lt;code&gt;DocumentRoot /var/www/html&lt;/code&gt;为&lt;code&gt;DocumentRoot /home/ya/LAMP&lt;/code&gt;&lt;br /&gt;
-2. 添加目录权限，需要添加下面这句：&lt;/p&gt;
+    &lt;p&gt;添加的地方有两处，任选一处即可：&lt;br /&gt;
+* 刚才修改的那句之后添加&lt;br /&gt;
+* 在 &lt;code&gt;/etc/apache2/apache2.conf&lt;/code&gt; 中寻找 &lt;code&gt;Directory&lt;/code&gt; 字眼，在这之后添加&lt;br /&gt;
+  (其实也无所谓，只是放着之后，方便管理)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;Directory /home/ya/LAMP &amp;gt;
-	Options Indexes FollowSymLinks
-	AllowOverride None
-	Require all granted
-&amp;lt;/Directory&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;添加的地方有两处，任选一处即可：&lt;br /&gt;
- * 刚才修改的那句之后添加&lt;br /&gt;
- * 在&lt;em&gt;/etc/apache2/apache2.conf&lt;/em&gt;中寻找&lt;code&gt;Directory&lt;/code&gt;字眼，在这之后添加，其实也无所谓，只是放着之后，方便管理&lt;/p&gt;
-
-&lt;h4 id=&quot;apache2&quot;&gt;apache2的配置布局&lt;/h4&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;配置文件布局&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;/etc/apache2/
 |-- apache2.conf
-|       `--  ports.conf
-|-- mods-enabled
-|       |-- *.load
-|       `-- *.conf
-|-- conf-enabled
-|       `-- *.conf
-|-- sites-enabled
-|       `-- *.conf
+|
+|-- ports.conf
+|
+|-- mods-enabled/
+|   
+|-- conf-enabled/
+|   
+|-- sites-enabled/
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
@@ -3598,53 +3920,33 @@ $ git push
 当web服务器启动时，加载此文件，而此文件包含了其他配置文件&lt;/li&gt;
   &lt;li&gt;&lt;code&gt;ports.conf&lt;/code&gt; 定制监听端口  &lt;br /&gt;
 被包含在&lt;code&gt;apache2.conf&lt;/code&gt;,并且可以随时修改&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;mods-enabled/*.conf&lt;/code&gt;, &lt;code&gt;conf-enabled/*.conf&lt;/code&gt;,&lt;code&gt;sites-enabled/*.conf&lt;/code&gt;下的配置文件分别是用来管理模块，全局配置片段，虚拟主机配置&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;mods-enabled/&lt;/code&gt;, &lt;code&gt;conf-enabled/&lt;/code&gt;, &lt;code&gt;sites-enabled/&lt;/code&gt; 下的配置文件分别是用来管理模块，全局配置片段，虚拟主机配置&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;apache2-1&quot;&gt;apache2的启动和停止&lt;/h4&gt;
-&lt;p&gt;由于环境变量和加载配置的原因，我们不能直接使用&lt;code&gt;/usr/bin/apache2&lt;/code&gt;,需要使用&lt;code&gt;/etc/init.d/apache2&lt;/code&gt;,或者启用服务&lt;code&gt;service apache2&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;apache2-&quot;&gt;apache2 的启动和停止&lt;/h3&gt;
 
-&lt;h5 id=&quot;apache2-2&quot;&gt;apache2的启动&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo /usr/bin/apache2 -k start	或者  	
-$ sudo service apache2 start
+&lt;pre&gt;&lt;code&gt;$ service apache2 status        # 查看apache2的状态  
+$ sudo service apache2 start    # 启动
+$ sudo service apache2 stop     # 停止
+$ sudo service apache2 restart  # 重新启动
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id=&quot;apache2-3&quot;&gt;apache2的停止&lt;/h5&gt;
+&lt;h2 id=&quot;mysql-&quot;&gt;mysql 数据库&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;$ sudo /usr/bin/apache2 -k stop	或者  	
-$ sudo service apache2 stop  
+&lt;h3 id=&quot;section-3&quot;&gt;安装&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install mysql-server mysql-client
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id=&quot;apache2-4&quot;&gt;apache2的再启动&lt;/h5&gt;
+&lt;p&gt;同时安装了服务端和客户端&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ sudo /usr/bin/apache2 -k restart	或者  	
-$ sudo service apache2 restart
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5 id=&quot;apache2-5&quot;&gt;查看apache2的状态&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code&gt;$ service apache2 status
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;或者， 直接访问&lt;code&gt;http://localhost&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;mysql&quot;&gt;安装MySQL数据库&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install mysql-server  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;安装mysql服务器的过程中，会自动安装mysql的命令行工具mysql-client，还有其他的一些工具&lt;br /&gt;
-同时安装途中，需要为mysql设置root用户密码&lt;/p&gt;
-
-&lt;h4 id=&quot;section-1&quot;&gt;测试&lt;/h4&gt;
 &lt;p&gt;输入下面命令，按提示输入密码&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ mysql -uroot -p
 Enter password: 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;加入安装成功，出现下面画面:&lt;/p&gt;
+&lt;p&gt;安装成功，出现下面画面:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 53
@@ -3661,167 +3963,94 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 mysql&amp;gt; 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;mysql-1&quot;&gt;配置MySQL&lt;/h4&gt;
+&lt;h3 id=&quot;mysql--1&quot;&gt;mysql 服务的启动和停止&lt;/h3&gt;
 
-&lt;h5 id=&quot;mysql-2&quot;&gt;MySQL常用命令&lt;/h5&gt;
-&lt;p&gt;MySQL大部分命令是以&lt;code&gt;;&lt;/code&gt;结尾&lt;br /&gt;
-1. 进入mysql&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;	$ mysql -h [服务器地址] -u [用户名〕-p
+&lt;pre&gt;&lt;code&gt;$ service mysql status        # 查看mysql 服务的状态  
+$ sudo service mysql start    # 启动
+$ sudo service mysql stop     # 停止
+$ sudo service mysql restart  # 重新启动
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;这是访问本地服务器&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;	$ mysql -h 127.0.0.1 -u [用户名〕 -p
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;如：&lt;code&gt;$ mysql -h 127.0.0.1 -u root -p&lt;/code&gt;
-认证成功之后就进入mysql的命令控制台，以下都是在mysql的命令控制台的命令。&lt;/p&gt;
+&lt;h3 id=&quot;mysql--mysql-&quot;&gt;mysql 客户端访问 mysql 服务&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;显示已经存在的数据库&lt;/p&gt;
+    &lt;p&gt;root 用户, 密码为 hello, 登录 192.168.1.2 上的 mysql 数据库 :&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; mysql&amp;gt; SHOW DATABASES;
+    &lt;pre&gt;&lt;code&gt; mysql -h 192.167.1.2 -uroot -phello 	
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;创建数据库(linux下是区分大小写)&lt;/p&gt;
+    &lt;p&gt;以 root 用户登录 127.0.0.1(默认), 密码等待输入&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; CREATE DATABASE [数据库名];
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;创建一个受限用户 这个用户(testuser)只有一个数据库(这里是test库)的访问写入权限，这个数据库创建与删除表的权限，并且只能在本地登入，密码为userpasswd&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; grant select,insert,update,delete,create,alter on test.* to &#39;test&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;userpasswd&#39;;
+    &lt;pre&gt;&lt;code&gt; $ mysql -uroot -p 
+ Enter Password:
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;5.退出数据库&lt;/p&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;是否只允许本机访问&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;	quit 或者 \q
+&lt;p&gt;&lt;code&gt;/etc/mysql/my.cnf&lt;/code&gt; 是 Mysql 的配置文件&lt;/p&gt;
+
+&lt;p&gt;里面有一项 &lt;code&gt;bind-address 127.0.0.1&lt;/code&gt;, 指定 Mysql 数据库默认只允许本地访问数据库&lt;/p&gt;
+
+&lt;p&gt;如果需要其他机器访问，应使用 &lt;code&gt;#&lt;/code&gt; 注释掉 :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# bind-address 127.0.0.1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id=&quot;mysql-3&quot;&gt;MySQL配置文件（新手、无特殊要求勿动）&lt;/h5&gt;
+&lt;h2 id=&quot;php&quot;&gt;PHP&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo vim /etc/mysql/my.cnf
+&lt;h3 id=&quot;section-5&quot;&gt;安装&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install php5 php5-dev libapache2-mod-php5 php5-mysql
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;这里有一个地方要注意: 默认情况下，只允许本地访问数据库 ,其它机子不能直接访问MySQL&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;php5&lt;/code&gt; : php 解释器&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;php5-dev&lt;/code&gt; : php5 module 开发的一些文件, 包含了 &lt;code&gt;phpize&lt;/code&gt; 命令&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;libapache2-mod-php5&lt;/code&gt; : Apache2 的 php5 module&lt;br /&gt;
+没有或disable,会出现 &lt;code&gt;无法解析php文件，浏览器提示下载所要打开的php文件&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;a2enmod&lt;/code&gt; 和 &lt;code&gt;a2dismod&lt;/code&gt; enable or disable an apache2 module&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;php5-mysql&lt;/code&gt; : Mysql module for php&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;pre&gt;&lt;code&gt;bind-address 127.0.0.1
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;测试&lt;/h3&gt;
 
-&lt;p&gt;如果需要其他机器访问，应这样做:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# bind-address 127.0.0.1		// 把这 &quot;bind-address 127.0.0.1&quot; 句话用&quot;#&quot;注释掉  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;php&quot;&gt;安装PHP以及一些必要的模块&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install php5 libapache2-mod-php5 php5-mysql
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;为什么安装&lt;code&gt;libapache2-mod-php5&lt;/code&gt;?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;安装这个软件包时，它会自动向&lt;code&gt;/etc/apache2/mods-available&lt;/code&gt;写入PHP的配置文件&lt;code&gt;php5.conf&lt;/code&gt;和 &lt;code&gt;php5.load&lt;/code&gt;，并把它们链接到了&lt;code&gt;/etc/apache2/mods-enabled&lt;/code&gt;目录。&lt;br /&gt;
-安装的最后，软件包自动重新载入apache配置，php就可以在apache上跑了。无需手动的把Apache与PHP关联到一起。&lt;br /&gt;
-没有它，会出现&lt;code&gt;无法解析php文件，浏览器提示下载所要打开的php文件&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo a2enmod php5
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;假如没安装&lt;code&gt;libapache2-mod-php5&lt;/code&gt;,则提示&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;This module does not exist!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;a2enmod&lt;/code&gt;和 &lt;code&gt;a2dismod&lt;/code&gt;  enable or disable an apache2 module&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;为什么要安装&lt;code&gt;php5-mysql&lt;/code&gt;？&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;因为该软件包会向&lt;code&gt;/etc/php5/conf.d&lt;/code&gt;目录写入配置文件，使得PHP能够支持mysql。&lt;/p&gt;
-
-&lt;h4 id=&quot;section-2&quot;&gt;测试&lt;/h4&gt;
-&lt;p&gt;在apache的默认工作目录下(/var/www/html)中新建文件phpinfo.php,内容为:&lt;/p&gt;
+&lt;p&gt;在 apache 的工作根目录中新建文件 &lt;code&gt;phpinfo.php&lt;/code&gt; ,内容为:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;?php phpinfo() ?&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;在浏览器窗口输入&lt;code&gt;http://localhost/phpinfo.php&lt;/code&gt;,若出现php的相关信息，则安装成功&lt;/p&gt;
+&lt;p&gt;访问 &lt;code&gt;http://localhost/phpinfo.php&lt;/code&gt;&lt;br /&gt;
+若出现 php 的相关信息，则安装成功&lt;/p&gt;
 
-&lt;h3 id=&quot;phpmyadmin&quot;&gt;安装phpmyadmin&lt;/h3&gt;
-&lt;p&gt;phpmyadmin是一个图形化的数据库管理软件&lt;br /&gt;
-推荐从官网下载安装与配置&lt;br /&gt;
-首先从&lt;a href=&quot;http://www.phpmyadmin.net/home_page/&quot; title=&quot;phpMyAdmin官网&quot;&gt;官网下载&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;phpmyadmin&quot;&gt;phpMyadmin&lt;/h2&gt;
 
-&lt;p&gt;然后解压缩到&lt;code&gt;apache&lt;/code&gt;工作目录(默认为/var/www/html)下的&lt;code&gt;phpMyAdmin&lt;/code&gt;(没有，自行创建)&lt;/p&gt;
+&lt;p&gt;phpMyadmin 是一个基于 Web 的图形化数据库管理软件&lt;/p&gt;
 
-&lt;p&gt;修改其配置文件(config.sample.inc.php)为&lt;code&gt;config.inc.php&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ cd /var/www/html/phpMyAdmin
-$ sudo cp config.sample.inc.php config.inc.php
-$ vim config.inc.php
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;找到“blowfish_secret”在后面填上任意字母&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$cfg[&#39;Servers&#39;][$i][&#39;auth_type&#39;]=&#39;cookie&#39;;
-$cfg[&#39;Servers&#39;][$i][&#39;host&#39;]=&#39;localhost&#39;;
-$cfg[&#39;Servers&#39;][$i][&#39;connect_type&#39;]=&#39;tcp&#39;;
-$cfg[&#39;Servers&#39;][$i][&#39;compress&#39;]=&#39;false&#39;;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上面这四句基本都有，只需添加下面这句即可&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$cfg[&#39;Servers&#39;][$i][&#39;extension&#39;]=&#39;mysql&#39;;	
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;保存退出，继续安装php5-mcrypt&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install php5-mcrypt  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;编辑php配置文件&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo vim /etc/php5/apache2/php.ini
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在&lt;code&gt;extension&lt;/code&gt;下面加上（任意独立一行）:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;extension=php_mcrypt.so
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;保存后，重启apache2&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo service apache2 restart
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在浏览器里输入&lt;code&gt;http://localhost/phpMyAdmin&lt;/code&gt; &lt;br /&gt;
-出现登陆数据库界面，嗯，成功了，终于不用面对那么冷淡的终端了&lt;/p&gt;
-
-&lt;p&gt;如果浏览器中显示 &lt;code&gt;配置文件权限错误，不应任何用户都能修改！&lt;/code&gt;,那么可以这样解决:&lt;br /&gt;
-1. 修改 &lt;code&gt;phpMyAdmin/&lt;/code&gt; 文件下所有文件权限:  &lt;code&gt;sudo chmod -R 755 phpMyAdmin&lt;/code&gt;&lt;br /&gt;
-2. 可以通过修改 phpMyAdmin 的配置文件(&lt;code&gt;phpMyAdmin/libraries/config.default.php&lt;/code&gt;)解决:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$cfg[&#39;CheckConfigurationPermissions&#39;]=false
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;配置文件路径&lt;/h3&gt;
 &lt;ol&gt;
-  &lt;li&gt;apache 的配置文件路径 &lt;code&gt;/etc/apache2/apache2.conf&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;apache 网站字符编码配置路径 &lt;code&gt;/etc/apache2/conf-enabled/charset.conf&lt;/code&gt;&lt;/p&gt;
+    &lt;p&gt;下载 : &lt;a href=&quot;http://www.phpmyadmin.net/home_page/&quot;&gt;http://www.phpmyadmin.net/home_page/&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;php.ini 路径 &lt;code&gt;/etc/php5/apache2/php.ini&lt;/code&gt;&lt;/p&gt;
+    &lt;p&gt;解压, 重命名为 &lt;code&gt;phpMyAdmin&lt;/code&gt;, 移动到 apache 工作根目录下&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;mysql配置文件 路径 &lt;code&gt;/etc/mysql/my.cnf&lt;/code&gt;   一般不要使用，尤其是新手&lt;/p&gt;
+    &lt;p&gt;生成配置文件 &lt;code&gt;config.inc.php&lt;/code&gt;&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ cd phpMyAdmin
+ $ cp config.sample.inc.php config.inc.php
+&lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
-  &lt;li&gt;默认网站根目录&lt;code&gt;/var/www/html&lt;/code&gt;(据说网站根目录应该是&lt;code&gt;/var/www&lt;/code&gt;，但我安装完之后，却不是这样的，难道改变了?)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改 &lt;code&gt;config.inc.php&lt;/code&gt;&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;填写 : &lt;code&gt;$cfg[&#39;blowfish_secret&#39;] = &#39;ED34DFGFF&#39;;  // 必须填写,但可以随意填写&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;添加 mysql 访问 : &lt;code&gt;$cfg[&#39;Servers&#39;][$i][&#39;extension&#39;]=&#39;mysql&#39;;&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
 </description>
@@ -4268,298 +4497,304 @@ $ sudo umount dir
         </item>
 
         <item>
-                <title>Sublime Text 2的安装与配置</title>
+                <title>Sublime Text 安装与配置的那些事</title>
                 <description>
-&lt;h3 id=&quot;section&quot;&gt;简介&lt;/h3&gt;
-&lt;p&gt;Sublime Text 2是一个超强代码编辑器或者文本编辑器&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;简介&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;安装&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#sublime-text-2&quot; id=&quot;markdown-toc-sublime-text-2&quot;&gt;Sublime Text 2&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#sublime-text-3&quot; id=&quot;markdown-toc-sublime-text-3&quot;&gt;Sublime Text 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;系统配置&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;中文输入和搜索&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#dock-&quot; id=&quot;markdown-toc-dock-&quot;&gt;固化在左侧的 dock 里&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;设置默认打开文档&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;注册&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;它小巧绿色且速度非常快，跨平台支持Win/Max/Linux,支持32位与64位&lt;/p&gt;
+&lt;h2 id=&quot;section&quot;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.sublimetext.com/&quot;&gt;Sublime Text&lt;/a&gt; 是一个很好用的编辑器, 无论对于编程还是文本编辑, 都非常不错&lt;/p&gt;
+
+&lt;p&gt;它小巧且速度非常快，支持 &lt;code&gt;Win/Mac/Linux&lt;/code&gt; 等多种平台&lt;br /&gt;
+也同时支持 32 位与 64 位&lt;/p&gt;
 
 &lt;p&gt;它支持各种流行编程语言的语法高亮、代码补全&lt;/p&gt;
 
-&lt;p&gt;它收费，而且很贵，但是它提供免费使用，当然无限期，无限制，只是偶尔提醒你木有购买，而且频率很低，这点让人觉得很赞&lt;/p&gt;
-
-&lt;p&gt;它可以像vim一样安装插件，增强本身没有的功能，而且不需要你从特殊站点下载插件，然后费尽心思的放在某处(譬如安装目录)&lt;br /&gt;
+&lt;p&gt;它可以像 vim 一样安装插件，增强本身没有的功能，而且有比 Vim 更方便的插件浏览、安装和管理方式  &lt;br /&gt;
 只需要一两个命令，就可以方便下载，等待使用&lt;/p&gt;
 
-&lt;p&gt;对咯，它有很大一个缺点，名字太长了，嘿嘿，更多的时候我们简称其为ST2&lt;/p&gt;
+&lt;p&gt;它收费, 但是它提供免费使用，当然无限期，无限制，只是偶尔提醒你木有购买，而且频率很低，这点让人觉得很赞&lt;/p&gt;
 
-&lt;h3 id=&quot;ubuntu&quot;&gt;Ubuntu下的安装&lt;/h3&gt;
+&lt;p&gt;好的软件, 总是要付出软件创作者的巨大的心力, 如果你有足够的金子, 不妨买一个 &lt;a href=&quot;http://www.sublimetext.com/buy&quot;&gt;key&lt;/a&gt; 赞助一下&lt;/p&gt;
 
-&lt;h4 id=&quot;section-1&quot;&gt;添加源安装(简单)&lt;/h4&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;Sublimex Text 目前有两个版本 2 和 3, 2 应该属于 LTS(Long Term Support),而 3 是 beta, 不过也算稳定&lt;/p&gt;
+
+&lt;p&gt;至于安装哪个, 取决于你的选择&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;下载地址&lt;/strong&gt; :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Sublime Text 2 : &lt;a href=&quot;http://www.sublimetext.com/2&quot;&gt;http://www.sublimetext.com/2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Sulimex Text 3 : &lt;a href=&quot;http://www.sublimetext.com/3&quot;&gt;http://www.sublimetext.com/3&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这里只写 Ubuntu 下的安装与配置&lt;/p&gt;
+
+&lt;h3 id=&quot;sublime-text-2&quot;&gt;Sublime Text 2&lt;/h3&gt;
+
+&lt;p&gt;两种安装方式 :  源安装 和 下载压缩包&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;源安装&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ sudo add-apt-repository ppa:webupd8team/sublime-text-2  
 $ sudo apt-get update  
 $ sudo apt-get install sublime-text
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-2&quot;&gt;压缩包安装(还需要更多的配置)&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;压缩包安装&lt;/strong&gt; :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;下载 Sublime text 2 : &lt;a href=&quot;http://www.sublimetext.com/2&quot;&gt;http://www.sublimetext.com/2&lt;/a&gt;&lt;br /&gt;
+(提供的是一个压缩包, 暂且命名为 Sublime-Text-2.0.2-x64.tar.bz2)&lt;/li&gt;
+  &lt;li&gt;解压缩到 &lt;code&gt;/opt&lt;/code&gt; 下 : &lt;code&gt;tar -xjvf Sublime-Text-2.0.2-x64.tar.bz2 -C /opt&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;建立软链接到 &lt;code&gt;/usr/bin&lt;/code&gt; 下 : &lt;code&gt;ln -s /opt/Sublime_Text_2 /usr/bin/subl&lt;/code&gt;&lt;br /&gt;
+(建立在 PATH 变量任意路径下都可以)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;sublime-text-3&quot;&gt;Sublime Text 3&lt;/h3&gt;
+
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;解压安装包到/opt下(当然其他目录也可以)&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; # tar -jxvf Sublime\ Text\ 2.0.2\ x64.tar.bz2 -C /opt/brackets/  
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;下载 Sublime Text 3: &lt;a href=&quot;http://www.sublimetext.com/3&quot;&gt;http://www.sublimetext.com/3&lt;/a&gt;&lt;br /&gt;
+(提供的是一个 deb 文件, 暂且命名为为 sublime-text_build-3083_amd64.deb)&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;建立软链接到/usr/bin下&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; # ln -s /opt/sublime_text_2/sublime_text /usr/bin/sublime-text
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;命令安装 : &lt;code&gt;sudo dpkg -i sublime-text_build-3083_amd64.deb&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果出现依赖错误, 可以执行 : &lt;code&gt;sudo apt-get install -f&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;这样，我们就可以在命令行的任意工作目录下键入&lt;strong&gt;sublime-text&lt;/strong&gt;打开ST2咯&lt;/p&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;系统配置&lt;/h2&gt;
 
-&lt;h3 id=&quot;section-3&quot;&gt;放到应用程序菜单&lt;/h3&gt;
+&lt;p&gt;在 Linux , 要想正常使用 Sublime, 你需要做些系统相关的配置&lt;/p&gt;
 
-&lt;p&gt;更多的时候我们更想把它放在应用程序菜单,方便打开使用&lt;br /&gt;
-( 当你采用添加源安装,它已经放在应用程序菜单中了 )&lt;/p&gt;
+&lt;h3 id=&quot;section-3&quot;&gt;中文输入和搜索&lt;/h3&gt;
 
-&lt;p&gt;因此建立一个sublime-text-2.desktop文件，放入/usr/share/applications/下&lt;/p&gt;
+&lt;p&gt;Ubuntu 下, Sublimex Text 不能输入中文, 这个网上已经给出解决方案&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;	# touch /usr/share/applications/sublime-text-2.desktop
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过压缩包方式安装 Sublime, 在应用程序搜索中, 不会搜索到 Sublime&lt;br /&gt;
+(按下 Window 键, 就唤起了应用程序搜索面板)&lt;/p&gt;
 
-&lt;p&gt;然后copy一下内容到此文件中:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;	#!/usr/bin/env xdg-open	
-	[Desktop Entry]
-	Name=Sublime Text 2
-	GenericName=Text Editor
-	Comment=Sophisticated text editor for code, html and prose¬
-	Exec=/usr/bin/subl %F
-	Terminal=false
-	Type=Application
-	MimeType=text/plain;text/x-chdr;text/x-csrc;text/x-c++hdr;text/x-c++src;text/x-java;text/x-dsrc;text/x-pascal;text/x-perl;text/x-python;application/x-php;application/x-httpd-php3;application/x-httpd-php4;application/x-http d-php5;application/xml;text/html;text/css;text/x-sql;text/x-diff;x-directory/normal;inode/directory;
-	Icon=sublime_text
-	Categories=TextEditor;Development;Utility;
-	StartupNotify=true
-	Actions=Window;Document;
-	
-	X-Desktop-File-Install-Version=0.22
-	
-	[Desktop Action Window]
-	Name=New Window
-	Exec=/usr/bin/subl -n
-	OnlyShowIn=Unity;
-	
-	[Desktop Action Document]
-	Name=New File
-	Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /usr/bin/subl&#39; --com mand new_file
-	OnlyShowIn=Unity
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;okay,可能你还要注销或者重启一下系统&lt;br /&gt;
-然后按下Windows徽标键,这时候弹出搜索面板，随着你键入应用程序的名字(Sublime Text 2)，会逐渐确定你想打开的应用程序&lt;br /&gt;
-点击应用程序图标，打开它&lt;/p&gt;
-
-&lt;h3 id=&quot;dock&quot;&gt;固化在左侧的dock里（默认都在左侧）&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;当你通过命令行或者应用程序菜单启动ST2后&lt;/li&gt;
-  &lt;li&gt;在dock里会出现ST2的图标,点击右键，选择&lt;code&gt;lock from Launcher&lt;/code&gt;,然后它就被锁定在dock中了&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;以后你就可以直接可以在dock中看到ST2咯&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;解决中文输入法的问题&lt;/h3&gt;
-
-&lt;p&gt;安装完ST2后，发现竟然无法输入中文&lt;br /&gt;
-但是，不用担心，网上已经给出解决办法&lt;/p&gt;
+&lt;p&gt;解决方法如下 :&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;新建一个.c文件&lt;strong&gt;sublime-imfix.c&lt;/strong&gt;,内容如下:&lt;/p&gt;
+    &lt;p&gt;新建文件 &lt;code&gt;sublime-imfix.c&lt;/code&gt; :&lt;/p&gt;
 
     &lt;pre&gt;&lt;code&gt; /*
-	
+    
   * sublime-imfix.c Use LD_PRELOAD to interpose some function to fix sublime
   * input method support for linux. By Cjacker Huang &amp;lt;jianzhong.huang at
   * i-soft.com.cn&amp;gt;
   * 
   * gcc -shared -o libsublime-imfix.so sublime_imfix.c `pkg-config --libs
   * --cflags gtk+-2.0` -fPIC LD_PRELOAD=./libsublime-imfix.so sublime_text 
-	
+    
   */
-	
- #include &amp;lt;gtk/gtk.h&amp;gt;		
+    
+ #include &amp;lt;gtk/gtk.h&amp;gt;        
  #include &amp;lt;gdk/gdkx.h&amp;gt;
-	
- typedef GdkSegment GdkRegionBox;		
-	
-	
+    
+ typedef GdkSegment GdkRegionBox;        
+    
+    
  struct _GdkRegion {
      long            size;
      long            numRects;
      GdkRegionBox   *rects;
      GdkRegionBox    extents;
- };		
- GtkIMContext   *local_context;		
-	
+ };      
+ GtkIMContext   *local_context;      
+    
  void gdk_region_get_clipbox(const GdkRegion * region, GdkRectangle * rectangle)
  {
-	
+    
      g_return_if_fail(region != NULL);
-     g_return_if_fail(rectangle != NULL);		
-		
+     g_return_if_fail(rectangle != NULL);        
+        
 
      rectangle-&amp;gt;x = region-&amp;gt;extents.x1;
      rectangle-&amp;gt;y = region-&amp;gt;extents.y1;
      rectangle-&amp;gt;width = region-&amp;gt;extents.x2 - region-&amp;gt;extents.x1;
      rectangle-&amp;gt;height = region-&amp;gt;extents.y2 - region-&amp;gt;extents.y1;
-     GdkRectangle    rect;		
-		
+     GdkRectangle    rect;       
+        
 
      rect.x = rectangle-&amp;gt;x;
      rect.y = rectangle-&amp;gt;y;
      rect.width = 0;
      rect.height = rectangle-&amp;gt;height;
-	
+    
      // The caret width is 2;
      // Maybe sometimes we will make a mistake, but for most of the time, it
      // should be the caret.
      if (rectangle-&amp;gt;width == 2 &amp;amp;&amp;amp; GTK_IS_IM_CONTEXT(local_context)) {
          gtk_im_context_set_cursor_location(local_context, rectangle);
      }
- }		
-	
-	
+ }       
+    
+    
  // this is needed, for example, if you input something in file dialog and
  // return back the edit area
- // context will lost, so here we set it again.		
-	
-	
+ // context will lost, so here we set it again.      
+    
+    
  static GdkFilterReturn event_filter(GdkXEvent * xevent, GdkEvent * event,
                                      gpointer im_context)
  {
-     XEvent         *xev = (XEvent *) xevent;		
+     XEvent         *xev = (XEvent *) xevent;        
 
      if (xev-&amp;gt;type == KeyRelease &amp;amp;&amp;amp; GTK_IS_IM_CONTEXT(im_context)) {
 
-         GdkWindow      *win = g_object_get_data(G_OBJECT(im_context), &quot;window&quot;);		
-	
+         GdkWindow      *win = g_object_get_data(G_OBJECT(im_context), &quot;window&quot;);        
+    
          if (GDK_IS_WINDOW(win))
              gtk_im_context_set_client_window(im_context, win);
-	
+    
      }
-	
+    
      return GDK_FILTER_CONTINUE;
- }		
-	
-	
+ }       
+    
+    
  void gtk_im_context_set_client_window(GtkIMContext * context,
                                        GdkWindow * window)
  {
-	
-     GtkIMContextClass *klass;		
-	
+    
+     GtkIMContextClass *klass;       
+    
      g_return_if_fail(GTK_IS_IM_CONTEXT(context));
      klass = GTK_IM_CONTEXT_GET_CLASS(context);
-	
+    
      if (klass-&amp;gt;set_client_window)
-         klass-&amp;gt;set_client_window(context, window);		
-			
+         klass-&amp;gt;set_client_window(context, window);      
+            
      if (!GDK_IS_WINDOW(window))
          return;
-	
+    
      g_object_set_data(G_OBJECT(context), &quot;window&quot;, window);
 
      int             width = gdk_window_get_width(window);
-     int             height = gdk_window_get_height(window);		
-	
+     int             height = gdk_window_get_height(window);     
+    
      if (width != 0 &amp;amp;&amp;amp; height != 0) {
-	
+    
          gtk_im_context_focus_in(context);
          local_context = context;
      }
-	
+    
      gdk_window_add_filter(window, event_filter, context);
  }
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;安装C/C++编译环境和libgtk2.0dev&lt;/p&gt;
+    &lt;p&gt;安装编译环境 :&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; $ sudo apt-get install build-essential
- $ sudo apt-get install libgtk2.0-dev
+    &lt;pre&gt;&lt;code&gt; sudo apt-ger install build-essential libgtk2.0-dev -y
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;编译共享库&lt;/p&gt;
+    &lt;p&gt;编译共享库 :&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; $ gcc -shared -o libsublime-imfix.so sublime-imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
+    &lt;pre&gt;&lt;code&gt; gcc -shared -o libsublime-imfix.so sublime-imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
 &lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;移动共享库到 &lt;code&gt;/usr/lib/&lt;/code&gt; 下 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; sudo mv libsublime-imfix.so /usr/lib/
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;测试一下是否能输入中文 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; LD_PRELOAD=./libsublime-imfix.so subl
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;命令行启动，自动使用共享库 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; echo &quot;LD_PRELOAD=/usr/lib/libsublime-imfix.so subl&quot; &amp;gt;&amp;gt; ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加应用程序菜单,自动使用共享库 :&lt;br /&gt;
+新建 &lt;code&gt;/usr/share/applications/sublime_text.desktop&lt;/code&gt;, 内容如下 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; [Desktop Entry]
+ Version=1.0
+ Type=Application
+ Name=Sublime Text
+ GenericName=Text Editor
+ Comment=Sophisticated text editor for code, markup and prose
+ Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /opt/sublime_text/sublime_text %F&#39;
+ Terminal=false
+ MimeType=text/plain;
+ Icon=sublime-text
+ Categories=TextEditor;Development;
+ StartupNotify=true
+ Actions=Window;Document;
+
+ [Desktop Action Window]
+ Name=New Window
+ Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /opt/sublime_text/sublime_text -n&#39;
+ OnlyShowIn=Unity;
+
+ [Desktop Action Document]
+ Name=New File
+ Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /opt/sublime_text/sublime_text --command new_file&#39;
+ OnlyShowIn=Unity;
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;重启或注销生效&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;移动共享库到/usr/lib下:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;	$ sudo mv libsublime-imfix.so /usr/lib/
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;dock-&quot;&gt;固化在左侧的 dock 里&lt;/h3&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;修改启动方式
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;命令行启动&lt;/p&gt;
+  &lt;li&gt;通过命令行或者应用程序菜单启动 Sublime&lt;/li&gt;
+  &lt;li&gt;在 dock 里会出现 Sublime 的图标, 点击右键，选择&lt;code&gt;lock from Launcher&lt;/code&gt;,然后它就被锁定在 dock 中了&lt;/li&gt;
+&lt;/ol&gt;
 
-        &lt;pre&gt;&lt;code&gt;  $ LD_PRELOAD=./libsublime-imfix.so sublime-text
-&lt;/code&gt;&lt;/pre&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;图形化启动&lt;br /&gt;
- 修改/usr/share/applications/sublime-text-2.desktop:&lt;br /&gt;
- 将&lt;/p&gt;
+&lt;p&gt;以后你就可以直接可以从 dock 中打开 Sublime&lt;/p&gt;
 
-        &lt;pre&gt;&lt;code&gt;  Exec=/usr/bin/subl %F  
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;设置默认打开文档&lt;/h3&gt;
 
-        &lt;p&gt;修改为&lt;/p&gt;
+&lt;p&gt;希望使用 sublime 成为某种特定文档的默认打开方式, 可以这样做 :&lt;/p&gt;
 
-        &lt;pre&gt;&lt;code&gt;  Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /usr/bin/subl %F&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-        &lt;p&gt;将&lt;/p&gt;
-
-        &lt;pre&gt;&lt;code&gt;  Exec=/usr/bin/subl -n
-&lt;/code&gt;&lt;/pre&gt;
-
-        &lt;p&gt;修改为&lt;/p&gt;
-
-        &lt;pre&gt;&lt;code&gt;  Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /usr/bin/subl&#39; -n
-&lt;/code&gt;&lt;/pre&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;右键文件，选择&lt;code&gt;Propertites&lt;/code&gt;（属性）&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;点击&lt;code&gt;Open With&lt;/code&gt;, &lt;code&gt;Default Application&lt;/code&gt; 下选择&lt;code&gt;Sublime Text&lt;/code&gt;, 点击 &lt;code&gt;Set as default&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;st2&quot;&gt;设置ST2默认打开文档类型&lt;/h3&gt;
-&lt;p&gt;ST2不仅仅是一个超级代码编辑器，更重要的是它也是一个文档编辑器&lt;br /&gt;
-既然这样，我们为何还在使用gedit这个古老的东西呢?&lt;/p&gt;
+&lt;p&gt;这样，你双击打开每一个这种类型的文件，都会自动用&lt;code&gt;Sublime Text&lt;/code&gt;打开&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ vim /usr/share/applications/defaults.list
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;section-5&quot;&gt;注册&lt;/h2&gt;
 
-&lt;p&gt;使用vim的替换功能&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;1,$s/gedit.desktop/sublime-text-2.desktop/g
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;注销或者重启一下&lt;br /&gt;
-这样，你右键文件，会出现使用&lt;code&gt;Open With Sublime Text 2&lt;/code&gt;
-有时候，这样可能不会有效果(额，我也不太清楚为什么，如果您知道，请留言)&lt;br /&gt;
-我们可以对单独每种类型设定:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;右键文件，选择&lt;code&gt;Propertites&lt;/code&gt;（属性）&lt;/li&gt;
-  &lt;li&gt;点击&lt;code&gt;Open With&lt;/code&gt;,默认应用下选择&lt;code&gt;Sublime Text 2&lt;/code&gt;&lt;br /&gt;
-这样，你双击打开每一个这种类型的文件，都会自动用&lt;code&gt;Sublime Text 2&lt;/code&gt;打开&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;一枚注册码&lt;/h3&gt;
 &lt;p&gt;虽然可以一直免费使用，但是弹出来的警告框总是令人很不爽&lt;br /&gt;
-有幸在网络上搜集到一枚注册码&lt;/p&gt;
+有幸在网络上搜集到一枚 Sublimex Text 2 的注册码&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;----- BEGIN LICENSE -----
 Andrew Weber
@@ -4576,13 +4811,8 @@ B98FC99C 8FAC73EE D2B95564 DF450523
 ------ END LICENSE ------
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;不过，若是大家手头方便的话，不妨支持一下正版，毕竟辛辛苦苦做一个软件不容易，何况还是这么好的软件(将来可能会更好)&lt;/p&gt;
+&lt;p&gt;不过，若是大家手头方便的话，不妨支持一下&lt;a href=&quot;http://www.sublimetext.com/buy&quot;&gt;正版&lt;/a&gt;，毕竟辛辛苦苦做一个软件不容易，何况还是这么好的软件(将来可能会更好)&lt;/p&gt;
 
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;st2-1&quot;&gt;学学ST2的用法&lt;/h2&gt;
-
-&lt;p&gt;假如你已经安装好了ST2,那么学学怎么&lt;a href=&quot;/记录/2014/06/08/st2-some-usage/&quot; title=&quot;Sublime Text 2的使用&quot;&gt;ST2的一些操作和插件管理&lt;/a&gt;吧&lt;/p&gt;
 </description>
                 <link>http://mwumli.github.io/st2-install-config</link>
                 <guid>http://mwumli.github.io/st2-install-config</guid>
