@@ -9,7 +9,7 @@ site:
 
 ## move html to html branch
 move_html:
-	cp -Ruv $(site-dir)/* ../$(html-master)
+	cp -Ruv $(site-dir)/* ../$(html-master) && cd ../$(html-master) && mv Makefile.html Makefile
 
 ##  push site to github
 push:
