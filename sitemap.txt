@@ -11,6 +11,7 @@ http://mwumli.github.io/rss.xml
 http://mwumli.github.io/sitemap.txt
 
 http://mwumli.github.io/run-go-in-ubuntu
+http://mwumli.github.io/sublime-text-such-things
 http://mwumli.github.io/install-nodejs-on-ubuntu
 http://mwumli.github.io/ssh-port-forwarding
 http://mwumli.github.io/ssh-remote-run-cmd
@@ -30,7 +31,6 @@ http://mwumli.github.io/websites-by-github-pages
 http://mwumli.github.io/lamp-build
 http://mwumli.github.io/linux-file-system
 http://mwumli.github.io/st2-some-usage
-http://mwumli.github.io/st2-install-config
 http://mwumli.github.io/vim-some-plugins
 http://mwumli.github.io/vim-some-operations
 http://mwumli.github.io/ctags

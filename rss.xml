@@ -5,8 +5,8 @@
         <description>倘若微小 - MwumLi</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-12-06T21:37:41+08:00</lastBuildDate>
-        <pubDate>2015-12-06T21:37:41+08:00</pubDate>
+        <lastBuildDate>2015-12-06T21:54:48+08:00</lastBuildDate>
+        <pubDate>2015-12-06T21:54:48+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -129,6 +129,329 @@ Hello,World. 你好, 世界!
                 <link>http://mwumli.github.io/run-go-in-ubuntu</link>
                 <guid>http://mwumli.github.io/run-go-in-ubuntu</guid>
                 <pubDate>2015-11-10T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>Sublime Text 安装与配置的那些事</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;简介&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;安装&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#sublime-text-2&quot; id=&quot;markdown-toc-sublime-text-2&quot;&gt;Sublime Text 2&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#sublime-text-3&quot; id=&quot;markdown-toc-sublime-text-3&quot;&gt;Sublime Text 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;系统配置&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;中文输入和搜索&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#dock-&quot; id=&quot;markdown-toc-dock-&quot;&gt;固化在左侧的 dock 里&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;设置默认打开文档&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;注册&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.sublimetext.com/&quot;&gt;Sublime Text&lt;/a&gt; 是一个很好用的编辑器, 无论对于编程还是文本编辑, 都非常不错&lt;/p&gt;
+
+&lt;p&gt;它小巧且速度非常快，支持 &lt;code&gt;Win/Mac/Linux&lt;/code&gt; 等多种平台&lt;br /&gt;
+也同时支持 32 位与 64 位&lt;/p&gt;
+
+&lt;p&gt;它支持各种流行编程语言的语法高亮、代码补全&lt;/p&gt;
+
+&lt;p&gt;它可以像 vim 一样安装插件，增强本身没有的功能，而且有比 Vim 更方便的插件浏览、安装和管理方式  &lt;br /&gt;
+只需要一两个命令，就可以方便下载，等待使用&lt;/p&gt;
+
+&lt;p&gt;它收费, 但是它提供免费使用，当然无限期，无限制，只是偶尔提醒你木有购买，而且频率很低，这点让人觉得很赞&lt;/p&gt;
+
+&lt;p&gt;好的软件, 总是要付出软件创作者的巨大的心力, 如果你有足够的金子, 不妨买一个 &lt;a href=&quot;http://www.sublimetext.com/buy&quot;&gt;key&lt;/a&gt; 赞助一下&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;Sublimex Text 目前有两个版本 2 和 3, 2 应该属于 LTS(Long Term Support),而 3 是 beta, 不过也算稳定&lt;/p&gt;
+
+&lt;p&gt;至于安装哪个, 取决于你的选择&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;下载地址&lt;/strong&gt; :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Sublime Text 2 : &lt;a href=&quot;http://www.sublimetext.com/2&quot;&gt;http://www.sublimetext.com/2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Sulimex Text 3 : &lt;a href=&quot;http://www.sublimetext.com/3&quot;&gt;http://www.sublimetext.com/3&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这里只写 Ubuntu 下的安装与配置&lt;/p&gt;
+
+&lt;h3 id=&quot;sublime-text-2&quot;&gt;Sublime Text 2&lt;/h3&gt;
+
+&lt;p&gt;两种安装方式 :  源安装 和 下载压缩包&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;源安装&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo add-apt-repository ppa:webupd8team/sublime-text-2  
+$ sudo apt-get update  
+$ sudo apt-get install sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;压缩包安装&lt;/strong&gt; :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;下载 Sublime text 2 : &lt;a href=&quot;http://www.sublimetext.com/2&quot;&gt;http://www.sublimetext.com/2&lt;/a&gt;&lt;br /&gt;
+(提供的是一个压缩包, 暂且命名为 Sublime-Text-2.0.2-x64.tar.bz2)&lt;/li&gt;
+  &lt;li&gt;解压缩到 &lt;code&gt;/opt&lt;/code&gt; 下 : &lt;code&gt;tar -xjvf Sublime-Text-2.0.2-x64.tar.bz2 -C /opt&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;建立软链接到 &lt;code&gt;/usr/bin&lt;/code&gt; 下 : &lt;code&gt;ln -s /opt/Sublime_Text_2 /usr/bin/subl&lt;/code&gt;&lt;br /&gt;
+(建立在 PATH 变量任意路径下都可以)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;sublime-text-3&quot;&gt;Sublime Text 3&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载 Sublime Text 3: &lt;a href=&quot;http://www.sublimetext.com/3&quot;&gt;http://www.sublimetext.com/3&lt;/a&gt;&lt;br /&gt;
+(提供的是一个 deb 文件, 暂且命名为为 sublime-text_build-3083_amd64.deb)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;命令安装 : &lt;code&gt;sudo dpkg -i sublime-text_build-3083_amd64.deb&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果出现依赖错误, 可以执行 : &lt;code&gt;sudo apt-get install -f&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;系统配置&lt;/h2&gt;
+
+&lt;p&gt;在 Linux , 要想正常使用 Sublime, 你需要做些系统相关的配置&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;中文输入和搜索&lt;/h3&gt;
+
+&lt;p&gt;Ubuntu 下, Sublimex Text 不能输入中文, 这个网上已经给出解决方案&lt;/p&gt;
+
+&lt;p&gt;通过压缩包方式安装 Sublime, 在应用程序搜索中, 不会搜索到 Sublime&lt;br /&gt;
+(按下 Window 键, 就唤起了应用程序搜索面板)&lt;/p&gt;
+
+&lt;p&gt;解决方法如下 :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;新建文件 &lt;code&gt;sublime-imfix.c&lt;/code&gt; :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; /*
+    
+  * sublime-imfix.c Use LD_PRELOAD to interpose some function to fix sublime
+  * input method support for linux. By Cjacker Huang &amp;lt;jianzhong.huang at
+  * i-soft.com.cn&amp;gt;
+  * 
+  * gcc -shared -o libsublime-imfix.so sublime_imfix.c `pkg-config --libs
+  * --cflags gtk+-2.0` -fPIC LD_PRELOAD=./libsublime-imfix.so sublime_text 
+    
+  */
+    
+ #include &amp;lt;gtk/gtk.h&amp;gt;        
+ #include &amp;lt;gdk/gdkx.h&amp;gt;
+    
+ typedef GdkSegment GdkRegionBox;        
+    
+    
+ struct _GdkRegion {
+     long            size;
+     long            numRects;
+     GdkRegionBox   *rects;
+     GdkRegionBox    extents;
+ };      
+ GtkIMContext   *local_context;      
+    
+ void gdk_region_get_clipbox(const GdkRegion * region, GdkRectangle * rectangle)
+ {
+    
+     g_return_if_fail(region != NULL);
+     g_return_if_fail(rectangle != NULL);        
+        
+
+     rectangle-&amp;gt;x = region-&amp;gt;extents.x1;
+     rectangle-&amp;gt;y = region-&amp;gt;extents.y1;
+     rectangle-&amp;gt;width = region-&amp;gt;extents.x2 - region-&amp;gt;extents.x1;
+     rectangle-&amp;gt;height = region-&amp;gt;extents.y2 - region-&amp;gt;extents.y1;
+     GdkRectangle    rect;       
+        
+
+     rect.x = rectangle-&amp;gt;x;
+     rect.y = rectangle-&amp;gt;y;
+     rect.width = 0;
+     rect.height = rectangle-&amp;gt;height;
+    
+     // The caret width is 2;
+     // Maybe sometimes we will make a mistake, but for most of the time, it
+     // should be the caret.
+     if (rectangle-&amp;gt;width == 2 &amp;amp;&amp;amp; GTK_IS_IM_CONTEXT(local_context)) {
+         gtk_im_context_set_cursor_location(local_context, rectangle);
+     }
+ }       
+    
+    
+ // this is needed, for example, if you input something in file dialog and
+ // return back the edit area
+ // context will lost, so here we set it again.      
+    
+    
+ static GdkFilterReturn event_filter(GdkXEvent * xevent, GdkEvent * event,
+                                     gpointer im_context)
+ {
+     XEvent         *xev = (XEvent *) xevent;        
+
+     if (xev-&amp;gt;type == KeyRelease &amp;amp;&amp;amp; GTK_IS_IM_CONTEXT(im_context)) {
+
+         GdkWindow      *win = g_object_get_data(G_OBJECT(im_context), &quot;window&quot;);        
+    
+         if (GDK_IS_WINDOW(win))
+             gtk_im_context_set_client_window(im_context, win);
+    
+     }
+    
+     return GDK_FILTER_CONTINUE;
+ }       
+    
+    
+ void gtk_im_context_set_client_window(GtkIMContext * context,
+                                       GdkWindow * window)
+ {
+    
+     GtkIMContextClass *klass;       
+    
+     g_return_if_fail(GTK_IS_IM_CONTEXT(context));
+     klass = GTK_IM_CONTEXT_GET_CLASS(context);
+    
+     if (klass-&amp;gt;set_client_window)
+         klass-&amp;gt;set_client_window(context, window);      
+            
+     if (!GDK_IS_WINDOW(window))
+         return;
+    
+     g_object_set_data(G_OBJECT(context), &quot;window&quot;, window);
+
+     int             width = gdk_window_get_width(window);
+     int             height = gdk_window_get_height(window);     
+    
+     if (width != 0 &amp;amp;&amp;amp; height != 0) {
+    
+         gtk_im_context_focus_in(context);
+         local_context = context;
+     }
+    
+     gdk_window_add_filter(window, event_filter, context);
+ }
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装编译环境 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; sudo apt-ger install build-essential libgtk2.0-dev -y
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;编译共享库 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; gcc -shared -o libsublime-imfix.so sublime-imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;移动共享库到 &lt;code&gt;/usr/lib/&lt;/code&gt; 下 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; sudo mv libsublime-imfix.so /usr/lib/
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;测试一下是否能输入中文 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; LD_PRELOAD=./libsublime-imfix.so subl
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;命令行启动，自动使用共享库 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; echo &quot;LD_PRELOAD=/usr/lib/libsublime-imfix.so subl&quot; &amp;gt;&amp;gt; ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;添加应用程序菜单,自动使用共享库 :&lt;br /&gt;
+新建 &lt;code&gt;/usr/share/applications/sublime_text.desktop&lt;/code&gt;, 内容如下 :&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; [Desktop Entry]
+ Version=1.0
+ Type=Application
+ Name=Sublime Text
+ GenericName=Text Editor
+ Comment=Sophisticated text editor for code, markup and prose
+ Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /opt/sublime_text/sublime_text %F&#39;
+ Terminal=false
+ MimeType=text/plain;
+ Icon=sublime-text
+ Categories=TextEditor;Development;
+ StartupNotify=true
+ Actions=Window;Document;
+
+ [Desktop Action Window]
+ Name=New Window
+ Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /opt/sublime_text/sublime_text -n&#39;
+ OnlyShowIn=Unity;
+
+ [Desktop Action Document]
+ Name=New File
+ Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /opt/sublime_text/sublime_text --command new_file&#39;
+ OnlyShowIn=Unity;
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;p&gt;重启或注销生效&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;dock-&quot;&gt;固化在左侧的 dock 里&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;通过命令行或者应用程序菜单启动 Sublime&lt;/li&gt;
+  &lt;li&gt;在 dock 里会出现 Sublime 的图标, 点击右键，选择&lt;code&gt;lock from Launcher&lt;/code&gt;,然后它就被锁定在 dock 中了&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;以后你就可以直接可以从 dock 中打开 Sublime&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;设置默认打开文档&lt;/h3&gt;
+
+&lt;p&gt;希望使用 sublime 成为某种特定文档的默认打开方式, 可以这样做 :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;右键文件，选择&lt;code&gt;Propertites&lt;/code&gt;（属性）&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;点击&lt;code&gt;Open With&lt;/code&gt;, &lt;code&gt;Default Application&lt;/code&gt; 下选择&lt;code&gt;Sublime Text&lt;/code&gt;, 点击 &lt;code&gt;Set as default&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这样，你双击打开每一个这种类型的文件，都会自动用&lt;code&gt;Sublime Text&lt;/code&gt;打开&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;注册&lt;/h2&gt;
+
+&lt;p&gt;虽然可以一直免费使用，但是弹出来的警告框总是令人很不爽&lt;br /&gt;
+有幸在网络上搜集到一枚 Sublimex Text 2 的注册码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;----- BEGIN LICENSE -----
+Andrew Weber
+Single User License
+EA7E-855605
+813A03DD 5E4AD9E6 6C0EEB94 BC99798F
+942194A6 02396E98 E62C9979 4BB979FE
+91424C9D A45400BF F6747D88 2FB88078
+90F5CC94 1CDC92DC 8457107A F151657B
+1D22E383 A997F016 42397640 33F41CFC
+E1D0AE85 A0BBD039 0E9C8D55 E1B89D5D
+5CDB7036 E56DE1C0 EFCC0840 650CD3A6
+B98FC99C 8FAC73EE D2B95564 DF450523
+------ END LICENSE ------
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;不过，若是大家手头方便的话，不妨支持一下&lt;a href=&quot;http://www.sublimetext.com/buy&quot;&gt;正版&lt;/a&gt;，毕竟辛辛苦苦做一个软件不容易，何况还是这么好的软件(将来可能会更好)&lt;/p&gt;
+
+</description>
+                <link>http://mwumli.github.io/sublime-text-such-things</link>
+                <guid>http://mwumli.github.io/sublime-text-such-things</guid>
+                <pubDate>2015-11-06T00:00:00+08:00</pubDate>
         </item>
 
         <item>
@@ -4493,329 +4816,6 @@ $ sudo umount dir
 </description>
                 <link>http://mwumli.github.io/st2-some-usage</link>
                 <guid>http://mwumli.github.io/st2-some-usage</guid>
-                <pubDate>2014-06-08T00:00:00+08:00</pubDate>
-        </item>
-
-        <item>
-                <title>Sublime Text 安装与配置的那些事</title>
-                <description>
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;简介&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;安装&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#sublime-text-2&quot; id=&quot;markdown-toc-sublime-text-2&quot;&gt;Sublime Text 2&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#sublime-text-3&quot; id=&quot;markdown-toc-sublime-text-3&quot;&gt;Sublime Text 3&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;系统配置&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;中文输入和搜索&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#dock-&quot; id=&quot;markdown-toc-dock-&quot;&gt;固化在左侧的 dock 里&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;设置默认打开文档&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;注册&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;简介&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.sublimetext.com/&quot;&gt;Sublime Text&lt;/a&gt; 是一个很好用的编辑器, 无论对于编程还是文本编辑, 都非常不错&lt;/p&gt;
-
-&lt;p&gt;它小巧且速度非常快，支持 &lt;code&gt;Win/Mac/Linux&lt;/code&gt; 等多种平台&lt;br /&gt;
-也同时支持 32 位与 64 位&lt;/p&gt;
-
-&lt;p&gt;它支持各种流行编程语言的语法高亮、代码补全&lt;/p&gt;
-
-&lt;p&gt;它可以像 vim 一样安装插件，增强本身没有的功能，而且有比 Vim 更方便的插件浏览、安装和管理方式  &lt;br /&gt;
-只需要一两个命令，就可以方便下载，等待使用&lt;/p&gt;
-
-&lt;p&gt;它收费, 但是它提供免费使用，当然无限期，无限制，只是偶尔提醒你木有购买，而且频率很低，这点让人觉得很赞&lt;/p&gt;
-
-&lt;p&gt;好的软件, 总是要付出软件创作者的巨大的心力, 如果你有足够的金子, 不妨买一个 &lt;a href=&quot;http://www.sublimetext.com/buy&quot;&gt;key&lt;/a&gt; 赞助一下&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;安装&lt;/h2&gt;
-
-&lt;p&gt;Sublimex Text 目前有两个版本 2 和 3, 2 应该属于 LTS(Long Term Support),而 3 是 beta, 不过也算稳定&lt;/p&gt;
-
-&lt;p&gt;至于安装哪个, 取决于你的选择&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;下载地址&lt;/strong&gt; :&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Sublime Text 2 : &lt;a href=&quot;http://www.sublimetext.com/2&quot;&gt;http://www.sublimetext.com/2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Sulimex Text 3 : &lt;a href=&quot;http://www.sublimetext.com/3&quot;&gt;http://www.sublimetext.com/3&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;这里只写 Ubuntu 下的安装与配置&lt;/p&gt;
-
-&lt;h3 id=&quot;sublime-text-2&quot;&gt;Sublime Text 2&lt;/h3&gt;
-
-&lt;p&gt;两种安装方式 :  源安装 和 下载压缩包&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;源安装&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo add-apt-repository ppa:webupd8team/sublime-text-2  
-$ sudo apt-get update  
-$ sudo apt-get install sublime-text
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;压缩包安装&lt;/strong&gt; :&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;下载 Sublime text 2 : &lt;a href=&quot;http://www.sublimetext.com/2&quot;&gt;http://www.sublimetext.com/2&lt;/a&gt;&lt;br /&gt;
-(提供的是一个压缩包, 暂且命名为 Sublime-Text-2.0.2-x64.tar.bz2)&lt;/li&gt;
-  &lt;li&gt;解压缩到 &lt;code&gt;/opt&lt;/code&gt; 下 : &lt;code&gt;tar -xjvf Sublime-Text-2.0.2-x64.tar.bz2 -C /opt&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;建立软链接到 &lt;code&gt;/usr/bin&lt;/code&gt; 下 : &lt;code&gt;ln -s /opt/Sublime_Text_2 /usr/bin/subl&lt;/code&gt;&lt;br /&gt;
-(建立在 PATH 变量任意路径下都可以)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;sublime-text-3&quot;&gt;Sublime Text 3&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;下载 Sublime Text 3: &lt;a href=&quot;http://www.sublimetext.com/3&quot;&gt;http://www.sublimetext.com/3&lt;/a&gt;&lt;br /&gt;
-(提供的是一个 deb 文件, 暂且命名为为 sublime-text_build-3083_amd64.deb)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;命令安装 : &lt;code&gt;sudo dpkg -i sublime-text_build-3083_amd64.deb&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;如果出现依赖错误, 可以执行 : &lt;code&gt;sudo apt-get install -f&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;系统配置&lt;/h2&gt;
-
-&lt;p&gt;在 Linux , 要想正常使用 Sublime, 你需要做些系统相关的配置&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;中文输入和搜索&lt;/h3&gt;
-
-&lt;p&gt;Ubuntu 下, Sublimex Text 不能输入中文, 这个网上已经给出解决方案&lt;/p&gt;
-
-&lt;p&gt;通过压缩包方式安装 Sublime, 在应用程序搜索中, 不会搜索到 Sublime&lt;br /&gt;
-(按下 Window 键, 就唤起了应用程序搜索面板)&lt;/p&gt;
-
-&lt;p&gt;解决方法如下 :&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;新建文件 &lt;code&gt;sublime-imfix.c&lt;/code&gt; :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; /*
-    
-  * sublime-imfix.c Use LD_PRELOAD to interpose some function to fix sublime
-  * input method support for linux. By Cjacker Huang &amp;lt;jianzhong.huang at
-  * i-soft.com.cn&amp;gt;
-  * 
-  * gcc -shared -o libsublime-imfix.so sublime_imfix.c `pkg-config --libs
-  * --cflags gtk+-2.0` -fPIC LD_PRELOAD=./libsublime-imfix.so sublime_text 
-    
-  */
-    
- #include &amp;lt;gtk/gtk.h&amp;gt;        
- #include &amp;lt;gdk/gdkx.h&amp;gt;
-    
- typedef GdkSegment GdkRegionBox;        
-    
-    
- struct _GdkRegion {
-     long            size;
-     long            numRects;
-     GdkRegionBox   *rects;
-     GdkRegionBox    extents;
- };      
- GtkIMContext   *local_context;      
-    
- void gdk_region_get_clipbox(const GdkRegion * region, GdkRectangle * rectangle)
- {
-    
-     g_return_if_fail(region != NULL);
-     g_return_if_fail(rectangle != NULL);        
-        
-
-     rectangle-&amp;gt;x = region-&amp;gt;extents.x1;
-     rectangle-&amp;gt;y = region-&amp;gt;extents.y1;
-     rectangle-&amp;gt;width = region-&amp;gt;extents.x2 - region-&amp;gt;extents.x1;
-     rectangle-&amp;gt;height = region-&amp;gt;extents.y2 - region-&amp;gt;extents.y1;
-     GdkRectangle    rect;       
-        
-
-     rect.x = rectangle-&amp;gt;x;
-     rect.y = rectangle-&amp;gt;y;
-     rect.width = 0;
-     rect.height = rectangle-&amp;gt;height;
-    
-     // The caret width is 2;
-     // Maybe sometimes we will make a mistake, but for most of the time, it
-     // should be the caret.
-     if (rectangle-&amp;gt;width == 2 &amp;amp;&amp;amp; GTK_IS_IM_CONTEXT(local_context)) {
-         gtk_im_context_set_cursor_location(local_context, rectangle);
-     }
- }       
-    
-    
- // this is needed, for example, if you input something in file dialog and
- // return back the edit area
- // context will lost, so here we set it again.      
-    
-    
- static GdkFilterReturn event_filter(GdkXEvent * xevent, GdkEvent * event,
-                                     gpointer im_context)
- {
-     XEvent         *xev = (XEvent *) xevent;        
-
-     if (xev-&amp;gt;type == KeyRelease &amp;amp;&amp;amp; GTK_IS_IM_CONTEXT(im_context)) {
-
-         GdkWindow      *win = g_object_get_data(G_OBJECT(im_context), &quot;window&quot;);        
-    
-         if (GDK_IS_WINDOW(win))
-             gtk_im_context_set_client_window(im_context, win);
-    
-     }
-    
-     return GDK_FILTER_CONTINUE;
- }       
-    
-    
- void gtk_im_context_set_client_window(GtkIMContext * context,
-                                       GdkWindow * window)
- {
-    
-     GtkIMContextClass *klass;       
-    
-     g_return_if_fail(GTK_IS_IM_CONTEXT(context));
-     klass = GTK_IM_CONTEXT_GET_CLASS(context);
-    
-     if (klass-&amp;gt;set_client_window)
-         klass-&amp;gt;set_client_window(context, window);      
-            
-     if (!GDK_IS_WINDOW(window))
-         return;
-    
-     g_object_set_data(G_OBJECT(context), &quot;window&quot;, window);
-
-     int             width = gdk_window_get_width(window);
-     int             height = gdk_window_get_height(window);     
-    
-     if (width != 0 &amp;amp;&amp;amp; height != 0) {
-    
-         gtk_im_context_focus_in(context);
-         local_context = context;
-     }
-    
-     gdk_window_add_filter(window, event_filter, context);
- }
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;安装编译环境 :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; sudo apt-ger install build-essential libgtk2.0-dev -y
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;编译共享库 :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; gcc -shared -o libsublime-imfix.so sublime-imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;移动共享库到 &lt;code&gt;/usr/lib/&lt;/code&gt; 下 :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; sudo mv libsublime-imfix.so /usr/lib/
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;测试一下是否能输入中文 :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; LD_PRELOAD=./libsublime-imfix.so subl
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;命令行启动，自动使用共享库 :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; echo &quot;LD_PRELOAD=/usr/lib/libsublime-imfix.so subl&quot; &amp;gt;&amp;gt; ~/.bashrc
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;添加应用程序菜单,自动使用共享库 :&lt;br /&gt;
-新建 &lt;code&gt;/usr/share/applications/sublime_text.desktop&lt;/code&gt;, 内容如下 :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; [Desktop Entry]
- Version=1.0
- Type=Application
- Name=Sublime Text
- GenericName=Text Editor
- Comment=Sophisticated text editor for code, markup and prose
- Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /opt/sublime_text/sublime_text %F&#39;
- Terminal=false
- MimeType=text/plain;
- Icon=sublime-text
- Categories=TextEditor;Development;
- StartupNotify=true
- Actions=Window;Document;
-
- [Desktop Action Window]
- Name=New Window
- Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /opt/sublime_text/sublime_text -n&#39;
- OnlyShowIn=Unity;
-
- [Desktop Action Document]
- Name=New File
- Exec=bash -c &#39;LD_PRELOAD=/usr/lib/libsublime-imfix.so /opt/sublime_text/sublime_text --command new_file&#39;
- OnlyShowIn=Unity;
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;重启或注销生效&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;dock-&quot;&gt;固化在左侧的 dock 里&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;通过命令行或者应用程序菜单启动 Sublime&lt;/li&gt;
-  &lt;li&gt;在 dock 里会出现 Sublime 的图标, 点击右键，选择&lt;code&gt;lock from Launcher&lt;/code&gt;,然后它就被锁定在 dock 中了&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;以后你就可以直接可以从 dock 中打开 Sublime&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;设置默认打开文档&lt;/h3&gt;
-
-&lt;p&gt;希望使用 sublime 成为某种特定文档的默认打开方式, 可以这样做 :&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;右键文件，选择&lt;code&gt;Propertites&lt;/code&gt;（属性）&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;点击&lt;code&gt;Open With&lt;/code&gt;, &lt;code&gt;Default Application&lt;/code&gt; 下选择&lt;code&gt;Sublime Text&lt;/code&gt;, 点击 &lt;code&gt;Set as default&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;这样，你双击打开每一个这种类型的文件，都会自动用&lt;code&gt;Sublime Text&lt;/code&gt;打开&lt;/p&gt;
-
-&lt;h2 id=&quot;section-5&quot;&gt;注册&lt;/h2&gt;
-
-&lt;p&gt;虽然可以一直免费使用，但是弹出来的警告框总是令人很不爽&lt;br /&gt;
-有幸在网络上搜集到一枚 Sublimex Text 2 的注册码&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;----- BEGIN LICENSE -----
-Andrew Weber
-Single User License
-EA7E-855605
-813A03DD 5E4AD9E6 6C0EEB94 BC99798F
-942194A6 02396E98 E62C9979 4BB979FE
-91424C9D A45400BF F6747D88 2FB88078
-90F5CC94 1CDC92DC 8457107A F151657B
-1D22E383 A997F016 42397640 33F41CFC
-E1D0AE85 A0BBD039 0E9C8D55 E1B89D5D
-5CDB7036 E56DE1C0 EFCC0840 650CD3A6
-B98FC99C 8FAC73EE D2B95564 DF450523
------- END LICENSE ------
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;不过，若是大家手头方便的话，不妨支持一下&lt;a href=&quot;http://www.sublimetext.com/buy&quot;&gt;正版&lt;/a&gt;，毕竟辛辛苦苦做一个软件不容易，何况还是这么好的软件(将来可能会更好)&lt;/p&gt;
-
-</description>
-                <link>http://mwumli.github.io/st2-install-config</link>
-                <guid>http://mwumli.github.io/st2-install-config</guid>
                 <pubDate>2014-06-08T00:00:00+08:00</pubDate>
         </item>
 
