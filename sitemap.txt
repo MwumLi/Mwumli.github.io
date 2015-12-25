@@ -10,6 +10,7 @@ http://mwumli.github.io/index.html
 http://mwumli.github.io/rss.xml
 http://mwumli.github.io/sitemap.txt
 
+http://mwumli.github.io/css-clearfix
 http://mwumli.github.io/run-go-in-ubuntu
 http://mwumli.github.io/sublime-text-such-things
 http://mwumli.github.io/install-nodejs-on-ubuntu
