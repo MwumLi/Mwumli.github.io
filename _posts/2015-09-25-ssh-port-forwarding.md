@@ -87,7 +87,7 @@ SSH 隧道有三种类型 :
 
 3. 可以使用 `curl` 进行下载验证  
 
-		$ curl --sock5 localhost:7070 download-link
+		$ curl --socks5 localhost:7070 download-link
 
 ## 本地端口转发
 
