@@ -5,8 +5,8 @@
         <description>倘若微小 - MwumLi</description>
         <link>http://mwumli.github.io</link>
         <link>http://mwumli.github.io</link>
-        <lastBuildDate>2015-12-25T17:51:12+08:00</lastBuildDate>
-        <pubDate>2015-12-25T17:51:12+08:00</pubDate>
+        <lastBuildDate>2015-12-28T13:39:18+08:00</lastBuildDate>
+        <pubDate>2015-12-28T13:39:18+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -895,7 +895,7 @@ sudo apt-get install -y nodejs
   &lt;li&gt;
     &lt;p&gt;可以使用 &lt;code&gt;curl&lt;/code&gt; 进行下载验证&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; $ curl --sock5 localhost:7070 download-link
+    &lt;pre&gt;&lt;code&gt; $ curl --socks5 localhost:7070 download-link
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
