@@ -9,6 +9,11 @@ permalink: /:title
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 #jekyll的默认markdown解析器maruku对中文支持不够完善，故改用rdiscount
 markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+  toc_levels: 2..4
+  footnote_nr: 1
 highlighter: pygments
 
 
