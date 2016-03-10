@@ -24,6 +24,9 @@ author :
   github : mwumli
   twitter : username
   feedburner : feedname
+createtime: 2014-05-02 18:14:24 +0000
+
+
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -34,9 +37,14 @@ author :
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
 production_url : http://mwumli.github.io
+domain: http://www.ifmicro.com/
 
 theme :
   name : "custom-me" 
+
+sass :
+  sass_dir : /assets/themes/custom-me/css/_sass
+  style : compressed
 
 navigation : 
   micro_say:

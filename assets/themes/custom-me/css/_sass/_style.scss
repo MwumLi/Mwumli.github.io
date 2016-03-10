@@ -21,14 +21,12 @@ body {
     margin: auto;
     font: 100 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
 	letter-spacing: 0.5px;
-//	word-spacing : 3px; //单词之间的间距
 }
 table {
     margin: 0;
     padding: 0;
 }
 
-/*H-->标题系H*/
 h1, h2, h3, h4, h5, h6 { 
     font-family: "Open Sans";
     margin: 0;
@@ -121,8 +119,7 @@ img {
 code {
     color: #cae3b6;
 	font-family: DejaVu Sans Mono,Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-	/*添加code自动换行*/
-	white-space: pre-wrap;
+	white-space: pre-wrap; 
 	word-wrap: break-word;
 }
 p code {
@@ -190,14 +187,12 @@ em, i {
     font-style: italic;
 	color: rgb(233, 109, 50);
 }
-/*}}}*/
 
-/*火焰效果*/
 #all {
     -webkit-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAEsCAYAAAAGpQnoAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGNJREFUeNpi%2Bs8QwPD%2F%2F38GEM3EgARGOaOcUc4oZ3BxGKFsRurroVjZYDaAnHCjoaU0lBmalg6IATS0Z1QZtZVRHFmjgTjoooReyoaMPfQq1omMxiFT6Q2yZsRgNoB6KQQgwADJCwjQbYXDDwAAAABJRU5ErkJggg%3D%3D) 0 1 0 1;
     -moz-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAEsCAYAAAAGpQnoAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGNJREFUeNpi%2Bs8QwPD%2F%2F38GEM3EgARGOaOcUc4oZ3BxGKFsRurroVjZYDaAnHCjoaU0lBmalg6IATS0Z1QZtZVRHFmjgTjoooReyoaMPfQq1omMxiFT6Q2yZsRgNoB6KQQgwADJCwjQbYXDDwAAAABJRU5ErkJggg%3D%3D) 0 1 0 1;
     border-width: 0 12px;
-    max-width: 85%
+    max-width: 85%;
     margin: 0 auto;
 }
 
@@ -397,8 +392,6 @@ a.tag:hover {
     max-height: 20%;
 
 }
-/*  pagination---->分页
-    */
 .pagination {
 
 }
@@ -442,32 +435,29 @@ a.tag:hover {
 }*/
 
 /*footer*/
-#footer {
+.footer {
     margin-top: -10px;
     text-align: center;
     border: 5px solid #75143F;
     border: 5px solid rgba(255,0,80,0.42);
     border-width: 5px 10px;
     
-}
-#footer p {
-    background: #341D36;
-    background: rgba(255,0,80,0.15);
-    margin: 0;
-    padding:1em;
-}
-#footer p a {
-    float: right;
-    text-decoration: none;
-    color: #967;
-    font-size: 1.5em;
-}
-#footer p a:hover {
-    text-decoration: none;
-    color:blue;
-}
+	p {
+	    background: #341D36;
+	    background: rgba(255,0,80,0.15);
+		margin: 0;
+	    padding:1em;
 
+		a {
+		    text-decoration: none;
+			
+			&:hover {
+				text-decoration: none;
+			}
 
+		}
+	}
+}
 
 /*
  * Module: Toc
