@@ -1,0 +1,34 @@
+{% comment %}<!--
+The pages_list include is a listing helper.
+Usage:
+  1) assign the 'pages_list' variable to a valid array of pages or posts.
+  2) include LU/pages_list
+  example:
+    <ul>
+  	  {% include LU/pages_list %}
+  	</ul>
+  	
+-->{% endcomment %}
+
+{% if site.navigation.micro_say.isShow %}
+<li><a href="{{site.navigation.micro_say.path}}">{{ site.navigation.micro_say.title }}</a></li>
+{% endif %}
+
+{% if site.navigation.archive.isShow %}
+<li><a href="{{site.navigation.archive.path}}">{{ site.navigation.archive.title }}</a></li>
+{% endif %}
+
+{% if site.navigation.category.isShow %}
+<li><a href="{{site.navigation.category.path}}">{{ site.navigation.category.title }}</a></li>
+{% endif %}
+
+{% if site.navigation.tag.isShow %}
+<li><a href="{{site.navigation.tag.path}}">{{ site.navigation.tag.title }}</a></li>
+{% endif %}
+
+{% if site.navigation.subscribe.isShow %}
+<li><a href="{{site.navigation.subscribe.path}}">{{ site.navigation.subscribe.title }}</a></li>
+{% endif %}
+
+{% capture this_year %}{{ site.time | date: "%Y" }}{% endcapture %}	
+

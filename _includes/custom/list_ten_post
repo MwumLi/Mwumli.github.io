@@ -1,0 +1,20 @@
+{% comment %}<!--
+The list_ten_post include show a list ,which include the most recent articles
+Usage:
+	1) assign the 'list_ten_post' variable to a vaild array of posts	
+	2) include LU/list_ten_post
+	<ul>
+    {% assign list_ten_post = site.posts %}
+    {% include LU/list_ten_post %}
+	</ul>	
+	&raquo  >>
+-->{% endcomment %}
+
+{% for post in list_ten_post limit:10 offset:0 %}
+    {% if post.isShow %}
+    <li><span>{{ post.date | date: "%Y-%m-%d" }}</span> --&gt; <a href="{{ BASE_PATH}}{{ site.navigation.category.path }}#{{ post.category }}-ref" class="post-category" >{{ post.category }}</a> <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endif %}
+{% endfor %}
+<li><span>0000-00-00</span>  --&gt; <a href="{{ BASE_PATH }}{{site.LU.archive_path}}" class="post-category">更多</a></li>
+
+{% assign list_ten_post = nil %}

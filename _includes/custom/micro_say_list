@@ -1,0 +1,20 @@
+{% comment %}<!--
+	Usage:
+		{% assign micro_say_list = site.pages %}
+		{% include LU/micro_say_list %}
+-->{% endcomment %}
+
+
+{% assign once = 1 %}
+{% for node in micro_say_list %}
+    {% if node.title == "微语" and once != 1 %}
+        | 	
+    {% endif %}
+    {% if node.title == "微语" %}
+        <li><a href="{{ BASE_PATH }}{{node.url}}">{{node.group}}</a></li>
+        {% capture once %}2{% endcapture %}
+    {% endif %}
+{% endfor %}
+
+{% assign pages_list = nil %}
+{% assign group = nil %}
