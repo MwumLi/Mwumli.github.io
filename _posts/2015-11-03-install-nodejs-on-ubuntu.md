@@ -3,7 +3,7 @@ layout: post
 title: "Ubuntu 下安装 nodejs"
 description: "简述 nodejs 在各大平台的安装以及 Ubuntu 14.04 的下具体安装"
 category: 记录
-tags: [nodejs Linux]
+tags: [Nodejs, Linux]
 toc: true
 modifyTime: "2015-11-03 16:23:18"
 isShow: true
