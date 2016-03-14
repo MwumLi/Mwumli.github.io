@@ -1,156 +1,134 @@
 
-
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		
-		<title>倘若微小 - ctags 在 Vim 中的使用</title>
-
-  		
-		<meta name="description" content="使用 Ctags 生成标签文件 tags, Vim 可以利用 tags 来进行代码填充">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         
+        <title>倘若微小 - ctags 在 Vim 中的使用</title>
+        
+        <meta name="description" content="使用 Ctags 生成标签文件 tags, Vim 可以利用 tags 来进行代码填充">
+        
+        <meta name="author" content="MwumLi">
 
-	    <meta name="author" content="MwumLi">
-	
-        <!-- syntax highlighting CSS -->
-		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- -Site Icon -->
+        <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
         <!-- Custom CSS -->
-		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+	
+        <link rel="stylesheet" href="/assets/themes/custom-me/css/main.css" type="text/css" media="all" />
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Fav and touch icons -->
+        <!-- Update these with your own images
+          <link rel="shortcut icon" href="images/favicon.ico">
+          <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+          <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+          <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+        -->
+
+        <!-- atom & rss feed -->
+        <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+        <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
     </head>
     <body>
         <div id="all">
-<!--            header start-->
             <div id="header">
                 <div id="title">
-                <h1 >
-                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
-					</a>                     	   
-				</h1>
+					<h1 ><a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span></a>                           
+					</h1>
                 </div>
-                <!--hr/ -->
+
                 <div id="top-nav">
                     <ul>
-					
+                    
+
+
+<li><a href="/pages/micro-say/2015.html">微语</a></li>
 
 
 
-    
-  	
-  
-  
-  
-	  
-	  			
-
-  
-	  
-	  
-  	 		
-      		
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-
-  
-  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
-  
+<li><a href="/pages/articles/">文章</a></li>
 
 
 
-					<li><a href="/pages/articles/index.html">文章</a></li>
-					<li><a href="/pages/categories/index.html">分类</a></li>
-					<li><a href="/pages/tags/index.html">标签</a></li>
-					<li><a href="/rss.xml">rss订阅</a></li>
-					</ul>   
+<li><a href="/pages/categories/">分类</a></li>
+
+
+
+<li><a href="/pages/tags/">标签</a></li>
+
+
+
+<li><a href="/rss.xml">订阅</a></li>
+
+
+	
+
+
+                    </ul>   
                 </div>
             </div> 
-<!--            header end-->
-            <!--hr /-->
+
             <div class="content">
                 
-
-
 <div class="page-header">
-	<h1>ctags 在 Vim 中的使用 <small></small></h1>
-	<div id="article_header">
-		
-		
-		<div>
-			<span>分类: </span>
-			<a href="/pages/categories/index.html#记录-ref" class="tag">记录</a> 
-			
-				<span>标签: </span>
-			
-			
-				<a href="/pages/tags/index.html#Vim-ref" class="tag">Vim</a>
-    		
-				<a href="/pages/tags/index.html#Ctags-ref" class="tag">Ctags</a>
-    		
-		</div>		
-		<div>
-			Last Modify in
-			
-			<span>2015-09-25</span>,
-			
-			published in <span>2014-06-02</span> 
-			by <span> MwumLi</span>
-		</div>
+    <h1>ctags 在 Vim 中的使用 <small></small></h1>
+    <div id="article_header">
+        
+        
+        <div>
+            <span>分类: </span>
+            <a href="/pages/categories/#记录-ref" class="tag">记录</a> 
+            
+                <span>标签: </span>
+            
+            
+                <a href="/pages/tags/#Vim-ref" class="tag">Vim</a>
+            
+                <a href="/pages/tags/#Ctags-ref" class="tag">Ctags</a>
+            
+        </div>      
+        <div>
+            Last Modify in
+            
+            <span>2015-09-25</span>,
+            
+            published in <span>2014-06-02</span> 
+            by <span> MwumLi</span>
+        </div>
 
-		
-		
-	</div>
+        
+        
+    </div>
 </div>
 
 <div id="page-content">
     
+<ul id="markdown-toc">
+  <li><a href="#ctags" id="markdown-toc-ctags">Ctags</a>    <ul>
+      <li><a href="#section" id="markdown-toc-section">简述</a></li>
+      <li><a href="#section-1" id="markdown-toc-section-1">安装</a></li>
+      <li><a href="#tags" id="markdown-toc-tags">tags中对象列表</a></li>
+      <li><a href="#tags-1" id="markdown-toc-tags-1">用参数生成我们需要的tags文件　　</a></li>
+      <li><a href="#section-2" id="markdown-toc-section-2">插件和使用</a></li>
+    </ul>
+  </li>
+</ul>
+
 <h2 id="ctags">Ctags</h2>
 
 <h3 id="section">简述</h3>
 
-<p>Ctags,为源码建立标签文件<code>tags</code> ,以帮助在源文件中定位 <br />
-vim往往可以通过其他插件实现函数，变量等的查找，或者实现源码间切换<br />
+<p>Ctags,为源码建立标签文件<code>tags</code> ,以帮助在源文件中定位   <br />
+vim往往可以通过其他插件实现函数，变量等的查找，或者实现源码间切换  <br />
 而这些插件依赖于<code>tags</code>文件</p>
 
 <h3 id="section-1">安装</h3>
@@ -198,7 +176,7 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
 
 <ol>
   <li>
-    <p>很多插件依赖于tags文件,例如omnicppcomplete,tagslist,echofunc<br />
+    <p>很多插件依赖于tags文件,例如omnicppcomplete,tagslist,echofunc  <br />
 关于这些插件的安装，可以查看之前的<a href="/记录/2014/06/02/vim-some-plugins/" title="Vim下的fancy的插件">《Vim下的fancy的插件》</a></p>
   </li>
   <li>
@@ -223,91 +201,99 @@ vim往往可以通过其他插件实现函数，变量等的查找，或者实�
       
       </ul>
     </div>
+
     <hr>
-	<div id="to_comments">
-	
+
+    <div id="to_comments">
+    
 
 
   <div id="disqus_thread"></div>
 <script type="text/javascript">
+    
+    var disqus_developer = 1;
     var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
-	    /* * * DON'T EDIT BELOW THIS LINE * * */
-	    (function() {
-		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-								     })();
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
 
-
-	</div>
-
+    </div>
  </div>
-
 
    
             </div>
+
             <hr />
-            <div id="footer">
+
+            <div id="footer" class="footer">
                 <p>
-                <span>&copy;2014 MwumLi</span>
+				&copy;2014-2016 <a href="http://www.ifmicro.com/">倘若微小</a><br />
+Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="http://www.ifmicro.com/">MwumLi</a><br />
+本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。
+
                 </p>
             </div>
         </div>
-		
-		<!-- site top -->
-		<div class="nav-bottom">
-			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
-			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
-			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
-		</div>
+        
+        <!-- site top -->
+        <div class="nav-bottom">
+            <span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+            <span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+            <span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+        </div>
 
-		
+        
 
 
-		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
 
-		
-		<script src="/assets/themes/custom_me/js/copy.js"></script>
-		
-		
-		
 
-		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
-		<script src="/assets/themes/custom_me/js/toc.js"></script>
-		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
-		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	
-		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
-		<script src="/assets/themes/custom_me/js/toComments.js"></script>
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function(){
-//				if(navigator.userAgent.indexOf("Firefox") != -1) {
-//					$("li p").parent().css("list-style-position", "outside");
-//				}
-					
+        <script src="/assets/themes/custom-me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/assets/themes/custom-me/js/jquery.zclip.js"></script>
+
+        
+        <script src="/assets/themes/custom-me/js/copy.js"></script>
+        
+        
+        
+
+        <script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+        <script src="/assets/themes/custom-me/js/toc.js"></script>
+        <script src="/assets/themes/custom-me/js/jquery.resizeEnd.js"></script>
+        <script src="/assets/themes/custom-me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    
+        <script src="/assets/themes/custom-me/js/bigfoot.js"></script>
+        <script src="/assets/themes/custom-me/js/toComments.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function(){
+                    
+                
+                addCopy("pre", "copy", "Copy");
+                
+
 				
-				addCopy("pre", "copy", "Copy");
+                tocEffect();
 				
 
-				tocEffect();
-				toComments();
-				var bigfoot=$.bigfoot({
-					preventPageScroll: true
-					})
+                toComments();
+                $.bigfoot({
+                    preventPageScroll: true
+                })
 
-			})
-		</script>	
+            })
+        </script>   
  </div>
     </body>
 </html>
-
 
 
 

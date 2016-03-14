@@ -1,0 +1,783 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" >
+    <!-- Start book 微尘的 Web 前端之旅 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>组件的声明周期 | 微尘的 Web 前端之旅</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.2.0">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-maxiang/maxiang.css">
+        
+    
+    
+        <link rel="stylesheet" href="../../assets/css/myStyle.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../../web-font-end/react/react_form_event.html" />
+    
+    
+    <link rel="prev" href="../../web-font-end/react/react_component_state.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book" data-level="2.3.3" data-basepath="../.." data-revision="Thu Oct 29 2015 10:47:49 GMT+0800 (CST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="输入并搜索" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+            
+            <li>
+                <a href="http://www.ifmicro.com/" target="blank" class="custom-link">倘若微小</a>
+            </li>
+        
+        
+
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="web-font-end/js/index.html">
+            
+                
+                    <a href="../../web-font-end/js/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        JavaScript
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="web-font-end/js/quick_start.html">
+            
+                
+                    <a href="../../web-font-end/js/quick_start.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        快速开始
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="web-font-end/js/basic_syntax.html">
+            
+                
+                    <a href="../../web-font-end/js/basic_syntax.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        基本语法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="web-font-end/js/var.html">
+            
+                
+                    <a href="../../web-font-end/js/var.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        变量
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="web-font-end/js/if_var_not_belong_if.html">
+            
+                
+                    <a href="../../web-font-end/js/if_var_not_belong_if.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.1.</b>
+                        
+                        if 语句块下的变量不属于 if
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="web-font-end/js/scope_chain_and_find_identifier.html">
+            
+                
+                    <a href="../../web-font-end/js/scope_chain_and_find_identifier.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.2.</b>
+                        
+                        js 的作用域链及标识符的查找
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="web-font-end/js/var_hoisting.html">
+            
+                
+                    <a href="../../web-font-end/js/var_hoisting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.3.</b>
+                        
+                        js 的变量提升
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="web-font-end/js/number.html">
+            
+                
+                    <a href="../../web-font-end/js/number.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        Number
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="web-font-end/js/string.html">
+            
+                
+                    <a href="../../web-font-end/js/string.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        字符串
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="web-font-end/js/bool.html">
+            
+                
+                    <a href="../../web-font-end/js/bool.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        布尔值
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="web-font-end/js/array.html">
+            
+                
+                    <a href="../../web-font-end/js/array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        数组
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="web-font-end/js/object.html">
+            
+                
+                    <a href="../../web-font-end/js/object.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        对象
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="web-font-end/js/if_and_loop.html">
+            
+                
+                    <a href="../../web-font-end/js/if_and_loop.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.9.</b>
+                        
+                        条件判断与基础循环
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="web-font-end/js/map.html">
+            
+                
+                    <a href="../../web-font-end/js/map.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.10.</b>
+                        
+                        Map
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="web-font-end/js/set.html">
+            
+                
+                    <a href="../../web-font-end/js/set.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.11.</b>
+                        
+                        Set
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="web-font-end/js/loop_iterable.html">
+            
+                
+                    <a href="../../web-font-end/js/loop_iterable.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.12.</b>
+                        
+                        循环--iterable 类型
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="web-font-end/js/funcs.html">
+            
+                
+                    <a href="../../web-font-end/js/funcs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.13.</b>
+                        
+                        函数
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="web-font-end/js/func_hoisting.html">
+            
+                
+                    <a href="../../web-font-end/js/func_hoisting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.13.1.</b>
+                        
+                        js 函数提升
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="web-font-end/js/special_value.html">
+            
+                
+                    <a href="../../web-font-end/js/special_value.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.14.</b>
+                        
+                        一些特殊的值
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="web-font-end/js/js_standard.html">
+            
+                
+                    <a href="../../web-font-end/js/js_standard.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.15.</b>
+                        
+                        前端JavaScript规范
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="web-font-end/react/react.html">
+            
+                
+                    <a href="../../web-font-end/react/react.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        React
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="web-font-end/react/basic_tpl.html">
+            
+                
+                    <a href="../../web-font-end/react/basic_tpl.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        React 网页模板
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="web-font-end/react/react_dom_basic.html">
+            
+                
+                    <a href="../../web-font-end/react/react_dom_basic.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        ReactDOM
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="web-font-end/react/react_component.html">
+            
+                
+                    <a href="../../web-font-end/react/react_component.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        组件
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="web-font-end/react/react_component_prop.html">
+            
+                
+                    <a href="../../web-font-end/react/react_component_prop.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        组件属性
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="web-font-end/react/react_component_state.html">
+            
+                
+                    <a href="../../web-font-end/react/react_component_state.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        组件状态
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.3.3" data-path="web-font-end/react/react_component_lifecycle.html">
+            
+                
+                    <a href="../../web-font-end/react/react_component_lifecycle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        组件的声明周期
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="web-font-end/react/react_form_event.html">
+            
+                
+                    <a href="../../web-font-end/react/react_form_event.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        表单与事件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="web-font-end/react/react_style_object.html">
+            
+                
+                    <a href="../../web-font-end/react/react_style_object.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        组件的 style 属性不是字符串
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="web-font-end/resources.html">
+            
+                
+                    <a href="../../web-font-end/resources.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        web 学习资源
+                    </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                本书使用 GitBook 发布
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="目录"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="搜索"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="字体设置"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">衬线体</button>
+        <button type="button" data-font="1" class="button">无衬线体</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">白色</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">棕褐色</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">夜间</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="分享"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    分享到 Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    分享到 Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    分享到 Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    分享到 Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    分享到 Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >微尘的 Web 前端之旅</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="%E7%BB%84%E4%BB%B6%E7%9A%84%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F">&#x7EC4;&#x4EF6;&#x7684;&#x58F0;&#x660E;&#x5468;&#x671F;</h1>
+<p>2015-10-27 16:48:56 by MwumLi</p>
+<hr>
+<p>&#x5B98;&#x65B9;&#x6587;&#x6863; : <a href="https://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle" target="_blank">https://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle</a>  </p>
+<p>&#x7EC4;&#x4EF6;&#x7684;&#x58F0;&#x660E;&#x5468;&#x671F;&#x5206;&#x6210;&#x4E09;&#x4E2A;&#x72B6;&#x6001;&#x4EE5;&#x53CA;&#x5404;&#x72B6;&#x6001;&#x4E0B;&#x7684;&#x65B9;&#x6CD5; :</p>
+<ul>
+<li><p><code>Mounting</code> : &#x7EC4;&#x4EF6;&#x5DF2;&#x63D2;&#x5165;&#x771F;&#x5B9E; DOM  </p>
+<ul>
+<li><code>getInitialState()</code> : &#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;&#x72B6;&#x6001;  </li>
+<li><code>componentWillMount()</code>  </li>
+<li><code>componentDidMount()</code>  </li>
+</ul>
+</li>
+<li><p><code>Updating</code> : &#x6B63;&#x5728;&#x88AB;&#x91CD;&#x65B0;&#x6E32;&#x67D3;  </p>
+<ul>
+<li><code>componentWillReceiveProps(object nextProps)</code> : &#x5DF2;&#x52A0;&#x8F7D;&#x7EC4;&#x4EF6;&#x6536;&#x5230;&#x65B0;&#x7684;&#x53C2;&#x6570;&#x65F6;&#x8C03;&#x7528;  </li>
+<li><code>shouldComponentUpdate(object nextProps, object nextState)</code> : &#x7EC4;&#x4EF6;&#x5224;&#x65AD;&#x662F;&#x5426;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x65F6;&#x8C03;&#x7528;<br>&#x5047;&#x5982;&#x8FD4;&#x56DE; false, &#x5219;&#x4E0D;&#x66F4;&#x65B0;<br>&#x5982;&#x679C;&#x8FD4;&#x56DE; true, &#x5219;&#x66F4;&#x65B0; UI  </li>
+<li><code>componentWillUpdate(object nextProps, object nextState)</code><br>&#x4E0D;&#x80FD;&#x5728;&#x8FD9;&#x513F;&#x8C03;&#x7528; <code>this.setState()</code>  </li>
+<li><code>componentDidUpdate(object prevProps, object prevState)</code>  </li>
+</ul>
+</li>
+<li><p><code>Unmounting</code> : &#x7EC4;&#x4EF6;&#x5DF2;&#x4ECE;&#x771F;&#x5B9E; DOM &#x4E2D;&#x79FB;&#x9664;  </p>
+<ul>
+<li><code>componentWillUnmount</code><br>&#x6E05;&#x7406;&#x4EE3;&#x7801;&#x5E94;&#x8BE5;&#x653E;&#x5728;&#x8FD9;&#x513F;  </li>
+</ul>
+</li>
+</ul>
+<p>&#x4E0A;&#x9762;&#x65B9;&#x6CD5;&#x4E2D;&#x6709;&#x4E24;&#x79CD;&#x7279;&#x522B;&#x7684;&#x51FD;&#x6570; :  </p>
+<blockquote>
+<p><code>will</code> &#x51FD;&#x6570;&#x5728;&#x8FDB;&#x5165;&#x72B6;&#x6001;&#x4E4B;&#x524D;&#x8C03;&#x7528;<br><code>did</code> &#x51FD;&#x6570;&#x5728;&#x8FDB;&#x5165;&#x72B6;&#x6001;&#x4E4B;&#x540E;&#x8C03;&#x7528;  </p>
+</blockquote>
+<h2 id="%E4%B8%80%E4%BB%BD%E7%AE%80%E5%8D%95%E7%9A%84%E4%BB%A3%E7%A0%81">&#x4E00;&#x4EFD;&#x7B80;&#x5355;&#x7684;&#x4EE3;&#x7801;</h2>
+<pre><code>&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/babel&quot;&gt;
+var i=1;
+  var Hello = React.createClass({
+    getInitialState: function () {
+      return {
+        opacity: 1.0
+      };
+    },
+
+    componentDidMount: function () {
+      console.log(&quot;did mount&quot;);
+      this.timer = setInterval(function () {
+        var opacity = this.state.opacity;
+        opacity -= .05;
+        if (opacity &lt; 0.1) {
+          opacity = 1.0;
+        }
+        this.setState({
+          opacity: opacity
+        });
+      }.bind(this), 1000);
+    },
+    componentWillMount: function() {
+      console.log(&quot;will mount&quot;);
+    },
+    componentWillUpdate: function(nextProps, nextState){
+      console.log(&quot;will update&quot;);
+    },
+    componentDidUpdate: function(nextProps, nextState ){
+      console.log(&quot;did update&quot;);
+    },        
+    render: function () {
+      return (
+        &lt;div style={{opacity: this.state.opacity}}&gt;
+          Hello {this.props.name}
+        &lt;/div&gt;
+      );
+    }
+  });
+
+  ReactDOM.render(
+    &lt;Hello name=&quot;world&quot;/&gt;,
+    document.getElementById(&quot;example&quot;)
+  );
+</code></pre>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../web-font-end/react/react_component_state.html" class="navigation navigation-prev " aria-label="Previous page: 组件状态"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../web-font-end/react/react_form_event.html" class="navigation navigation-next " aria-label="Next page: 表单与事件"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-maxiang/maxiang.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"disqus":{"shortName":"ifmicro"}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book 微尘的 Web 前端之旅 -->
+</html>

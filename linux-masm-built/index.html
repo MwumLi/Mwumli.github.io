@@ -1,148 +1,115 @@
 
-
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		
-		<title>倘若微小 - Linux下MASM汇编环境搭建</title>
-
-  		
-		<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         
+        <title>倘若微小 - Linux下MASM汇编环境搭建</title>
+        
+        <meta name="description" content="">
+        
+        <meta name="author" content="MwumLi">
 
-	    <meta name="author" content="MwumLi">
-	
-        <!-- syntax highlighting CSS -->
-		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- -Site Icon -->
+        <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
         <!-- Custom CSS -->
-		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+	
+        <link rel="stylesheet" href="/assets/themes/custom-me/css/main.css" type="text/css" media="all" />
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Fav and touch icons -->
+        <!-- Update these with your own images
+          <link rel="shortcut icon" href="images/favicon.ico">
+          <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+          <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+          <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+        -->
+
+        <!-- atom & rss feed -->
+        <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+        <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
     </head>
     <body>
         <div id="all">
-<!--            header start-->
             <div id="header">
                 <div id="title">
-                <h1 >
-                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
-					</a>                     	   
-				</h1>
+					<h1 ><a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span></a>                           
+					</h1>
                 </div>
-                <!--hr/ -->
+
                 <div id="top-nav">
                     <ul>
-					
+                    
+
+
+<li><a href="/pages/micro-say/2015.html">微语</a></li>
 
 
 
-    
-  	
-  
-  
-  
-	  
-	  			
-
-  
-	  
-	  
-  	 		
-      		
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-
-  
-  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
-  
+<li><a href="/pages/articles/">文章</a></li>
 
 
 
-					<li><a href="/pages/articles/index.html">文章</a></li>
-					<li><a href="/pages/categories/index.html">分类</a></li>
-					<li><a href="/pages/tags/index.html">标签</a></li>
-					<li><a href="/rss.xml">rss订阅</a></li>
-					</ul>   
+<li><a href="/pages/categories/">分类</a></li>
+
+
+
+<li><a href="/pages/tags/">标签</a></li>
+
+
+
+<li><a href="/rss.xml">订阅</a></li>
+
+
+	
+
+
+                    </ul>   
                 </div>
             </div> 
-<!--            header end-->
-            <!--hr /-->
+
             <div class="content">
                 
-
-
 <div class="page-header">
-	<h1>Linux下MASM汇编环境搭建 <small></small></h1>
-	<div id="article_header">
-		
-		
-		<div>
-			<span>分类: </span>
-			<a href="/pages/categories/index.html#软件-ref" class="tag">软件</a> 
-			
-				<span>标签: </span>
-			
-			
-				<a href="/pages/tags/index.html#Masm-ref" class="tag">Masm</a>
-    		
-				<a href="/pages/tags/index.html#Assembly-ref" class="tag">Assembly</a>
-    		
-				<a href="/pages/tags/index.html#汇编-ref" class="tag">汇编</a>
-    		
-		</div>		
-		<div>
-			Last Modify in
-			
-			<span>2015-09-25</span>,
-			
-			published in <span>2014-12-05</span> 
-			by <span> MwumLi</span>
-		</div>
+    <h1>Linux下MASM汇编环境搭建 <small></small></h1>
+    <div id="article_header">
+        
+        
+        <div>
+            <span>分类: </span>
+            <a href="/pages/categories/#软件-ref" class="tag">软件</a> 
+            
+                <span>标签: </span>
+            
+            
+                <a href="/pages/tags/#Masm-ref" class="tag">Masm</a>
+            
+                <a href="/pages/tags/#Assembly-ref" class="tag">Assembly</a>
+            
+                <a href="/pages/tags/#汇编-ref" class="tag">汇编</a>
+            
+        </div>      
+        <div>
+            Last Modify in
+            
+            <span>2015-09-25</span>,
+            
+            published in <span>2014-12-05</span> 
+            by <span> MwumLi</span>
+        </div>
 
-		
-		
-	</div>
+        
+        
+    </div>
 </div>
 
 <div id="page-content">
@@ -185,7 +152,7 @@ $ mkdir -p masm/tools
 $ tar xjf Download/masm.tar.bz2 -C masm/tools 
 </code></pre>
 
-<p>下载的文件，解压到新建的文件夹masm/tools下<br />
+<p>下载的文件，解压到新建的文件夹masm/tools下  <br />
 masm即将作为dosbox的C盘</p>
 
 <h2 id="dosbox-1">启动dosbox</h2>
@@ -193,9 +160,9 @@ masm即将作为dosbox的C盘</p>
 <pre><code>$ dosbox -c "mount C: ~/masm/tools" -c "path %path%;C:\tools\"
 </code></pre>
 
-<p>好了，dosbox应该出现了，你可以使用<code>debug.exe</code>,<code>masm.exe</code>了<br />
-<code>-c</code>: 指定dosbox的启动参数<br />
-<code>mount C: ~/masm/tools</code>: 把我们用户主目录下的masm/tools作为dosbox的C盘<br />
+<p>好了，dosbox应该出现了，你可以使用<code>debug.exe</code>,<code>masm.exe</code>了  <br />
+<code>-c</code>: 指定dosbox的启动参数  <br />
+<code>mount C: ~/masm/tools</code>: 把我们用户主目录下的masm/tools作为dosbox的C盘  <br />
 <code>path %path%;C:\tools</code> : 给path(<em>可执行文件搜索路径</em>)环境变量添加值，这样，我们无论在哪个目录都可以使用masm软件包的工具了</p>
 
 <h2 id="dosbox-2">使用脚本启动dosbox</h2>
@@ -256,17 +223,17 @@ hello,world
 
 <h2 id="section-1">一些自言自语</h2>
 
-<p><em>为什么选择MASM呢？</em><br />
-事实上，各大高校的汇编语言学习都是使用MASM的语法，而Linux下的NASM的语法和其还是有些差异的<br />
+<p><em>为什么选择MASM呢？</em>  <br />
+事实上，各大高校的汇编语言学习都是使用MASM的语法，而Linux下的NASM的语法和其还是有些差异的  <br />
 (不要问我为何在Linux下使用MASM，我能告诉你这是我的偏执吗?嘿嘿…)</p>
 
-<p><em>为什么还要学习汇编?</em>  <br />
+<p><em>为什么还要学习汇编?</em>    <br />
 这个各人有个人的理由吧，而我只是单纯想了解一下底层程序的运行机制</p>
 
 <h2 id="section-2">推荐</h2>
 
-<p>对于汇编学习，推荐王爽先生的《汇编语言》<br />
-对于dosbox的其他用法，请使用Linux下的<code>man dosbox</code><br />
+<p>对于汇编学习，推荐王爽先生的《汇编语言》  <br />
+对于dosbox的其他用法，请使用Linux下的<code>man dosbox</code>  <br />
 对于其它问题，请留言或者google</p>
 
 
@@ -281,91 +248,99 @@ hello,world
       
       </ul>
     </div>
+
     <hr>
-	<div id="to_comments">
-	
+
+    <div id="to_comments">
+    
 
 
   <div id="disqus_thread"></div>
 <script type="text/javascript">
+    
+    var disqus_developer = 1;
     var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
-	    /* * * DON'T EDIT BELOW THIS LINE * * */
-	    (function() {
-		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-								     })();
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
 
-
-	</div>
-
+    </div>
  </div>
-
 
    
             </div>
+
             <hr />
-            <div id="footer">
+
+            <div id="footer" class="footer">
                 <p>
-                <span>&copy;2014 MwumLi</span>
+				&copy;2014-2016 <a href="http://www.ifmicro.com/">倘若微小</a><br />
+Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="http://www.ifmicro.com/">MwumLi</a><br />
+本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。
+
                 </p>
             </div>
         </div>
-		
-		<!-- site top -->
-		<div class="nav-bottom">
-			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
-			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
-			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
-		</div>
+        
+        <!-- site top -->
+        <div class="nav-bottom">
+            <span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+            <span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+            <span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+        </div>
 
-		
+        
 
 
-		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
 
-		
-		<script src="/assets/themes/custom_me/js/copy.js"></script>
-		
-		
-		
 
-		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
-		<script src="/assets/themes/custom_me/js/toc.js"></script>
-		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
-		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	
-		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
-		<script src="/assets/themes/custom_me/js/toComments.js"></script>
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function(){
-//				if(navigator.userAgent.indexOf("Firefox") != -1) {
-//					$("li p").parent().css("list-style-position", "outside");
-//				}
-					
+        <script src="/assets/themes/custom-me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/assets/themes/custom-me/js/jquery.zclip.js"></script>
+
+        
+        <script src="/assets/themes/custom-me/js/copy.js"></script>
+        
+        
+        
+
+        <script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+        <script src="/assets/themes/custom-me/js/toc.js"></script>
+        <script src="/assets/themes/custom-me/js/jquery.resizeEnd.js"></script>
+        <script src="/assets/themes/custom-me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    
+        <script src="/assets/themes/custom-me/js/bigfoot.js"></script>
+        <script src="/assets/themes/custom-me/js/toComments.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function(){
+                    
+                
+                addCopy("pre", "copy", "Copy");
+                
+
 				
-				addCopy("pre", "copy", "Copy");
+                tocEffect();
 				
 
-				tocEffect();
-				toComments();
-				var bigfoot=$.bigfoot({
-					preventPageScroll: true
-					})
+                toComments();
+                $.bigfoot({
+                    preventPageScroll: true
+                })
 
-			})
-		</script>	
+            })
+        </script>   
  </div>
     </body>
 </html>
-
 
 
 

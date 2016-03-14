@@ -1,150 +1,117 @@
 
-
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		
-		<title>倘若微小 - clearfix 引发的思考</title>
-
-  		
-		<meta name="description" content=" clearfix 的作用以及引发的对于清除浮动和 collapsing margins 的思考">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         
+        <title>倘若微小 - clearfix 引发的思考</title>
+        
+        <meta name="description" content=" clearfix 的作用以及引发的对于清除浮动和 collapsing margins 的思考">
+        
+        <meta name="author" content="MwumLi">
 
-	    <meta name="author" content="MwumLi">
-	
-        <!-- syntax highlighting CSS -->
-		<link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+        <!-- -Site Icon -->
+        <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
         <!-- Custom CSS -->
-		<link rel="stylesheet" href="/assets/themes/custom_me/css/cikonss.css"}}" />
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/main.css" type="text/css" media="all">
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/pygments.css" type="text/css" media="all">
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">`
-        <link rel="stylesheet" href="/assets/themes/custom_me/css/bigfoot-number.css" type="text/css" media="all">
+	
+        <link rel="stylesheet" href="/assets/themes/custom-me/css/main.css" type="text/css" media="all" />
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Fav and touch icons -->
+        <!-- Update these with your own images
+          <link rel="shortcut icon" href="images/favicon.ico">
+          <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+          <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+          <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+        -->
+
+        <!-- atom & rss feed -->
+        <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+        <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
     </head>
     <body>
         <div id="all">
-<!--            header start-->
             <div id="header">
                 <div id="title">
-                <h1 >
-                    <a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span>
-					</a>                     	   
-				</h1>
+					<h1 ><a href="/">倘若微小<span class="title-tagline">---人生最美妙的风景就是内心的淡定和从容</span></a>                           
+					</h1>
                 </div>
-                <!--hr/ -->
+
                 <div id="top-nav">
                     <ul>
-					
+                    
+
+
+<li><a href="/pages/micro-say/2015.html">微语</a></li>
 
 
 
-    
-  	
-  
-  
-  
-	  
-	  			
-
-  
-	  
-	  
-  	 		
-      		
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-	  
-	  			
-
-  
-
-  
-  		<li><a href="/pages/micro_say/2015.html">微语</a></li>
-  
+<li><a href="/pages/articles/">文章</a></li>
 
 
 
-					<li><a href="/pages/articles/index.html">文章</a></li>
-					<li><a href="/pages/categories/index.html">分类</a></li>
-					<li><a href="/pages/tags/index.html">标签</a></li>
-					<li><a href="/rss.xml">rss订阅</a></li>
-					</ul>   
+<li><a href="/pages/categories/">分类</a></li>
+
+
+
+<li><a href="/pages/tags/">标签</a></li>
+
+
+
+<li><a href="/rss.xml">订阅</a></li>
+
+
+	
+
+
+                    </ul>   
                 </div>
             </div> 
-<!--            header end-->
-            <!--hr /-->
+
             <div class="content">
                 
-
-
 <div class="page-header">
-	<h1>clearfix 引发的思考 <small></small></h1>
-	<div id="article_header">
-		
-		
-		<div>
-			<span>分类: </span>
-			<a href="/pages/categories/index.html#前端-ref" class="tag">前端</a> 
-			
-				<span>标签: </span>
-			
-			
-				<a href="/pages/tags/index.html#CSS-ref" class="tag">CSS</a>
-    		
-				<a href="/pages/tags/index.html#前端-ref" class="tag">前端</a>
-    		
-				<a href="/pages/tags/index.html#clearfix-ref" class="tag">clearfix</a>
-    		
-				<a href="/pages/tags/index.html#margin-ref" class="tag">margin</a>
-    		
-		</div>		
-		<div>
-			Last Modify in
-			
-			<span>2015-12-25</span>,
-			
-			published in <span>2015-12-24</span> 
-			by <span> MwumLi</span>
-		</div>
+    <h1>clearfix 引发的思考 <small></small></h1>
+    <div id="article_header">
+        
+        
+        <div>
+            <span>分类: </span>
+            <a href="/pages/categories/#前端-ref" class="tag">前端</a> 
+            
+                <span>标签: </span>
+            
+            
+                <a href="/pages/tags/#CSS-ref" class="tag">CSS</a>
+            
+                <a href="/pages/tags/#前端-ref" class="tag">前端</a>
+            
+                <a href="/pages/tags/#clearfix-ref" class="tag">clearfix</a>
+            
+                <a href="/pages/tags/#margin-ref" class="tag">margin</a>
+            
+        </div>      
+        <div>
+            Last Modify in
+            
+            <span>2015-12-25</span>,
+            
+            published in <span>2015-12-24</span> 
+            by <span> MwumLi</span>
+        </div>
 
-		
-		
-	</div>
+        
+        
+    </div>
 </div>
 
 <div id="page-content">
@@ -174,8 +141,8 @@
 }
 </code></pre>
 
-<p><code>clearfix</code> 这个 class 很受前端开发者欢迎<br />
-主要用它来清除浮动和防止 Collapsing margins (外边距折叠), 且保证跨浏览器的兼容性<br />
+<p><code>clearfix</code> 这个 class 很受前端开发者欢迎  <br />
+主要用它来清除浮动和防止 Collapsing margins (外边距折叠), 且保证跨浏览器的兼容性  <br />
 简述如下 :</p>
 
 <ol>
@@ -190,8 +157,8 @@
 
 <h2 id="section">清除浮动</h2>
 
-<p><code>float: left</code> 和 <code>float: right</code> 可以让我们的元素浮动到文档左边和右边<br />
-因为浮动让元素像漂在水中的叶子一样 “浮” 起来, 脱离标准文档流, 所以不占有原来流空间<br />
+<p><code>float: left</code> 和 <code>float: right</code> 可以让我们的元素浮动到文档左边和右边  <br />
+因为浮动让元素像漂在水中的叶子一样 “浮” 起来, 脱离标准文档流, 所以不占有原来流空间  <br />
 之后的元素就有可能和浮动元素重叠或完全遮挡消失</p>
 
 <p>比如，这段代码(没有浮动):</p>
@@ -202,7 +169,7 @@
 &lt;div style="background: cyan; width: 250px; height: 60px"&gt;div4&lt;/div&gt;
 </code></pre>
 
-<p>它的效果是这样的 :<br />
+<p>它的效果是这样的 :  <br />
 <img src="/assets/imgs/css-clearfix/float-normal.jpg" alt="float-normal" /></p>
 
 <p>给代码增加浮动 :</p>
@@ -213,7 +180,7 @@
 &lt;div style="background: cyan; width: 250px; height: 60px"&gt;div4&lt;/div&gt;
 </code></pre>
 
-<p>效果是这样的 :<br />
+<p>效果是这样的 :  <br />
 <img src="/assets/imgs/css-clearfix/float-left.jpg" alt="float-left" /></p>
 
 <p>可以很明显的看到, div3 的区域被 div2 遮挡住了</p>
@@ -223,22 +190,22 @@
 <p>这里主要讲述一下 <code>clearfix</code> 中清除浮动的方法 :</p>
 
 <blockquote>
-  <p>使用一个容器元素包含浮动元素, 给容器元素添加 <code>class="clearfix"</code><br />
-这样主要利用 <code>:after</code> psudo-element 给容器元素尾部添加一个空的元素<br />
-<code>display: table</code> 让其成为一个块级元素<br />
-<code>clear:both</code>保证清除前面的浮动<br />
-只有块级元素的 <code>clear</code> 属性会生效. 内联元素并不会(事实上，我并没有找到相关资料来证明，只是我实验多次下的结论)<br />
+  <p>使用一个容器元素包含浮动元素, 给容器元素添加 <code>class="clearfix"</code>  <br />
+这样主要利用 <code>:after</code> psudo-element 给容器元素尾部添加一个空的元素  <br />
+<code>display: table</code> 让其成为一个块级元素  <br />
+<code>clear:both</code>保证清除前面的浮动  <br />
+只有块级元素的 <code>clear</code> 属性会生效. 内联元素并不会(事实上，我并没有找到相关资料来证明，只是我实验多次下的结论)  <br />
 <code>zoom:1</code> 保证跨浏览器的兼容性(IE6/7), 触发 <code>hasLayout</code> 属性</p>
 </blockquote>
 
 <h3 id="clear-">clear 与块级元素</h3>
 
-<p><strong>为什么上面会把 <code>:after</code> psudo-elemnt 声明为一个块级元素呢?</strong><br />
-那是因为只有块级元素设置 <code>clear</code> 才会生效, 而内联元素并不会生效<br />
+<p><strong>为什么上面会把 <code>:after</code> psudo-elemnt 声明为一个块级元素呢?</strong>  <br />
+那是因为只有块级元素设置 <code>clear</code> 才会生效, 而内联元素并不会生效  <br />
 (事实上，我并没有找到相关资料来证明这个结论，但是，我实验多次，发现确实如此)</p>
 
-<p><strong>为什么这里要使用 <code>display: table</code>，不使用其他的声明呢(比如 <code>block</code>)?</strong><br />
-<code>:before</code> 中使用 <code>table</code> 把其声明为一个 BFC, 而 <code>table</code> 有能力表示这个元素为一个块级元素<br />
+<p><strong>为什么这里要使用 <code>display: table</code>，不使用其他的声明呢(比如 <code>block</code>)?</strong>  <br />
+<code>:before</code> 中使用 <code>table</code> 把其声明为一个 BFC, 而 <code>table</code> 有能力表示这个元素为一个块级元素  <br />
 所以可能考虑到共用代码, 所以 <code>:after</code> 中也是用了 <code>display: table</code></p>
 
 <h2 id="collapsing--margins">避免 Collapsing  margins</h2>
@@ -247,8 +214,8 @@
 
 <ol>
   <li>
-    <p>父子元素(不一定是直接父子) 之间会发生 margin-top 和 margin-bottom 的折叠<br />
-(如果之间没有 <code>border、padding、inlne-content、height、min-height、max-height</code> 分割的话)<br />
+    <p>父子元素(不一定是直接父子) 之间会发生 margin-top 和 margin-bottom 的折叠  <br />
+(如果之间没有 <code>border、padding、inlne-content、height、min-height、max-height</code> 分割的话)  <br />
 这篇讨论 <a href="http://stackoverflow.com/questions/9519841/why-does-this-css-margin-top-style-not-work">http://stackoverflow.com/questions/9519841/why-does-this-css-margin-top-style-not-work</a> 很好的演示了这点</p>
   </li>
   <li>
@@ -259,8 +226,8 @@
 <p><code>clearfix</code> 是这么做的 :</p>
 
 <blockquote>
-  <p>父子的话, 给父元素添加 <code>.clearfix</code>; 紧邻的话，给前一个元素添加 <code>.clearfix</code><br />
-这样主要利用 :before psudo-element 给元素内部前面添加一个空的元素<br />
+  <p>父子的话, 给父元素添加 <code>.clearfix</code>; 紧邻的话，给前一个元素添加 <code>.clearfix</code>  <br />
+这样主要利用 :before psudo-element 给元素内部前面添加一个空的元素  <br />
 <code>display: table</code> 保证它是一个 BFC(BFC 可以隔断外边距折叠)</p>
 </blockquote>
 
@@ -268,7 +235,7 @@
 
 <p>使用 <code>:before</code> 和 <code>:after</code> 最大的好处应该是避免添加 HTML 代码到我们的代码, 破坏代码的整体感</p>
 
-<p>使用 <code>clearfix</code> 的时候, 有的时候不仅仅是为了清除浮动带来的影响，还有防止 Collapsing margins<br />
+<p>使用 <code>clearfix</code> 的时候, 有的时候不仅仅是为了清除浮动带来的影响，还有防止 Collapsing margins  <br />
 因此，当你发现布局不对的时候，可以试一试</p>
 
 <p>当然, 在使用前, 请确定 <code>clearfix</code> 和本文章首部的内容一致</p>
@@ -277,31 +244,31 @@
 
 <ol>
   <li>
-    <p><a href="http://www.cnblogs.com/zhongxinWang/archive/2013/03/27/2984764.html">http://www.cnblogs.com/zhongxinWang/archive/2013/03/27/2984764.html</a><br />
+    <p><a href="http://www.cnblogs.com/zhongxinWang/archive/2013/03/27/2984764.html">http://www.cnblogs.com/zhongxinWang/archive/2013/03/27/2984764.html</a>  <br />
 这篇文章主要讲了浮动的影响, 图文并茂, 但是没有 code, 但是对于初学者理解浮动的影响有很大帮助</p>
   </li>
   <li>
-    <p><a href="https://segmentfault.com/a/1190000002616482#articleHeader3">https://segmentfault.com/a/1190000002616482#articleHeader3</a><br />
+    <p><a href="https://segmentfault.com/a/1190000002616482#articleHeader3">https://segmentfault.com/a/1190000002616482#articleHeader3</a>  <br />
 这篇文章主要讨论了清除浮动, 还算完全</p>
   </li>
   <li>
-    <p><a href="http://nicolasgallagher.com/micro-clearfix-hack/">http://nicolasgallagher.com/micro-clearfix-hack/</a><br />
+    <p><a href="http://nicolasgallagher.com/micro-clearfix-hack/">http://nicolasgallagher.com/micro-clearfix-hack/</a>  <br />
 这是 clearfix 的起源, 分析了 clearfix 的原理</p>
   </li>
   <li>
-    <p><a href="http://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html">http://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html</a><br />
+    <p><a href="http://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html">http://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html</a>  <br />
   这里讲了BFC，生成一个 BFC 以及 BFC 的使用,图文并茂, 有 code</p>
   </li>
   <li>
-    <p><a href="http://stackoverflow.com/questions/9519841/why-does-this-css-margin-top-style-not-work">http://stackoverflow.com/questions/9519841/why-does-this-css-margin-top-style-not-work</a><br />
+    <p><a href="http://stackoverflow.com/questions/9519841/why-does-this-css-margin-top-style-not-work">http://stackoverflow.com/questions/9519841/why-does-this-css-margin-top-style-not-work</a>  <br />
 这里面讨论了 margin-top 与父元素的 margin-top 的折叠的危害以及解决，一个很好的例子　</p>
   </li>
   <li>
-    <p><a href="http://www.w3.org/TR/CSS21/box.html#collapsing-margins">http://www.w3.org/TR/CSS21/box.html#collapsing-margins</a><br />
+    <p><a href="http://www.w3.org/TR/CSS21/box.html#collapsing-margins">http://www.w3.org/TR/CSS21/box.html#collapsing-margins</a>  <br />
 英文官方文档, 讲述 collapsing margin 引发的情况</p>
   </li>
   <li>
-    <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/margin_collapsing">https://developer.mozilla.org/zh-CN/docs/Web/CSS/margin_collapsing</a><br />
+    <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/margin_collapsing">https://developer.mozilla.org/zh-CN/docs/Web/CSS/margin_collapsing</a>  <br />
 mdn 上的文章, 讲述 collapsing margin, 中文</p>
   </li>
 </ol>
@@ -314,95 +281,103 @@ mdn 上的文章, 讲述 collapsing margin, 中文</p>
         <li class="prev">上一篇: <a href="/run-go-in-ubuntu" title="Ubuntu 下搭建 go 运行环境">Ubuntu 下搭建 go 运行环境</a></li>
       
       
-        <li class="next-disabled">下一篇: 让时间加速吧
+        <li class="next">下一篇: <a href="/docker-install-and-usage" title="Docker 的安装与使用">Docker 的安装与使用</a></li>
       
       </ul>
     </div>
+
     <hr>
-	<div id="to_comments">
-	
+
+    <div id="to_comments">
+    
 
 
   <div id="disqus_thread"></div>
 <script type="text/javascript">
+    
+    var disqus_developer = 1;
     var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
-	    /* * * DON'T EDIT BELOW THIS LINE * * */
-	    (function() {
-		         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-				         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-						         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-								     })();
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
 
-
-	</div>
-
+    </div>
  </div>
-
 
    
             </div>
+
             <hr />
-            <div id="footer">
+
+            <div id="footer" class="footer">
                 <p>
-                <span>&copy;2014 MwumLi</span>
+				&copy;2014-2016 <a href="http://www.ifmicro.com/">倘若微小</a><br />
+Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="http://www.ifmicro.com/">MwumLi</a><br />
+本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。
+
                 </p>
             </div>
         </div>
-		
-		<!-- site top -->
-		<div class="nav-bottom">
-			<span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
-			<span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
-			<span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
-		</div>
+        
+        <!-- site top -->
+        <div class="nav-bottom">
+            <span class="icon icon-mid" id="site-top" title="滑动到顶部"><span class="icon-arrowUp"></span></span>
+            <span class="icon icon-mid" id="site-comment" title="去评论"><span class="icon-comment-text"></span></span>
+            <span class="icon icon-mid" id="site-bottom" title="滑动到底部"><span class="icon-arrowDown"></span></span>
+        </div>
 
-		
+        
 
 
-		<script src="/assets/themes/custom_me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/assets/themes/custom_me/js/jquery.zclip.js"></script>
 
-		
-		<script src="/assets/themes/custom_me/js/copy.js"></script>
-		
-		
-		
 
-		<script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
-		<script src="/assets/themes/custom_me/js/toc.js"></script>
-		<script src="/assets/themes/custom_me/js/jquery.resizeEnd.js"></script>
-		<script src="/assets/themes/custom_me/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	
-		<script src="/assets/themes/custom_me/js/bigfoot.js"></script>
-		<script src="/assets/themes/custom_me/js/toComments.js"></script>
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function(){
-//				if(navigator.userAgent.indexOf("Firefox") != -1) {
-//					$("li p").parent().css("list-style-position", "outside");
-//				}
-					
+        <script src="/assets/themes/custom-me/js/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/assets/themes/custom-me/js/jquery.zclip.js"></script>
+
+        
+        <script src="/assets/themes/custom-me/js/copy.js"></script>
+        
+        
+        
+
+        <script src="http://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+        <script src="/assets/themes/custom-me/js/toc.js"></script>
+        <script src="/assets/themes/custom-me/js/jquery.resizeEnd.js"></script>
+        <script src="/assets/themes/custom-me/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    
+        <script src="/assets/themes/custom-me/js/bigfoot.js"></script>
+        <script src="/assets/themes/custom-me/js/toComments.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function(){
+                    
+                
+                addCopy("pre", "copy", "Copy");
+                
+
 				
-				addCopy("pre", "copy", "Copy");
+                tocEffect();
 				
 
-				tocEffect();
-				toComments();
-				var bigfoot=$.bigfoot({
-					preventPageScroll: true
-					})
+                toComments();
+                $.bigfoot({
+                    preventPageScroll: true
+                })
 
-			})
-		</script>	
+            })
+        </script>   
  </div>
     </body>
 </html>
-
 
 
 
