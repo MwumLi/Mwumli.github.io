@@ -49,7 +49,7 @@ sass :
 navigation : 
   micro_say:
       isShow: true
-      path: /pages/micro-say/2015.html
+      path: /pages/micro-say/2016.html
       title: "微语" 
   archive:
     isShow: true
