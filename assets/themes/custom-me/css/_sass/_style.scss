@@ -2,7 +2,8 @@
 html, body, div, span, h1, h2, h3, h4, h5, h6,
 p, pre, code, blockquote, a, em, img, strong, hr, ul, ol, li,
 figure {
-  margin: 0; padding: 0;
+  margin: 0; 
+  padding: 0;
   border: 0;
   font-size: 100%;
 }
@@ -462,28 +463,41 @@ a.tag:hover {
 /*
  * Module: Toc
  * */
+
+
 div.tocWrap {
-	position: fixed;
-	width: 250px;
 	z-index: 100;
 	top: 16%;
 	right: 2.8%;
+
+	@media print {
+		display: none;
+	}
+
+	@media screen and (min-width: 768px) {
+		position: fixed;
+		width: 250px;
+	}
+
+	.menu {
+		text-align: center;
+		font-size: 1em;
+		width: 100%;
+		background-color: #F0C81E;
+		border-radius: 2px 2px 0 0 ;
+		color: #122;
+		position: relative;
+		z-index: 101;
+		cursor: pointer;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+
+	}
 }
-div.tocWrap .menu {
-	text-align: center;
-	font-size: 1em;
-	width: 100%;
-	background-color: #F0C81E;
-	border-radius: 2px 2px 0 0 ;
-	color: #122;
-	position: relative;
-	z-index: 101;
-	cursor: pointer;
-}
-div.tocWrap ul {
-	margin: 0;
-	padding: 0;
-}
+
 ul#markdown-toc {
 	overflow-y: auto;
 	height: auto;
@@ -492,16 +506,17 @@ ul#markdown-toc {
 	border-radius: 0 0 1px 1px;
 	color: #999;
 	background: rgba(10,30,40,0.85);
-//	padding: 12px;
 	-webkit-box-shadow: 0 1px 8px #000;
 
 }
 ul#markdown-toc li {      
-//  margin: 0.3em auto;
   list-style-position: inside;
-//  margin-left: 15px !important;
   padding: 0px !important
 }
+
+
+
+
 
 /*
  * Top
@@ -518,21 +533,30 @@ ul#markdown-toc li {
 	padding-bottom: 5px;
     text-align: center;
 	border-radius: 0.5em;
-	z-index: 101
+	z-index: 101;
+
+	@media print {
+		display: none;
+	}
+	@media all and (max-width: 767px) {
+		display: none !important;
+	}
+
+	.site-top {
+		margin-bottom: 5px;
+		border-bottom: thin dashed #3ED8C1;
+		padding-bottom: 10px;
+	}
+	.site-comment {
+		border-bottom: thin dashed #3ED8C1;
+		margin-top: 2px;
+	}
+	.site-bottom {
+		margin-top: 5px;
+	}
+
 }
 
-#site-top {
-    margin-bottom: 5px;
-    border-bottom: thin dashed #3ED8C1;
-    padding-bottom: 10px;
-}
-#site-comment {
-    border-bottom: thin dashed #3ED8C1;
-	margin-top: 2px;
-}
-#site-bottom {
-	margin-top: 5px;
-}
 
 .post-category {
 	border: 1px dashed #18445F;
@@ -541,14 +565,6 @@ ul#markdown-toc li {
 .post-category:hover {
 	border: 1px dashed rgba(70, 88, 99, 1);
 	background-color: rgba(70, 88, 99, 1);
-}
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-
-	ul#markdown-toc {
-	  float: none;
-	  margin-left: auto;
-	  margin-right: auto;
-	}
 }
 
 #micro_say_ul {
