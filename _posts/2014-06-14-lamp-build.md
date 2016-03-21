@@ -42,12 +42,13 @@ Linux 下 php 扩展安装 : [请点这里](/php-extension-install/)
 2. 添加目录权限 :
 
 		<Directory /home/ya/LAMP >
-	    	Options Indexes FollowSymLinks
-		    AllowOverride None
-    		Require all granted
+			Options Indexes FollowSymLinks
+			AllowOverride None
+			Require all granted
         </Directory>
 
    添加的地方有两处，任选一处即可：  
+
    * 刚才修改的那句之后添加  
    * 在 `/etc/apache2/apache2.conf` 中寻找 `Directory` 字眼，在这之后添加  
      (其实也无所谓，只是放着之后，方便管理)  
