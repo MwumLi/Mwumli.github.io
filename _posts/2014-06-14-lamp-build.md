@@ -41,7 +41,7 @@ Linux 下 php 扩展安装 : [请点这里](/php-extension-install/)
 
 2. 添加目录权限 :
 
-    	<Directory /home/ya/LAMP >
+		<Directory /home/ya/LAMP >
 	    	Options Indexes FollowSymLinks
 		    AllowOverride None
     		Require all granted
