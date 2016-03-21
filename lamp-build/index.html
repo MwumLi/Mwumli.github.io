@@ -176,16 +176,19 @@
     <p>添加目录权限 :</p>
 
     <pre><code> &lt;Directory /home/ya/LAMP &gt;
- 	Options Indexes FollowSymLinks
+     Options Indexes FollowSymLinks
      AllowOverride None
- 		Require all granted
+     Require all granted
  &lt;/Directory&gt;
 </code></pre>
 
-    <p>添加的地方有两处，任选一处即可：  <br />
-* 刚才修改的那句之后添加  <br />
-* 在 <code>/etc/apache2/apache2.conf</code> 中寻找 <code>Directory</code> 字眼，在这之后添加  <br />
-  (其实也无所谓，只是放着之后，方便管理)</p>
+    <p>添加的地方有两处，任选一处即可：</p>
+
+    <ul>
+      <li>刚才修改的那句之后添加</li>
+      <li>在 <code>/etc/apache2/apache2.conf</code> 中寻找 <code>Directory</code> 字眼，在这之后添加  <br />
+(其实也无所谓，只是放着之后，方便管理)</li>
+    </ul>
   </li>
 </ol>
 
