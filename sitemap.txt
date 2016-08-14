@@ -13,8 +13,10 @@ http://mwumli.github.io/assets/themes/custom-me/css/main.css
 http://mwumli.github.io/rss.xml
 http://mwumli.github.io/sitemap.txt
 
+http://mwumli.github.io/modify-hard-size-for-virtualbox
 http://mwumli.github.io/docker-install-and-usage
 http://mwumli.github.io/css-clearfix
+http://mwumli.github.io/automated-test-by-selenium
 http://mwumli.github.io/run-go-in-ubuntu
 http://mwumli.github.io/sublime-text-such-things
 http://mwumli.github.io/install-nodejs-on-ubuntu

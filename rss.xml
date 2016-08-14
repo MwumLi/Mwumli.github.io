@@ -5,10 +5,92 @@
         <description>倘若微小 - MwumLi</description>
         <link>http://mwumli.github.io</link>
         <atom:link href="http://mwumli.github.io" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Fri, 17 Jun 2016 01:50:21 +0000</lastBuildDate>
-        <pubDate>Fri, 17 Jun 2016 01:50:21 +0000</pubDate>
+        <lastBuildDate>Sun, 14 Aug 2016 17:42:47 +0000</lastBuildDate>
+        <pubDate>Sun, 14 Aug 2016 17:42:47 +0000</pubDate>
         <ttl>60</ttl>
 
+
+        <item>
+                <title>调整 virtualbox 虚拟机磁盘大小</title>
+                <description>
+
+&lt;p&gt;VirtualBox 是一个免费的虚拟化产品, 可以用来构建虚拟机  &lt;br /&gt;
+它可以运行各大平台(Mac/Linux/OS) 上, 可以支持现有的绝大部分系统&lt;/p&gt;
+
+&lt;p&gt;VirtualBox 的构建的虚拟机一旦构建完毕, 磁盘的配置就几乎不能更改了, 至少从其界面并没有看到任何可以更改的操作&lt;/p&gt;
+
+&lt;p&gt;但是并不是没有办法, VirtualBox 安装完成之后, 同时还集成安装了 VirtualBox 的一些工具命令&lt;/p&gt;
+
+&lt;p&gt;比如 &lt;code&gt;VBoxManage&lt;/code&gt;, 我们今天用它来解决调整 virtualbox 虚拟机磁盘大小这个问题&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;进入 Virutalbox 存放 VM 的路径,找到你的虚拟机的文件夹并进入  &lt;br /&gt;
+快捷方法 : &lt;code&gt;打开 virtualbox -&amp;gt; 右键你要操作的 VM -&amp;gt; 在文件搜索器 Finder 中显示&lt;/code&gt;  &lt;br /&gt;
+我这里只是写了 Mac 下的操作内容, 其他平台也相差不多, 就最后一步的右键菜单内容有点不一样, 不过聪明的你一定知道怎么选择&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; # 假设我们已经进来, VirtualBox 具体镜像文件夹下的目录内容如下
+ $ ls
+ Logs                                         docker_default_1462932932793_38985.vbox
+ Snapshots                                    docker_default_1462932932793_38985.vbox-prev
+ box-disk1.vmdk
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看磁盘文件信息, 记录原来磁盘文件的 uuid&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ VBoxManage showhdinfo box-disk1.vmd
+ UUID:           6f5838ee-4319-4885-8eea-6276c9fbbe37
+ Parent UUID:    base
+ State:          locked write
+ Type:           normal (base)
+ Location:       /Users/Luo/VirtualBox VMs/docker_default_1462932932793_38985/box-disk1.vmdk
+ Storage format: VMDK
+ Format variant: dynamic default
+ Capacity:       40960 MBytes
+ Size on disk:   2795 MBytes
+ Encryption:     disabled
+ In use by VMs:  docker_default_1462932932793_38985 (UUID: 76746809-f711-4936-915c-49e27195d4f7) 可以看到 old UUID : `6f5838ee-4319-4885-8eea-6276c9fbbe37`  
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;克隆 &lt;code&gt;.vmdk&lt;/code&gt; 镜像为一个 &lt;code&gt;.vdi&lt;/code&gt;  镜像&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ VBoxManage clonehd box-disk1.vmdk new-disk1.vdi --format vdi
+ 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+ Clone medium created in format 'vdi'. UUID: af5fbd4d-b4f9-4392-b78d-00822b3c32ca
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;调整 &lt;code&gt;.vdi&lt;/code&gt; 镜像的大小  &lt;br /&gt;
+比如调整为 50G (51200MB)&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ VBoxManage modifyhd new-disk.vdi --resize 51200
+ 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;克隆 &lt;code&gt;.vdi&lt;/code&gt; 镜像为一个 &lt;code&gt;.vmdk&lt;/code&gt; 镜像&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ VBoxManage clonehd new-disk.vdi resized-disk.vmdk --format vmdk
+ 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+ Clone medium created in format 'vmdk'. UUID: 362b43f9-f562-49c9-8218-1235be0d16a7 记下 new UUID : `362b43f9-f562-49c9-8218-1235be0d16a7`
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改虚拟机镜像目录下的 &lt;code&gt;.box&lt;/code&gt; 后缀的文件  &lt;br /&gt;
+&amp;gt; 使用 &lt;code&gt;new UUID&lt;/code&gt; 替换所有的 &lt;code&gt;old UUID&lt;/code&gt;  &lt;br /&gt;
+&amp;gt; 使用 &lt;code&gt;resized-disk.vmdk&lt;/code&gt; 替换所有的 &lt;code&gt;box-disk1.vmdk&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;至此, 虚拟机的磁盘大小已经从 40G 调整到 50G  &lt;br /&gt;
+(以前的 box-disk1.vmdk 和 中间生成的 new-disk1.vdi 文件你可以清除掉了)&lt;/p&gt;
+</description>
+                <link>http://mwumli.github.io/modify-hard-size-for-virtualbox</link>
+                <guid>http://mwumli.github.io/modify-hard-size-for-virtualbox</guid>
+                <pubDate>Thu, 07 Jul 2016 00:00:00 +0000</pubDate>
+        </item>
 
         <item>
                 <title>Docker 的安装与使用</title>
@@ -808,6 +890,17 @@ mdn 上的文章, 讲述 collapsing margin, 中文&lt;/p&gt;
                 <link>http://mwumli.github.io/css-clearfix</link>
                 <guid>http://mwumli.github.io/css-clearfix</guid>
                 <pubDate>Thu, 24 Dec 2015 00:00:00 +0000</pubDate>
+        </item>
+
+        <item>
+                <title>使用 Selenium with Python 进行 web 自动化测试</title>
+                <description>
+
+&lt;p&gt;见这篇文章 : &lt;a href=&quot;https://www.zybuluo.com/mwumli/note/222253&quot;&gt;使用 Selenium with Python 进行 web 自动化测试&lt;/a&gt;&lt;/p&gt;
+</description>
+                <link>http://mwumli.github.io/automated-test-by-selenium</link>
+                <guid>http://mwumli.github.io/automated-test-by-selenium</guid>
+                <pubDate>Thu, 19 Nov 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -2640,28 +2733,24 @@ Are you sure you want to continue connecting (yes/no)?
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#tmux-pane&quot; id=&quot;markdown-toc-tmux-pane&quot;&gt;tmux pane&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#tmux--2&quot; id=&quot;markdown-toc-tmux--2&quot;&gt;tmux 的复制&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#copy--&quot; id=&quot;markdown-toc-copy--&quot;&gt;Copy 模式下的复制, 然后粘贴&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;复制&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;粘贴&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#copy-&quot; id=&quot;markdown-toc-copy-&quot;&gt;推荐使用 Copy 模式&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#copy-&quot; id=&quot;markdown-toc-copy-&quot;&gt;Copy 模式下的复制&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#copy--1&quot; id=&quot;markdown-toc-copy--1&quot;&gt;推荐使用 Copy 模式&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#tmux--3&quot; id=&quot;markdown-toc-tmux--3&quot;&gt;tmux 的配置文件&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;配置文件生效&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;配置文件生效&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#tmux--4&quot; id=&quot;markdown-toc-tmux--4&quot;&gt;一个简单的 tmux 配置文件&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;自动生成布局&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;自动生成布局&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#tmux--5&quot; id=&quot;markdown-toc-tmux--5&quot;&gt;tmux 在远程服务器中的表现&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;结对编程&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;结对编程&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#tmux--6&quot; id=&quot;markdown-toc-tmux--6&quot;&gt;tmux 小技巧&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#tmux--command-prompt&quot; id=&quot;markdown-toc-tmux--command-prompt&quot;&gt;tmux 的 command-prompt&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#tmux--7&quot; id=&quot;markdown-toc-tmux--7&quot;&gt;tmux 快捷键帮助&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#send-prefix&quot; id=&quot;markdown-toc-send-prefix&quot;&gt;重新绑定 send-prefix&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#tmux--8&quot; id=&quot;markdown-toc-tmux--8&quot;&gt;tmux 底部状态栏&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;显示钟表&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;显示钟表&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#pane----&quot; id=&quot;markdown-toc-pane----&quot;&gt;为 pane 显示编号—快速切换&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
@@ -2669,7 +2758,7 @@ Are you sure you want to continue connecting (yes/no)?
       &lt;li&gt;&lt;a href=&quot;#tmux--vimpowerline&quot; id=&quot;markdown-toc-tmux--vimpowerline&quot;&gt;tmux 和 vim的powerline插件&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;一些自言自语&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;一些自言自语&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;tmux-&quot;&gt;tmux 是什么?&lt;/h2&gt;
@@ -2698,77 +2787,48 @@ Are you sure you want to continue connecting (yes/no)?
   &lt;li&gt;一个 window 可以有多个 pane, 即分屏&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;code&gt;session&lt;/code&gt; 可译作 &lt;code&gt;会话&lt;/code&gt;  &lt;br /&gt;
-&lt;code&gt;window&lt;/code&gt; 可译作 &lt;code&gt;窗口&lt;/code&gt;  &lt;br /&gt;
-&lt;code&gt;pane&lt;/code&gt; 可译作 &lt;code&gt;窗格&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;session&lt;/code&gt; 可译作 &lt;code&gt;会话&lt;/code&gt;, &lt;code&gt;window&lt;/code&gt; 可译作 &lt;code&gt;窗口&lt;/code&gt;, &lt;code&gt;pane&lt;/code&gt; 可译作 &lt;code&gt;窗格&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;tmux&quot;&gt;安装 tmux&lt;/h2&gt;
 
-&lt;p&gt;Ubuntu下安装:&lt;/p&gt;
+&lt;p&gt;Ubuntu 下安装 : &lt;code&gt;sudo apt-get install tmux&lt;/code&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install tmux
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Centos 下安装 : &lt;a href=&quot;https://www.zybuluo.com/mwumli/note/149542&quot;&gt;CentOS 下安装 tmux&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;tmux-session&quot;&gt;tmux session&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;快速创建:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ tmux
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;这样创建的 session 被自动用数字命名&lt;/p&gt;
+    &lt;p&gt;快速创建: &lt;code&gt;tmux&lt;/code&gt;  &lt;br /&gt;
+这样创建的 session 被自动用数字命名&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;创建一个命名的 session :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ tmux new-session -s session-name
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;创建一个命名的 session : &lt;code&gt;tmux new-session -s session-name&lt;/code&gt;  或 &lt;code&gt;tmux new -s session-name&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;查看当前所有的 sessions :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ tmux list-sessions
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;查看当前所有的 sessions : &lt;code&gt;tmux list-sessions&lt;/code&gt; 或 &lt;code&gt;tmux ls&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;脱离当前 session : &lt;code&gt;ctrl-b + d&lt;/code&gt;&lt;/p&gt;
-
-    &lt;p&gt;脱离当前 session , 你的工作状态依然保留&lt;/p&gt;
+    &lt;p&gt;脱离当前 session : &lt;code&gt;ctrl-b + d&lt;/code&gt;  &lt;br /&gt;
+脱离当前 session , 你的工作状态依然保留&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;如果想重新进入之前的 session , 只需:&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ tmux attach-session -t session-name
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;这样你又回看到你之前的工作进度了&lt;/p&gt;
+    &lt;p&gt;如果想重新进入之前的 session , 只需: &lt;code&gt;tmux attach-session -t session-name&lt;/code&gt; 或 &lt;code&gt;tmux a -t session-name&lt;/code&gt;  &lt;br /&gt;
+这样你又回看到你之前的工作进度了&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;当你想退出当前 session :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; 在终端中输入 `exit`, 直到所有的 window 和 pane 被关闭  
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;这时，你的 session 也被销毁了&lt;/p&gt;
+    &lt;p&gt;当你想退出当前 session : 在终端中输入 &lt;code&gt;exit&lt;/code&gt;, 直到所有的 window 和 pane 被关闭  &lt;br /&gt;
+这时，你的 session 也被销毁了&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;杀死指定的 session :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ tmux kill-session -t session-name
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;杀死指定的 session : &lt;code&gt;tmux kill-session -t session-name&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;重命名 session : &lt;code&gt;ctrl-b + $&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;杀死所有的 session :&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ tmux kill-server
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;p&gt;因为所有的 sessions 跑在一个 server 上  &lt;br /&gt;
+    &lt;p&gt;杀死所有的 session : &lt;code&gt;tmux kill-server&lt;/code&gt;  &lt;br /&gt;
+因为所有的 sessions 跑在一个 server 上  &lt;br /&gt;
 所以只要关掉 tmux server 即可&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -2834,38 +2894,31 @@ Are you sure you want to continue connecting (yes/no)?
 &lt;pre&gt;&lt;code&gt;按下 shift, 然后使用鼠标去选中想要copy的内容进行复制操作  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;copy--&quot;&gt;Copy 模式下的复制, 然后粘贴&lt;/h3&gt;
-
-&lt;p&gt;tmux 提供了一种 copy 模式,类似于 vim 的(Esc-v)模式&lt;/p&gt;
-
-&lt;p&gt;按下 &lt;code&gt;ctrl-b + [&lt;/code&gt; 进入 copy 模式&lt;/p&gt;
-
-&lt;p&gt;tmux 的 copy 模式下有两种快捷键模式: vim 和 Emacs  &lt;br /&gt;
-当你在配置文件中启用 vim 模式:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;setw -g mode-keys vi
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在 copy 模式下， 我们就可以使用 &lt;code&gt;j/k/h/l&lt;/code&gt; 来移动光标了&lt;/p&gt;
-
-&lt;h4 id=&quot;section-1&quot;&gt;复制&lt;/h4&gt;
-
-&lt;p&gt;在 Copy 模式下，我们这样复制:&lt;/p&gt;
+&lt;h3 id=&quot;copy-&quot;&gt;Copy 模式下的复制&lt;/h3&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;移动光标到复制开始位置&lt;/li&gt;
-  &lt;li&gt;按下 &lt;code&gt;Space&lt;/code&gt; 键进入复制模式&lt;/li&gt;
-  &lt;li&gt;移动光标选择要复制的内容&lt;/li&gt;
-  &lt;li&gt;按下 &lt;code&gt;Enter&lt;/code&gt; 键完成复制&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Copy 模式下的复制, 然后粘贴&lt;br /&gt;
+tmux 提供了一种 copy 模式,类似于 vim 的(Esc-v)模式 : 按下 &lt;code&gt;ctrl-b + [&lt;/code&gt; 进入 copy 模式  &lt;br /&gt;
+tmux 的 copy 模式下有两种快捷键模式: vim 和 Emacs  &lt;br /&gt;
+当你在配置文件中启用 vim 模式: &lt;code&gt;setw -g mode-keys vi&lt;/code&gt;  &lt;br /&gt;
+在 copy 模式下， 我们就可以使用 &lt;code&gt;j/k/h/l&lt;/code&gt; 来移动光标了&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;复制  &lt;br /&gt;
+在 Copy 模式下，我们这样复制:
+    &lt;ol&gt;
+      &lt;li&gt;移动光标到复制开始位置&lt;/li&gt;
+      &lt;li&gt;按下 &lt;code&gt;Space&lt;/code&gt; 键进入复制模式&lt;/li&gt;
+      &lt;li&gt;移动光标选择要复制的内容&lt;/li&gt;
+      &lt;li&gt;按下 &lt;code&gt;Enter&lt;/code&gt; 键完成复制&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;粘贴  &lt;br /&gt;
+到你要粘贴内容的位置， 使用快捷键 &lt;code&gt;ctrl-b + ]&lt;/code&gt;  &lt;br /&gt;
+刚才复制的内容已经被完美粘贴了&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h4 id=&quot;section-2&quot;&gt;粘贴&lt;/h4&gt;
-
-&lt;p&gt;到你要粘贴内容的位置， 使用快捷键 &lt;code&gt;ctrl-b + ]&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;刚才复制的内容已经被完美粘贴了&lt;/p&gt;
-
-&lt;h3 id=&quot;copy-&quot;&gt;推荐使用 Copy 模式&lt;/h3&gt;
+&lt;h3 id=&quot;copy--1&quot;&gt;推荐使用 Copy 模式&lt;/h3&gt;
 
 &lt;p&gt;如果你只是想复制不超过一行文字，那么这两种方式均可，甚至第一种方式更有效率&lt;/p&gt;
 
@@ -2877,7 +2930,7 @@ Are you sure you want to continue connecting (yes/no)?
 
 &lt;h2 id=&quot;tmux--3&quot;&gt;tmux 的配置文件&lt;/h2&gt;
 
-&lt;h3 id=&quot;section-3&quot;&gt;配置文件生效&lt;/h3&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;配置文件生效&lt;/h3&gt;
 
 &lt;p&gt;配置文件生效有两种方式:&lt;/p&gt;
 
@@ -2898,24 +2951,24 @@ Are you sure you want to continue connecting (yes/no)?
 &lt;h3 id=&quot;tmux--4&quot;&gt;一个简单的 tmux 配置文件&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;# This is a tmux configure file
-# 取消默认Ctrl+b的前缀绑定，绑定Ctrl+a为新的快捷发送前缀方式
+# 取消默认Ctrl+b的前缀绑定，绑定Ctrl+s为新的快捷发送前缀方式
 unbind C-o
-set -g prefix C-a
+set -g prefix C-s
 
 # Copy模式下使用vim快捷操作方式
 setw -g mode-keys vi
 
-# split window with s/v after C-a
-bind s split-window -h
+# split window with p/v after C-s
+bind p split-window -h
 bind v split-window -v
 
-# move into left/Down/Up/Right panes with h/j/k/l after C-a
+# move into left/Down/Up/Right panes with h/j/k/l after C-s
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
 
-# resize panes forward left/right/Down/Up with &amp;lt;/&amp;gt;/-/+ after C-a
+# resize panes forward left/right/Down/Up with &amp;lt;/&amp;gt;/-/+ after C-s
 bind &amp;lt; resize-pane -L 10
 bind &amp;gt; resize-pane -R 10
 bind - resize-pane -D 10
@@ -2925,13 +2978,16 @@ bind + resize-pane -U 10
 # this is the defalut in tmux already
 bind : command-prompt
 
-#鼠标可以选中窗格
+# 鼠标可以选中窗格
 set-option -g mouse-select-pane on  
-#鼠标滚轮可以使用
+# 鼠标滚轮可以使用
 set-window-option -g mode-mouse on  
+
+# 分屏后如何保留先前窗格的路径
+bind c new-window -c &quot;#{pane_current_path}&quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;自动生成布局&lt;/h3&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;自动生成布局&lt;/h3&gt;
 
 &lt;p&gt;新建一个文件 &lt;code&gt;~/.tmux/mylayout&lt;/code&gt;:&lt;/p&gt;
 
@@ -2993,7 +3049,7 @@ pi@raspberrypi ~ $ tmux a -t code
 
 &lt;p&gt;你会发现，哦，我的工作现场依旧完整无缺…&lt;/p&gt;
 
-&lt;h2 id=&quot;section-5&quot;&gt;结对编程&lt;/h2&gt;
+&lt;h2 id=&quot;section-3&quot;&gt;结对编程&lt;/h2&gt;
 
 &lt;p&gt;关于结对编程的概念，可以查看维基百科:&lt;/p&gt;
 
@@ -3060,7 +3116,7 @@ set -g prefix C-a
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;section-6&quot;&gt;显示钟表&lt;/h3&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;显示钟表&lt;/h3&gt;
 
 &lt;p&gt;按下 &lt;code&gt;ctrl-b + t&lt;/code&gt;, 会在当前 window 的当前 pane 显示当前时间&lt;/p&gt;
 
@@ -3086,7 +3142,7 @@ set -g prefix C-a
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;section-7&quot;&gt;一些自言自语&lt;/h2&gt;
+&lt;h2 id=&quot;section-5&quot;&gt;一些自言自语&lt;/h2&gt;
 
 &lt;p&gt;任何时候不要太过迷信一件东西&lt;/p&gt;
 
@@ -4595,419 +4651,6 @@ $ git push origin master
                 <link>http://mwumli.github.io/website-by-using-jekyllboostrap</link>
                 <guid>http://mwumli.github.io/website-by-using-jekyllboostrap</guid>
                 <pubDate>Thu, 14 Aug 2014 00:00:00 +0000</pubDate>
-        </item>
-
-        <item>
-                <title>使用jekyll搭建静态站点</title>
-                <description>
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#jekyll&quot; id=&quot;markdown-toc-jekyll&quot;&gt;Jekyll的安装&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#jekyll-1&quot; id=&quot;markdown-toc-jekyll-1&quot;&gt;Jekyll的使用&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#jekyll-2&quot; id=&quot;markdown-toc-jekyll-2&quot;&gt;运行jekyll开发服务器&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#jekyll-3&quot; id=&quot;markdown-toc-jekyll-3&quot;&gt;Jekyll的配置&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#rdiscountmd&quot; id=&quot;markdown-toc-rdiscountmd&quot;&gt;使用RDiscount来渲染md文档&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#pygments&quot; id=&quot;markdown-toc-pygments&quot;&gt;Pygments来实现代码高亮&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#highlight&quot; id=&quot;markdown-toc-highlight&quot;&gt;在文章中引用highlight标签&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;jekyll&quot;&gt;Jekyll的安装&lt;/h3&gt;
-
-&lt;p&gt;假如系统未曾安装gem,请使用以下命令安装:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install ruby1.9.1-full
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;安装ruby(1.9.3)的时候，会同时安装gem1.8.23&lt;/p&gt;
-
-&lt;p&gt;使用gem安装jekyll:&lt;code&gt; sudo gem install jekyll&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;假如报错的话，请安装ruby1.9.1的编译扩展组件的头文件:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install ruby1.9.1-dev    
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;基本安装已经完成了，但是你执行&lt;code&gt;jekyll new myblog&lt;/code&gt;时，可能会报&lt;code&gt;Could not find a JavaScript runtime&lt;/code&gt;这样的错误，你需要使用一下命令解决：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install nodejs  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;jekyll-1&quot;&gt;Jekyll的使用&lt;/h3&gt;
-
-&lt;p&gt;一个获取最简单 Jekyll 模板并生成静态站点的方法&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ jekyll new myblog
-New jekyll site installed in /home/temp/myblog.  
-$ cd myblog
-$ ls
-about.md     css/      _includes/  _layouts/  _sass/
-_config.yml  feed.xml  index.html  _posts/
-$ jekyll serve
-Configuration file: /home/temp/myblog/_config.yml
-	    Source: /home/temp/myblog
-       Destination: /home/temp/myblog/_site
-      Generating... 
-                	    done.
- Auto-regeneration: disabled. Use --watch to enable.
-Configuration file: /home/temp/myblog/_config.yml
-    Server address: http://0.0.0.0:4000/
-  Server running... press ctrl-c to stop.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Well,你可以browse to http://localhost:4000&lt;/p&gt;
-
-&lt;p&gt;就是这么简单。从现在开始，你可以通过创建文章、改变头信息来控制模板和输出、修改 Jekyll 设置来使你的站点变得更有趣～&lt;/p&gt;
-
-&lt;h4 id=&quot;jekyll-2&quot;&gt;运行jekyll开发服务器&lt;/h4&gt;
-
-&lt;p&gt;jekyll使用一下命令，将会运行一个服务器，用来在本地查看你的静态站点  &lt;br /&gt;
-类似于在本地搭建的apache服务器，命令如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ jekyll serve  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;一个开发服务器将会在&lt;code&gt;http://localhost:4000&lt;/code&gt;运行&lt;/p&gt;
-
-&lt;p&gt;假如你想脱离终端在后台运行,请使用：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ jekyll serve --detach
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;如果你想关闭服务器，可以使用&lt;code&gt;kill -9 PID&lt;/code&gt;命令  &lt;br /&gt;
-如果你找不到进程号，那么就用&lt;code&gt;ps aux | grep jekyll&lt;/code&gt;命令来查看，然后关闭服务器。&lt;/p&gt;
-
-&lt;p&gt;如果你想查看变更并且自动再生成&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ jekyll serve --watch 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;jekyll-3&quot;&gt;Jekyll的配置&lt;/h3&gt;
-
-&lt;h4 id=&quot;rdiscountmd&quot;&gt;使用RDiscount来渲染md文档&lt;/h4&gt;
-
-&lt;p&gt;如果你希望使用RDiscount来渲染markdown,而不是Maruku,只要确保RDiscount被正确的安装&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo gem install rdiscount  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;然后运行 Jekyll，并使用以下的参数选项：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ jekyll --rdiscount  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;你可以在你的_config.yml中写入代码，从而不必指定参数:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;markdown: rdiscount  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;pygments&quot;&gt;Pygments来实现代码高亮&lt;/h4&gt;
-
-&lt;p&gt;如果你是一个程序员，那么你一定希望你的文章中代码高亮  &lt;br /&gt;
-不错，已经有好的解决办法了：通过 highlight 标签实现代码高亮  &lt;br /&gt;
-但在此之前，你需要首先安装 Pygments&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install python-pygments  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5 id=&quot;highlight&quot;&gt;在文章中引用highlight标签&lt;/h5&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;使用pygmentize生成高亮CSS文件&lt;/p&gt;
-
-    &lt;pre&gt;&lt;code&gt; $ pygmentize -f html -S default &amp;gt; pygments.css  
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;把生成的pygments.css移到你的css文件夹里，在post模板里引用一下&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;修改配置文件_config.xml,添加： &lt;code&gt;highlighter: pygments&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;使用格式如下:    &lt;br /&gt;
-&lt;img src=&quot;/assets/imgs/heligher_demo.png&quot; alt=&quot;helighter_demo&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;其中&lt;code&gt;language&lt;/code&gt;可以从&lt;a href=&quot;http://pygments.org/docs/lexers/&quot; title=&quot;pygments语法高亮&quot;&gt;Syntax highlighter&lt;/a&gt;获取&lt;/p&gt;
-
-</description>
-                <link>http://mwumli.github.io/static-website-by-jekyll</link>
-                <guid>http://mwumli.github.io/static-website-by-jekyll</guid>
-                <pubDate>Thu, 14 Aug 2014 00:00:00 +0000</pubDate>
-        </item>
-
-        <item>
-                <title>为你和你的项目建立一个站点--Github Pages</title>
-                <description>
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#github-pages&quot; id=&quot;markdown-toc-github-pages&quot;&gt;什么是GitHub Pages?&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;两种站点服务&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;好处不言而喻&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;建站开始&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#user-or-organization-site&quot; id=&quot;markdown-toc-user-or-organization-site&quot;&gt;User or organization Site&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#githubrepository&quot; id=&quot;markdown-toc-githubrepository&quot;&gt;&lt;a href=&quot;https://github.com/new&quot; title=&quot;新建一个GitHub仓库&quot;&gt;创建一个仓库&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#git&quot; id=&quot;markdown-toc-git&quot;&gt;选择你正在使用的git客户端&lt;/a&gt;            &lt;ul&gt;
-              &lt;li&gt;&lt;a href=&quot;#terimal&quot; id=&quot;markdown-toc-terimal&quot;&gt;Terimal(终端)&lt;/a&gt;                &lt;ul&gt;
-                  &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;克隆刚创建的仓库&lt;/a&gt;&lt;/li&gt;
-                  &lt;li&gt;&lt;a href=&quot;#hello-world&quot; id=&quot;markdown-toc-hello-world&quot;&gt;Hello World&lt;/a&gt;&lt;/li&gt;
-                  &lt;li&gt;&lt;a href=&quot;#pushgithub&quot; id=&quot;markdown-toc-pushgithub&quot;&gt;push你的项目到github&lt;/a&gt;&lt;/li&gt;
-                &lt;/ul&gt;
-              &lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#github-for-windows-or-mac&quot; id=&quot;markdown-toc-github-for-windows-or-mac&quot;&gt;GitHub for Windows or Mac&lt;/a&gt;                &lt;ul&gt;
-                  &lt;li&gt;&lt;a href=&quot;#clone&quot; id=&quot;markdown-toc-clone&quot;&gt;Clone仓库&lt;/a&gt;&lt;/li&gt;
-                  &lt;li&gt;&lt;a href=&quot;#createindexhtml&quot; id=&quot;markdown-toc-createindexhtml&quot;&gt;Create一个index.html文件&lt;/a&gt;&lt;/li&gt;
-                  &lt;li&gt;&lt;a href=&quot;#commit--sync&quot; id=&quot;markdown-toc-commit--sync&quot;&gt;commit &amp;amp;&amp;amp; Sync&lt;/a&gt;&lt;/li&gt;
-                &lt;/ul&gt;
-              &lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#section-4&quot; id=&quot;markdown-toc-section-4&quot;&gt;未知区域&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#section-5&quot; id=&quot;markdown-toc-section-5&quot;&gt;浏览你的网站吧&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#project-site&quot; id=&quot;markdown-toc-project-site&quot;&gt;project Site&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#generate-a-site&quot; id=&quot;markdown-toc-generate-a-site&quot;&gt;半路出家(Generate a Site)&lt;/a&gt;            &lt;ul&gt;
-              &lt;li&gt;&lt;a href=&quot;#repository-settings&quot; id=&quot;markdown-toc-repository-settings&quot;&gt;Repository Settings&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#automatic-generator&quot; id=&quot;markdown-toc-automatic-generator&quot;&gt;使用Automatic Generator&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#section-6&quot; id=&quot;markdown-toc-section-6&quot;&gt;添加内容&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#section-7&quot; id=&quot;markdown-toc-section-7&quot;&gt;选择一个主题&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#start-from-scratch&quot; id=&quot;markdown-toc-start-from-scratch&quot;&gt;白手起家(Start from scratch)&lt;/a&gt;            &lt;ul&gt;
-              &lt;li&gt;&lt;a href=&quot;#ph-pages&quot; id=&quot;markdown-toc-ph-pages&quot;&gt;创建一个ph-pages分支&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#section-8&quot; id=&quot;markdown-toc-section-8&quot;&gt;使其成为默认分支&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#indexhtml&quot; id=&quot;markdown-toc-indexhtml&quot;&gt;创建一个index.html&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#hello-world-1&quot; id=&quot;markdown-toc-hello-world-1&quot;&gt;Hello World&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a href=&quot;#commit&quot; id=&quot;markdown-toc-commit&quot;&gt;commit文件&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#section-9&quot; id=&quot;markdown-toc-section-9&quot;&gt;查看你的项目站点&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;github-pages&quot;&gt;什么是GitHub Pages?&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub Pages&quot;&gt;Github Pages&lt;/a&gt;是GitHub推出的一个新的服务  &lt;br /&gt;
-可以用来为你的&lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub 首页&quot;&gt;GitHub&lt;/a&gt;账户和你的每一个托管在&lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub 首页&quot;&gt;GitHub&lt;/a&gt;的项目建立一个web站点,show you and show your projects&lt;/p&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;两种站点服务&lt;/h3&gt;
-&lt;p&gt;GitHub提供两种类型的站点服务:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;User or organization Site – 个人或组织站点&lt;/li&gt;
-  &lt;li&gt;Project Site – 项目站点&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;每一个GitHub用户只可以创建一个个人站点，同时，你可以建立多个项目站点&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;好处不言而喻&lt;/h3&gt;
-&lt;p&gt;建立个人或组织站点，让更多的人更好的认识你或你的组织  &lt;br /&gt;
-建立项目站点，你可以可视化的展示你的每一个项目，而不是让你的partner(或者更多喜欢这个项目的人)看着一堆源代码而手足无措&lt;/p&gt;
-
-&lt;p&gt;你可以很轻松建立一个网站(尽管它是static),有专门的主机托管，还可以通过git进行版本控制，那不是很酷吗？&lt;/p&gt;
-
-&lt;p&gt;好了，该做出你的选择了…&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;建站开始&lt;/h2&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;user-or-organization-site&quot;&gt;User or organization Site&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;githubrepository&quot;&gt;&lt;a href=&quot;https://github.com/new&quot; title=&quot;新建一个GitHub仓库&quot;&gt;创建一个仓库&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;从&lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub 首页&quot;&gt;GitHub&lt;/a&gt;开始，&lt;a href=&quot;https://github.com/new&quot; title=&quot;新建一个GitHub仓库&quot;&gt;创建&lt;/a&gt;一个名为&lt;strong&gt;username.github.io&lt;/strong&gt;的仓库  &lt;br /&gt;
-其中,仓库名的第一部分&lt;em&gt;username&lt;/em&gt;是你在GitHub上的用户名(或组织名)  &lt;br /&gt;
-假如&lt;em&gt;username&lt;/em&gt;和你的用户名不匹配，站点将不能工作，因此，请确保它正确  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/user-repo@2x.png&quot; alt=&quot;在GirHub上新建一个仓库&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;git&quot;&gt;选择你正在使用的git客户端&lt;/h4&gt;
-
-&lt;p&gt;这里讲述三种客户端：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Terimal – 这种经常用在Unix或类Unix系统下(Linux,mac当然也可以)&lt;/li&gt;
-  &lt;li&gt;GitHub for Windows – 一看就知道，这是windows下的客户端&lt;/li&gt;
-  &lt;li&gt;GitHub for Mac – 这个是Mac下的客户端&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;好了，开始咯&lt;/p&gt;
-
-&lt;h5 id=&quot;terimal&quot;&gt;Terimal(终端)&lt;/h5&gt;
-
-&lt;h6 id=&quot;section-3&quot;&gt;克隆刚创建的仓库&lt;/h6&gt;
-
-&lt;p&gt;在terimal下转到你想存放你项目的地方，然后clone这个新的仓库&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/username/username.github.io  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h6 id=&quot;hello-world&quot;&gt;Hello World&lt;/h6&gt;
-
-&lt;p&gt;进入项目目录，新建一个&lt;em&gt;index.html&lt;/em&gt;,如下&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ cd username.github.io
-$ echo &quot;Hello World&quot; &amp;gt; index.html  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h6 id=&quot;pushgithub&quot;&gt;push你的项目到github&lt;/h6&gt;
-
-&lt;p&gt;添加，提交，推送你对项目做出的改变&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git add --all
-$ git commit -m &quot;Initial commit&quot;
-$ git push
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h5 id=&quot;github-for-windows-or-mac&quot;&gt;GitHub for Windows or Mac&lt;/h5&gt;
-
-&lt;h6 id=&quot;clone&quot;&gt;Clone仓库&lt;/h6&gt;
-
-&lt;p&gt;点击绿色的”Set up in Desktop”按钮  &lt;br /&gt;
-当GitHub桌面app打开，保存这个项目  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/setup-in-desktop@2x.png&quot; alt=&quot;从GitHub上启动桌面app&quot; /&gt;  &lt;br /&gt;
-假如app没有启动，那么双击的桌面app启动它，并且在app里克隆你的项目&lt;/p&gt;
-
-&lt;h6 id=&quot;createindexhtml&quot;&gt;Create一个index.html文件&lt;/h6&gt;
-
-&lt;p&gt;使用你最喜欢的编辑器，新建index.html,内容如下&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;body&amp;gt;
-&amp;lt;h1&amp;gt;Hello World&amp;lt;/h1&amp;gt;
-&amp;lt;p&amp;gt;I'm hosted with GitHub Pages.&amp;lt;/p&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;然后，添加到你的项目&lt;/p&gt;
-
-&lt;h6 id=&quot;commit--sync&quot;&gt;commit &amp;amp;&amp;amp; Sync&lt;/h6&gt;
-
-&lt;p&gt;进入你的仓库(app里),commit你的变化，然后按下sync(同步)按钮  &lt;br /&gt;
-假如你在Windows下：  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/sync-windows@2x.png&quot; alt=&quot;windows提交并同步变化到项目&quot; /&gt;  &lt;br /&gt;
-假如你在Mac下：  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/sync-mac.png&quot; alt=&quot;Mac提交并同步变化到项目&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;section-4&quot;&gt;未知区域&lt;/h5&gt;
-
-&lt;p&gt;假如你不知道你的平台，额，我无能为力了&lt;/p&gt;
-
-&lt;h4 id=&quot;section-5&quot;&gt;浏览你的网站吧&lt;/h4&gt;
-
-&lt;p&gt;启动你的浏览器，输入&lt;em&gt;http://username.github.io&lt;/em&gt;,然后，回车，接着，404，哈哈  &lt;br /&gt;
-等一下吧，新生成一个网站需要一段时间滴  &lt;br /&gt;
-时间也不是很长，大概10分钟吧  &lt;br /&gt;
-未来可能会做的更好，期待吧&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;project-site&quot;&gt;project Site&lt;/h3&gt;
-
-&lt;p&gt;创建项目站点，有两种办法&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Generate a Site&lt;/li&gt;
-  &lt;li&gt;Start from scratch&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;实际上两者创建了分支gh-pages，只是第一种办法是在当前项目的主分支的当前状态开辟新的分支；第二种则是开辟一个没有父节点的分支  &lt;br /&gt;
-说的简单点，第一种的gh-pages分支有当前项目的主分支的内容,所以被称为&lt;em&gt;半路出家&lt;/em&gt;；而第二种则没有当前项目主分支的内容，完全像一个新的仓库,所以被称为&lt;em&gt;白手起家&lt;/em&gt;(Start from scratch)&lt;/p&gt;
-
-&lt;h4 id=&quot;generate-a-site&quot;&gt;半路出家(Generate a Site)&lt;/h4&gt;
-
-&lt;h5 id=&quot;repository-settings&quot;&gt;Repository Settings&lt;/h5&gt;
-
-&lt;p&gt;访问&lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub 首页&quot;&gt;GirHub,com&lt;/a&gt;,创建一个新的仓库或者进入一个已存在的仓库  &lt;br /&gt;
-然后点击右手边的&lt;em&gt;Settings&lt;/em&gt;,进入项目设置页面  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/settings@2x.png&quot; alt=&quot;Repository settings&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;automatic-generator&quot;&gt;使用Automatic Generator&lt;/h5&gt;
-
-&lt;p&gt;滑动settings页面到&lt;em&gt;GitHub Pages&lt;/em&gt;模块  &lt;br /&gt;
-按下&lt;em&gt;Automatic Page Generator&lt;/em&gt;按钮  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/automatic@2x.png&quot; alt=&quot;Automatic Pages Generator&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;section-6&quot;&gt;添加内容&lt;/h5&gt;
-
-&lt;p&gt;使用内置编辑器添加内容给你的网站  &lt;br /&gt;
-假如你已经有了&lt;em&gt;README.md&lt;/em&gt;在你的项目，你可以点击右手边&lt;em&gt;Load README.md&lt;/em&gt;进行导入  &lt;br /&gt;
-当你做完这些，点击&lt;em&gt;Continue to Layouts&lt;/em&gt;  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/add-content@2x.png&quot; alt=&quot;add content to your project site&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;section-7&quot;&gt;选择一个主题&lt;/h5&gt;
-
-&lt;p&gt;在顶部的提供主题里，选择一个你喜欢的主题  &lt;br /&gt;
-当你完成，点击右手边的&lt;em&gt;Publish page&lt;/em&gt;按钮  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/choose-layout@2x.png&quot; alt=&quot;choose a theme&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;半路出家搞定&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;start-from-scratch&quot;&gt;白手起家(Start from scratch)&lt;/h4&gt;
-
-&lt;h5 id=&quot;ph-pages&quot;&gt;创建一个ph-pages分支&lt;/h5&gt;
-
-&lt;p&gt;在你的项目页面，点击左手边分支下拉菜单，输入&lt;code&gt;gh-pages&lt;/code&gt;,然后按下enter进行创建  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/create-branch@2x.png&quot; alt=&quot;create gh-pages branch&quot; /&gt;  &lt;br /&gt;
-这个分支用于发布你的项目站点，你可以随时添加项目的进度等&lt;/p&gt;
-
-&lt;h5 id=&quot;section-8&quot;&gt;使其成为默认分支&lt;/h5&gt;
-
-&lt;p&gt;假如你已经为你的项目创建了新分支&lt;em&gt;gh-pages&lt;/em&gt;  &lt;br /&gt;
-进入仓库设置界面  &lt;br /&gt;
-在顶部的模块，改变默认分支为&lt;em&gt;gh-pages&lt;/em&gt;  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/default-branch@2x.png&quot; alt=&quot;change default branch&quot; /&gt;  &lt;br /&gt;
-这一步并不是必须的，因为此步的意义只是让其看起来更像一个web site project&lt;/p&gt;
-
-&lt;h5 id=&quot;indexhtml&quot;&gt;创建一个index.html&lt;/h5&gt;
-
-&lt;p&gt;返回仓库总览界面，点击紧邻仓库名旁边的plus图标创建一个名为index.html的文件    &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/create-file@2x.png&quot; alt=&quot;create file&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;hello-world-1&quot;&gt;Hello World&lt;/h5&gt;
-
-&lt;p&gt;为这个index.html文件添加内容&lt;em&gt;Hello world&lt;/em&gt;  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/hello-world@2x.png&quot; alt=&quot;hello-world&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;commit&quot;&gt;commit文件&lt;/h5&gt;
-
-&lt;p&gt;滑动到页面底部，写上提交信息，提交这个新文件  &lt;br /&gt;
-&lt;img src=&quot;https://pages.github.com/images/commit-web@2x.png&quot; alt=&quot;commit-web&quot; /&gt;  &lt;br /&gt;
-呼，打完收工&lt;/p&gt;
-
-&lt;p&gt;对咯，这种办法创建项目站点完全可以在Terimal,GitHub for Windows,还有GitHub for Mac下进行，请自行探索吧&lt;/p&gt;
-
-&lt;h4 id=&quot;section-9&quot;&gt;查看你的项目站点&lt;/h4&gt;
-
-&lt;p&gt;领年终奖了  &lt;br /&gt;
-启动你的浏览器，输入&lt;em&gt;http://username.github.io/repository&lt;/em&gt;  &lt;br /&gt;
-&lt;em&gt;Repository&lt;/em&gt;是你的项目仓库名  &lt;br /&gt;
-然后，回车，接着，404，额，又被坑了  &lt;br /&gt;
-等10分钟吧，这么简单创建一个web站点，也不差这点时间对吧?&lt;/p&gt;
-
-</description>
-                <link>http://mwumli.github.io/websites-by-github-pages</link>
-                <guid>http://mwumli.github.io/websites-by-github-pages</guid>
-                <pubDate>Sun, 03 Aug 2014 00:00:00 +0000</pubDate>
         </item>
 
 

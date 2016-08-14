@@ -105,7 +105,7 @@
         <div>
             Last Modify in
             
-            <span>2015-05-14</span>,
+            <span>2016-08-15</span>,
             
             published in <span>2015-05-05</span> 
             by <span> MwumLi</span>
@@ -131,28 +131,24 @@
   </li>
   <li><a href="#tmux-pane" id="markdown-toc-tmux-pane">tmux pane</a></li>
   <li><a href="#tmux--2" id="markdown-toc-tmux--2">tmux 的复制</a>    <ul>
-      <li><a href="#copy--" id="markdown-toc-copy--">Copy 模式下的复制, 然后粘贴</a>        <ul>
-          <li><a href="#section-1" id="markdown-toc-section-1">复制</a></li>
-          <li><a href="#section-2" id="markdown-toc-section-2">粘贴</a></li>
-        </ul>
-      </li>
-      <li><a href="#copy-" id="markdown-toc-copy-">推荐使用 Copy 模式</a></li>
+      <li><a href="#copy-" id="markdown-toc-copy-">Copy 模式下的复制</a></li>
+      <li><a href="#copy--1" id="markdown-toc-copy--1">推荐使用 Copy 模式</a></li>
     </ul>
   </li>
   <li><a href="#tmux--3" id="markdown-toc-tmux--3">tmux 的配置文件</a>    <ul>
-      <li><a href="#section-3" id="markdown-toc-section-3">配置文件生效</a></li>
+      <li><a href="#section-1" id="markdown-toc-section-1">配置文件生效</a></li>
       <li><a href="#tmux--4" id="markdown-toc-tmux--4">一个简单的 tmux 配置文件</a></li>
-      <li><a href="#section-4" id="markdown-toc-section-4">自动生成布局</a></li>
+      <li><a href="#section-2" id="markdown-toc-section-2">自动生成布局</a></li>
     </ul>
   </li>
   <li><a href="#tmux--5" id="markdown-toc-tmux--5">tmux 在远程服务器中的表现</a></li>
-  <li><a href="#section-5" id="markdown-toc-section-5">结对编程</a></li>
+  <li><a href="#section-3" id="markdown-toc-section-3">结对编程</a></li>
   <li><a href="#tmux--6" id="markdown-toc-tmux--6">tmux 小技巧</a>    <ul>
       <li><a href="#tmux--command-prompt" id="markdown-toc-tmux--command-prompt">tmux 的 command-prompt</a></li>
       <li><a href="#tmux--7" id="markdown-toc-tmux--7">tmux 快捷键帮助</a></li>
       <li><a href="#send-prefix" id="markdown-toc-send-prefix">重新绑定 send-prefix</a></li>
       <li><a href="#tmux--8" id="markdown-toc-tmux--8">tmux 底部状态栏</a></li>
-      <li><a href="#section-6" id="markdown-toc-section-6">显示钟表</a></li>
+      <li><a href="#section-4" id="markdown-toc-section-4">显示钟表</a></li>
       <li><a href="#pane----" id="markdown-toc-pane----">为 pane 显示编号—快速切换</a></li>
     </ul>
   </li>
@@ -160,7 +156,7 @@
       <li><a href="#tmux--vimpowerline" id="markdown-toc-tmux--vimpowerline">tmux 和 vim的powerline插件</a></li>
     </ul>
   </li>
-  <li><a href="#section-7" id="markdown-toc-section-7">一些自言自语</a></li>
+  <li><a href="#section-5" id="markdown-toc-section-5">一些自言自语</a></li>
 </ul>
 
 <h2 id="tmux-">tmux 是什么?</h2>
@@ -189,77 +185,48 @@
   <li>一个 window 可以有多个 pane, 即分屏</li>
 </ol>
 
-<p><code>session</code> 可译作 <code>会话</code>  <br />
-<code>window</code> 可译作 <code>窗口</code>  <br />
-<code>pane</code> 可译作 <code>窗格</code></p>
+<p><code>session</code> 可译作 <code>会话</code>, <code>window</code> 可译作 <code>窗口</code>, <code>pane</code> 可译作 <code>窗格</code></p>
 
 <h2 id="tmux">安装 tmux</h2>
 
-<p>Ubuntu下安装:</p>
+<p>Ubuntu 下安装 : <code>sudo apt-get install tmux</code></p>
 
-<pre><code>$ sudo apt-get install tmux
-</code></pre>
+<p>Centos 下安装 : <a href="https://www.zybuluo.com/mwumli/note/149542">CentOS 下安装 tmux</a></p>
 
 <h2 id="tmux-session">tmux session</h2>
 
 <ol>
   <li>
-    <p>快速创建:</p>
-
-    <pre><code> $ tmux
-</code></pre>
-
-    <p>这样创建的 session 被自动用数字命名</p>
+    <p>快速创建: <code>tmux</code>  <br />
+这样创建的 session 被自动用数字命名</p>
   </li>
   <li>
-    <p>创建一个命名的 session :</p>
-
-    <pre><code> $ tmux new-session -s session-name
-</code></pre>
+    <p>创建一个命名的 session : <code>tmux new-session -s session-name</code>  或 <code>tmux new -s session-name</code></p>
   </li>
   <li>
-    <p>查看当前所有的 sessions :</p>
-
-    <pre><code> $ tmux list-sessions
-</code></pre>
+    <p>查看当前所有的 sessions : <code>tmux list-sessions</code> 或 <code>tmux ls</code></p>
   </li>
   <li>
-    <p>脱离当前 session : <code>ctrl-b + d</code></p>
-
-    <p>脱离当前 session , 你的工作状态依然保留</p>
+    <p>脱离当前 session : <code>ctrl-b + d</code>  <br />
+脱离当前 session , 你的工作状态依然保留</p>
   </li>
   <li>
-    <p>如果想重新进入之前的 session , 只需:</p>
-
-    <pre><code> $ tmux attach-session -t session-name
-</code></pre>
-
-    <p>这样你又回看到你之前的工作进度了</p>
+    <p>如果想重新进入之前的 session , 只需: <code>tmux attach-session -t session-name</code> 或 <code>tmux a -t session-name</code>  <br />
+这样你又回看到你之前的工作进度了</p>
   </li>
   <li>
-    <p>当你想退出当前 session :</p>
-
-    <pre><code> 在终端中输入 `exit`, 直到所有的 window 和 pane 被关闭  
-</code></pre>
-
-    <p>这时，你的 session 也被销毁了</p>
+    <p>当你想退出当前 session : 在终端中输入 <code>exit</code>, 直到所有的 window 和 pane 被关闭  <br />
+这时，你的 session 也被销毁了</p>
   </li>
   <li>
-    <p>杀死指定的 session :</p>
-
-    <pre><code> $ tmux kill-session -t session-name
-</code></pre>
+    <p>杀死指定的 session : <code>tmux kill-session -t session-name</code></p>
   </li>
   <li>
     <p>重命名 session : <code>ctrl-b + $</code></p>
   </li>
   <li>
-    <p>杀死所有的 session :</p>
-
-    <pre><code> $ tmux kill-server
-</code></pre>
-
-    <p>因为所有的 sessions 跑在一个 server 上  <br />
+    <p>杀死所有的 session : <code>tmux kill-server</code>  <br />
+因为所有的 sessions 跑在一个 server 上  <br />
 所以只要关掉 tmux server 即可</p>
   </li>
 </ol>
@@ -325,38 +292,31 @@
 <pre><code>按下 shift, 然后使用鼠标去选中想要copy的内容进行复制操作  
 </code></pre>
 
-<h3 id="copy--">Copy 模式下的复制, 然后粘贴</h3>
-
-<p>tmux 提供了一种 copy 模式,类似于 vim 的(Esc-v)模式</p>
-
-<p>按下 <code>ctrl-b + [</code> 进入 copy 模式</p>
-
-<p>tmux 的 copy 模式下有两种快捷键模式: vim 和 Emacs  <br />
-当你在配置文件中启用 vim 模式:</p>
-
-<pre><code>setw -g mode-keys vi
-</code></pre>
-
-<p>在 copy 模式下， 我们就可以使用 <code>j/k/h/l</code> 来移动光标了</p>
-
-<h4 id="section-1">复制</h4>
-
-<p>在 Copy 模式下，我们这样复制:</p>
+<h3 id="copy-">Copy 模式下的复制</h3>
 
 <ol>
-  <li>移动光标到复制开始位置</li>
-  <li>按下 <code>Space</code> 键进入复制模式</li>
-  <li>移动光标选择要复制的内容</li>
-  <li>按下 <code>Enter</code> 键完成复制</li>
+  <li>
+    <p>Copy 模式下的复制, 然后粘贴<br />
+tmux 提供了一种 copy 模式,类似于 vim 的(Esc-v)模式 : 按下 <code>ctrl-b + [</code> 进入 copy 模式  <br />
+tmux 的 copy 模式下有两种快捷键模式: vim 和 Emacs  <br />
+当你在配置文件中启用 vim 模式: <code>setw -g mode-keys vi</code>  <br />
+在 copy 模式下， 我们就可以使用 <code>j/k/h/l</code> 来移动光标了</p>
+  </li>
+  <li>复制  <br />
+在 Copy 模式下，我们这样复制:
+    <ol>
+      <li>移动光标到复制开始位置</li>
+      <li>按下 <code>Space</code> 键进入复制模式</li>
+      <li>移动光标选择要复制的内容</li>
+      <li>按下 <code>Enter</code> 键完成复制</li>
+    </ol>
+  </li>
+  <li>粘贴  <br />
+到你要粘贴内容的位置， 使用快捷键 <code>ctrl-b + ]</code>  <br />
+刚才复制的内容已经被完美粘贴了</li>
 </ol>
 
-<h4 id="section-2">粘贴</h4>
-
-<p>到你要粘贴内容的位置， 使用快捷键 <code>ctrl-b + ]</code></p>
-
-<p>刚才复制的内容已经被完美粘贴了</p>
-
-<h3 id="copy-">推荐使用 Copy 模式</h3>
+<h3 id="copy--1">推荐使用 Copy 模式</h3>
 
 <p>如果你只是想复制不超过一行文字，那么这两种方式均可，甚至第一种方式更有效率</p>
 
@@ -368,7 +328,7 @@
 
 <h2 id="tmux--3">tmux 的配置文件</h2>
 
-<h3 id="section-3">配置文件生效</h3>
+<h3 id="section-1">配置文件生效</h3>
 
 <p>配置文件生效有两种方式:</p>
 
@@ -389,24 +349,24 @@
 <h3 id="tmux--4">一个简单的 tmux 配置文件</h3>
 
 <pre><code># This is a tmux configure file
-# 取消默认Ctrl+b的前缀绑定，绑定Ctrl+a为新的快捷发送前缀方式
+# 取消默认Ctrl+b的前缀绑定，绑定Ctrl+s为新的快捷发送前缀方式
 unbind C-o
-set -g prefix C-a
+set -g prefix C-s
 
 # Copy模式下使用vim快捷操作方式
 setw -g mode-keys vi
 
-# split window with s/v after C-a
-bind s split-window -h
+# split window with p/v after C-s
+bind p split-window -h
 bind v split-window -v
 
-# move into left/Down/Up/Right panes with h/j/k/l after C-a
+# move into left/Down/Up/Right panes with h/j/k/l after C-s
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
 
-# resize panes forward left/right/Down/Up with &lt;/&gt;/-/+ after C-a
+# resize panes forward left/right/Down/Up with &lt;/&gt;/-/+ after C-s
 bind &lt; resize-pane -L 10
 bind &gt; resize-pane -R 10
 bind - resize-pane -D 10
@@ -416,13 +376,16 @@ bind + resize-pane -U 10
 # this is the defalut in tmux already
 bind : command-prompt
 
-#鼠标可以选中窗格
+# 鼠标可以选中窗格
 set-option -g mouse-select-pane on  
-#鼠标滚轮可以使用
+# 鼠标滚轮可以使用
 set-window-option -g mode-mouse on  
+
+# 分屏后如何保留先前窗格的路径
+bind c new-window -c "#{pane_current_path}"
 </code></pre>
 
-<h3 id="section-4">自动生成布局</h3>
+<h3 id="section-2">自动生成布局</h3>
 
 <p>新建一个文件 <code>~/.tmux/mylayout</code>:</p>
 
@@ -484,7 +447,7 @@ pi@raspberrypi ~ $ tmux a -t code
 
 <p>你会发现，哦，我的工作现场依旧完整无缺…</p>
 
-<h2 id="section-5">结对编程</h2>
+<h2 id="section-3">结对编程</h2>
 
 <p>关于结对编程的概念，可以查看维基百科:</p>
 
@@ -551,7 +514,7 @@ set -g prefix C-a
   </li>
 </ul>
 
-<h3 id="section-6">显示钟表</h3>
+<h3 id="section-4">显示钟表</h3>
 
 <p>按下 <code>ctrl-b + t</code>, 会在当前 window 的当前 pane 显示当前时间</p>
 
@@ -577,7 +540,7 @@ set -g prefix C-a
 
 <hr />
 
-<h2 id="section-7">一些自言自语</h2>
+<h2 id="section-5">一些自言自语</h2>
 
 <p>任何时候不要太过迷信一件东西</p>
 
