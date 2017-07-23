@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>倘若微小 - Sublime Text 2 的使用</title>
+  
+  <meta name="description" content="介绍 Sumlime Text 2 的编辑、命令行面板、快速导航面板、扩展包管理器">
+  
+  <meta name="author" content="MwumLi">
+
+  <!-- -Site Icon -->
+  <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+  <!-- Custom CSS -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="all" />
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+</head>
+
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <div class="site-wrapper clearfix">
+          <a class="site-title" href="/">倘若微小</a>
+<button class="site-nav-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<nav class="site-nav">
+  
+
+
+
+
+<a class="page-link" href="/micro-say/2017/">微语</a>
+
+
+
+
+
+<a class="page-link" href="/pages/archive/">归档</a>
+
+
+
+
+
+<a class="page-link" href="/pages/categories/">分类</a>
+
+
+
+
+
+<a class="page-link" href="/pages/tags/">标签</a>
+
+
+
+
+
+<a class="page-link" href="/rss.xml">订阅</a>
+
+
+
+
+</nav>
+
+
+        </div>
+      </header>
+      <main class="site-main">
+        <div class="site-wrapper clearfix">
+          <div class="page-header">
+    <h1>Sublime Text 2 的使用 <small></small></h1>
+    <div class="article-header">
+        
+        
+        <div>
+            <span>分类: </span>
+            <a href="/pages/categories/?names=软件" class="tag">软件</a>
+            
+                <span>标签: </span>
+            
+            
+                <a href="/pages/tags/?names=Sublime Text 2#tag-search-list" class="tag">Sublime Text 2</a>
+            
+                <a href="/pages/tags/?names=Usage#tag-search-list" class="tag">Usage</a>
+            
+        </div>
+        <div>
+            Last Modify in
+            
+            <span>2015-09-25</span>,
+            
+            published in <span>2014-06-08</span>
+            by <span> MwumLi</span>
+        </div>
+
+        
+        
+    </div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">多项选择，多项编辑</a></li>
+  <li><a href="#command-palette" id="markdown-toc-command-palette">命令行面板(Command Palette)</a></li>
+  <li><a href="#goto-anything" id="markdown-toc-goto-anything">快速导航面板(Goto Anything)</a>    <ul>
+      <li><a href="#section-1" id="markdown-toc-section-1">快速切换文件</a></li>
+      <li><a href="#section-2" id="markdown-toc-section-2">在指定文件中快速查找函数，文本，跳转指定行</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-3" id="markdown-toc-section-3">打开一个项目</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">模糊匹配</a></li>
+  <li><a href="#package-control" id="markdown-toc-package-control">Package Control(扩展包管理器)</a>    <ul>
+      <li><a href="#section-5" id="markdown-toc-section-5">安装</a>        <ul>
+          <li><a href="#section-6" id="markdown-toc-section-6">手动版(复杂点)</a></li>
+          <li><a href="#section-7" id="markdown-toc-section-7">自动版(保持网络，简单)</a></li>
+        </ul>
+      </li>
+      <li><a href="#section-8" id="markdown-toc-section-8">使用</a></li>
+      <li><a href="#section-9" id="markdown-toc-section-9">一些比较好的插件</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>假如你还没安装ST2,那么去<a href="/记录/2014/06/08/st2_install_config/" title="Sublime Text 2的安装与配置">安装它</a></p>
+
+<h2 id="section">多项选择，多项编辑</h2>
+
+<ul>
+  <li>
+    <p>鼠标选中多行，按下 Ctrl+Shift+L (Command+Shift+L) 即可同时编辑这些行；</p>
+  </li>
+  <li>
+    <p>鼠标选中文本，反复按 CTRL+D (Command+D) 即可继续向下同时选中下一个相同的文本进行同时编辑；</p>
+  </li>
+  <li>
+    <p>鼠标选中文本，按下 Alt+	F3 (Win) 或 Ctrl+Command+G(Mac) 即可一次性选择全部的相同文本进行同时编辑；</p>
+  </li>
+  <li>
+    <p>Shift+鼠标右键 (Win) 或 Option+鼠标左键 (Mac) 或使用鼠标中键可以用鼠标进行竖向多行选择；</p>
+  </li>
+  <li>
+    <p>Ctrl+鼠标左键(Win) 或 Command+鼠标左键(Mac) 可以手动选择同时要编辑的多处文本</p>
+  </li>
+</ul>
+
+<h2 id="command-palette">命令行面板(Command Palette)</h2>
+
+<p><strong>Ctrl+Shift+P</strong>唤醒Command Palette　　　<br />
+输入：</p>
+
+<pre><code>sspy	---&gt;set the syntax of the current file to Python
+</code></pre>
+
+<p>当然，还有很多命令，使用过程中慢慢发现吧</p>
+
+<h2 id="goto-anything">快速导航面板(Goto Anything)</h2>
+
+<h3 id="section-1">快速切换文件</h3>
+<p><strong>Ctrl+p</strong>唤醒<em>Goto Anything</em></p>
+
+<p>输入文件名，面板下拉框将出现所有匹配的文件名(当然，在这之前必须线打开一个目录作为搜索根目录)</p>
+
+<p>可以试着在使用Up和Down滚动条目，会有意外的发现哦</p>
+
+<h3 id="section-2">在指定文件中快速查找函数，文本，跳转指定行</h3>
+
+<ul>
+  <li>
+    <p>查找函数，或者id（HTML）</p>
+
+    <pre><code>  file@func
+</code></pre>
+  </li>
+  <li>
+    <p>查找文本</p>
+
+    <pre><code>  file#text
+</code></pre>
+  </li>
+  <li>
+    <p>跳转指定行</p>
+
+    <pre><code>  file:num
+</code></pre>
+  </li>
+</ul>
+
+<p>当<em>file</em>省略时，默认当前编辑文件</p>
+
+<h2 id="section-3">打开一个项目</h2>
+<p>使用ST2可以打开一个项目，这样我们就可以很方便的对一个项目进行编辑，修改了  <br />
+打开的项目文件会展示在左侧的<code>side bar</code>  <br />
+当我们编辑某文件时，希望<code>Side bar</code>在我们需要时候展示，在我们不需要的时候消失，你可以这样做</p>
+
+<pre><code>Ctrl + k Ctrl + b   --&gt;隐藏时显示，显示时隐藏 for Side bar 
+</code></pre>
+
+<p>当然，你也可以使用鼠标进行选择，但是那样不可避免降低你的速度</p>
+
+<h2 id="section-4">模糊匹配</h2>
+
+<p>无论是Command Palette还是Goto Anything,他们都采用模糊匹配，故不需要输入全命令和全文件名  <br />
+例如:在文件shiluodechenai.c中查找func_word</p>
+
+<pre><code>sldca@fw  
+</code></pre>
+
+<p>甚至可能更短</p>
+
+<h2 id="package-control">Package Control(扩展包管理器)</h2>
+<p>用来管理（安装，卸载）插件，皮肤的管理器，和vim中Vundle差不多，不过看起来更简单  <br />
+默认不含有此管理器，我们需要自己手动安装</p>
+
+<h3 id="section-5">安装</h3>
+
+<h4 id="section-6">手动版(复杂点)</h4>
+
+<ol>
+  <li>
+    <p>在 SublimeText2 的目录里面找到 <code>Data &gt; Installed Packages</code> 的文件夹 (如没有请手动新建)</p>
+  </li>
+  <li>
+    <p>在这里下载 <a href="http://dl.iplaysoft.com/files/1774.html#download_list">Package Control.sublime-package</a> 文件</p>
+  </li>
+  <li>
+    <p>将下载到的文件放进去 Installed Packages 里面</p>
+  </li>
+  <li>
+    <p>重新启动 Sublime Text 即可</p>
+  </li>
+</ol>
+
+<h4 id="section-7">自动版(保持网络，简单)</h4>
+
+<p>如果你按照上面的方法确实搞不定，  <br />
+可以试试按键盘 Ctrl+~ （数字1左边的按键）调出控制台，  <br />
+然后拷贝下面的代码进去并回车，  它会自动帮你新建文件夹并下载文件的，与上面的方法最终效果是一样的  <br />
+代码如下：　　</p>
+
+<pre><code>import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print 'Please restart Sublime Text to finish installation'
+</code></pre>
+
+<h3 id="section-8">使用</h3>
+
+<p>如果 Package Control 已经安装成功，  <br />
+那么 Ctrl+Shift+P 调用命令面板，我们就会找到一些以“Package Control:”开头的命令:</p>
+
+<pre><code> Install Package	---&gt;(安装扩展)
+ List Packages 		---&gt;(列出全部扩展)
+ Remove Package		---&gt;(移除扩展)
+ Upgrade Package	---&gt;(升级扩展)
+</code></pre>
+
+<p>在命令面板输入 “Package Control: Install Package“即会列出全部可以安装的扩展  <br />
+从列表可以看到，4GL、AAAPackageDev 那些就是插件的名称    <br />
+选择它们就可以进行下载安装了</p>
+
+<p>此外，你还可以<a href="https://sublime.wbond.net/">在这里看到 Web 版的扩展列表和详细的说明</a> （这俩列表的数据应该是同步的)</p>
+
+<h3 id="section-9">一些比较好的插件</h3>
+
+<p><strong>Emmet</strong>: 以前被称作为Zen Coding,如果你从事Web前端开发的话，对该插件一定不会陌生。  <br />
+它使用仿CSS选择器的语法来快速开发HTML和CSS,在一个扩展框中输入符合规范的表达式，它会动态生成相应的代码 ,或者直接在文本中使用表达式，按扩展键(Tab)进行扩展</p>
+
+<p>具体使用见:<a href="http://www.w3cplus.com/tools/emmet-cheat-sheet.html">表达式语法</a></p>
+
+<p><strong>Gits</strong>： 可以轻松集成 GitHub</p>
+
+<p><strong>SFTP</strong>： 直接编辑 FTP 或 SFTP 服务器上的文件</p>
+
+<p><strong>ConvertToUTF8</strong>： ST2只支持utf8编码，该插件可以显示与编辑 GBK, BIG5, EUC-KR, EUC-JP, Shift_JIS 等编码的文件</p>
+
+<p><strong>Clipboard History</strong>： 剪切板历史</p>
+
+<p><strong>WordPress</strong>： 集成一些WordPress的函数，对于像我这种经常要写WP模版和插件的人特别有用！</p>
+
+<p><strong>HtmlTidy</strong>： 清理与排版你的HTML代码</p>
+
+<p><strong>PHPTidy</strong>： 整理与排版PHP代码</p>
+
+<p><strong>YUI Compressor</strong>： 压缩JS和CSS文件</p>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/%E8%AE%B0%E5%BD%95/2014/06/02/vim-some-plugins/" title="Vim 下的 fancy 插件">Vim 下的 fancy 插件</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/%E8%AE%B0%E5%BD%95/2014/06/10/linux-file-system/" title="Linux文件系统的创建和挂载">Linux文件系统的创建和挂载</a></li>
+      
+      </ul>
+    </div>
+
+    <hr>
+
+    <div id="to_comments">
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+    </div>
+ </div>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+        <div class="site-wrapper clearfix">
+          <p>&copy;2014-2017 <a href="">倘若微小</a><br />
+Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="">MwumLi</a><br />
+本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。</p>
+
+        </div>
+      </footer>
+
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+    </div>
+        
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50450008-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+
+        
+
+
+
+  
+  <script src="/assets/lib/jquery/jquery-2.1.3.min.js?2.1.3" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery-zclip/jquery.zclip.js?1.1.7" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery.resizeend/jquery.resizeend.min.js?0.2.0" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/bigfoot/bigfoot.min.js?2.1.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?2.1.5" type="text/javascript" ></script>
+  
+
+
+
+
+        <script type="text/javascript" id="jekyll.configurations" charset="utf-8">
+          var IfMicro = window.IfMicro || {};
+          var CONFIG = {
+            domain: 'http://mwumli.github.com',
+            zclip_swf: '/assets/lib/jquery-zclip/ZeroClipboard.swf',
+            page: {
+              type: 'post',
+              title: 'Sublime Text 2 的使用',
+              toc: !!'true'
+            }
+          };
+          window._EXPORT_RENDER_RECT = {
+            width: 1366,
+            height: 1555
+          }
+        </script>
+        
+
+
+  
+  
+    
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <script src="/assets/js/toc.js?2.0.1" type="text/javascript" ></script>
+  
+  
+
+  
+  <script src="/assets/js/utils.js?2.0.1" type="text/javascript" ></script>
+  
+
+  
+  
+  
+
+  
+  <script src="/assets/js/bootstrap.js?2.0.1" type="text/javascript" ></script>
+  
+
+
+    </body>
+</html>
+
+

@@ -1,0 +1,171 @@
+# Site settings
+title: 倘若微小
+tagline: 人生最美妙的风景就是内心的淡定与从容
+email: your-email@domain.com
+description: > # this means to ignore newlines until "baseurl:"
+  我曾闻娑婆世界，每个人都罪孽深重，又闻一沙一世界，一树一菩提。
+  只是，随便拍拍，身上的尘土落尽，又有多少罪孽呢？
+  只是，阳光下，金色的微尘闪着光，又是怎样一个世界呢？
+url: "http://mwumli.github.com" # the base hostname & protocol for your site
+twitter_username: jekyllrb
+github_username:  jekyll
+author :
+  name : MwumLi
+  email : mwumli@hotmail.com
+  github : mwumli
+createtime: 2014-05-02 18:14:24 +0000
+
+# ------------------
+# Settings for comments helper
+# Set 'provider' to the comment provider you want to use.
+# Set 'provider' to false to turn commenting off globally.
+# ------------------
+comments :
+  provider: disqus
+  disqus :
+    short_name : ifmicro
+  livefyre :
+    site_id : 123
+  intensedebate :
+    account : 123abc
+  facebook :
+    appid : 123
+    num_posts: 5
+    width: 580
+    colorscheme: light
+  duoshuo :
+    short_name : jekyllbootstrap
+
+# ------------------
+# Settings for analytics helper
+# Set 'provider' to the analytics provider you want to use.
+# Set 'provider' to false to turn analytics off globally.
+# ------------------
+analytics :
+  provider: google
+  gauges :
+    site_id : 'SITE ID'
+  google :
+    tracking_id : 'UA-50450008-1'
+  getclicky :
+    site_id :
+  mixpanel :
+      token : '_MIXPANEL_TOKEN_'
+  piwik :
+      baseURL : 'myserver.tld/piwik' # Piwik installation address (without protocol)
+      idsite : '1'                   # the id of the site on Piwik
+
+# ------------------
+# 目录结构
+# ------------------
+source:      .
+destination: ./_site
+plugins:     ./_plugin
+layouts:     ./_layout
+data_source: ./_data
+collections:
+  micro_say:
+    output: true
+    permalink: /micro-say/:path/
+
+# ------------------
+# 阅读处理
+# ------------------
+safe:         false
+include:      [".htaccess"]
+exclude:      ["Rakefile", "README.md", "changelog.md", "node_modules"]
+keep_files:   [".git", ".svn"]
+encoding:     "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+# ------------------
+# 内容过滤
+# ------------------
+show_drafts: null
+limit_posts: 0
+future:      true
+unpublished: false
+
+# ------------------
+# 插件
+# ------------------
+whitelist: []
+gems:      []
+
+# ------------------
+# 转换
+# ------------------
+markdown:    kramdown
+highlighter: rouge
+lsi:         false
+excerpt_separator: "\n\n"
+incremental: false
+sass :
+  sass_dir : /_sass
+  style : compressed
+
+# ------------------
+# 服务器选项
+# ------------------
+detach:  false
+port:    4000
+host:    127.0.0.1
+baseurl: "" # the subpath of your site, e.g. /blog/
+public_path: '/assets' # 静态资源存放目录
+css_path: '/css'
+js_path: '/js'
+image_path: '/images'
+lib_path: '/lib'
+
+
+# ------------------
+# 输出
+# ------------------
+# http://jekyllcn.com/docs/permalinks/
+permalink:     pretty
+#paginate_path: /page:num
+timezone:      null
+
+quiet:    false
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  -
+    scope:
+      path: ""
+      type: "pages" # 以前的 `page`， 在 Jekyll 2.2 里。
+    values:
+      layout: "page"
+  -
+    scope:
+      path: ""
+      type: "micro_say"
+    values:
+      layout: "micro_say"
+      type: "micro_say"
+
+# ------------------
+# Markdown 处理器
+# ------------------
+
+kramdown:
+  input:          GFM
+  auto_ids:       true
+  footnote_nr:    1
+  entity_output:  as_char
+  toc_levels:     2..4  # h2-h4 作为目录
+  smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false  # github 不支持, 停用
+  # syntax_highlighter: rouge
+
+  coderay:
+    coderay_wrap:              div
+    coderay_line_numbers:      inline
+    coderay_line_number_start: 1
+    coderay_tab_width:         4
+    coderay_bold_every:        10
+    coderay_css:               style

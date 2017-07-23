@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>倘若微小 - 使用 SSH 登录服务器</title>
+  
+  <meta name="description" content="使用 SSH 登录服务器的两种方法: 采用密码口令验证和使用公钥实现无密码登录">
+  
+  <meta name="author" content="MwumLi">
+
+  <!-- -Site Icon -->
+  <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+  <!-- Custom CSS -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="all" />
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+</head>
+
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <div class="site-wrapper clearfix">
+          <a class="site-title" href="/">倘若微小</a>
+<button class="site-nav-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<nav class="site-nav">
+  
+
+
+
+
+<a class="page-link" href="/micro-say/2017/">微语</a>
+
+
+
+
+
+<a class="page-link" href="/pages/archive/">归档</a>
+
+
+
+
+
+<a class="page-link" href="/pages/categories/">分类</a>
+
+
+
+
+
+<a class="page-link" href="/pages/tags/">标签</a>
+
+
+
+
+
+<a class="page-link" href="/rss.xml">订阅</a>
+
+
+
+
+</nav>
+
+
+        </div>
+      </header>
+      <main class="site-main">
+        <div class="site-wrapper clearfix">
+          <div class="page-header">
+    <h1>使用 SSH 登录服务器 <small></small></h1>
+    <div class="article-header">
+        
+        
+        <div>
+            <span>分类: </span>
+            <a href="/pages/categories/?names=记录" class="tag">记录</a>
+            
+                <span>标签: </span>
+            
+            
+                <a href="/pages/tags/?names=SSH#tag-search-list" class="tag">SSH</a>
+            
+                <a href="/pages/tags/?names=Linux#tag-search-list" class="tag">Linux</a>
+            
+        </div>
+        <div>
+            Last Modify in
+            
+            <span>2015-09-22</span>,
+            
+            published in <span>2015-09-21</span>
+            by <span> MwumLi</span>
+        </div>
+
+        
+        
+    </div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#ssh-" id="markdown-toc-ssh-">SSH 是什么</a></li>
+  <li><a href="#ssh" id="markdown-toc-ssh">安装 SSH</a></li>
+  <li><a href="#section" id="markdown-toc-section">两种登陆方式</a>    <ul>
+      <li><a href="#section-1" id="markdown-toc-section-1">使用密码口令登录服务器</a>        <ul>
+          <li><a href="#section-2" id="markdown-toc-section-2">使用</a></li>
+          <li><a href="#section-3" id="markdown-toc-section-3">验证流程</a></li>
+        </ul>
+      </li>
+      <li><a href="#section-4" id="markdown-toc-section-4">使用公钥实现无密码登录</a>        <ul>
+          <li><a href="#section-5" id="markdown-toc-section-5">使用</a></li>
+          <li><a href="#section-6" id="markdown-toc-section-6">登录流程</a></li>
+        </ul>
+      </li>
+      <li><a href="#section-7" id="markdown-toc-section-7">第一次登录服务器</a></li>
+      <li><a href="#section-8" id="markdown-toc-section-8">中间人攻击</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-9" id="markdown-toc-section-9">公钥加密技术</a></li>
+  <li><a href="#section-10" id="markdown-toc-section-10">一些思考</a></li>
+  <li><a href="#section-11" id="markdown-toc-section-11">一些相关的文件</a></li>
+  <li><a href="#section-12" id="markdown-toc-section-12">待补充</a></li>
+</ul>
+
+<h2 id="ssh-">SSH 是什么</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Secure_Shell">SSH</a> 是一个允许两台电脑之间通过安全的连接进行数据交换的网络协议  <br />
+它采用公钥加密技术对传输的数据进行加密, 保证了数据的保密性和完整性</p>
+
+<p><a href="https://en.wikipedia.org/wiki/OpenSSH">OpenSSH</a> 是 SSH 协议的一种实现，是一种比较 popular 的远程登录服务器的软件</p>
+
+<h2 id="ssh">安装 SSH</h2>
+
+<p>Linux 主机普遍默认安装 OpenSSH</p>
+
+<p>客户端安装 ssh client 去登录服务器 :</p>
+
+<pre><code>$ sudo apt-get install openssh-client
+</code></pre>
+
+<p>服务器端安装 ssh server 用以验证客户端的登录 :</p>
+
+<pre><code>$ sudo apt-get install openssh-server
+</code></pre>
+
+<h2 id="section">两种登陆方式</h2>
+
+<p>SSH 提供两种登录服务器的方式 :</p>
+
+<ul>
+  <li>使用密码口令</li>
+  <li>使用公钥实现无密码登录</li>
+</ul>
+
+<p>在此，做出以下假定 :</p>
+
+<ol>
+  <li>服务器上的用户名 : <code>ifmicro</code></li>
+  <li>服务器地址 : <code>remote-host</code></li>
+  <li>服务器的 SSH 服务监听端口 : <code>22</code>(默认)</li>
+</ol>
+
+<h3 id="section-1">使用密码口令登录服务器</h3>
+
+<h4 id="section-2">使用</h4>
+
+<pre><code>$ ssh ifmicro@remote-host
+</code></pre>
+
+<p>如果本地用户名也是 <code>ifmicro</code> , 那么 :</p>
+
+<pre><code>$ ssh ifmicro
+</code></pre>
+
+<p>假如你的服务器 SSH 服务监听端口是 <code>2222</code> , 那么 :</p>
+
+<pre><code>$ ssh -p 2222 ifmicro@remote-host
+</code></pre>
+
+<h4 id="section-3">验证流程</h4>
+
+<ol>
+  <li>客户端想服务器发送登录请求</li>
+  <li>服务器收到请求，把自己的公钥发给用户</li>
+  <li>用户使用这个公钥，对自己的密码进行加密，然后发送给服务器</li>
+  <li>服务器用自己的私钥对收到加密后的密码进行解密，如果密码正确，就同意用户登录</li>
+</ol>
+
+<h3 id="section-4">使用公钥实现无密码登录</h3>
+
+<h4 id="section-5">使用</h4>
+
+<ol>
+  <li>
+    <p>生成公钥和私钥(如果存在，请忽略) :</p>
+
+    <pre><code> $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+ Generating public/private rsa key pair.
+ Enter file in which to save the key (/home/vagrant/.ssh/id_rsa):
+ Enter passphrase (empty for no passphrase):
+ Enter same passphrase again:
+ Your identification has been saved in /home/vagrant/.ssh/id_rsa.
+ Your public key has been saved in /home/vagrant/.ssh/id_rsa.pub.
+ The key fingerprint is:
+ 2e:a3:02:c9:f1:bd:bd:d3:2e:85:26:4c:4a:b6:d1:11 your_email@example.com
+ The key's randomart image is:
+ +--[ RSA 4096]----+
+ |     E.          |
+ |     .           |
+ |    . .          |
+ | . + o           |
+ |..= B   S        |
+ |o. + + + .       |
+ | .    B +        |
+ |  .  o * .       |
+ |   ..  .=.       |
+ +-----------------+
+</code></pre>
+
+    <p>一路默认即可，生成的私钥和公钥位于 <code>~/.ssh/</code> : <code>id_rsa</code>(私钥) 和 <code>id_rsa.pub</code>(公钥)</p>
+  </li>
+  <li>
+    <p>把公钥添加到服务器的 <code>~/.ssh/authorized_keys</code> 末尾:</p>
+
+    <pre><code> $ ssh-copy-id -i id_rsa.pub ifmicro@remote-host
+ /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+ /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+ ifmicro@remote-host's password:
+
+ Number of key(s) added: 1
+
+ Now try logging into the machine, with:   "ssh 'ifmicro@remote-host'"
+ and check to make sure that only the key(s) you wanted were added.
+</code></pre>
+
+    <p>可以看到已经成功添加</p>
+  </li>
+  <li>
+    <p>使用 ssh 登录服务器 :</p>
+
+    <pre><code> $ ssh -i ~/.ssh/id_rsa ifmicro@remote-host
+ Last login: Tue Sep 22 06:39:30 2015 from 10.18.61.57
+ ifmicro@remmote-host $ 
+</code></pre>
+
+    <p>如果私钥是 <code>~/.ssh/id_rsa</code> ，那么可以忽略 <code>-i ~/.ssh/id_isa</code>  选项  <br />
+否则，请用 <code>-i private_key</code> 指定私钥</p>
+  </li>
+</ol>
+
+<h4 id="section-6">登录流程</h4>
+
+<ol>
+  <li>客户端向服务器发送登录请求</li>
+  <li>服务器收到请求后, 向客户端发送一断随机字符串</li>
+  <li>客户端收到字符串，然后用自己的私钥进行加密，发送给服务器</li>
+  <li>服务器用实现客户给的公钥进行解密, 如果解密成功, 证明用户可信，登录成功</li>
+</ol>
+
+<h3 id="section-7">第一次登录服务器</h3>
+
+<p>第一次登录服务器 , 系统会有如下提示 :</p>
+
+<pre><code>The authenticity of host 'remote-host (10.108.79.5)' can't be established.
+RSA key fingerprint is 31:51:f8:e3:53:01:c4:76:af:60:9c:3b:b3:1b:5e:37.
+Are you sure you want to continue connecting (yes/no)?
+</code></pre>
+
+<p>这段话意思是本地主机在这之前没有与服务器 remote-host 建立过链接, 无法确定服务器的真实性  <br />
+只知道 RSA 公钥的指纹<sup id="fnref:fingerprint"><a href="#fn:fingerprint" class="footnote">1</a></sup>，是否要继续连接</p>
+
+<p>使用 <code>ssh-keygen</code> 工具可以生成 SSH 密钥对，其中公钥的长度很长，对于用户来说不容易比较  <br />
+因此对其进行 MD5 计算生成的 128 位指纹进行比较就非常容易了</p>
+
+<p>为了确认主机的真实性，这里就要求我们事先知道服务器的公钥指纹</p>
+
+<p>如果你确定这是你要登录的那台服务器，那么输入 <code>yes</code> 继续连接</p>
+
+<ol>
+  <li>
+    <p>如果你采用密码口令登录服务器，那么</p>
+
+    <pre><code> Warning: Permanently added 'remote-host,10.108.79.5' (RSA) to the list of known hosts.
+ Enter passphrase for key '/home/vagrant/.ssh/id_rsa':
+</code></pre>
+
+    <p>输入密码，如果密码正确，那么登录成功</p>
+  </li>
+  <li>
+    <p>如果你采用公钥认证登录服务器, 那么输出上面这条 <code>Warning</code>, 就直接登录上服务器</p>
+  </li>
+</ol>
+
+<p>第一次登录成功后, 服务器的公钥会被保存到文件 <code>$HOME/.ssh/known_hosts</code> 中  <br />
+下次登录服务器，<code>Warning</code> 消失</p>
+
+<p>每个 SSH 用户都有自己的 <code>known_hosts</code> 文件  <br />
+系统也有一个这样的文件，通常是 <code>/etc/ssh/ssh_known_hosts</code> 保存一些对所有用户都可信赖的服务器的公钥</p>
+
+<h3 id="section-8">中间人攻击</h3>
+
+<p>SSH 之所以可以保证安全，是因为采用了公钥加密信息</p>
+
+<p>在上面我们可以看到，使用密码口令的真个过程本身是安全的, 但是存在这个一个风险 ：</p>
+
+<pre><code>如果有攻击者截获了用户的登录请求，然后冒充服务器，将伪造后的公钥发送给用户  
+用户在不知情或难辨真伪的情况下,用这个伪造密钥进行加密，然后发送给服务器  
+然后攻击者又一次截获，获得用伪造密钥加密的密码，然后用自己的私钥进行解密，就得到了用户在服务器上的账号和密码  
+</code></pre>
+
+<p>对于使用口令进行 ssh 登录的情况下，伪造的公钥很难辨别真伪  <br />
+因为公钥都是自己签发的, 没有证书中心 (CA) 公正</p>
+
+<p>可以设想一下 :</p>
+
+<pre><code>如果攻击者在用户登录服务器时, 截获登录请求，并用伪造的公钥欺骗用户, 那么很容易获取用户在服务上的登录密码  
+然后攻击者就可以在服务器上为所欲为(如果有权限的话)
+这样, SSH 的安全机制就荡然无存  
+</code></pre>
+
+<p>这就是著名的 <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">中间人攻击</a>(Man-in-the-middle attack)</p>
+
+<p>所以，基于密码的安全认证是无法避免中间人攻击</p>
+
+<h2 id="section-9">公钥加密技术</h2>
+
+<p>公钥加密技术提供两个密钥 : 公钥(id_rsa.pub) 和 私钥(id_rsa)</p>
+
+<p>公钥加密技术主要是利用公钥和私钥的互相加密和解密的非对成性 :</p>
+
+<ol>
+  <li>公钥加密的文件，只能被私钥解密</li>
+  <li>私钥加密的文件，只能被公钥解密</li>
+</ol>
+
+<p>普通的加密技术的加密运算和解密运算使用同样的密钥, 被称作对称密码学</p>
+
+<p><a href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html">数字签名是什么</a></p>
+
+<h2 id="section-10">一些思考</h2>
+
+<ol>
+  <li>
+    <p>为什么要修改 ssh 服务的默认端口 22 ?  <br />
+默认情况下, ssh 服务的端口为 22, 所以那些骇客们都会先从 22 端口入手, 通过 “暴力手段” 获取登录密码  <br />
+所以, 建议修改 ssh 服务默认端口, 这样能一定程度上过滤掉一些不怀好意的访客  <br />
+(虽然说对有心者并没什么鸟用,但是多做点防护总没坏处)</p>
+  </li>
+  <li>
+    <p><code>ssh-copy-id</code> 到底做了什么?  <br />
+事实上, ssh-copy-id 做了下面脚本做的事 :</p>
+
+    <pre><code> $ ssh ifmicro@remote-host 'mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys &amp;&amp; chmod 600 .ssh/authorized_keys' &lt; ~/.ssh/id_rsa.pub
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="section-11">一些相关的文件</h2>
+
+<ol>
+  <li><code>id_rsa</code>(私钥) 和 <code>id_rsa.pub</code>(公钥)
+    <ul>
+      <li>默认情况下, 位于 <code>~/.ssh/id_rsa</code>、<code>~/.ssh/id_rsa.pub</code></li>
+      <li>这是使用 <code>ssh-keygen</code> 指定 <code>-t rsa</code> 默认生成的私钥和公钥, 可以在过程中指定生成的文件名</li>
+      <li>默认情况下, ssh 只会读取 <code>~/.sss/id_rsa</code> 去加密  <br />
+如果使用非默认的私钥, 那么需要在 <code>ssh -i private-key</code> 或者使用 <code>ssh-agent</code> 去管理</li>
+      <li>要保持当前文件权限为 <code>600</code></li>
+    </ul>
+  </li>
+  <li><code>authorized_keys</code> – 存储来自客户端的公钥
+    <ul>
+      <li>默认情况下, 位于 <code>~/.ssh/authorized_keys</code></li>
+      <li>把来自客户端的公钥添加到这个文件中，就可以实现无密码登录</li>
+      <li>要保持当前文件权限为 <code>600</code></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="section-12">待补充</h2>
+
+<ol>
+  <li>
+    <p>ssh-agent 和 ssh 之间的关系</p>
+  </li>
+  <li>
+    <p>ssh 端口转发  <br />
+<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_port_forwarding.html">SSH原理与运用（二）：远程操作与端口转发</a></p>
+  </li>
+  <li>
+    <p><a href="https://wiki.archlinux.org/index.php/Secure_Shell_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Arch Linux</a></p>
+  </li>
+  <li>
+    <p><a href="https://help.github.com/articles/generating-ssh-keys/">Generating SSH keys</a></p>
+  </li>
+</ol>
+
+<p>s. <a href="http://www.ibm.com/developerworks/cn/aix/library/1006_lisali_sshlogon/#major6">开发自动化脚本</a></p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:fingerprint">
+      <p>对 RSA 公钥进行 MD5 计算生成的一个 128 位的指纹 <a href="#fnref:fingerprint" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/%E8%AE%B0%E5%BD%95/2015/09/07/gitbook/" title="用 gitbook 来写书">用 gitbook 来写书</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/%E8%AE%B0%E5%BD%95/2015/09/23/ssh-remote-run-cmd/" title="使用 SSH 进行远程操作">使用 SSH 进行远程操作</a></li>
+      
+      </ul>
+    </div>
+
+    <hr>
+
+    <div id="to_comments">
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+    </div>
+ </div>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+        <div class="site-wrapper clearfix">
+          <p>&copy;2014-2017 <a href="">倘若微小</a><br />
+Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="">MwumLi</a><br />
+本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。</p>
+
+        </div>
+      </footer>
+
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+    </div>
+        
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50450008-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+
+        
+
+
+
+  
+  <script src="/assets/lib/jquery/jquery-2.1.3.min.js?2.1.3" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery-zclip/jquery.zclip.js?1.1.7" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery.resizeend/jquery.resizeend.min.js?0.2.0" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/bigfoot/bigfoot.min.js?2.1.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?2.1.5" type="text/javascript" ></script>
+  
+
+
+
+
+        <script type="text/javascript" id="jekyll.configurations" charset="utf-8">
+          var IfMicro = window.IfMicro || {};
+          var CONFIG = {
+            domain: 'http://mwumli.github.com',
+            zclip_swf: '/assets/lib/jquery-zclip/ZeroClipboard.swf',
+            page: {
+              type: 'post',
+              title: '使用 SSH 登录服务器',
+              toc: !!'true'
+            }
+          };
+          window._EXPORT_RENDER_RECT = {
+            width: 1366,
+            height: 1555
+          }
+        </script>
+        
+
+
+  
+  
+    
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <script src="/assets/js/toc.js?2.0.1" type="text/javascript" ></script>
+  
+  
+
+  
+  <script src="/assets/js/utils.js?2.0.1" type="text/javascript" ></script>
+  
+
+  
+  
+  
+
+  
+  <script src="/assets/js/bootstrap.js?2.0.1" type="text/javascript" ></script>
+  
+
+
+    </body>
+</html>
+
+

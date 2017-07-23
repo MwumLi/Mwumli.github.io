@@ -1,0 +1,21 @@
+{% comment %}<!--
+The pages_list include is a listing helper.
+Usage:
+  1) assign the 'pages_list' variable to a valid array of pages or posts.
+  2) include LU/pages_list
+  example:
+    <ul>
+  	  {% include LU/pages_list %}
+  	</ul>
+  	
+-->{% endcomment %}
+
+{% for nav in site.data.nav %}
+{% if nav[1].isShow %}
+{% if nav[1].type == "micro_say" %}
+<a class="page-link" href="{{site.micro_say.last.url}}">{{ site.micro_say.last.title }}</a>
+{% else %}
+<a class="page-link" href="{{nav[1].path}}">{{ nav[1].title }}</a>
+{% endif %}
+{% endif %}
+{% endfor %}

@@ -1,0 +1,13 @@
+toc:
+  js: "toc.js"
+  page: ['post', 'index']
+
+utils:
+  js: "utils.js"
+
+tag:
+  js: "tag.js"
+  page: ['categories', 'tags']
+
+bootstrap:
+  js: "bootstrap.js"

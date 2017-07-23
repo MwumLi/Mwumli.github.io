@@ -1,0 +1,409 @@
+//
+// Site 轮廓
+//
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font-weight: 100;
+  font-size: $font-size;
+  line-height: $line-height;
+  font-family: $font-family;
+  color: $font-color;
+  min-height: 100%;
+  background: $body-bg-color;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  min-height: 100%;
+}
+
+.site-header {
+  background: $header-bg-color;
+  min-height: 56px;
+  margin-top: 2px;
+  position: relative;
+}
+
+.site-title {
+  font-size: $site-title-font-size;
+  font-weight: 400;
+  line-height: $site-title-line-height;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  margin-right: 20px;
+  float: left;
+
+  &,
+  &:visited {
+    color: $site-title-color;
+  }
+
+  &:hover {
+    color: $site-title-hover-color;
+  }
+
+  @include mobile {
+    float: none;
+  }
+}
+
+.site-nav-toggle {
+  display: none;
+
+  @include mobile {
+    display: block;
+    float: right;
+    width: 35px;
+    margin-top: 13px;
+    background: none;
+    border: none;
+
+    span {
+      background: white;
+      display: block;
+      height: 2px;
+      margin: 5px 0;
+    }
+  }
+}
+
+.site-nav {
+  float: left;
+  line-height: 56px;
+  margin-top: 6px;
+  font-size:  $font-size + 2;
+
+  .page-link {
+    line-height: $line-height;
+
+    // Gaps between nav items, but not on the last one
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    &,
+    &:visited {
+      color: $site-nav-link-color;
+    }
+
+    &:hover {
+      color: $site-nav-link-hover-color;
+    }
+  }
+
+  @include mobile {
+    float: none;
+    display: none;
+
+    .page-link {
+       &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.site-wrapper {
+  max-width: -webkit-calc(960px - (30px * 2));
+  max-width: calc(960px - (30px * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 30px;
+
+  @include mobile {
+    padding: 0 20px;
+  }
+}
+
+.site-footer {
+  padding-top: 15px;
+  padding-bottom: 0;
+  margin-top: 15px;
+
+  .site-wrapper {
+    margin-top: -10px;
+    text-align: center;
+    border: 5px solid #75143F;
+    border: 5px solid rgba(255, 0, 80, 0.42);
+    border-width: 5px 10px;
+    background: #341D36;
+    background: rgba(255, 0, 80, 0.15);
+
+    p {
+      margin: 0;
+      padding: 1em;
+
+      a {
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+// Headers
+// ---------------------
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans";
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-size: $head-base-font-size - 2*$i;
+    color: nth($head-font-colors, $i);
+
+    @include mobile {
+      font-size: $head-base-font-size - 2*$i - 2;
+    }
+  }
+}
+
+// a
+// ---------------------
+a {
+  padding-bottom: 1px;
+  text-decoration: none;
+
+  &,
+  &:visited {
+    color: $link-color;
+  }
+
+  &:hover {
+    color: $link-hover-color;
+  }
+}
+
+ol, ul {
+  padding-left: 0.5em;
+}
+
+li {
+  margin: 0.3em auto 0.3em 1.5em;
+  list-style-position: outside;
+
+  pre {
+    margin-left: 0;
+  }
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+dt {
+  font-weight: bold;
+}
+
+img {
+  border: none;
+  max-width: 100%;
+}
+
+// code
+// ---------------------
+code {
+  color: $code-font-color;
+  font-family: $code-font-family;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+// 行内 code
+p code {
+  color: yellow;
+  padding: 0.5em;
+}
+
+pre {
+  position: relative;
+  background: rgba(11, 132, 95, 0.26);
+  border: 1.5px solid rgba(14, 139, 125, 0.2);
+  z-index: 2;
+  -webkit-transition: all 0.45s linear;
+  -moz-transition: all 0.45s linear;
+  padding: 0.8em;
+  margin-left: 1em;
+  overflow-x: auto;
+
+}
+
+pre:hover {
+  border: 1.5px solid rgba(14, 139, 125, 1);
+}
+
+blockquote {
+  @extend pre;
+}
+
+// table
+// ---------------------
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #256;
+  padding: 0.3em 0.5em;
+}
+
+hr {
+  border: none;
+  border-top: 1px double rgb(76, 64, 8);
+  width: 100%;
+  margin: 20px 0;
+}
+
+del {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+strong, b {
+  font-weight: 600;
+  color: rgba(16, 226, 16, 0.88);
+}
+
+em, i {
+  font-family: "Open Sans";
+  font-style: italic;
+  color: rgb(233, 109, 50);
+}
+
+.article-header {
+  padding-bottom: 2em;
+
+  div {
+    color: white;
+
+    span {
+      color: darkkhaki;
+    }
+  }
+}
+
+.micro-say {
+  p {
+    padding: 0.8em;
+    color: #cae3b6;
+    background: rgba(11, 132, 95, 0.26);
+    border: 1px solid #614;
+    border: 1.5px solid rgba(14, 139, 125, 0.2);
+    position: relative;
+    font-family: "Open Sans";
+    -webkit-transition: all 0.45s linear;
+    -moz-transition: all 0.45s linear;
+
+    &:hover {
+      border: 1.5px solid rgba(14, 139, 125, 1);
+    }
+
+    img {
+      max-width: 30%;
+      max-height: 20%;
+    }
+  }
+
+  pre {
+    border: 1px solid #c26;
+    border-style: none;
+    margin-left: 0;
+    top: -1em;
+    text-align: right;
+    background-color: rgba(113, 0, 128, 0);
+
+    code {
+      color: green;
+    }
+
+    &:hover {
+      background-color: rgba(113, 0, 128, 0);
+    }
+  }
+}
+
+// 上/下篇文章
+.pagination ul {
+  list-style: none;
+}
+
+// 目录
+.tocWrap {
+  z-index: 100;
+  top: 16%;
+  right: 2.8%;
+
+  @media print {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    position: fixed;
+    width: 250px;
+  }
+
+  .menu {
+    text-align: center;
+    width: 100%;
+    background-color: #F0C81E;
+    border-radius: 2px 2px 0 0;
+    color: #122;
+    position: relative;
+    z-index: 101;
+    cursor: pointer;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  #markdown-toc {
+    overflow-y: auto;
+    height: auto;
+    position: relative;
+    border: 1px solid #F0C81E;
+    border-radius: 0 0 1px 1px;
+    color: #999;
+    background: rgba(10,30,40,0.85);
+    -webkit-box-shadow: 0 1px 8px #000;
+
+    li {      
+      list-style-position: inside;
+      padding: 0px !important
+    }
+  }
+}
+
+.micro-say-list {
+  li {
+  	display: inline-block;
+    margin: 0.3em auto;
+  }
+}
+
+.post-category {
+	border: 1px dashed #18445F;
+	background-color: #18445F;
+}
+
+.post-category:hover {
+	border: 1px dashed rgba(70, 88, 99, 1);
+	background-color: rgba(70, 88, 99, 1);
+}
+

@@ -1,0 +1,33 @@
+.tag_box {
+  list-style: none;
+  display: block;
+
+  .tag-name-selected {
+    a {
+      background-color: teal;
+    }
+  }
+
+  li {
+    float: left;
+    cursor: pointer;
+
+    a {
+      display: inline-block;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin: 0 0.5px;
+      color: cyan;
+      text-decoration: none;
+
+      &:hover {
+        opacity: 0.39;
+      }
+    }
+
+    span {
+      vertical-align: super;
+      font-size: .64em;
+    }
+  }
+}

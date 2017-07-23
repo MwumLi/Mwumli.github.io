@@ -1,0 +1,20 @@
+{% comment %}<!--
+以 "yyyy-mm-dd post.title" 的格式列出文章
+Usage:
+  {% include posts/list_posts posts=site.posts limit=10 offset=0 more="更多" %}
+Include Params:
+	1) posts - 文章列表
+  2) limit - 显示的文章个数, 默认显示 posts 全部
+  3) offset - 从指定位置开始遍历, 默认从 posts 开始位置
+  4) more - 归档的链接, 默认不存在, 只有首页显示最近10篇文章需要
+-->{% endcomment %}
+
+{% for post in include.posts limit:include.limit offset:include.offset %}
+  {% if post.isShow %}
+  <li><span>{{ post.date | date: "%Y-%m-%d" }}</span>&nbsp;&nbsp;<a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+  {% endif %}
+{% endfor %}
+
+{% if include.more %}
+  <li><span>0000-00-00</span>&nbsp;&nbsp;<a href="{{ BASE_PATH }}{{site.data.nav.archive.path}}" class="post-category">{{ include.more }}</a></li>
+{% endif %}

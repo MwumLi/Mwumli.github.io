@@ -1,0 +1,21 @@
+micro_say:
+  isShow: true
+  title: "微语"
+  type: "micro_say"
+archive:
+  isShow: true
+  path: /pages/archive/
+  title: "归档"
+category:
+  isShow: true
+  path: /pages/categories/
+  title: "分类"
+tag:
+  isShow: true
+  path: /pages/tags/
+  title: "标签"
+subscribe:
+  isShow: true
+  path: /rss.xml
+  title: "订阅"
+

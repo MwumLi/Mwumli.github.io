@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>倘若微小 - 为你和你的项目建立一个站点--Github Pages</title>
+  
+  <meta name="description" content="">
+  
+  <meta name="author" content="MwumLi">
+
+  <!-- -Site Icon -->
+  <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+  <!-- Custom CSS -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="all" />
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+</head>
+
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <div class="site-wrapper clearfix">
+          <a class="site-title" href="/">倘若微小</a>
+<button class="site-nav-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<nav class="site-nav">
+  
+
+
+
+
+<a class="page-link" href="/micro-say/2017/">微语</a>
+
+
+
+
+
+<a class="page-link" href="/pages/archive/">归档</a>
+
+
+
+
+
+<a class="page-link" href="/pages/categories/">分类</a>
+
+
+
+
+
+<a class="page-link" href="/pages/tags/">标签</a>
+
+
+
+
+
+<a class="page-link" href="/rss.xml">订阅</a>
+
+
+
+
+</nav>
+
+
+        </div>
+      </header>
+      <main class="site-main">
+        <div class="site-wrapper clearfix">
+          <div class="page-header">
+    <h1>为你和你的项目建立一个站点--Github Pages <small></small></h1>
+    <div class="article-header">
+        
+        
+        <div>
+            <span>分类: </span>
+            <a href="/pages/categories/?names=记录" class="tag">记录</a>
+            
+                <span>标签: </span>
+            
+            
+                <a href="/pages/tags/?names=Github#tag-search-list" class="tag">Github</a>
+            
+                <a href="/pages/tags/?names=Website#tag-search-list" class="tag">Website</a>
+            
+        </div>
+        <div>
+            Last Modify in
+            
+            <span>2015-09-25</span>,
+            
+            published in <span>2014-08-03</span>
+            by <span> MwumLi</span>
+        </div>
+
+        
+        
+    </div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#github-pages" id="markdown-toc-github-pages">什么是GitHub Pages?</a>    <ul>
+      <li><a href="#section" id="markdown-toc-section">两种站点服务</a></li>
+      <li><a href="#section-1" id="markdown-toc-section-1">好处不言而喻</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-2" id="markdown-toc-section-2">建站开始</a>    <ul>
+      <li><a href="#user-or-organization-site" id="markdown-toc-user-or-organization-site">User or organization Site</a>        <ul>
+          <li><a href="#githubrepository" id="markdown-toc-githubrepository"><a href="https://github.com/new" title="新建一个GitHub仓库">创建一个仓库</a></a></li>
+          <li><a href="#git" id="markdown-toc-git">选择你正在使用的git客户端</a></li>
+          <li><a href="#section-5" id="markdown-toc-section-5">浏览你的网站吧</a></li>
+        </ul>
+      </li>
+      <li><a href="#project-site" id="markdown-toc-project-site">project Site</a>        <ul>
+          <li><a href="#generate-a-site" id="markdown-toc-generate-a-site">半路出家(Generate a Site)</a></li>
+          <li><a href="#start-from-scratch" id="markdown-toc-start-from-scratch">白手起家(Start from scratch)</a></li>
+          <li><a href="#section-9" id="markdown-toc-section-9">查看你的项目站点</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="github-pages">什么是GitHub Pages?</h2>
+<p><a href="https://pages.github.com/" title="GitHub Pages">Github Pages</a>是GitHub推出的一个新的服务  <br />
+可以用来为你的<a href="https://pages.github.com/" title="GitHub 首页">GitHub</a>账户和你的每一个托管在<a href="https://pages.github.com/" title="GitHub 首页">GitHub</a>的项目建立一个web站点,show you and show your projects</p>
+
+<h3 id="section">两种站点服务</h3>
+<p>GitHub提供两种类型的站点服务:</p>
+
+<ul>
+  <li>User or organization Site – 个人或组织站点</li>
+  <li>Project Site – 项目站点</li>
+</ul>
+
+<p>每一个GitHub用户只可以创建一个个人站点，同时，你可以建立多个项目站点</p>
+
+<h3 id="section-1">好处不言而喻</h3>
+<p>建立个人或组织站点，让更多的人更好的认识你或你的组织  <br />
+建立项目站点，你可以可视化的展示你的每一个项目，而不是让你的partner(或者更多喜欢这个项目的人)看着一堆源代码而手足无措</p>
+
+<p>你可以很轻松建立一个网站(尽管它是static),有专门的主机托管，还可以通过git进行版本控制，那不是很酷吗？</p>
+
+<p>好了，该做出你的选择了…</p>
+
+<h2 id="section-2">建站开始</h2>
+
+<hr />
+
+<h3 id="user-or-organization-site">User or organization Site</h3>
+
+<hr />
+
+<h4 id="githubrepository"><a href="https://github.com/new" title="新建一个GitHub仓库">创建一个仓库</a></h4>
+
+<p>从<a href="https://pages.github.com/" title="GitHub 首页">GitHub</a>开始，<a href="https://github.com/new" title="新建一个GitHub仓库">创建</a>一个名为<strong>username.github.io</strong>的仓库  <br />
+其中,仓库名的第一部分<em>username</em>是你在GitHub上的用户名(或组织名)  <br />
+假如<em>username</em>和你的用户名不匹配，站点将不能工作，因此，请确保它正确  <br />
+<img src="https://pages.github.com/images/user-repo@2x.png" alt="在GirHub上新建一个仓库" /></p>
+
+<h4 id="git">选择你正在使用的git客户端</h4>
+
+<p>这里讲述三种客户端：</p>
+
+<ul>
+  <li>Terimal – 这种经常用在Unix或类Unix系统下(Linux,mac当然也可以)</li>
+  <li>GitHub for Windows – 一看就知道，这是windows下的客户端</li>
+  <li>GitHub for Mac – 这个是Mac下的客户端</li>
+</ul>
+
+<p>好了，开始咯</p>
+
+<h5 id="terimal">Terimal(终端)</h5>
+
+<h6 id="section-3">克隆刚创建的仓库</h6>
+
+<p>在terimal下转到你想存放你项目的地方，然后clone这个新的仓库</p>
+
+<pre><code>$ git clone https://github.com/username/username.github.io  
+</code></pre>
+
+<h6 id="hello-world">Hello World</h6>
+
+<p>进入项目目录，新建一个<em>index.html</em>,如下</p>
+
+<pre><code>$ cd username.github.io
+$ echo "Hello World" &gt; index.html  
+</code></pre>
+
+<h6 id="pushgithub">push你的项目到github</h6>
+
+<p>添加，提交，推送你对项目做出的改变</p>
+
+<pre><code>$ git add --all
+$ git commit -m "Initial commit"
+$ git push
+</code></pre>
+
+<hr />
+
+<h5 id="github-for-windows-or-mac">GitHub for Windows or Mac</h5>
+
+<h6 id="clone">Clone仓库</h6>
+
+<p>点击绿色的”Set up in Desktop”按钮  <br />
+当GitHub桌面app打开，保存这个项目  <br />
+<img src="https://pages.github.com/images/setup-in-desktop@2x.png" alt="从GitHub上启动桌面app" />  <br />
+假如app没有启动，那么双击的桌面app启动它，并且在app里克隆你的项目</p>
+
+<h6 id="createindexhtml">Create一个index.html文件</h6>
+
+<p>使用你最喜欢的编辑器，新建index.html,内容如下</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;p&gt;I'm hosted with GitHub Pages.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>然后，添加到你的项目</p>
+
+<h6 id="commit--sync">commit &amp;&amp; Sync</h6>
+
+<p>进入你的仓库(app里),commit你的变化，然后按下sync(同步)按钮  <br />
+假如你在Windows下：  <br />
+<img src="https://pages.github.com/images/sync-windows@2x.png" alt="windows提交并同步变化到项目" />  <br />
+假如你在Mac下：  <br />
+<img src="https://pages.github.com/images/sync-mac.png" alt="Mac提交并同步变化到项目" /></p>
+
+<h5 id="section-4">未知区域</h5>
+
+<p>假如你不知道你的平台，额，我无能为力了</p>
+
+<h4 id="section-5">浏览你的网站吧</h4>
+
+<p>启动你的浏览器，输入<em>http://username.github.io</em>,然后，回车，接着，404，哈哈  <br />
+等一下吧，新生成一个网站需要一段时间滴  <br />
+时间也不是很长，大概10分钟吧  <br />
+未来可能会做的更好，期待吧</p>
+
+<hr />
+
+<h3 id="project-site">project Site</h3>
+
+<p>创建项目站点，有两种办法</p>
+
+<ol>
+  <li>Generate a Site</li>
+  <li>Start from scratch</li>
+</ol>
+
+<p>实际上两者创建了分支gh-pages，只是第一种办法是在当前项目的主分支的当前状态开辟新的分支；第二种则是开辟一个没有父节点的分支  <br />
+说的简单点，第一种的gh-pages分支有当前项目的主分支的内容,所以被称为<em>半路出家</em>；而第二种则没有当前项目主分支的内容，完全像一个新的仓库,所以被称为<em>白手起家</em>(Start from scratch)</p>
+
+<h4 id="generate-a-site">半路出家(Generate a Site)</h4>
+
+<h5 id="repository-settings">Repository Settings</h5>
+
+<p>访问<a href="https://pages.github.com/" title="GitHub 首页">GirHub,com</a>,创建一个新的仓库或者进入一个已存在的仓库  <br />
+然后点击右手边的<em>Settings</em>,进入项目设置页面  <br />
+<img src="https://pages.github.com/images/settings@2x.png" alt="Repository settings" /></p>
+
+<h5 id="automatic-generator">使用Automatic Generator</h5>
+
+<p>滑动settings页面到<em>GitHub Pages</em>模块  <br />
+按下<em>Automatic Page Generator</em>按钮  <br />
+<img src="https://pages.github.com/images/automatic@2x.png" alt="Automatic Pages Generator" /></p>
+
+<h5 id="section-6">添加内容</h5>
+
+<p>使用内置编辑器添加内容给你的网站  <br />
+假如你已经有了<em>README.md</em>在你的项目，你可以点击右手边<em>Load README.md</em>进行导入  <br />
+当你做完这些，点击<em>Continue to Layouts</em>  <br />
+<img src="https://pages.github.com/images/add-content@2x.png" alt="add content to your project site" /></p>
+
+<h5 id="section-7">选择一个主题</h5>
+
+<p>在顶部的提供主题里，选择一个你喜欢的主题  <br />
+当你完成，点击右手边的<em>Publish page</em>按钮  <br />
+<img src="https://pages.github.com/images/choose-layout@2x.png" alt="choose a theme" /></p>
+
+<p>半路出家搞定</p>
+
+<hr />
+
+<h4 id="start-from-scratch">白手起家(Start from scratch)</h4>
+
+<h5 id="ph-pages">创建一个ph-pages分支</h5>
+
+<p>在你的项目页面，点击左手边分支下拉菜单，输入<code>gh-pages</code>,然后按下enter进行创建  <br />
+<img src="https://pages.github.com/images/create-branch@2x.png" alt="create gh-pages branch" />  <br />
+这个分支用于发布你的项目站点，你可以随时添加项目的进度等</p>
+
+<h5 id="section-8">使其成为默认分支</h5>
+
+<p>假如你已经为你的项目创建了新分支<em>gh-pages</em>  <br />
+进入仓库设置界面  <br />
+在顶部的模块，改变默认分支为<em>gh-pages</em>  <br />
+<img src="https://pages.github.com/images/default-branch@2x.png" alt="change default branch" />  <br />
+这一步并不是必须的，因为此步的意义只是让其看起来更像一个web site project</p>
+
+<h5 id="indexhtml">创建一个index.html</h5>
+
+<p>返回仓库总览界面，点击紧邻仓库名旁边的plus图标创建一个名为index.html的文件    <br />
+<img src="https://pages.github.com/images/create-file@2x.png" alt="create file" /></p>
+
+<h5 id="hello-world-1">Hello World</h5>
+
+<p>为这个index.html文件添加内容<em>Hello world</em>  <br />
+<img src="https://pages.github.com/images/hello-world@2x.png" alt="hello-world" /></p>
+
+<h5 id="commit">commit文件</h5>
+
+<p>滑动到页面底部，写上提交信息，提交这个新文件  <br />
+<img src="https://pages.github.com/images/commit-web@2x.png" alt="commit-web" />  <br />
+呼，打完收工</p>
+
+<p>对咯，这种办法创建项目站点完全可以在Terimal,GitHub for Windows,还有GitHub for Mac下进行，请自行探索吧</p>
+
+<h4 id="section-9">查看你的项目站点</h4>
+
+<p>领年终奖了  <br />
+启动你的浏览器，输入<em>http://username.github.io/repository</em>  <br />
+<em>Repository</em>是你的项目仓库名  <br />
+然后，回车，接着，404，额，又被坑了  <br />
+等10分钟吧，这么简单创建一个web站点，也不差这点时间对吧?</p>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/%E8%AE%B0%E5%BD%95/2014/06/14/lamp-build/" title="LAMP 环境搭建">LAMP 环境搭建</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/%E8%BD%AF%E4%BB%B6/2014/08/14/static-website-by-jekyll/" title="使用jekyll搭建静态站点">使用jekyll搭建静态站点</a></li>
+      
+      </ul>
+    </div>
+
+    <hr>
+
+    <div id="to_comments">
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+    </div>
+ </div>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+        <div class="site-wrapper clearfix">
+          <p>&copy;2014-2017 <a href="">倘若微小</a><br />
+Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="">MwumLi</a><br />
+本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。</p>
+
+        </div>
+      </footer>
+
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+    </div>
+        
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50450008-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+
+        
+
+
+
+  
+  <script src="/assets/lib/jquery/jquery-2.1.3.min.js?2.1.3" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery-zclip/jquery.zclip.js?1.1.7" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery.resizeend/jquery.resizeend.min.js?0.2.0" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/bigfoot/bigfoot.min.js?2.1.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?2.1.5" type="text/javascript" ></script>
+  
+
+
+
+
+        <script type="text/javascript" id="jekyll.configurations" charset="utf-8">
+          var IfMicro = window.IfMicro || {};
+          var CONFIG = {
+            domain: 'http://mwumli.github.com',
+            zclip_swf: '/assets/lib/jquery-zclip/ZeroClipboard.swf',
+            page: {
+              type: 'post',
+              title: '为你和你的项目建立一个站点--Github Pages',
+              toc: !!'true'
+            }
+          };
+          window._EXPORT_RENDER_RECT = {
+            width: 1366,
+            height: 1555
+          }
+        </script>
+        
+
+
+  
+  
+    
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <script src="/assets/js/toc.js?2.0.1" type="text/javascript" ></script>
+  
+  
+
+  
+  <script src="/assets/js/utils.js?2.0.1" type="text/javascript" ></script>
+  
+
+  
+  
+  
+
+  
+  <script src="/assets/js/bootstrap.js?2.0.1" type="text/javascript" ></script>
+  
+
+
+    </body>
+</html>
+
+

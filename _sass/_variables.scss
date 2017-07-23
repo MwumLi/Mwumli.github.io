@@ -1,0 +1,38 @@
+// Colors
+// colors for use across theme.
+// --------------------------------------------------
+
+// Global font setting
+$font-weight                                        : 100;
+$font-size                                          : 16px;
+$line-height                                        : 1.5;
+$font-family                                        : Helvetica, Arial, sans-serif;
+$font-color                                         : #e4ebf0;
+
+$header-bg-color                                    : #192323;
+$body-bg-color                                      : black;
+
+// selection
+$selection-bg                                       : blue;
+$selection-color                                    : white;
+
+$site-title-font-size                               : 32px;
+$site-title-line-height                             : 56px;
+$site-title-color                                   : #00d8ff;
+$site-title-hover-color                             : rgba(0, 216, 255, 0.39);
+
+$site-nav-link-color                                : yellow;
+$site-nav-link-hover-color                          : rgba(255, 255, 0, 0.39);
+
+// Global link color.
+$link-color                                         : #5FA8E6;
+$link-hover-color                                   : rgb(28, 181, 28);
+
+// h1-h6
+// ------------------------------------------------
+$head-base-font-size                                : 32px;
+$head-font-colors                                   : #f37 #fd5 #df5 #6d9 red cyan;
+
+// code
+$code-font-color                                    : #cae3b6;
+$code-font-family                                   : DejaVu Sans Mono, Consolas, "Liberation Mono", Menlo, Courier, monospace;

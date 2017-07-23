@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<div class="page-header">
+  <h1>{{ page.title }}-{{ page.group }} <small>{{ prevurl }}</small></h1>
+</div>
+<div class="micro-say">
+  {{ content }}
+<hr>
+{% include micro_say/pagination %}
+<hr>
+</div>
+
+
+<div id="to_comments">
+{% include comments %}
+</div>
