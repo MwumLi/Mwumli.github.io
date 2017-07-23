@@ -60,9 +60,10 @@ analytics :
 # ------------------
 source:      .
 destination: ./_site
-plugins:     ./_plugin
-layouts:     ./_layout
-data_source: ./_data
+plugins_dir:  _plugins
+layouts_dir:  _layout
+data_dir:     _data
+includes_dir: _includes
 collections:
   micro_say:
     output: true
@@ -73,10 +74,11 @@ collections:
 # ------------------
 safe:         false
 include:      [".htaccess"]
-exclude:      ["Rakefile", "README.md", "changelog.md", "node_modules"]
+exclude:      ["Rakefile", "README.md", "changelog.md", "Gemfile", "Gemfile.lock", "node_modules", "vendor/bundle/", "vendor/cache/", "vendor/gems/", "vendor/ruby/"]
 keep_files:   [".git", ".svn"]
 encoding:     "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+strict_front_matter: false
 
 # ------------------
 # 内容过滤
@@ -90,7 +92,7 @@ unpublished: false
 # 插件
 # ------------------
 whitelist: []
-gems:      []
+plugins:   []
 
 # ------------------
 # 转换
@@ -150,22 +152,23 @@ defaults:
 
 # ------------------
 # Markdown 处理器
+# https://github.com/jekyll/jekyll/issues/4619
 # ------------------
 
 kramdown:
-  input:          GFM
   auto_ids:       true
-  footnote_nr:    1
   entity_output:  as_char
   toc_levels:     2..4  # h2-h4 作为目录
   smart_quotes:   lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false  # github 不支持, 停用
-  # syntax_highlighter: rouge
-
-  coderay:
-    coderay_wrap:              div
-    coderay_line_numbers:      inline
-    coderay_line_number_start: 1
-    coderay_tab_width:         4
-    coderay_bold_every:        10
-    coderay_css:               style
+  input:          GFM
+  footnote_nr:    1
+  enable_coderay: false
+  hard_wrap:      true  # 如果 Markdown 文本中有折行的话，会转换为标签
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      start_line: 1

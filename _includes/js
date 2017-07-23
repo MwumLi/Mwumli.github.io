@@ -6,7 +6,7 @@ Usage:
 
 {% for js in site.data.js %}
   {% if js[1].page %}
-  {% if js[1].page contains page.type %}
+  {% if js[1].page contains g_page_type %}
     {% include lib type="css" %}
   <script src="{{ JS_PATH }}/{{js[1].js}}?{{ site.data.version}}" type="text/javascript" ></script>
   {% endif %}

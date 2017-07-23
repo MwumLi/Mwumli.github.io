@@ -192,10 +192,10 @@ Docker 支持多种 Linux 的发行版本的安装
         $ sudo docker run --restart-on-failure:5 -d ubuntu command 
 
 15. 获取某个容器的详细信息 `inspect`  
-
+{% raw %}
         $ sudo docker inspect container_name/container_id
         $ sudo docker inspect --format='{{ .State.Running }}' container_name/container_id     # 返回是否运行, --format 可用来选择查询
-   
+{% endraw %}
     一次也可指定多个容器  
 	`--format` 可以指定打印某一项信息  
 

@@ -40,4 +40,5 @@
   {% capture IMAGE_PATH %}{{ ASSET_PATH }}/images{% endcapture %}
 {% endif %}
 
+{% assign g_page_type = page.type | default: layout.type %}
 {% endcapture %}{% assign setup_cache = nil %}

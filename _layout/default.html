@@ -34,9 +34,9 @@
             domain: '{{ site.url }}',
             zclip_swf: '{{ LIB_PATH }}/jquery-zclip/ZeroClipboard.swf',
             page: {
-              type: '{{page.type}}',
+              type: '{{ g_page_type }}',
               title: '{{ page.title }}',
-              toc: !!'{{ page.toc }}'
+              toc: {{ page.toc | default: false }}
             }
           };
           window._EXPORT_RENDER_RECT = {
