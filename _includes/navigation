@@ -7,15 +7,10 @@ Usage:
     <ul>
   	  {% include LU/pages_list %}
   	</ul>
-  	
 -->{% endcomment %}
 
 {% for nav in site.data.nav %}
 {% if nav[1].isShow %}
-{% if nav[1].type == "micro_say" %}
-<a class="page-link" href="{{site.micro_say.last.url}}">{{ site.micro_say.last.title }}</a>
-{% else %}
-<a class="page-link" href="{{nav[1].path}}">{{ nav[1].title }}</a>
-{% endif %}
+<a class="page-link {% if g_page_type == nav[1].type %}active{% endif %}" href="{{nav[1].path | default: site.micro_say.last.url}}">{{ nav[1].title }}</a>
 {% endif %}
 {% endfor %}

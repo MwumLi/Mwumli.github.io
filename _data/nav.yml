@@ -6,14 +6,17 @@ archive:
   isShow: true
   path: /pages/archive/
   title: "归档"
+  type: "archive"
 category:
   isShow: true
   path: /pages/categories/
   title: "分类"
+  type: "categories"
 tag:
   isShow: true
   path: /pages/tags/
   title: "标签"
+  type: "tags"
 subscribe:
   isShow: true
   path: /rss.xml

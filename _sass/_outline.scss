@@ -76,17 +76,12 @@ body {
 .site-nav {
   float: left;
   line-height: 56px;
-  margin-top: 6px;
-  font-size:  $font-size + 2;
+  font-size:  $font-size;
 
   .page-link {
-    line-height: $line-height;
-
-    // Gaps between nav items, but not on the last one
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
-
+    display: block;
+    float: left;
+    padding: 0 15px;
     &,
     &:visited {
       color: $site-nav-link-color;
@@ -95,17 +90,15 @@ body {
     &:hover {
       color: $site-nav-link-hover-color;
     }
+
+    &.active {
+      background: #354851;
+    }
   }
 
   @include mobile {
     float: none;
     display: none;
-
-    .page-link {
-       &:not(:last-child) {
-        margin-right: 10px;
-      }
-    }
   }
 }
 
@@ -298,25 +291,9 @@ em, i {
 }
 
 .micro-say {
-  p {
-    padding: 0.8em;
-    color: #cae3b6;
-    // background: rgba(11, 132, 95, 0.26);
-    border: 1px solid #614;
-    border: 1.5px solid rgba(14, 139, 125, 0.2);
-    position: relative;
-    font-family: "Open Sans";
-    -webkit-transition: all 0.45s linear;
-    -moz-transition: all 0.45s linear;
-
-    &:hover {
-      border: 1.5px solid rgba(14, 139, 125, 1);
-    }
-
-    img {
-      max-width: 30%;
-      max-height: 20%;
-    }
+  img {
+    max-width: 30%;
+    max-height: 20%;
   }
 
   pre {
@@ -336,6 +313,7 @@ em, i {
     }
   }
 }
+
 
 // 上/下篇文章
 .pagination ul {
