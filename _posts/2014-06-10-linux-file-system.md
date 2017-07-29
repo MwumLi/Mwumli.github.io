@@ -6,7 +6,6 @@ category: 记录
 tags: [Linux, cmd, 文件系统]
 toc: true
 modifyTime: "2015-09-25 16:42:35"
-isShow: true
 ---
 
 {% include gen_toc %}

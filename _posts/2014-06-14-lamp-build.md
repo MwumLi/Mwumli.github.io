@@ -6,7 +6,6 @@ category: 记录
 tags: [LAMP, Linux, Apache, Mysql, Php, Web]
 toc: true
 modifyTime: "2015-12-04 11:12:13"
-isShow: true
 ---
 
 {% include gen_toc %}

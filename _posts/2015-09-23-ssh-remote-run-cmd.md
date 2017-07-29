@@ -6,7 +6,6 @@ category: 记录
 tags: [SSH, Linux, cmd]
 toc: true
 modifyTime: "2015-09-23 05:38:18"
-isShow: true
 ---
 
 {% include gen_toc %}

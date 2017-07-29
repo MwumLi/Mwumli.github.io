@@ -6,7 +6,6 @@ category: 记录
 tags: [Vim, Plugin, Linux]
 toc: true
 modifyTime: "2015-09-25 16:21:58"
-isShow: true
 ---
 
 {% include gen_toc %}

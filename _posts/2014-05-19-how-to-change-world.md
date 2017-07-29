@@ -6,7 +6,6 @@ category: 情绪
 tags: [内圣外王,改变世界,回归自身]
 toc: true
 modifyTime: "2015-09-25 15:38:05"
-isShow: true
 ---
 
 {% include gen_toc %}

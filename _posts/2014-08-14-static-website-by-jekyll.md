@@ -6,7 +6,6 @@ category: 软件
 tags: [Jekyll, Git, Github, Linux, Web, Website]
 toc: true
 modifyTime: "2015-09-25 16:50:53"
-isShow: true
 ---
 
 {% include gen_toc %}

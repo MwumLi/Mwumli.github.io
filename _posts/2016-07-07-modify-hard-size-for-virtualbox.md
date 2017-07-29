@@ -6,7 +6,6 @@ category: 记录
 tags: [VirtualBox]
 toc: true
 modifyTime: "2016-07-07 22:50:44"
-isShow: true
 ---
 
 {% include gen_toc %}

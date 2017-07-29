@@ -6,7 +6,6 @@ category: 搭建
 tags: [Go, 安装, 编译, 运行环境]
 toc: true
 modifyTime: "2015-11-10 16:25:50"
-isShow: true
 ---
 
 {% include gen_toc %}

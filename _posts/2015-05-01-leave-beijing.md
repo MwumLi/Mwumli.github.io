@@ -6,7 +6,7 @@ category: 情绪
 tags: [离开, 北京]
 toc: true
 modifyTime: "2015-05-05 11:07:01"
-isShow: false
+hide: true
 ---
 
 {% include gen_toc %}

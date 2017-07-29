@@ -12,8 +12,8 @@ The following content below should be placed in post:
 	{% include custom/gen_toc %}
 -->{% endcomment %}
 
-{% if page.toc %}
+{%- if page.toc -%}
 * toc
 {:toc}
-{% endif %}
+{%- endif -%}
 

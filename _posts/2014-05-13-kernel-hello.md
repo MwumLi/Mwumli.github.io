@@ -6,7 +6,6 @@ category: 记录
 tags: [Linux, Kernel, 内核]
 toc: true
 modifyTime: "2015-09-25 15:34:48"
-isShow: true
 ---
 
 {% include gen_toc %}

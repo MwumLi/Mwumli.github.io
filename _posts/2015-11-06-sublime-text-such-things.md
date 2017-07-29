@@ -6,7 +6,6 @@ category: 软件
 tags: [Sulime Text, 前端, 编辑器]
 toc: true
 modifyTime: "2015-12-06 16:24:52"
-isShow: true
 ---
 
 {% include gen_toc %}

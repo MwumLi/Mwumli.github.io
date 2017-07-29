@@ -6,7 +6,6 @@ category:
 tags: [Selenium,Python,Automated Testing]
 toc: true
 modifyTime: "2015-11-19 14:38:23"
-isShow: true
 ---
 
 {% include gen_toc %}

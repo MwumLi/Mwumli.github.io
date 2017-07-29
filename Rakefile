@@ -73,10 +73,8 @@ task :post do
     post.puts "tags: #{tags}"
     post.puts "toc: true"
     post.puts "modifyTime: \"#{curTime}\""
-    post.puts "isShow: true"
     post.puts "---"
-    post.puts "{% include JB/setup %}"
-    post.puts "{% include custom/gen_toc %}"
+    post.puts "{% include gen_toc %}"
   end
 end # task :post
 
@@ -101,7 +99,6 @@ task :page do
     post.puts "title: \"#{title}\""
     post.puts 'description: ""'
     post.puts "---"
-    post.puts "{% include JB/setup %}"
   end
 end # task :page
 

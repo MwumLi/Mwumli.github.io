@@ -6,7 +6,6 @@ category: 软件
 tags: [Sublime Text 2, Usage]
 toc: true
 modifyTime: "2015-09-25 16:35:06"
-isShow: true
 ---
 
 {% include gen_toc %}

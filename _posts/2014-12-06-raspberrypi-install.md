@@ -6,7 +6,6 @@ category: 记录
 tags: [Raspberrypi, 树莓派]
 toc: true
 modifyTime: "2015-09-25 17:01:30"
-isShow: true
 ---
 
 {% include gen_toc %}
