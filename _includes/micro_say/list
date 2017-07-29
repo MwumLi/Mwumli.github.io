@@ -4,9 +4,7 @@
 -->{% endcomment %}
 
 
-{% for node in site.micro_say | sort: "date" | reversed %}
-    {% unless forloop.first %}
-      |
-    {% endunless %}
-    <li><a href="{{node.url}}">{{node.group}}</a></li>
-{% endfor %}
+{%- for node in site.micro_say | sort: "date" | reversed -%}
+  {% unless forloop.first %} | {% endunless %}
+  <li><a href="{{node.url}}">{{node.group}}</a></li>
+{%- endfor -%}

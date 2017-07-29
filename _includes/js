@@ -4,13 +4,13 @@ Usage:
     {% include js %}
 -->{% endcomment %}
 
-{% for js in site.data.js %}
-  {% if js[1].page %}
-  {% if js[1].page contains g_page_type %}
-    {% include lib type="css" %}
+{%- for js in site.data.js -%}
+  {%- if js[1].page -%}
+  {%- if js[1].page contains g_page_type -%}
+    {%- include lib type="css" -%}
   <script src="{{ JS_PATH }}/{{js[1].js}}?{{ site.data.version}}" type="text/javascript" ></script>
-  {% endif %}
-  {% else %}
+  {%- endif -%}
+  {%- else -%}
   <script src="{{ JS_PATH }}/{{js[1].js}}?{{ site.data.version}}" type="text/javascript" ></script>
-  {% endif %}
-{% endfor %}
+  {%- endif -%}
+{%- endfor -%}

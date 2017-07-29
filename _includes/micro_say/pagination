@@ -3,34 +3,33 @@ micro_say 分页
 	Usage:
 		{% include micro_say/pagination %}
 -->{% endcomment %}
-{% assign document = site.micro_say | sort: "date" | reversed %}
-{% for link in document %}
-{{ link.date | date: "%Y-%m-%d" }}
-  {% if link.group == page.group %}
-    {% unless forloop.first %}
-        {% assign prevurl = prev.url %}
-        {% assign prevtitle = prev.title | append: "-" | append: prev.group %}
-    {% endunless %}
-    {% unless forloop.last %}
-        {% assign next = document[forloop.index] %}
-        {% assign nexturl = next.url %}
-        {% assign nexttitle = next.title | append: "-" | append: next.group %}
-    {% endunless %}
-  {% endif %}
-  {% assign prev = link %}
-{% endfor %}
+{%- assign document = site.micro_say | sort: "date" | reversed -%}
+{%- for link in document -%}
+  {%- if link.group == page.group -%}
+    {%- unless forloop.first -%}
+        {%- assign prevurl = prev.url -%}
+        {% assign prevtitle = prev.title | append: "-" | append: prev.group -%}
+    {%- endunless -%}
+    {%- unless forloop.last -%}
+        {%- assign next = document[forloop.index] -%}
+        {%- assign nexturl = next.url -%}
+        {%- assign nexttitle = next.title | append: "-" | append: next.group -%}
+    {%- endunless -%}
+  {%- endif -%}
+  {%- assign prev = link -%}
+{%- endfor -%}
 
 <div class="pagination">
 	<ul>
-	{% if prevurl %}
+	{%- if prevurl -%}
 		<li class="prev">上一年: <a href="{{prevurl}}" title="{{ prevtitle }}">{{ prevtitle }}</a></li>
-	{% else %}
+	{%- else -%}
 		<li class="prev-disabled">上一年: 那年我未曾书写</li>
-	{% endif %}
-	{% if nexturl %}
+	{%- endif -%}
+	{%- if nexturl -%}
 		<li class="next">下一年: <a href="{{ nexturl }}" title="{{ nexttitle }}">{{ nexttitle }}</a></li>
-	{% else %}
+	{%- else -%}
 		<li class="next-disabled">下一年: 请等我到来年
-	{% endif %}
+	{%- endif -%}
 	</ul>
 </div>
