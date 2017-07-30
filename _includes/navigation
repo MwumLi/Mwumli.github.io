@@ -9,9 +9,9 @@ Usage:
   	</ul>
 -->{% endcomment %}
 
-{%- for nav in site.data.nav -%}
-{%- if nav[1].hide -%}
-{%- else -%}
+{% for nav in site.data.nav %}
+{% if nav[1].hide %}
+{% else %}
 <a class="page-link {% if g_page_type == nav[1].type %}active{% endif %}" href="{{nav[1].path | default: site.micro_say.last.url}}">{{ nav[1].title }}</a>
-{%- endif -%}
-{%- endfor -%}
+{% endif %}
+{% endfor %}

@@ -5,20 +5,20 @@ Usage:
     {% include lib type="js" %}
 -->{% endcomment %}
 
-{%- if include.type == 'css' -%}
-{%- for lib in site.data.lib -%}
-  {%- for css in lib[1].css -%}
-  {%- if lib[1].css_asset -%}
+{% if include.type == 'css' %}
+{% for lib in site.data.lib %}
+  {% for css in lib[1].css %}
+  {% if lib[1].css_asset %}
   <link rel="stylesheet" href="{{ ASSET_PATH }}/{{css}}?{{lib[1].version}}" type="text/css">
-  {%- else -%}
+  {% else %}
   <link rel="stylesheet" href="{{ LIB_PATH }}/{{css}}?{{lib[1].version}}" type="text/css">
-  {%- endif -%}
-  {%- endfor -%}
-{%- endfor -%}
-{%- else -%}
-{%- for lib in site.data.lib -%}
-  {%- for js in lib[1].js -%}
+  {% endif %}
+  {% endfor %}
+{% endfor %}
+{% else %}
+{% for lib in site.data.lib %}
+  {% for js in lib[1].js %}
   <script src="{{ LIB_PATH }}/{{js}}?{{ lib[1].version}}" type="text/javascript" ></script>
-  {%- endfor -%}
-{%- endfor -%}
-{%- endif -%}
+  {% endfor %}
+{% endfor %}
+{% endif %}

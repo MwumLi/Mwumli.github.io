@@ -8,43 +8,43 @@ Include Params:
   3) posts       是归档文章列表, 默认为 site.posts, 即站内所有文章  
 -->{% endcomment %}
 {% comment %}<!--Define include params-->{% endcomment %}
-{%- assign internal_archive_posts = include.posts -%}
-{%- if internal_archive_posts == nil -%}
-{%- assign internal_archive_posts = site.posts -%}
-{%- endif -%}
-{%- if include.begin_time -%}
-{%- assign internal_archive_begin_year = include.begin_time | date: "%Y" -%}
-{%- else -%}
-{%- assign internal_archive_begin_year = internal_archive_posts.last.date | date: "%Y" -%}
-{%- endif -%}
-{%- if include.end_time -%}
-{%- assign internal_archive_end_year = include.begin_time | date: "%Y" -%}
-{%- else -%}
-{%- assign internal_archive_end_year = internal_archive_posts.first.date | date: "%Y" -%}
-{%- endif -%}
-{%- assign internal_archive_count  = 0 -%}
-{%- assign internal_archive_offset = 0 -%}
-{%- for year in (internal_archive_begin_year..internal_archive_end_year) reversed -%}
-  {%- for post in internal_archive_posts offset: internal_archive_offset -%}
-    {%- assign internal_post_year = post.date | date: "%Y" | minus: 0 -%}{% comment %}<!--minus 是强制转化为数字格式-->{% endcomment %}
-    {%- if internal_post_year == year -%}
-      {%- assign internal_archive_count = internal_archive_count | plus: 1 -%}
-    {%- else -%}
-      {%- break -%}
-    {%- endif -%}
-  {%- endfor -%}
+{% assign internal_archive_posts = include.posts %}
+{% if internal_archive_posts == nil %}
+{% assign internal_archive_posts = site.posts %}
+{% endif %}
+{% if include.begin_time %}
+{% assign internal_archive_begin_year = include.begin_time | date: "%Y" %}
+{% else %}
+{% assign internal_archive_begin_year = internal_archive_posts.last.date | date: "%Y" %}
+{% endif %}
+{% if include.end_time %}
+{% assign internal_archive_end_year = include.begin_time | date: "%Y" %}
+{% else %}
+{% assign internal_archive_end_year = internal_archive_posts.first.date | date: "%Y" %}
+{% endif %}
+{% assign internal_archive_count  = 0 %}
+{% assign internal_archive_offset = 0 %}
+{% for year in (internal_archive_begin_year..internal_archive_end_year) reversed %}
+  {% for post in internal_archive_posts offset: internal_archive_offset %}
+    {% assign internal_post_year = post.date | date: "%Y" | minus: 0 %}{% comment %}<!--minus 是强制转化为数字格式-->{% endcomment %}
+    {% if internal_post_year == year %}
+      {% assign internal_archive_count = internal_archive_count | plus: 1 %}
+    {% else %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
 
-  {%- if internal_archive_count >= 1 -%}
+  {% if internal_archive_count >= 1 %}
     <h2>{{ year }}</h2>
-    {%- include posts/list_posts posts=internal_archive_posts limit=internal_archive_count offset=internal_archive_offset -%}
-  {%- endif -%}
-  {%- assign internal_archive_offset = internal_archive_offset | plus: internal_archive_count -%}
-  {%- assign internal_archive_count = 0 -%}
-{%- endfor -%}
+    {% include posts/list_posts posts=internal_archive_posts limit=internal_archive_count offset=internal_archive_offset %}
+  {% endif %}
+  {% assign internal_archive_offset = internal_archive_offset | plus: internal_archive_count %}
+  {% assign internal_archive_count = 0 %}
+{% endfor %}
 {% comment %}<!--Reset assign varible-->{% endcomment %}
-{%- assign internal_archive_posts = nil -%}
-{%- assign internal_archive_begin_year = nil -%}
-{%- assign internal_archive_end_year = nil -%}
-{%- assign internal_archive_count = nil -%}
-{%- assign internal_archive_offset = nil -%}
-{%- assign internal_post_year = nil -%}
+{% assign internal_archive_posts = nil %}
+{% assign internal_archive_begin_year = nil %}
+{% assign internal_archive_end_year = nil %}
+{% assign internal_archive_count = nil %}
+{% assign internal_archive_offset = nil %}
+{% assign internal_post_year = nil %}
