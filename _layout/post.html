@@ -8,30 +8,30 @@ type: "post"
         {% assign cur_category = page.categories %}
         {% assign cur_tag = page.tags %}
         <div>
-            {%- if cur_category and cur_category.size != 0 -%}
+            {% if cur_category and cur_category.size != 0 %}
             <span>分类: </span>
             <a href="{{ BASE_PATH }}{{ site.data.nav.category.path }}?names={{ cur_category[0] }}" class="tag">{{cur_category[0]}}</a>
-            {%- endif -%}
-            {%- if cur_tag and cur_tag.size != 0 -%}
+            {% endif %}
+            {% if cur_tag and cur_tag.size != 0 %}
                 <span>标签: </span>
-            {%- endif -%}
-            {%- for tag in cur_tag -%}
+            {% endif %}
+            {% for tag in cur_tag %}
                 <a href="{{ BASE_PATH }}{{ site.data.nav.tag.path }}?names={{ tag }}#tag-search-list" class="tag">{{ tag }}</a>
-            {%- endfor -%}
+            {% endfor %}
         </div>
         <div>
             Last Modify in
-            {%- if page.modifyTime and page.modifyTime != "" -%}
+            {% if page.modifyTime and page.modifyTime != "" %}
             <span>{{ page.modifyTime | date:"%Y-%m-%d" }}</span>,
-            {%- else -%}
+            {% else %}
             <span>{{ page.date | date:"%Y-%m-%d" }}</span>,
-            {%- endif -%}
+            {% endif %}
             published in <span>{{ page.date | date:"%Y-%m-%d" }}</span>
             by <span> {{ site.author.name}}</span>
         </div>
 
-        {%- assign cur_category = nil -%}
-        {%- assign cur_tag = nil -%}
+        {% assign cur_category = nil %}
+        {% assign cur_tag = nil %}
     </div>
 </div>
 
@@ -40,16 +40,16 @@ type: "post"
     <hr>
     <div class="pagination">
       <ul>
-      {%- if page.previous -%}
+      {% if page.previous %}
         <li class="prev">上一篇: <a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">{{page.previous.title}}</a></li>
-      {%- else -%}
+      {% else %}
         <li class="prev-disabled">上一篇: 呵呵,还没开始呢</li>
-      {%- endif -%}
-      {%- if page.next -%}
+      {% endif %}
+      {% if page.next %}
         <li class="next">下一篇: <a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{ page.next.title }}</a></li>
-      {%- else -%}
+      {% else %}
         <li class="next-disabled">下一篇: 让时间加速吧
-      {%- endif -%}
+      {% endif %}
       </ul>
     </div>
 
