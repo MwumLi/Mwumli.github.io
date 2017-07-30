@@ -92,7 +92,6 @@ unpublished: false
 # 插件
 # ------------------
 whitelist: []
-plugins:   []
 
 # ------------------
 # 转换
