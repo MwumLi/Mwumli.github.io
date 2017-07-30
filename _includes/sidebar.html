@@ -1,0 +1,27 @@
+<div class="sidebar-toggle">
+  <div id="sidebar-toggle-wrapper" class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div style="position: fixed; height: 100%;" id="js-"></div>
+  <div class="sidebar-inner">
+    <ul class="sidebar-nav">
+      <li class="js-sidebar-toc" data-nav="js-sidebar-toc">
+        文章目录
+      </li>
+      <li class="js-sidebar-overview sidebar-active" data-nav="js-sidebar-overview">
+        站点导航
+      </li>
+      </ul>
+  </div>
+  <section class="sidebar-panel js-sidebar-toc-spy js-sidebar-toc">
+  </section>
+  <section class="sidebar-panel js-sidebar-overview sidebar-active">
+    <nav class="sidebar-nav">
+      {%- include navigation -%}
+    </nav>
+  </section>
+</aside>

@@ -20,9 +20,10 @@
         </div>
       </footer>
 
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-      </div>
+      {% include sidebar.html %}
+      <!-- <div class="back-to-top"> -->
+        <!-- <i class="fa fa-arrow-up"></i> -->
+      <!-- </div> -->
     </div>
         {% include analytics %}
         {% include lib type="js" %}
@@ -44,6 +45,7 @@
         </script>
         {% include js %}
     </body>
+    <div style="position: fixed; height: 100%; opacity: 0;" id="body-div"></div>
 </html>
 
 

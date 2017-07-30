@@ -2,7 +2,9 @@ $(document).ready(function () {
 
   $.bigfoot({ preventPageScroll: true });
 
-  if (IfMicro.utils.isDesktop()) {
+  if( IfMicro.sidebar ) {
+    IfMicro.sidebar.start();
+  } else if ( IfMicro.utils.isDesktop()) {
     IfMicro.toc && IfMicro.toc.tocEffect();
   }
 

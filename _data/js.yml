@@ -5,6 +5,13 @@ toc:
 utils:
   js: "utils.js"
 
+scrollspy:
+  version: "3.3.2"
+  js: ["scrollspy.js"]
+
+sidebar:
+  js: ["sidebar.js"]
+
 tag:
   js: "tag.js"
   page: ['categories', 'tags']

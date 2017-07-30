@@ -55,3 +55,10 @@
 @mixin text-shadow($size:2px, $color: #c2c2c2) {
   text-shadow: $size $size $size $color;
 }
+
+@mixin transition($prop-time-func-delay: all 100ms linear 0) {
+  transition         : $prop-time-func-delay;
+  -moz-transition    : $prop-time-func-delay; /* Firefox 4 */
+  -webkit-transition : $prop-time-func-delay; /* Safari 和 Chrome */
+  -o-transition      : $prop-time-func-delay; /* Opera */
+}
