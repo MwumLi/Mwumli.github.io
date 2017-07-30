@@ -8,8 +8,10 @@ type: "post"
         {%- assign cur_category = page.categories -%}
         {%- assign cur_tag = page.tags -%}
         <div>
+            {%- if cur_category and cur_category.size != 0 -%}
             <span>分类: </span>
             <a href="{{ BASE_PATH }}{{ site.data.nav.category.path }}?names={{ cur_category[0] }}" class="tag">{{cur_category[0]}}</a>
+            {%- endif -%}
             {%- if cur_tag and cur_tag.size != 0 -%}
                 <span>标签: </span>
             {%- endif -%}

@@ -31,4 +31,7 @@ $(document).ready(function () {
   });
 
   IfMicro.tag && IfMicro.tag.start(CONFIG.page.type == 'tags')
+
+  IfMicro.utils.registerBackToTop && IfMicro.utils.registerBackToTop();
+
 });

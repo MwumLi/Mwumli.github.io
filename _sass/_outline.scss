@@ -76,12 +76,13 @@ body {
 .site-nav {
   float: left;
   line-height: 56px;
-  font-size:  $font-size;
+  font-size: $font-size;
 
   .page-link {
     display: block;
     float: left;
     padding: 0 15px;
+
     &,
     &:visited {
       color: $site-nav-link-color;
@@ -156,11 +157,11 @@ h1, h2, h3, h4, h5, h6 {
 
 @for $i from 1 through 6 {
   h#{$i} {
-    font-size: $head-base-font-size - 2*$i;
+    font-size: $head-base-font-size - 2 * $i;
     color: nth($head-font-colors, $i);
 
     @include mobile {
-      font-size: $head-base-font-size - 2*$i - 2;
+      font-size: $head-base-font-size - 2 * $i - 2;
     }
   }
 }
@@ -233,7 +234,6 @@ pre {
   padding: 0.8em;
   margin-left: 1em;
   overflow-x: auto;
-
 }
 
 pre:hover {
@@ -286,6 +286,11 @@ em, i {
 
     span {
       color: darkkhaki;
+      margin: 0 4px;
+    }
+
+    a {
+      margin: 0 4px;
     }
   }
 }
@@ -313,7 +318,6 @@ em, i {
     }
   }
 }
-
 
 // 上/下篇文章
 .pagination ul {
@@ -358,30 +362,82 @@ em, i {
     border: 1px solid #F0C81E;
     border-radius: 0 0 1px 1px;
     color: #999;
-    background: rgba(10,30,40,0.85);
+    background: rgba(10, 30, 40, 0.85);
     -webkit-box-shadow: 0 1px 8px #000;
 
-    li {      
+    li {
       list-style-position: inside;
-      padding: 0px !important
+      padding: 0px !important;
     }
   }
 }
 
 .micro-say-list {
   li {
-  	display: inline-block;
+    display: inline-block;
     margin: 0.3em auto;
   }
 }
 
 .post-category {
-	border: 1px dashed #18445F;
-	background-color: #18445F;
+  border: 1px dashed #18445F;
+  background-color: #18445F;
 }
 
 .post-category:hover {
-	border: 1px dashed rgba(70, 88, 99, 1);
-	background-color: rgba(70, 88, 99, 1);
+  border: 1px dashed rgba(70, 88, 99, 1);
+  background-color: rgba(70, 88, 99, 1);
 }
 
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  width: 24px;
+  height: 26px;
+  bottom: -100px;
+  background: $header-bg-color;
+  line-height: 0;
+  z-index: 1050;
+  cursor: pointer;
+
+  @include transition(all 200ms ease-in-out);
+
+  .back-to-top-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  span {
+    background: $site-title-color;
+    position: absolute;
+    display: inline-block;
+    vertical-align: top;
+    height: 2px;
+    width: 100%;
+    margin-top: 3px;
+    transform: rotate(90deg);
+    top: 9px;
+    width: 60%;
+    left: 5px;
+
+    &:first-child {
+      width: 50%;
+      transform: rotateZ(-45deg);
+      top: 4px;
+      left: 2px;
+    }
+
+    &:last-child {
+      width: 50%;
+      transform: rotateZ(45deg);
+      right: 2px;
+      top: 4px;
+      left: auto;
+    }
+  }
+}
+
+.back-to-top-on {
+  bottom: 19px;
+}
