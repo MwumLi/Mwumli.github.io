@@ -92,5 +92,14 @@ IfMicro.sidebar = {
       this.activeSidebar('js-sidebar-overview');
       $('.js-sidebar-toc').remove();
     }
+
+    $("html").keyup(function(e) {
+      // shift+z
+      if (e.shiftKey && (e.charCode || e.keyCode) == '90') {
+        $('body').toggleClass('body-sidebar');
+      } else if (e.key == "Escape" || e.keyCode == 27) { // esc
+        $('body').removeClass('body-sidebar');
+      }
+    });
   }
 }

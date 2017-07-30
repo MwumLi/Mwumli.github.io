@@ -3,9 +3,12 @@ $(document).ready(function () {
   $.bigfoot({ preventPageScroll: true });
 
   if( IfMicro.sidebar ) {
+    $('.site-nav-toggle').hide(); // hide old toggle
     IfMicro.sidebar.start();
   } else if ( IfMicro.utils.isDesktop()) {
     IfMicro.toc && IfMicro.toc.tocEffect();
+  } else {
+    $('.sidebar-toggle').hide();
   }
 
   if (CONFIG.page.type != "micro_say") {
