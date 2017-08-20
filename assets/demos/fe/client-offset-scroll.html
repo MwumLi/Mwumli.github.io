@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>演示HTML元素页面定位的几种属性</title>
+	<style type="text/css">
+		code {
+			font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+			padding: 0;
+			padding-top: 0.2em;
+			padding-bottom: 0.2em;
+			margin: 0;
+			font-size: 85%;
+			background-color: rgba(0, 0, 0, 0.04);
+			-webkit-border-radius: 3px;
+			border-radius: 3px;
+		}
+		
+		code:before,
+		code:after {
+			letter-spacing: -0.2em;
+			content: "\00a0";
+		}
+	</style>
+</head>
+
+<body>
+	<div class="desc">
+		<h2 id="client-offset-title">演示 client/offset 相关的几种属性</h2>
+		<ul>
+			<li><strong>clientHeight 和 clientWidth</strong>: 用于描述元素内尺寸，是指<code>元素内容+padding</code> 大小
+				<br>不包括 border（IE下实际包括、margin 和滚动条部分 </li>
+			<li><strong>offsetHeight 和 offsetWidth</strong>: 用于描述元素外尺寸，是指<code>元素内容+padding+border</code>
+				<br>不包括 margin 和滚动条部分 </li>
+			<li><strong>clientTop 和 clientLeft</strong>: 该元素 border 内外边缘的垂直和水平距离, 即 <code>border-top-width</code> 和 <code>border-left-width</code>
+			</li>
+			<li><strong>offsetTop 和 offsetLeft</strong>: 该元素的左上角(<strong>border 外边缘</strong>) 与已定位的父容器(<strong>offsetParent 对象</strong>)左上角(<strong>padding 外边缘</strong>)的距离 </li>
+			<li><strong>offsetParent</strong>: 指该元素最近的定位 (<code>relative</code> 、
+				<code>absolute</code> ) 祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回 <code>null</code>
+			</li>
+		</ul>
+	</div>
+	<div id="client-offset-parent" style="padding: 8px; background-color: #aaa; position: relative;border: 10px solid red;">
+		<div id="client-offset" style="background-color: #0f0; margin: 30px; padding: 10px;height: 200px; width: 200px; border: solid 3px #f00;"></div>
+	</div>
+	<div class="intro">
+		<p>审查上面 demo 可以得到:</p>
+		<ul>
+			<li>
+				<p><strong>clientHeight</strong> 就是 <code>#client-offset</code> 的 <code>height(200px)+上下padding(10px*2)</code>
+					<br><strong>clientWidth</strong> 同理, 是 <code>#client-offset</code> 的 <code>width(200px)+左右padding(10px*2)</code>
+				</p>
+			</li>
+			<li>
+				<p><strong>clientLeft和ClientTop</strong> 即为 <code>#client-height</code> 的 <code>border-left-width</code> (3px) 和 <code>border-top-width</code> (3px) </p>
+			</li>
+			<li>
+				<p><strong>offsetHeight</strong> 是 <code>clientHeight(220px)+上下border(3px*2)</code>
+					<br><strong>offsetWidth</strong> 同理, 是 <code>clientWidth(220px)+左右border(3px*2)</code>
+				</p>
+			</li>
+			<li>
+				<p><strong>offsetTop</strong> 是 <code>#client-offset.margin-top(30px) + offsetParent.padding-top(8px)</code>
+					<br><strong>o<a style="position: relative;" href="#FFD477D9967F4D7D81EC118679006910" id="FFD477D9967F4D7D81EC118679006910"></a>ffsetLeft</strong> 同理 <code>#client-offset.margin-top(30px) + offsetParent.padding-top(8px)</code>
+				</p>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var clientOffset = document.getElementById('client-offset');
+		var html = '';
+
+		var clientHeight = clientOffset.clientHeight;
+		var clientWidth = clientOffset.clientWidth;
+		html += 'clientHeight: ' + clientHeight + '<br/>';
+		html += 'clientWidth: ' + clientWidth + '<br/>';
+
+		var clientLeft = clientOffset.clientLeft;
+		var clientTop = clientOffset.clientTop;
+		html += 'clientLeft: ' + clientLeft + '<br/>';
+		html += 'clientTop: ' + clientTop + '<br/>';
+
+		var offsetHeight = clientOffset.offsetHeight;
+		var offsetWidth = clientOffset.offsetWidth;
+		html += 'offsetHeight: ' + offsetHeight + '<br/>';
+		html += 'offsetWidth: ' + offsetWidth + '<br/>';
+
+		var offsetLeft = clientOffset.offsetLeft;
+		var offsetTop = clientOffset.offsetTop;
+		html += 'offsetLeft: ' + offsetLeft + '<br/>';
+		html += 'offsetTop: ' + offsetTop + '<br/>';
+
+		var offsetParent = clientOffset.offsetParent;
+		html += 'offsetParent: ' + offsetParent.id + '<br/>';
+
+		clientOffset.innerHTML = html;
+	</script>
+
+	<div class="desc">
+		<h2 id="scroll-title">演示 scroll 相关的几种属性</h2>
+		<ul>
+			<li><strong>scrollWidth和scrollHeigh</strong> : 是指元素的<code>内容区域 + padding + 溢出尺寸</code>
+				<br>当内容正好和内容区域匹配, 这时候没有溢出，这些属性与 <code>clientWidth和clientHeight</code> 相等 </li>
+			<li><strong>scrollLeft 和 scrollTop</strong>: 是指元素滚动条当前所在位置, 是<strong>可写</strong>的<br>通过给这两个属性赋值, 从而使页面滚动到指定位置 </li>
+		</ul>
+	</div>
+	<div id="scroll" style="background-color: #aaa; padding:8px; border:solid 7px #000; height:200px; width:500px; overflow:auto;">
+		<div id="scroll-child" style="background-color: #0f0; margin: 30px; padding: 10px;height: 400px; width: 200px; border: solid 3px #f00;"></div>
+	</div>
+	<div class="intro">
+		<p>在 FireFox 和 IE10 下得到结果 <code>scrollHeight: 494px</code> ，而在 Chrome 和 Safari 下得到结果 <code>scrollHeight: 502px</code> ，差了 8px，这是因为 <strong>FireFox 和 IE10 没有计算 padding-bottom</strong>, 可以按照下面步骤计算来验证: </p>
+		<ul>
+			<li>scrollHeight 肯定包含 <code>#scroll-child</code> 的 <code>height(400px) + 上下padding(10px*2) + 上下border(3px*2) + 上下margin(30px*2)</code> , 总计为 <code>486px</code>
+			</li>
+			<li><code>494 = 486+8</code> , <code>592=486+8*2</code> , 494 看起来好像是计算了一个 padding </li>
+			<li>分别在不同浏览器中审查元素, 发现确实在 FireFox 和 IE10 没有计算 <code>padding-bottom</code>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var scrollEle = document.getElementById('scroll');
+		var scrollChild = document.getElementById('scroll-child');
+
+		var scrollHeight = scrollEle.scrollHeight;
+		var scrollWidth = scrollEle.scrollWidth;
+		scrollChild.innerHTML += 'scrollHeight: ' + scrollHeight + '<br/>';
+		scrollChild.innerHTML += 'scrollWidth: ' + scrollWidth + '<br/>';
+	</script>
+</body>
+
+</html>
