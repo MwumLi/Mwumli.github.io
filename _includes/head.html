@@ -6,8 +6,18 @@
   <meta http-equiv="refresh" content="4;url={{ site.micro_say.last.url }}" />
   {% endif %}
   <title>{{ site.title }} - {{ page.title }}</title>
-  {% if page.description %}
+  {% assign page_excerpt = page.excerpt | remove: '<p>' | remove: '</p>' | strip %}
+  {% if page.description and page.description.size > 0 %}
   <meta name="description" content="{{ page.description }}">
+  {% elsif page_excerpt.size > 0 %}
+  <meta name="description" content="{{ page_excerpt }}">
+  {% elsif site.description %}
+  <meta name="description" content="{{ site.description }}">
+  {% endif %}
+  {% if page.tags.size > 0 %}
+  <meta name="keywords" content="{{ page.tags | join: ',' }}" />
+  {% else %}
+  <meta name="keywords" content="{{ page.title }}" />
   {% endif %}
   <meta name="author" content="{{ site.author.name }}">
   <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
