@@ -166,6 +166,7 @@ kramdown:
   # syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: 'highlight'
+    formatter: Jekyll::Utils::RougeFormatter.html.class
     #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
     span:
       line_numbers: false
