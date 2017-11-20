@@ -1,0 +1,25 @@
+{
+  "name": "ifmicro",
+  "version": "1.0.0",
+  "description": "jekyll 3.5.1 和 github pages",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gh-pages": "^1.1.0"
+  },
+  "scripts": {
+    "prepublish": "jekyll build",
+    "publish": "gh-pages -b master -d _site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MwumLi/MwumLi.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MwumLi/MwumLi.github.io/issues"
+  },
+  "homepage": "https://github.com/MwumLi/MwumLi.github.io#readme"
+}
