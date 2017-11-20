@@ -163,8 +163,9 @@ kramdown:
   footnote_nr:    1
   enable_coderay: false
   hard_wrap:      true  # 如果 Markdown 文本中有折行的话，会转换为标签
-  syntax_highlighter: rouge
+  # syntax_highlighter: rouge
   syntax_highlighter_opts:
+    css_class: 'highlight'
     #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
     span:
       line_numbers: false
