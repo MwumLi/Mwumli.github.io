@@ -4,6 +4,8 @@ jekyll 3.5.1 和 github pages
 
 [Visit 微尘](http://mwumli.github.io)  
 
+## 环境搭建
+
 jekyll 2.5.3 的安装:  
 
 	sudo gem install --no-rdoc --no-ri jekyll -v "2.5.3"
@@ -18,4 +20,11 @@ jekyll 3.5.1:
 
 在这儿 <https://pages.github.com/versions/> 可以看到 github pages 构建环境依赖的软件版本  
 
-**2017-07-31**  
+## 发布
+
+Github Pages 开始使用 rouge 2.2.1 渲染 code, 但是 rouge 2.2.1 相比 1.x.x 有了 break changes, 致使我的样式发生变化  
+
+为了避免以后再次出现升级造成渲染效果与本地不同, 以后不再选择让 Github 去渲染站点, 采用本地构建, 然后发布  
+
+
+**2017-11-21 01:31:35**
