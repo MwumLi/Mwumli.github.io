@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>倘若微小 - 编译和连接</title>
+  
+  
+  <meta name="description" content="我曾闻娑婆世界，每个人都罪孽深重，又闻一沙一世界，一树一菩提。 只是，随便拍拍，身上的尘土落尽，又有多少罪孽呢？ 只是，阳光下，金色的微尘闪着光，又是怎样一个世界呢？
+">
+  
+  
+  <meta name="keywords" content="Linux,编译,链接" />
+  
+  <meta name="author" content="MwumLi">
+  <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="/assets/css/main.css?2.0.4" type="text/css" media="all" />
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+</head>
+
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <div class="site-wrapper clearfix">
+          <a class="site-title" href="/">倘若微小</a>
+<button class="site-nav-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<nav class="site-nav">
+  
+
+
+
+<a class="page-link " href="/micro-say/2017/">微语</a>
+
+
+
+<a class="page-link " href="/pages/archive/">归档</a>
+
+
+
+<a class="page-link " href="/pages/categories/">分类</a>
+
+
+
+<a class="page-link " href="/pages/tags/">标签</a>
+
+
+
+<a class="page-link " href="/rss.xml">订阅</a>
+
+
+
+</nav>
+
+
+        </div>
+      </header>
+      <main class="site-main">
+        <div class="site-wrapper clearfix">
+          <div class="page-header">
+    <h1>编译和连接 <small></small></h1>
+    <div class="article-header">
+        
+        
+        <div>
+            
+            <span>分类: </span>
+            <a href="/pages/categories/?names=记录" class="tag">记录</a>
+            
+            
+                <span>标签: </span>
+            
+            
+                <a href="/pages/tags/?names=Linux#tag-search-list" class="tag">Linux</a>
+            
+                <a href="/pages/tags/?names=编译#tag-search-list" class="tag">编译</a>
+            
+                <a href="/pages/tags/?names=链接#tag-search-list" class="tag">链接</a>
+            
+        </div>
+        <div>
+            Last Modify in
+            
+            <span>2015-09-25</span>,
+            
+            published in <span>2014-09-28</span>
+            by <span> MwumLi</span>
+        </div>
+
+        
+        
+    </div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#编译和连接" id="markdown-toc-编译和连接">编译和连接</a></li>
+  <li><a href="#从最简单最熟悉开始" id="markdown-toc-从最简单最熟悉开始">从最简单最熟悉开始</a>    <ul>
+      <li><a href="#预处理c-i-using-cpp" id="markdown-toc-预处理c-i-using-cpp">预处理(.c-&gt;.i using cpp)</a></li>
+      <li><a href="#编译i-s-using-cc1" id="markdown-toc-编译i-s-using-cc1">编译(.i-&gt;.s using cc1)</a></li>
+      <li><a href="#汇编s-o-using-as" id="markdown-toc-汇编s-o-using-as">汇编(.s-&gt;.o using as)</a></li>
+      <li><a href="#链接" id="markdown-toc-链接">链接</a></li>
+    </ul>
+  </li>
+  <li><a href="#参考文献" id="markdown-toc-参考文献">参考文献</a></li>
+</ul>
+
+<h2 id="编译和连接">编译和连接</h2>
+<p>对于平常的应用程序开发，我们很少关注编译和连接的过程，因为通常的开发环境都是流行的集成开发环境(IDE)</p>
+
+<p>而IDE往往将编译和连接的过程“一气呵成”,通常编译和连接合并到一块被称为”build”,也就是构建.</p>
+
+<p>即使是命令行来编译一个<code class="highlighter-rouge">hello.c</code>，简单一句<code class="highlighter-rouge">gcc hello.c</code>，然后你就可以<code class="highlighter-rouge">./a.out</code>来得到富有盛名的<code class="highlighter-rouge">Hello,World!</code>了</p>
+
+<p>正所谓“有一得必有一失”，我们享受与这种一键执行的快感，却忽略很多系统软件背后的运行机制和机理，程序中很多莫名其妙的错误常常令我们无所适从，面对程序运行时种种性能瓶颈我们束手无策，而为了解决这些问题，我们往往需要追根溯源</p>
+
+<p>因此，了解编译和连接的过程，有助于我们对软件运行的机理的了解以及对出现的各种问题能有更高效的解决途径</p>
+
+<h2 id="从最简单最熟悉开始">从最简单最熟悉开始</h2>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"Hello,World</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span><span class="o">//</span><span class="n">hello</span><span class="p">.</span><span class="n">c</span></code></pre></figure>
+
+<p>这样的程序，闭着眼睛，用心作笔，估计一秒钟都可以写几万次了吧  <br />
+在Linux下，当我们使用GCC来编译hello.c,这样做:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ ls 
+hello.c
+$ gcc hello.c
+$ ls
+a.out hello.c
+$ ./a.out
+Hello,World
+</code></pre>
+</div>
+
+<p>可以看到，我们使用gcc编译处理hello.c之后，生成了一个a.out的文件  <br />
+这个文件正是我们可执行程序，运行之后，输出<code class="highlighter-rouge">Hello,World</code></p>
+
+<p>整个过程很简单，但这只是表面上的，事实上，上述过程可以分解为4个步骤，分别是：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>预处理(Prepressing)[.c]-&gt;编译(Compilation)[.i]-&gt;汇编(Assembly)[.o]-&gt;链接(Linking)[可执行文件]
+</code></pre>
+</div>
+
+<h3 id="预处理c-i-using-cpp">预处理(.c-&gt;.i using cpp)</h3>
+<p>Linux下对c文件进行预处理，可以使用预编译器<code class="highlighter-rouge">cpp</code>  <br />
+进行预处理之后，生成的预处理文件为<code class="highlighter-rouge">.i</code>,对于C++程序而言，预编译后的文件为<code class="highlighter-rouge">.ii</code>  <br />
+以下是预编译的命令:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cpp hello.c &gt; hello.i  
+</code></pre>
+</div>
+
+<p>或者</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ gcc -E hello.c -o hello.i  
+</code></pre>
+</div>
+
+<p>无论是<code class="highlighter-rouge">cpp</code>还是<code class="highlighter-rouge">gcc -E</code>,他们的结果(在不指定目标文件的情况下)会输出到<code class="highlighter-rouge">stdout</code></p>
+
+<p>预编译的过程主要处理那些源码中以”#”开始的预编译指令，比如<code class="highlighter-rouge">#include</code>，<code class="highlighter-rouge">#define</code>  <br />
+主要做了一下处理:</p>
+
+<ol>
+  <li>
+    <p>将所有<code class="highlighter-rouge">#define</code>处删除，展开所有宏定义</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code> 在include和main之间添加“#define HELLO "hello,world\n" ”,
+ 然后把printf()中的内容改为HELLO,接着如上预处理生成目标文件hello_micro.i
+ 使用diff hello.i hello_micro.i,发现两个文件完全一致 
+ 由此证明删除定义宏，展开所有宏  
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>处理所有条件预编译指令，比如<code class="highlighter-rouge">#if</code>,<code class="highlighter-rouge">#ifdef</code>,<code class="highlighter-rouge">#elif</code>,<code class="highlighter-rouge">#else</code>,<code class="highlighter-rouge">#endif</code></p>
+  </li>
+  <li>
+    <p>处理<code class="highlighter-rouge">#include</code>预编译指令，将被包含的文件插入到该预编译指令的位置。</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code> 注意，这个过程是递归进行的，也就是说被包含的文件可能还包含其他文件。
+ 因此，在多文件程序中要注意同一文件被多次包含引起的错误  
+</code></pre>
+    </div>
+  </li>
+  <li>删除所有的注释<code class="highlighter-rouge">//</code>和<code class="highlighter-rouge">/**/</code></li>
+  <li>添加行号和文件名标识，比如<code class="highlighter-rouge">#2 "hello.c" 2</code>,以便于编译时产生调试用的行号信息及用于编译时产生编译错误或警告时都能显示行号</li>
+  <li>保留所有的<code class="highlighter-rouge">#pragma</code>编译器指令，因为编译器需要使用它们</li>
+</ol>
+
+<p>经过预编译后的<code class="highlighter-rouge">.i</code>文件不包含任何宏定义，因为所有的宏已经被展开，并且包含的文件也已经被插入到.i文件中。  <br />
+所以当我们<em>无法判断宏定义是否正确</em>或者<em>头文件是否正确引入</em>的时候，可以查看预编译后的<code class="highlighter-rouge">.i</code>文件来确定问题</p>
+
+<h3 id="编译i-s-using-cc1">编译(.i-&gt;.s using cc1)</h3>
+<p>编译过程就是把<code class="highlighter-rouge">.i</code>文件进行一系列的词法分析、语法分析、语义分析以及优化后生成相应的汇编代码文件<code class="highlighter-rouge">.s</code>  <br />
+这个过程整个程序构建的核心部分,也是最复杂的部分，涉及到编译原理的一些内容  <br />
+Linux命令如下:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ gcc -S hello.i -o hello.s  
+</code></pre>
+</div>
+
+<p>据说，现在的gcc已经将预编译和编译两个步骤合并成一个步骤，使用一个叫做<code class="highlighter-rouge">cc1</code>的程序  <br />
+<code class="highlighter-rouge">cc1</code>在我的机器(Ubuntu 14.04 LTS)上的路径<code class="highlighter-rouge">/usr/lib/gcc/x86_64-linux-gnu/4.8/cc1</code>   <br />
+因此，我这样编译：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ /usr/lib/gcc/x86_64-linux-gnu/4.8/cc1 hello.i
+</code></pre>
+</div>
+
+<p>和上面的命令效果等同  <br />
+但是根据资料显示，<code class="highlighter-rouge">cc1</code>把预编译和编译融合，因此我使用<code class="highlighter-rouge">/usr/lib/gcc/x86_64-linux-gnu/4.8/cc1 hello.c</code>,结果出错</p>
+
+<p>为了研究其原因，我使用<code class="highlighter-rouge">gcc -v hello.c 2&gt;cp.txt</code>打印gcc对其编译过程做了那些操作  <br />
+因为比较长，只截取有用的部分</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>/usr/lib/gcc/x86_64-linux-gnu/4.8/cc1 -quiet -v -imultiarch x86_64-linux-gnu hello.c -quiet -dumpbase hello.c -mtune=generic -march=x86-64 -auxbase hello -version -fstack-protector -Wformat -Wformat-security -o /tmp/cckHwTs6.s
+</code></pre>
+</div>
+
+<p>可以看到cc1携带了大量的参数，最终生成汇编文件保存在<code class="highlighter-rouge">/tmp/cckHwTs6.s</code>  <br />
+我在命令行进行了验证，确实如此  <br />
+这里又一次证明了：IDE掩盖很多已有的参数。不过，这么多参数确实让人心烦，既然常用，默认是一个好的办法，不过，你应该了解有这么个过程</p>
+
+<h3 id="汇编s-o-using-as">汇编(.s-&gt;.o using as)</h3>
+<p>汇编器就是将汇编代码转变成机器可以执行的指令，每一个汇编语句都对应一条机器指令,所以汇编器的汇编过程相对于编译过程就显得简单多了。</p>
+
+<p>汇编过程在linux下我们调用汇编器as来完成：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ as hello.s -o hello.o  
+</code></pre>
+</div>
+
+<p>或者</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ gcc -c hello.s -o hello.o  
+</code></pre>
+</div>
+
+<p>或者使用gcc从.c文件开始，经过预编译、编译、汇编直接输出<em>目标文件</em>(Object File)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ gcc -c hello.s -o hello.o
+</code></pre>
+</div>
+
+<p>同样，我们可以在cp.txt文件中看到下面一段：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>COLLECT_GCC_OPTIONS='-v' '-mtune=generic' '-march=x86-64'
+</code></pre>
+</div>
+
+<h3 id="链接">链接</h3>
+<p>链接通常是一个让人费解的过程：  <br />
+为什么汇编器不直接输出可执行文件而是一个目标文件呢？  <br />
+链接过程到底包含了什么内容？  <br />
+为什么要链接?  <br />
+…  <br />
+我们通常使用ld来链接目标文件  <br />
+我们来看看cp.txt中的相应描述：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>/usr/lib/gcc/x86_64-linux-gnu/4.8/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.8/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. /tmp/ccfb7d3z.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/4.8/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crtn.o
+</code></pre>
+</div>
+
+<p>额，好长啊，不过貌似没有<code class="highlighter-rouge">ld</code>的字眼，看来gcc并没有如同我们想象的那样直接调用ld进行链接。而是调用<code class="highlighter-rouge">collect2</code>进行链接</p>
+
+<p>实际上，<code class="highlighter-rouge">collect2</code>只是一个辅助程序最终它仍调用<code class="highlighter-rouge">ld</code>进行链接</p>
+
+<p>举个例子：对于C++程序来说，在执行main函数前，全局静态对象必须构造完成。<br />
+也就是说，在main之前程序需要进行一些必要的初始化，gcc就是使用collect2安排初始化过程中如何调用各个初始化函数的。根据链接过程可见，除了hello.c对应的目标文件ccfb7d3z.o外，ld也链接了libc、libgcc等库，以及所谓的包含启动代码（start code）的启动文件（start/startup file），包括crt1.o、crti.o、crtbegin.o、crtend.o和crtn.o</p>
+
+<h2 id="参考文献">参考文献</h2>
+<ul>
+  <li>《程序员的自我修养》</li>
+  <li>《深度探索Linux操作系统：系统构建和原理解析》</li>
+</ul>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/%E8%AE%B0%E5%BD%95/2014/09/22/kernel-list/" title="Linux内核链表的分析">Linux内核链表的分析</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/%E8%AE%B0%E5%BD%95/2014/11/05/dns/" title="简单的DNS讲解">简单的DNS讲解</a></li>
+      
+      </ul>
+    </div>
+
+    <hr>
+
+    <div id="to_comments">
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+    </div>
+ </div>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+        <div class="site-wrapper clearfix">
+          <p>&copy;2014-2017 <a href="">倘若微小</a><br />
+Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="">MwumLi</a><br />
+本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。</p>
+
+        </div>
+      </footer>
+
+      <div class="sidebar-toggle">
+  <div id="sidebar-toggle-wrapper" class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div style="position: fixed; height: 100%;" id="js-"></div>
+  <div class="sidebar-inner">
+    <ul class="sidebar-nav">
+      <li class="js-sidebar-toc" data-nav="js-sidebar-toc">
+        文章目录
+      </li>
+      <li class="js-sidebar-overview sidebar-active" data-nav="js-sidebar-overview">
+        站点导航
+      </li>
+      </ul>
+  </div>
+  <section class="sidebar-panel js-sidebar-toc-spy js-sidebar-toc">
+  </section>
+  <section class="sidebar-panel js-sidebar-overview sidebar-active">
+    <nav class="sidebar-nav">
+      
+
+
+
+<a class="page-link " href="/micro-say/2017/">微语</a>
+
+
+
+<a class="page-link " href="/pages/archive/">归档</a>
+
+
+
+<a class="page-link " href="/pages/categories/">分类</a>
+
+
+
+<a class="page-link " href="/pages/tags/">标签</a>
+
+
+
+<a class="page-link " href="/rss.xml">订阅</a>
+
+
+
+    </nav>
+  </section>
+</aside>
+
+      <div class="back-to-top">
+        <div class="back-to-top-wrap">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      </div>
+    </div>
+        
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50450008-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+        
+
+
+
+  
+  <script src="/assets/lib/jquery/jquery-2.1.3.min.js?2.1.3" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery-zclip/jquery.zclip.js?1.1.7" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery.resizeend/jquery.resizeend.min.js?0.2.0" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/bigfoot/bigfoot.min.js?2.1.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?2.1.5" type="text/javascript" ></script>
+  
+
+
+
+        <script type="text/javascript" id="jekyll.configurations" charset="utf-8">
+          var IfMicro = window.IfMicro || {};
+          var CONFIG = {
+            domain: 'http://0.0.0.0:4000',
+            zclip_swf: '/assets/lib/jquery-zclip/ZeroClipboard.swf',
+            page: {
+              type: 'post',
+              title: '编译和连接',
+              toc: true
+            }
+          };
+          window._EXPORT_RENDER_RECT = {
+            width: 1366,
+            height: 1555
+          }
+        </script>
+        
+
+
+  
+  
+    
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <script src="/assets/js/toc.js?2.0.4" type="text/javascript" ></script>
+  
+  
+
+  
+  <script src="/assets/js/utils.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/js/scrollspy.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/js/sidebar.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  
+  
+
+  
+  <script src="/assets/js/bootstrap.js?2.0.4" type="text/javascript" ></script>
+  
+
+
+    </body>
+    <div style="position: fixed; height: 100%; opacity: 0;" id="body-div"></div>
+</html>
+
+

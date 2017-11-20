@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>倘若微小 - 使用最大余额法计算百分比</title>
+  
+  
+  <meta name="description" content="我曾闻娑婆世界，每个人都罪孽深重，又闻一沙一世界，一树一菩提。 只是，随便拍拍，身上的尘土落尽，又有多少罪孽呢？ 只是，阳光下，金色的微尘闪着光，又是怎样一个世界呢？
+">
+  
+  
+  <meta name="keywords" content="使用最大余额法计算百分比" />
+  
+  <meta name="author" content="MwumLi">
+  <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="/assets/css/main.css?2.0.4" type="text/css" media="all" />
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+</head>
+
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <div class="site-wrapper clearfix">
+          <a class="site-title" href="/">倘若微小</a>
+<button class="site-nav-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<nav class="site-nav">
+  
+
+
+
+<a class="page-link " href="/micro-say/2017/">微语</a>
+
+
+
+<a class="page-link " href="/pages/archive/">归档</a>
+
+
+
+<a class="page-link " href="/pages/categories/">分类</a>
+
+
+
+<a class="page-link " href="/pages/tags/">标签</a>
+
+
+
+<a class="page-link " href="/rss.xml">订阅</a>
+
+
+
+</nav>
+
+
+        </div>
+      </header>
+      <main class="site-main">
+        <div class="site-wrapper clearfix">
+          <div class="page-header">
+    <h1>使用最大余额法计算百分比 <small></small></h1>
+    <div class="article-header">
+        
+        
+        <div>
+            
+            
+            
+        </div>
+        <div>
+            Last Modify in
+            
+            <span>2017-11-19</span>,
+            
+            published in <span>2017-11-19</span>
+            by <span> MwumLi</span>
+        </div>
+
+        
+        
+    </div>
+</div>
+
+<div id="page-content">
+    
+
+<p>最大余额法, 英文为 Largest Remainder Method, 又称数额值, 是议会选举中分配议席的一种方法:</p>
+<blockquote>
+  <p>议会选举会提供固定数量的席位(total seats), 而所有的选票除以 total seats 的值就是每一个席位所占有的选票的数目(seat votes); 某政党得票总数除以 seat votes 就是这个政党的得票结果(整数部分+余数部分), 得票结果的整数部分就是该政党首次所获取的席位; 最后将剩下一部分席位尚未分配, 这些席位按照各政党的余数部分的大小按照顺序依次分配 1 个席位, 直至分配完毕,最大余额方法因而得名</p>
+</blockquote>
+
+<p>具体背景介绍请参看维基百科: <a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E9%A4%98%E9%A1%8D%E6%B3%95">最大余额法</a> 或 <a href="https://en.wikipedia.org/wiki/Largest_remainder_method">Largest remainder method</a></p>
+
+<p><strong>那最大余额法和我们这里求取百分比有什么关系呢?</strong></p>
+
+<p>一般情况下, 我们求取百分比的方法是这样的: <code class="highlighter-rouge">part-number/total-number*100%</code>, 然后遵循四舍五入(或者其他…)的原则保留一定精度, 这样做事没错的, 但是这种方式下算出来所有百分比之和有可能不是 <code class="highlighter-rouge">100%</code></p>
+
+<p>而使用最大余额法求取百分比, 求取的所有百分比之后一定是 <code class="highlighter-rouge">100%</code>, 使用文字描述解释起来比较麻烦, 参考下面 Javascript 实现来理解:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>/*
+ * 给定一个精度, 计算一组数据中某项数据占据的百分比, 确保所有数据的百分比之和为 1, 即 100%
+ *
+ * @param  {Array.&lt;number&gt;} valueList a list of all data
+ * @param  {number} idx index of the data to be processed in valueList
+ * @param  {number} precision integer number showing digits of precision
+ * @return {number} percent ranging from 0 to 100
+ */
+function getPercentWithPrecision(valueList, idx, precision) {
+  if (!valueList[idx]) return 0;
+
+  // 计算 valueList 中所有数据项之和
+  sum = valueList.reduce(function(acc, val) {
+  	return acc + val;
+  }, 0);
+
+  if (sum === 0) return 0;
+
+  // 中间值, 用来计算总席位数和扩大比例来保留精度
+  var digits = Math.pow(10, precision);
+
+  // 计算每组数据的得票结果(整数部分和余额部分): 整数部分为所得该数据首次分配席位, 余额部分决定首次分配之后剩余席位的分配 
+  var votesPerQuota = valueList.map(function(val) {
+    // 乘以 digits, 是为了通过扩大比例来保留精度, 这样可以确保正数部分是已经确定的议席位置
+    // 乘以 100, 是因为最后返回结果为百分比
+    return (val / sum) * digits * 100;
+  });
+
+  // 总席位数: 因为所有quota除以sum之和为1, 上一步计算为了保留精度和返回为百分比, 把得票结果扩大了 digits*100 倍, 因此总席位数计算方式如下
+  var targetSeats = digits * 100;
+
+  // 首次分配席位
+  var seats = votesPerQuota.map(function(votes) {
+    return Math.floor(votes); // 整数部分就是每个quota首次分配的席位
+  });
+
+  // 当前已经分配出去的席位总数
+  var currentSum = seats.reduce(function(acc, val) {
+    return acc + val;
+  }, 0);
+
+  // 计算每个quota的余额
+  var remainder = votesPerQuota.map(function(votes, idx) {
+    return votes - seats[idx];
+  });
+
+  // 分配剩余席位, 直到所有席位分配完毕
+  while (currentSum &lt; targetSeats) {
+    var max = Number.NEGATIVE_INFINITY; // 最大余额, 初始重置为无穷小
+    var maxId = null; // 余数最大的 id
+
+    // 选出这组余额数据中最大值
+    for (var i = 0, len = remainder.length; i &lt; len; ++i) {
+      if (remainder[i] &gt; max) {
+      	max = remainder[i];
+      	maxId = i;
+      }
+    }
+
+    ++seats[maxId];       // 最大余数对应数据席位 +1
+    remainder[maxId] = 0; // 最大余数重置为 0, 保证不会再分配
+    ++currentSum;         // 当前已分配席位总数 +1, 保证最终可以退出分配循环
+  }
+
+  // idx 对应数据分配的席位除以总席位数就是 idx 在这组数据中保留精度 precision 的百分比
+  return seats[idx] / digits;
+}
+</code></pre>
+</div>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/%E8%AE%B0%E5%BD%95/2017/09/16/crlf-or-lf/" title="CRLF 还是 LF">CRLF 还是 LF</a></li>
+      
+      
+        <li class="next-disabled">下一篇: 让时间加速吧
+      
+      </ul>
+    </div>
+
+    <hr>
+
+    <div id="to_comments">
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+    </div>
+ </div>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+        <div class="site-wrapper clearfix">
+          <p>&copy;2014-2017 <a href="">倘若微小</a><br />
+Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="">MwumLi</a><br />
+本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。</p>
+
+        </div>
+      </footer>
+
+      <div class="sidebar-toggle">
+  <div id="sidebar-toggle-wrapper" class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div style="position: fixed; height: 100%;" id="js-"></div>
+  <div class="sidebar-inner">
+    <ul class="sidebar-nav">
+      <li class="js-sidebar-toc" data-nav="js-sidebar-toc">
+        文章目录
+      </li>
+      <li class="js-sidebar-overview sidebar-active" data-nav="js-sidebar-overview">
+        站点导航
+      </li>
+      </ul>
+  </div>
+  <section class="sidebar-panel js-sidebar-toc-spy js-sidebar-toc">
+  </section>
+  <section class="sidebar-panel js-sidebar-overview sidebar-active">
+    <nav class="sidebar-nav">
+      
+
+
+
+<a class="page-link " href="/micro-say/2017/">微语</a>
+
+
+
+<a class="page-link " href="/pages/archive/">归档</a>
+
+
+
+<a class="page-link " href="/pages/categories/">分类</a>
+
+
+
+<a class="page-link " href="/pages/tags/">标签</a>
+
+
+
+<a class="page-link " href="/rss.xml">订阅</a>
+
+
+
+    </nav>
+  </section>
+</aside>
+
+      <div class="back-to-top">
+        <div class="back-to-top-wrap">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      </div>
+    </div>
+        
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50450008-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+        
+
+
+
+  
+  <script src="/assets/lib/jquery/jquery-2.1.3.min.js?2.1.3" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery-zclip/jquery.zclip.js?1.1.7" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery.resizeend/jquery.resizeend.min.js?0.2.0" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/bigfoot/bigfoot.min.js?2.1.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?2.1.5" type="text/javascript" ></script>
+  
+
+
+
+        <script type="text/javascript" id="jekyll.configurations" charset="utf-8">
+          var IfMicro = window.IfMicro || {};
+          var CONFIG = {
+            domain: 'http://0.0.0.0:4000',
+            zclip_swf: '/assets/lib/jquery-zclip/ZeroClipboard.swf',
+            page: {
+              type: 'post',
+              title: '使用最大余额法计算百分比',
+              toc: true
+            }
+          };
+          window._EXPORT_RENDER_RECT = {
+            width: 1366,
+            height: 1555
+          }
+        </script>
+        
+
+
+  
+  
+    
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <script src="/assets/js/toc.js?2.0.4" type="text/javascript" ></script>
+  
+  
+
+  
+  <script src="/assets/js/utils.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/js/scrollspy.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/js/sidebar.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  
+  
+
+  
+  <script src="/assets/js/bootstrap.js?2.0.4" type="text/javascript" ></script>
+  
+
+
+    </body>
+    <div style="position: fixed; height: 100%; opacity: 0;" id="body-div"></div>
+</html>
+
+

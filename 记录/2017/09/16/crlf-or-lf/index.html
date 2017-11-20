@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>倘若微小 - CRLF 还是 LF</title>
+  
+  
+  <meta name="description" content="我曾闻娑婆世界，每个人都罪孽深重，又闻一沙一世界，一树一菩提。 只是，随便拍拍，身上的尘土落尽，又有多少罪孽呢？ 只是，阳光下，金色的微尘闪着光，又是怎样一个世界呢？
+">
+  
+  
+  <meta name="keywords" content="nodejs,CRLF,LF,dos,unix" />
+  
+  <meta name="author" content="MwumLi">
+  <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="/assets/css/main.css?2.0.4" type="text/css" media="all" />
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+</head>
+
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <div class="site-wrapper clearfix">
+          <a class="site-title" href="/">倘若微小</a>
+<button class="site-nav-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<nav class="site-nav">
+  
+
+
+
+<a class="page-link " href="/micro-say/2017/">微语</a>
+
+
+
+<a class="page-link " href="/pages/archive/">归档</a>
+
+
+
+<a class="page-link " href="/pages/categories/">分类</a>
+
+
+
+<a class="page-link " href="/pages/tags/">标签</a>
+
+
+
+<a class="page-link " href="/rss.xml">订阅</a>
+
+
+
+</nav>
+
+
+        </div>
+      </header>
+      <main class="site-main">
+        <div class="site-wrapper clearfix">
+          <div class="page-header">
+    <h1>CRLF 还是 LF <small></small></h1>
+    <div class="article-header">
+        
+        
+        <div>
+            
+            <span>分类: </span>
+            <a href="/pages/categories/?names=记录" class="tag">记录</a>
+            
+            
+                <span>标签: </span>
+            
+            
+                <a href="/pages/tags/?names=nodejs#tag-search-list" class="tag">nodejs</a>
+            
+                <a href="/pages/tags/?names=CRLF#tag-search-list" class="tag">CRLF</a>
+            
+                <a href="/pages/tags/?names=LF#tag-search-list" class="tag">LF</a>
+            
+                <a href="/pages/tags/?names=dos#tag-search-list" class="tag">dos</a>
+            
+                <a href="/pages/tags/?names=unix#tag-search-list" class="tag">unix</a>
+            
+        </div>
+        <div>
+            Last Modify in
+            
+            <span>2017-09-16</span>,
+            
+            published in <span>2017-09-16</span>
+            by <span> MwumLi</span>
+        </div>
+
+        
+        
+    </div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#crlf-还是-lf" id="markdown-toc-crlf-还是-lf">CRLF 还是 LF</a></li>
+  <li><a href="#dos-和-unix-的相互转换" id="markdown-toc-dos-和-unix-的相互转换">dos 和 unix 的相互转换</a>    <ul>
+      <li><a href="#dos2unix-和-unix2dos" id="markdown-toc-dos2unix-和-unix2dos">dos2unix 和 unix2dos</a></li>
+      <li><a href="#使用-nodejs-转换-crlf-和-lf" id="markdown-toc-使用-nodejs-转换-crlf-和-lf">使用 nodejs 转换 CRLF 和 LF</a></li>
+      <li><a href="#使用-git-转换-crlf-和-lf" id="markdown-toc-使用-git-转换-crlf-和-lf">使用 git 转换 CRLF 和 LF</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Windows 系统和类 UNIX 系统在处理换行符的时候有些差异:</p>
+<ul>
+  <li>Windows 系统采用回车和换行两个字符来结束一行,即 <code class="highlighter-rouge">\r\n</code> 作为换行, 经常简称为 <code class="highlighter-rouge">CRLF</code></li>
+  <li>类 Unix 系统采用使用换行字符结束一行,即 <code class="highlighter-rouge">\n</code> 作为换行, 经常简称为 <code class="highlighter-rouge">LF</code></li>
+</ul>
+
+<blockquote>
+  <p>在过去, Mac OS 使用回车字符结束一行, 即 <code class="highlighter-rouge">\r</code>, 简称为 <code class="highlighter-rouge">CR</code>, 但是现在最新的系统已经采用 <code class="highlighter-rouge">LF</code> 作为换行, 与所有类 UNIX 系统保持一致</p>
+</blockquote>
+
+<p>如果经常需要在 Windows 和 类 Unix 系统上切换工作或者与其他人在不同系统间协同工作, 这些差异往往就会扰乱你(们)的跨平台协作, 比如在进行读写文件后, 发现文件显示 <code class="highlighter-rouge">^M</code> 这样的字符; 比如 git 提交的时候, 可能在提交记录里面会出现整个文件都被更改的局面…</p>
+
+<p>以 CRLF 作为换行符的文本文件经常被称作 <strong>DOS 格式文件</strong>, 而以 LF 作为换行符文本文件, 被称作 <strong>UNIX 格式文件</strong></p>
+
+<h2 id="crlf-还是-lf">CRLF 还是 LF</h2>
+
+<p>如果进行跨平台的协同工作, 特别是使用 git 进行代码版本管理, 最好统一换行符, <strong>建议使用 <code class="highlighter-rouge">LF</code>(即<code class="highlighter-rouge">\n</code>) 作为换行符</strong></p>
+
+<p>使用 <code class="highlighter-rouge">file</code> 命令查看 dos 格式文件:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ file dos_utf8_file.txt 
+dos_utf8_file.txt: UTF-8 Unicode text, with CRLF line terminators
+</code></pre>
+</div>
+
+<p>使用 <code class="highlighter-rouge">file</code> 命令查看 unix 格式文件:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ file unix_utf8_file.txt
+unix_utf8_file.txt: UTF-8 Unicode text
+</code></pre>
+</div>
+
+<h2 id="dos-和-unix-的相互转换">dos 和 unix 的相互转换</h2>
+
+<p>dos 格式文件转换成 Unix 格式文件, 就是把 CRLF 替换为 LF; unix 格式文件转换成 dos 格式文件, 就是把 LF 替换为 CRLF</p>
+
+<h3 id="dos2unix-和-unix2dos">dos2unix 和 unix2dos</h3>
+
+<p><code class="highlighter-rouge">dos2unix</code>: dos 格式文件转换为 unix 格式文件  <br />
+<code class="highlighter-rouge">unix2dos</code>: unix 格式文件转换为 dos 格式文件</p>
+
+<p>这是类 UNIX 系统上的两个命令, 如果没有安装, 请先安装</p>
+
+<h3 id="使用-nodejs-转换-crlf-和-lf">使用 nodejs 转换 CRLF 和 LF</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function dos2unix (content) {
+  return content.split('\r\n').join('\n');
+}
+
+function unix2dos (content) {
+  let len = content.length;
+  let dos_content = '';
+  let lastChar = '', curChar;
+
+  for (let i=0; i&lt;len; i++) {
+    curChar = content.charAt(i);
+
+    if (curChar === '\n' &amp;&amp; lastChar !== '\r') {
+      dos_content += '\r';
+    }
+    dos_content += curChar;
+
+    lastChar = curChar;
+  }
+
+  return dos_content;
+}
+</code></pre>
+</div>
+
+<h3 id="使用-git-转换-crlf-和-lf">使用 git 转换 CRLF 和 LF</h3>
+
+<blockquote>
+  <p>为了保持跨平台一致性, 最好保持行结束符一致, 因此推荐 Windows 设置 <code class="highlighter-rouge">autocrlf</code> 为 <code class="highlighter-rouge">true</code>, 类 UNIX 系统设置 <code class="highlighter-rouge">autocrlf</code> 为 <code class="highlighter-rouge">input</code></p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Git 在提交代码时自动地把行结束符 CRLF 转换成 LF, 签出代码时候把行结束符转换为 CRLF:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  git config core.autocrlf true
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Git 在提交时把 CRLF 转换成 LF，签出时不转换:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  git config core.autocrlf input
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>不进行任何转换(默认):</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  git config core.autocrlf false
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/%E8%AE%B0%E5%BD%95/2017/08/21/get-dom-coords-size-by-javascript/" title="使用 JavaScript 获取 DOM 元素位置和尺寸">使用 JavaScript 获取 DOM 元素位置和尺寸</a></li>
+      
+      
+        <li class="next">下一篇: <a href="/2017/11/19/percent-with-the-largest-remainder-method/" title="使用最大余额法计算百分比">使用最大余额法计算百分比</a></li>
+      
+      </ul>
+    </div>
+
+    <hr>
+
+    <div id="to_comments">
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+    </div>
+ </div>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+        <div class="site-wrapper clearfix">
+          <p>&copy;2014-2017 <a href="">倘若微小</a><br />
+Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="">MwumLi</a><br />
+本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。</p>
+
+        </div>
+      </footer>
+
+      <div class="sidebar-toggle">
+  <div id="sidebar-toggle-wrapper" class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div style="position: fixed; height: 100%;" id="js-"></div>
+  <div class="sidebar-inner">
+    <ul class="sidebar-nav">
+      <li class="js-sidebar-toc" data-nav="js-sidebar-toc">
+        文章目录
+      </li>
+      <li class="js-sidebar-overview sidebar-active" data-nav="js-sidebar-overview">
+        站点导航
+      </li>
+      </ul>
+  </div>
+  <section class="sidebar-panel js-sidebar-toc-spy js-sidebar-toc">
+  </section>
+  <section class="sidebar-panel js-sidebar-overview sidebar-active">
+    <nav class="sidebar-nav">
+      
+
+
+
+<a class="page-link " href="/micro-say/2017/">微语</a>
+
+
+
+<a class="page-link " href="/pages/archive/">归档</a>
+
+
+
+<a class="page-link " href="/pages/categories/">分类</a>
+
+
+
+<a class="page-link " href="/pages/tags/">标签</a>
+
+
+
+<a class="page-link " href="/rss.xml">订阅</a>
+
+
+
+    </nav>
+  </section>
+</aside>
+
+      <div class="back-to-top">
+        <div class="back-to-top-wrap">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      </div>
+    </div>
+        
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50450008-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+        
+
+
+
+  
+  <script src="/assets/lib/jquery/jquery-2.1.3.min.js?2.1.3" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery-zclip/jquery.zclip.js?1.1.7" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery.resizeend/jquery.resizeend.min.js?0.2.0" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/bigfoot/bigfoot.min.js?2.1.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?2.1.5" type="text/javascript" ></script>
+  
+
+
+
+        <script type="text/javascript" id="jekyll.configurations" charset="utf-8">
+          var IfMicro = window.IfMicro || {};
+          var CONFIG = {
+            domain: 'http://0.0.0.0:4000',
+            zclip_swf: '/assets/lib/jquery-zclip/ZeroClipboard.swf',
+            page: {
+              type: 'post',
+              title: 'CRLF 还是 LF',
+              toc: true
+            }
+          };
+          window._EXPORT_RENDER_RECT = {
+            width: 1366,
+            height: 1555
+          }
+        </script>
+        
+
+
+  
+  
+    
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <script src="/assets/js/toc.js?2.0.4" type="text/javascript" ></script>
+  
+  
+
+  
+  <script src="/assets/js/utils.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/js/scrollspy.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/js/sidebar.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  
+  
+
+  
+  <script src="/assets/js/bootstrap.js?2.0.4" type="text/javascript" ></script>
+  
+
+
+    </body>
+    <div style="position: fixed; height: 100%; opacity: 0;" id="body-div"></div>
+</html>
+
+
