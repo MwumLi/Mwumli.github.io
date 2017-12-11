@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>倘若微小 - 使用 nc 读写 TCP/UDP 连接</title>
+  
+  
+  <meta name="description" content="`nc`, `netcat` 的缩写, 是类 unix 系统下一个功能强大的命令行网络工具, 用来在两台主机之间建立 TCP 或者 UDP 连接, 并通过标准输入输出进行读和写">
+  
+  
+  <meta name="keywords" content="Linux,Net,cmd" />
+  
+  <meta name="author" content="MwumLi">
+  <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="/assets/css/main.css?2.0.4" type="text/css" media="all" />
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  <!-- atom & rss feed -->
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+  <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+</head>
+
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <div class="site-wrapper clearfix">
+          <a class="site-title" href="/">倘若微小</a>
+<button class="site-nav-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<nav class="site-nav">
+  
+
+
+
+<a class="page-link " href="/micro-say/2017/">微语</a>
+
+
+
+<a class="page-link " href="/pages/archive/">归档</a>
+
+
+
+<a class="page-link " href="/pages/categories/">分类</a>
+
+
+
+<a class="page-link " href="/pages/tags/">标签</a>
+
+
+
+<a class="page-link " href="/rss.xml">订阅</a>
+
+
+
+</nav>
+
+
+        </div>
+      </header>
+      <main class="site-main">
+        <div class="site-wrapper clearfix">
+          <div class="page-header">
+    <h1>使用 nc 读写 TCP/UDP 连接 <small></small></h1>
+    <div class="article-header">
+        
+        
+        <div>
+            
+            <span>分类: </span>
+            <a href="/pages/categories/?names=记录" class="tag">记录</a>
+            
+            
+                <span>标签: </span>
+            
+            
+                <a href="/pages/tags/?names=Linux#tag-search-list" class="tag">Linux</a>
+            
+                <a href="/pages/tags/?names=Net#tag-search-list" class="tag">Net</a>
+            
+                <a href="/pages/tags/?names=cmd#tag-search-list" class="tag">cmd</a>
+            
+        </div>
+        <div>
+            Last Modify in
+            
+            <span>2017-12-12</span>,
+            
+            published in <span>2017-12-12</span>
+            by <span> MwumLi</span>
+        </div>
+
+        
+        
+    </div>
+</div>
+
+<div id="page-content">
+    
+<ul id="markdown-toc">
+  <li><a href="#选项" id="markdown-toc-选项">选项</a></li>
+  <li><a href="#使用" id="markdown-toc-使用">使用</a>    <ul>
+      <li><a href="#建立原始-tcp-连接" id="markdown-toc-建立原始-tcp-连接">建立原始 TCP 连接</a></li>
+      <li><a href="#端口扫描" id="markdown-toc-端口扫描">端口扫描</a></li>
+      <li><a href="#发送文件" id="markdown-toc-发送文件">发送文件</a></li>
+      <li><a href="#聊天工具" id="markdown-toc-聊天工具">聊天工具</a></li>
+      <li><a href="#连接-memcached" id="markdown-toc-连接-memcached">连接 memcached</a></li>
+      <li><a href="#使用代理" id="markdown-toc-使用代理">使用代理</a></li>
+      <li><a href="#一次性-web-server" id="markdown-toc-一次性-web-server">一次性 Web Server</a></li>
+      <li><a href="#文件夹传输" id="markdown-toc-文件夹传输">文件夹传输</a></li>
+      <li><a href="#远程克隆磁盘" id="markdown-toc-远程克隆磁盘">远程克隆磁盘</a></li>
+      <li><a href="#shell" id="markdown-toc-shell">shell</a></li>
+      <li><a href="#反向-shell" id="markdown-toc-反向-shell">反向 shell</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><code class="highlighter-rouge">nc</code>, <code class="highlighter-rouge">netcat</code> 的缩写, 是类 unix 系统下一个功能强大的命令行网络工具, 用来在两台主机之间建立 TCP 或者 UDP 连接, 并通过标准输入输出进行读和写</p>
+
+<p><code class="highlighter-rouge">nc</code> 强大之处在于输出是标准输出(<code class="highlighter-rouge">stdout</code>), 输入来自标准输入(<code class="highlighter-rouge">stdin</code>), 以至于可以很容易通过管道和重定向直接使用或被其他程序和脚本调用。正因为它的这种特性, 以至于你能发挥你的想象力用它做很多事情:</p>
+
+<ul>
+  <li>端口扫描: 通过与目的 IP 建立连接, 从而扫描目的IP 的端口是否开放</li>
+  <li>聊天工具: 一边使用 <code class="highlighter-rouge">nc</code> 监听一个端口, 另一边使用 <code class="highlighter-rouge">nc</code> 成功连接这个端口即可互相通信</li>
+  <li>发送文件: 与目的 IP 建立连接, 配合重定向, 源地址读取文件, 目的地址接收文件</li>
+  <li>目录传输: tar 命令和管道的结合</li>
+  <li>远程克隆磁盘: dd 命令和管道的结合</li>
+  <li>配合 ssh config 的 ProxyCommand 命令进行跳板登录  <br />
+…</li>
+</ul>
+
+<p><code class="highlighter-rouge">nc</code> 有很多变种, <code class="highlighter-rouge">ncat</code>,<code class="highlighter-rouge">pnetcat</code>,<code class="highlighter-rouge">socat</code>,<code class="highlighter-rouge">sock</code>,<code class="highlighter-rouge">socket</code>,<code class="highlighter-rouge">sbd</code> 都是指它, 在不同的系统下, 都进行了不同程度的修改, 但是无论怎样, 都可以使用 <code class="highlighter-rouge">nc</code> 这个名字</p>
+
+<h2 id="选项">选项</h2>
+
+<p>下面列举的选项并不一定都能使用, 具体根据当前操作系统安装的 <code class="highlighter-rouge">nc</code> 版本有关</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">-s source_ip_address</code>:  指定 <code class="highlighter-rouge">nc</code> 应用与远程主机建立连接的 IP  <br />
+  如果不使用此选项, 默认为使用 <code class="highlighter-rouge">0.0.0.0</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">-p source_port</code>: 指定 <code class="highlighter-rouge">nc</code> 应用与远程主机建立连接的源端口  <br />
+如果不指定此选项, 则随机一个可用的端口</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">-z</code>: nc 仅仅扫描指定主机的端口, 而不发送任何数据</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">-w timeout</code>: 指定与远程主机建立连接成功后超过 timeout 秒自动断开连接  <br />
+如果不使用此选项, 则默认无超时</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">-l [ip]:port</code> : 监听端口 port, 相当于本机启动了一个服务  <br />
+<code class="highlighter-rouge">ip</code> 是可选的, 如果不指定, 默认为 <code class="highlighter-rouge">0.0.0.0</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">-x proxy_address[:port]</code>: 指定 nc 请求时使用的代理服务  <br />
+<code class="highlighter-rouge">port</code> 是可选的, 如果不指定 port, 则代理服务的 port 为指定代理协议的众所周知的端口: <code class="highlighter-rouge">1080</code>(SOCKS), <code class="highlighter-rouge">3128</code>(HTTPS)</p>
+  </li>
+  <li><code class="highlighter-rouge">-X proxy_version</code> - 指定 nc 请求时使用代理服务的协议
+    <ul>
+      <li><code class="highlighter-rouge">proxy_version</code> 为 <code class="highlighter-rouge">4</code> : 表示使用的代理为 SOCKS4 代理</li>
+      <li><code class="highlighter-rouge">proxy_version</code> 为 <code class="highlighter-rouge">5</code> : 表示使用的代理为 SOCKS5 代理</li>
+      <li><code class="highlighter-rouge">proxy_version</code> 为 <code class="highlighter-rouge">connect</code> : 表示使用的代理为 HTTPS 代理</li>
+      <li>如果不指定协议, 则默认使用的代理为 SOCKS5 代理</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">-u</code>: 指定使用的 UDP 协议  <br />
+      如果不使用此选项, 默认为使用 TCP 协议</p>
+  </li>
+  <li><code class="highlighter-rouge">-e command</code> : 执行给出的命令, <code class="highlighter-rouge">--exec</code></li>
+  <li>
+    <p><code class="highlighter-rouge">-c command</code> : 通过 /bin/sh 执行命令 command, <code class="highlighter-rouge">--sh-exec</code></p>
+  </li>
+  <li><code class="highlighter-rouge">-v</code> : 打印详细的输出</li>
+</ul>
+
+<h2 id="使用">使用</h2>
+
+<h3 id="建立原始-tcp-连接">建立原始 TCP 连接</h3>
+
+<p>与 <code class="highlighter-rouge">www.baidu.com</code> 的 80 端口建立一个 TCP 连接(本地端口随机):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ nc www.baidu.com 80
+</code></pre>
+</div>
+
+<p>使用本地 <code class="highlighter-rouge">1234</code> 端口与 <code class="highlighter-rouge">www.baidu.com</code> 的 80 端口建立一个 TCP 连接:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ nc -p 1234 www.baidu.com 80
+</code></pre>
+</div>
+
+<p>与 <code class="highlighter-rouge">www.baidu.com</code> 的 80 端口建立一个 TCP 连接, 超过 5s 自动断开:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ nc -w 5 www.baidu.com 80
+</code></pre>
+</div>
+
+<p>与 <code class="highlighter-rouge">www.baidu.com</code> 的 80 端口建立一个 TCP 连接, 并发送请求头, 模拟浏览器访问百度:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	$ echo `GET / HTTP/1.o\r\n\r\n` | nc -p 21337 www.baidu.com 80
+	HTTP/1.1 200 OK
+	Date: Sun, 10 Dec 2017 08:28:45 GMT
+	Content-Type: text/html
+	Content-Length: 14613
+	...
+</code></pre>
+</div>
+
+<p>上面用法相当于:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	$ nc -p 31337 www.baidu.com 80
+ 		GET / HTTP/1.0
+	(回车)
+	(回车)
+	HTTP/1.1 200 OK
+	Date: Sun, 10 Dec 2017 08:28:45 GMT
+	Content-Type: text/html
+	Content-Length: 14613
+	
+
+	nc -p 31337 -w 5 host.example.com 42
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>与 <code class="highlighter-rouge">host.example.com</code> 的 53 端口建立一个 UDP 连接:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  nc -u host.example.com 53
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>使用 <code class="highlighter-rouge">10.1.2.3</code> 作为本地 IP 与 <code class="highlighter-rouge">host.example.com</code> 的 42 端口建立一个 TCP 连接:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  nc -s 10.1.2.3 host.example.com 42
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="端口扫描">端口扫描</h3>
+
+<p>端口扫描经常被系统管理员和黑客用来发现在一些机器上开放的端口，帮助他们识别系统中的漏洞</p>
+
+<ul>
+  <li>
+    <p>检查 <code class="highlighter-rouge">127.0.0.1</code> 的 TCP 端口 <code class="highlighter-rouge">9324-9326</code> 是否开启</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  $ nc 127.0.0.1 -z 9320-9330
+  Connection to 127.0.0.1 port 9325 [tcp/*] succeeded!
+</code></pre>
+    </div>
+
+    <p>可以看到只有 9325 端口是开放的, <code class="highlighter-rouge">-z 9320-9330</code> 指定了扫描的端口范围是 9320 到 9330</p>
+  </li>
+  <li>
+    <p>详细展示 <code class="highlighter-rouge">127.0.0.1</code> 的 TCP 端口 <code class="highlighter-rouge">9324-9326</code> 的开启状况, 使用 <code class="highlighter-rouge">-v</code> 选项:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  $ nc -v -w 2 127.0.0.1 -z 9324-9326
+  nc: connectx to 127.0.0.1 port 9324 (tcp) failed: Connection refused
+  found 0 associations
+  found 1 connections:
+           1: flags=82&lt;CONNECTED,PREFERRED&gt;
+                  outif lo0
+                  src 127.0.0.1 port 65482
+                  dst 127.0.0.1 port 9325
+                  rank info not available
+                  TCP aux info available
+
+  Connection to 127.0.0.1 port 9325 [tcp/*] succeeded!
+  nc: connectx to 127.0.0.1 port 9326 (tcp) failed: Connection refused
+</code></pre>
+    </div>
+
+    <p>可以看到发出了三个请求, 只有 9325 端口处于监听状态, 并且显示更为详细的连接成功的请求信息</p>
+  </li>
+</ul>
+
+<h3 id="发送文件">发送文件</h3>
+
+<p>把 <code class="highlighter-rouge">192.168.11.2</code> 上的文件 <code class="highlighter-rouge">demo.tar.bz2</code> 发送到 <code class="highlighter-rouge">192.168.11.3</code>, 并保存为 <code class="highlighter-rouge">demo.tar.bz2</code>:</p>
+<ul>
+  <li>在 <code class="highlighter-rouge">192.168.11.3</code> 上: <code class="highlighter-rouge">nc -l 1234 &gt; demo.tar.bz2</code></li>
+  <li>在 <code class="highlighter-rouge">192.168.11.2</code> 上: <code class="highlighter-rouge">nc 192.168.11.3 1234 &lt; demo.tar.bz2</code></li>
+</ul>
+
+<h3 id="聊天工具">聊天工具</h3>
+
+<p>通过在 <code class="highlighter-rouge">192.168.11.2</code> 与 <code class="highlighter-rouge">192.168.11.3</code> 上建立 TCP 连接来实现聊天:</p>
+
+<ul>
+  <li>在 <code class="highlighter-rouge">192.168.11.3</code> 上: <code class="highlighter-rouge">nc -l 1234</code></li>
+  <li>在 <code class="highlighter-rouge">192.168.11.2</code> 上: <code class="highlighter-rouge">nc 192.168.11.2 1234</code></li>
+</ul>
+
+<p>这样, 双方就可以相互交流了, 使用 <code class="highlighter-rouge">Ctrl+C</code> 退出</p>
+
+<h3 id="连接-memcached">连接 memcached</h3>
+
+<p>连接 <code class="highlighter-rouge">memcached</code> 服务器, 执行命令: 假设 <code class="highlighter-rouge">192.168.11.2</code> 上启动了一个 <code class="highlighter-rouge">memcached</code>, 并且端口为 <code class="highlighter-rouge">11211</code></p>
+
+<p>连接 192.168.11.2 上的 memcached 服务, 并执行 stats 打印 memcached 运行状态:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ echo 'stats' | nc 192.168.11.2 11211
+</code></pre>
+</div>
+
+<p>充当一个 memecached 客户端, 你可以执行 memcached 的操作指令:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ nc 192.168.11.2 11211
+</code></pre>
+</div>
+
+<h3 id="使用代理">使用代理</h3>
+
+<p>有些网络不能直接访问, 只能通过代理服务才能访问</p>
+
+<p>通过代理连接 <code class="highlighter-rouge">host.example.com</code> 的 42 端口:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	# 使用 HTTP 代理 http://10.2.3.4:8080 与 host.example.com 的 42 端口连接
+	$ nc -x10.2.3.4:8080 -Xconnect host.example.com 42
+
+	# 使用 socks4 代理 socks4://10.2.3.4:8080 连接 host.example.com 的 42 端口
+	$ nc -x10.2.3.4:8080 -X4 host.example.com 42
+
+	# 使用 socks5 代理 socks5://10.2.3.4:8080 连接 host.example.com 的 42 端口
+	$ nc -x10.2.3.4:8080 -X5 host.example.com 42
+</code></pre>
+</div>
+
+<p>ssh 使用代理: 在 ssh 的配置文件<code class="highlighter-rouge">~/.ssh/config</code> 配置选项 <code class="highlighter-rouge">ProxyCommand</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	Host web
+		HostName    192.168.11.2
+		IdentityFile ~/.ssh/id_rsa
+		Port        22
+		User        root
+		ProxyCommand nc -x127.0.0.1:7070 %h %p
+</code></pre>
+</div>
+
+<h3 id="一次性-web-server">一次性 Web Server</h3>
+
+<p>监听 8080 端口, 如果通过 http 访问, 则返回文件 <code class="highlighter-rouge">file</code> 的内容, 然后断开:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="w">	</span><span class="p">{</span><span class="w"> </span><span class="err">printf</span><span class="w"> </span><span class="err">'HTTP/1.0</span><span class="w"> </span><span class="err">200</span><span class="w"> </span><span class="err">OK\r\nContent-Length:</span><span class="w"> </span><span class="err">%d\r\n\r\n'</span><span class="w"> </span><span class="nt">"$(wc -c &lt; file)"</span><span class="err">;</span><span class="w"> </span><span class="err">cat</span><span class="w"> </span><span class="err">file;</span><span class="w"> </span><span class="err">}</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">nc</span><span class="w"> </span><span class="err">-l</span><span class="w"> </span><span class="mi">8080</span><span class="s2">"&gt;)"</span><span class="err">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h3 id="文件夹传输">文件夹传输</h3>
+
+<p>配合 tar 命令和管道, 在两台主机之间传输文件夹内容</p>
+
+<p>把 <code class="highlighter-rouge">192.168.11.2</code> 的文件夹 <code class="highlighter-rouge">dir</code> 发往 <code class="highlighter-rouge">192.168.11.3</code></p>
+
+<ul>
+  <li>在 192.168.11.2 上: <code class="highlighter-rouge">tar -cvf - dir | nc -l 1234</code></li>
+  <li>在 192.168.11.3 上: <code class="highlighter-rouge">nc 192.168.11.2 1234 | tar xvf -</code></li>
+</ul>
+
+<p>使用 tar 的 <code class="highlighter-rouge">-j</code> 选项(<code class="highlighter-rouge">bzip2</code>) 或 <code class="highlighter-rouge">z</code> 选项(<code class="highlighter-rouge">gzip</code>) 进行数据压缩传输</p>
+
+<h3 id="远程克隆磁盘">远程克隆磁盘</h3>
+
+<p>配合 dd 命令和管道, 进行远程磁盘读写</p>
+
+<p>把 <code class="highlighter-rouge">192.168.11.2</code> 上的 <code class="highlighter-rouge">/dev/sda</code> 克隆到 <code class="highlighter-rouge">192.168.11.3</code> 上的 <code class="highlighter-rouge">/dev/sdb</code>:</p>
+
+<ul>
+  <li>在 192.168.11.2 上: <code class="highlighter-rouge">dd if=/dev/sda | nc -l 1234</code></li>
+  <li>在 192.168.11.3 上: <code class="highlighter-rouge">nc 192.168.11.2 1234 | dd of=/dev/sdb</code></li>
+</ul>
+
+<h3 id="shell">shell</h3>
+
+<p>可以打开一个远程主机的 bash, 对远程主机进行操作</p>
+
+<p>从本地远程打开 <code class="highlighter-rouge">192.168.11.3</code> 的 shell:</p>
+
+<ul>
+  <li>在 192.168.11.3 上: <code class="highlighter-rouge">nc -l 1234 -e /bin/bash</code></li>
+  <li>在本地: <code class="highlighter-rouge">nc 192.168.11.3 1234</code></li>
+</ul>
+
+<p>如果不支持 <code class="highlighter-rouge">-e</code> 或 <code class="highlighter-rouge">-c</code> 选项, 可以这样做:</p>
+<ul>
+  <li>
+    <p>在 192.168.11.3 上:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  $ mkfifo /tmp/tmp_fifo
+  $ cat /tmp/tmp_fifo | /bin/sh 2&gt;&amp;1 | nc -l 1234 &gt; /tmp/tmp_fifo
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>在本地: <code class="highlighter-rouge">nc 192.168.11.3 1234</code></p>
+  </li>
+</ul>
+
+<h3 id="反向-shell">反向 shell</h3>
+
+<p>在服务端访问客户端的 shell</p>
+
+<p>服务器 <code class="highlighter-rouge">192.168.11.2</code> 访问本地 shelk:</p>
+
+<ul>
+  <li>在服务器上: <code class="highlighter-rouge">nc -l 1234</code></li>
+  <li>在本机: <code class="highlighter-rouge">nc 192.168.11.2 1234 -e /bin/bash</code></li>
+</ul>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev">上一篇: <a href="/2017/11/19/percent-with-the-largest-remainder-method/" title="使用最大余额法计算百分比">使用最大余额法计算百分比</a></li>
+      
+      
+        <li class="next-disabled">下一篇: 让时间加速吧
+      
+      </ul>
+    </div>
+
+    <hr>
+
+    <div id="to_comments">
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ifmicro'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+    </div>
+ </div>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+        <div class="site-wrapper clearfix">
+          <p>&copy;2014-2017 <a href="">倘若微小</a><br />
+Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="">MwumLi</a><br />
+本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。</p>
+
+        </div>
+      </footer>
+
+      <div class="sidebar-toggle">
+  <div id="sidebar-toggle-wrapper" class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div style="position: fixed; height: 100%;" id="js-"></div>
+  <div class="sidebar-inner">
+    <ul class="sidebar-nav">
+      <li class="js-sidebar-toc" data-nav="js-sidebar-toc">
+        文章目录
+      </li>
+      <li class="js-sidebar-overview sidebar-active" data-nav="js-sidebar-overview">
+        站点导航
+      </li>
+      </ul>
+  </div>
+  <section class="sidebar-panel js-sidebar-toc-spy js-sidebar-toc">
+  </section>
+  <section class="sidebar-panel js-sidebar-overview sidebar-active">
+    <nav class="sidebar-nav">
+      
+
+
+
+<a class="page-link " href="/micro-say/2017/">微语</a>
+
+
+
+<a class="page-link " href="/pages/archive/">归档</a>
+
+
+
+<a class="page-link " href="/pages/categories/">分类</a>
+
+
+
+<a class="page-link " href="/pages/tags/">标签</a>
+
+
+
+<a class="page-link " href="/rss.xml">订阅</a>
+
+
+
+    </nav>
+  </section>
+</aside>
+
+      <div class="back-to-top">
+        <div class="back-to-top-wrap">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      </div>
+    </div>
+        
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50450008-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+        
+
+
+
+  
+  <script src="/assets/lib/jquery/jquery-2.1.3.min.js?2.1.3" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery-zclip/jquery.zclip.js?1.1.7" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/jquery.resizeend/jquery.resizeend.min.js?0.2.0" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/bigfoot/bigfoot.min.js?2.1.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?2.1.5" type="text/javascript" ></script>
+  
+
+
+
+        <script type="text/javascript" id="jekyll.configurations" charset="utf-8">
+          var IfMicro = window.IfMicro || {};
+          var CONFIG = {
+            domain: 'http://mwumli.github.com',
+            zclip_swf: '/assets/lib/jquery-zclip/ZeroClipboard.swf',
+            page: {
+              type: 'post',
+              title: '使用 nc 读写 TCP/UDP 连接',
+              toc: true
+            }
+          };
+          window._EXPORT_RENDER_RECT = {
+            width: 1366,
+            height: 1555
+          }
+        </script>
+        
+
+
+  
+  
+    
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/css/bigfoot-number.css?2.1.4" type="text/css">
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="/assets/lib/fancybox/source/jquery.fancybox.css?2.1.5" type="text/css">
+  
+  
+
+
+
+  <script src="/assets/js/toc.js?2.0.4" type="text/javascript" ></script>
+  
+  
+
+  
+  <script src="/assets/js/utils.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/js/scrollspy.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  <script src="/assets/js/sidebar.js?2.0.4" type="text/javascript" ></script>
+  
+
+  
+  
+  
+
+  
+  <script src="/assets/js/bootstrap.js?2.0.4" type="text/javascript" ></script>
+  
+
+
+    </body>
+    <div style="position: fixed; height: 100%; opacity: 0;" id="body-div"></div>
+</html>
+
+

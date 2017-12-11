@@ -5,10 +5,335 @@
         <description>倘若微小 - MwumLi</description>
         <link></link>
         <atom:link href="" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Tue, 21 Nov 2017 01:36:57 +0800</lastBuildDate>
-        <pubDate>Tue, 21 Nov 2017 01:36:57 +0800</pubDate>
+        <lastBuildDate>Mon, 11 Dec 2017 16:51:50 +0000</lastBuildDate>
+        <pubDate>Mon, 11 Dec 2017 16:51:50 +0000</pubDate>
         <ttl>60</ttl>
 
+
+        <item>
+                <title>使用 nc 读写 TCP/UDP 连接</title>
+                <description>
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#选项&quot; id=&quot;markdown-toc-选项&quot;&gt;选项&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#使用&quot; id=&quot;markdown-toc-使用&quot;&gt;使用&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#建立原始-tcp-连接&quot; id=&quot;markdown-toc-建立原始-tcp-连接&quot;&gt;建立原始 TCP 连接&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#端口扫描&quot; id=&quot;markdown-toc-端口扫描&quot;&gt;端口扫描&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#发送文件&quot; id=&quot;markdown-toc-发送文件&quot;&gt;发送文件&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#聊天工具&quot; id=&quot;markdown-toc-聊天工具&quot;&gt;聊天工具&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#连接-memcached&quot; id=&quot;markdown-toc-连接-memcached&quot;&gt;连接 memcached&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#使用代理&quot; id=&quot;markdown-toc-使用代理&quot;&gt;使用代理&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#一次性-web-server&quot; id=&quot;markdown-toc-一次性-web-server&quot;&gt;一次性 Web Server&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#文件夹传输&quot; id=&quot;markdown-toc-文件夹传输&quot;&gt;文件夹传输&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#远程克隆磁盘&quot; id=&quot;markdown-toc-远程克隆磁盘&quot;&gt;远程克隆磁盘&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#shell&quot; id=&quot;markdown-toc-shell&quot;&gt;shell&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#反向-shell&quot; id=&quot;markdown-toc-反向-shell&quot;&gt;反向 shell&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;nc&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;netcat&lt;/code&gt; 的缩写, 是类 unix 系统下一个功能强大的命令行网络工具, 用来在两台主机之间建立 TCP 或者 UDP 连接, 并通过标准输入输出进行读和写&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;nc&lt;/code&gt; 强大之处在于输出是标准输出(&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;), 输入来自标准输入(&lt;code class=&quot;highlighter-rouge&quot;&gt;stdin&lt;/code&gt;), 以至于可以很容易通过管道和重定向直接使用或被其他程序和脚本调用。正因为它的这种特性, 以至于你能发挥你的想象力用它做很多事情:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;端口扫描: 通过与目的 IP 建立连接, 从而扫描目的IP 的端口是否开放&lt;/li&gt;
+  &lt;li&gt;聊天工具: 一边使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;nc&lt;/code&gt; 监听一个端口, 另一边使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;nc&lt;/code&gt; 成功连接这个端口即可互相通信&lt;/li&gt;
+  &lt;li&gt;发送文件: 与目的 IP 建立连接, 配合重定向, 源地址读取文件, 目的地址接收文件&lt;/li&gt;
+  &lt;li&gt;目录传输: tar 命令和管道的结合&lt;/li&gt;
+  &lt;li&gt;远程克隆磁盘: dd 命令和管道的结合&lt;/li&gt;
+  &lt;li&gt;配合 ssh config 的 ProxyCommand 命令进行跳板登录  &lt;br /&gt;
+…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;nc&lt;/code&gt; 有很多变种, &lt;code class=&quot;highlighter-rouge&quot;&gt;ncat&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;pnetcat&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;socat&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;sock&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;socket&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;sbd&lt;/code&gt; 都是指它, 在不同的系统下, 都进行了不同程度的修改, 但是无论怎样, 都可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;nc&lt;/code&gt; 这个名字&lt;/p&gt;
+
+&lt;h2 id=&quot;选项&quot;&gt;选项&lt;/h2&gt;
+
+&lt;p&gt;下面列举的选项并不一定都能使用, 具体根据当前操作系统安装的 &lt;code class=&quot;highlighter-rouge&quot;&gt;nc&lt;/code&gt; 版本有关&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-s source_ip_address&lt;/code&gt;:  指定 &lt;code class=&quot;highlighter-rouge&quot;&gt;nc&lt;/code&gt; 应用与远程主机建立连接的 IP  &lt;br /&gt;
+  如果不使用此选项, 默认为使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;0.0.0.0&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-p source_port&lt;/code&gt;: 指定 &lt;code class=&quot;highlighter-rouge&quot;&gt;nc&lt;/code&gt; 应用与远程主机建立连接的源端口  &lt;br /&gt;
+如果不指定此选项, 则随机一个可用的端口&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-z&lt;/code&gt;: nc 仅仅扫描指定主机的端口, 而不发送任何数据&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-w timeout&lt;/code&gt;: 指定与远程主机建立连接成功后超过 timeout 秒自动断开连接  &lt;br /&gt;
+如果不使用此选项, 则默认无超时&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-l [ip]:port&lt;/code&gt; : 监听端口 port, 相当于本机启动了一个服务  &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ip&lt;/code&gt; 是可选的, 如果不指定, 默认为 &lt;code class=&quot;highlighter-rouge&quot;&gt;0.0.0.0&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-x proxy_address[:port]&lt;/code&gt;: 指定 nc 请求时使用的代理服务  &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;port&lt;/code&gt; 是可选的, 如果不指定 port, 则代理服务的 port 为指定代理协议的众所周知的端口: &lt;code class=&quot;highlighter-rouge&quot;&gt;1080&lt;/code&gt;(SOCKS), &lt;code class=&quot;highlighter-rouge&quot;&gt;3128&lt;/code&gt;(HTTPS)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-X proxy_version&lt;/code&gt; - 指定 nc 请求时使用代理服务的协议
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;proxy_version&lt;/code&gt; 为 &lt;code class=&quot;highlighter-rouge&quot;&gt;4&lt;/code&gt; : 表示使用的代理为 SOCKS4 代理&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;proxy_version&lt;/code&gt; 为 &lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt; : 表示使用的代理为 SOCKS5 代理&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;proxy_version&lt;/code&gt; 为 &lt;code class=&quot;highlighter-rouge&quot;&gt;connect&lt;/code&gt; : 表示使用的代理为 HTTPS 代理&lt;/li&gt;
+      &lt;li&gt;如果不指定协议, 则默认使用的代理为 SOCKS5 代理&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-u&lt;/code&gt;: 指定使用的 UDP 协议  &lt;br /&gt;
+      如果不使用此选项, 默认为使用 TCP 协议&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-e command&lt;/code&gt; : 执行给出的命令, &lt;code class=&quot;highlighter-rouge&quot;&gt;--exec&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-c command&lt;/code&gt; : 通过 /bin/sh 执行命令 command, &lt;code class=&quot;highlighter-rouge&quot;&gt;--sh-exec&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-v&lt;/code&gt; : 打印详细的输出&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;使用&quot;&gt;使用&lt;/h2&gt;
+
+&lt;h3 id=&quot;建立原始-tcp-连接&quot;&gt;建立原始 TCP 连接&lt;/h3&gt;
+
+&lt;p&gt;与 &lt;code class=&quot;highlighter-rouge&quot;&gt;www.baidu.com&lt;/code&gt; 的 80 端口建立一个 TCP 连接(本地端口随机):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ nc www.baidu.com 80
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;使用本地 &lt;code class=&quot;highlighter-rouge&quot;&gt;1234&lt;/code&gt; 端口与 &lt;code class=&quot;highlighter-rouge&quot;&gt;www.baidu.com&lt;/code&gt; 的 80 端口建立一个 TCP 连接:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ nc -p 1234 www.baidu.com 80
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;与 &lt;code class=&quot;highlighter-rouge&quot;&gt;www.baidu.com&lt;/code&gt; 的 80 端口建立一个 TCP 连接, 超过 5s 自动断开:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ nc -w 5 www.baidu.com 80
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;与 &lt;code class=&quot;highlighter-rouge&quot;&gt;www.baidu.com&lt;/code&gt; 的 80 端口建立一个 TCP 连接, 并发送请求头, 模拟浏览器访问百度:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$ echo `GET / HTTP/1.o\r\n\r\n` | nc -p 21337 www.baidu.com 80
+	HTTP/1.1 200 OK
+	Date: Sun, 10 Dec 2017 08:28:45 GMT
+	Content-Type: text/html
+	Content-Length: 14613
+	...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;上面用法相当于:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$ nc -p 31337 www.baidu.com 80
+ 		GET / HTTP/1.0
+	(回车)
+	(回车)
+	HTTP/1.1 200 OK
+	Date: Sun, 10 Dec 2017 08:28:45 GMT
+	Content-Type: text/html
+	Content-Length: 14613
+	
+
+	nc -p 31337 -w 5 host.example.com 42
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;与 &lt;code class=&quot;highlighter-rouge&quot;&gt;host.example.com&lt;/code&gt; 的 53 端口建立一个 UDP 连接:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  nc -u host.example.com 53
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;10.1.2.3&lt;/code&gt; 作为本地 IP 与 &lt;code class=&quot;highlighter-rouge&quot;&gt;host.example.com&lt;/code&gt; 的 42 端口建立一个 TCP 连接:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  nc -s 10.1.2.3 host.example.com 42
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;端口扫描&quot;&gt;端口扫描&lt;/h3&gt;
+
+&lt;p&gt;端口扫描经常被系统管理员和黑客用来发现在一些机器上开放的端口，帮助他们识别系统中的漏洞&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;检查 &lt;code class=&quot;highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt; 的 TCP 端口 &lt;code class=&quot;highlighter-rouge&quot;&gt;9324-9326&lt;/code&gt; 是否开启&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ nc 127.0.0.1 -z 9320-9330
+  Connection to 127.0.0.1 port 9325 [tcp/*] succeeded!
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;可以看到只有 9325 端口是开放的, &lt;code class=&quot;highlighter-rouge&quot;&gt;-z 9320-9330&lt;/code&gt; 指定了扫描的端口范围是 9320 到 9330&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;详细展示 &lt;code class=&quot;highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt; 的 TCP 端口 &lt;code class=&quot;highlighter-rouge&quot;&gt;9324-9326&lt;/code&gt; 的开启状况, 使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;-v&lt;/code&gt; 选项:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ nc -v -w 2 127.0.0.1 -z 9324-9326
+  nc: connectx to 127.0.0.1 port 9324 (tcp) failed: Connection refused
+  found 0 associations
+  found 1 connections:
+           1: flags=82&amp;lt;CONNECTED,PREFERRED&amp;gt;
+                  outif lo0
+                  src 127.0.0.1 port 65482
+                  dst 127.0.0.1 port 9325
+                  rank info not available
+                  TCP aux info available
+
+  Connection to 127.0.0.1 port 9325 [tcp/*] succeeded!
+  nc: connectx to 127.0.0.1 port 9326 (tcp) failed: Connection refused
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;可以看到发出了三个请求, 只有 9325 端口处于监听状态, 并且显示更为详细的连接成功的请求信息&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;发送文件&quot;&gt;发送文件&lt;/h3&gt;
+
+&lt;p&gt;把 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.2&lt;/code&gt; 上的文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;demo.tar.bz2&lt;/code&gt; 发送到 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.3&lt;/code&gt;, 并保存为 &lt;code class=&quot;highlighter-rouge&quot;&gt;demo.tar.bz2&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.3&lt;/code&gt; 上: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc -l 1234 &amp;gt; demo.tar.bz2&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.2&lt;/code&gt; 上: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc 192.168.11.3 1234 &amp;lt; demo.tar.bz2&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;聊天工具&quot;&gt;聊天工具&lt;/h3&gt;
+
+&lt;p&gt;通过在 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.2&lt;/code&gt; 与 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.3&lt;/code&gt; 上建立 TCP 连接来实现聊天:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.3&lt;/code&gt; 上: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc -l 1234&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.2&lt;/code&gt; 上: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc 192.168.11.2 1234&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这样, 双方就可以相互交流了, 使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+C&lt;/code&gt; 退出&lt;/p&gt;
+
+&lt;h3 id=&quot;连接-memcached&quot;&gt;连接 memcached&lt;/h3&gt;
+
+&lt;p&gt;连接 &lt;code class=&quot;highlighter-rouge&quot;&gt;memcached&lt;/code&gt; 服务器, 执行命令: 假设 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.2&lt;/code&gt; 上启动了一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;memcached&lt;/code&gt;, 并且端口为 &lt;code class=&quot;highlighter-rouge&quot;&gt;11211&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;连接 192.168.11.2 上的 memcached 服务, 并执行 stats 打印 memcached 运行状态:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ echo 'stats' | nc 192.168.11.2 11211
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;充当一个 memecached 客户端, 你可以执行 memcached 的操作指令:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ nc 192.168.11.2 11211
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;使用代理&quot;&gt;使用代理&lt;/h3&gt;
+
+&lt;p&gt;有些网络不能直接访问, 只能通过代理服务才能访问&lt;/p&gt;
+
+&lt;p&gt;通过代理连接 &lt;code class=&quot;highlighter-rouge&quot;&gt;host.example.com&lt;/code&gt; 的 42 端口:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	# 使用 HTTP 代理 http://10.2.3.4:8080 与 host.example.com 的 42 端口连接
+	$ nc -x10.2.3.4:8080 -Xconnect host.example.com 42
+
+	# 使用 socks4 代理 socks4://10.2.3.4:8080 连接 host.example.com 的 42 端口
+	$ nc -x10.2.3.4:8080 -X4 host.example.com 42
+
+	# 使用 socks5 代理 socks5://10.2.3.4:8080 连接 host.example.com 的 42 端口
+	$ nc -x10.2.3.4:8080 -X5 host.example.com 42
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;ssh 使用代理: 在 ssh 的配置文件&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.ssh/config&lt;/code&gt; 配置选项 &lt;code class=&quot;highlighter-rouge&quot;&gt;ProxyCommand&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	Host web
+		HostName    192.168.11.2
+		IdentityFile ~/.ssh/id_rsa
+		Port        22
+		User        root
+		ProxyCommand nc -x127.0.0.1:7070 %h %p
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;一次性-web-server&quot;&gt;一次性 Web Server&lt;/h3&gt;
+
+&lt;p&gt;监听 8080 端口, 如果通过 http 访问, 则返回文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;file&lt;/code&gt; 的内容, 然后断开:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;	&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'HTTP/1.0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;OK\r\nContent-Length:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%d\r\n\r\n'&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;$(wc -c &amp;lt; file)&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;file;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;nc&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;-l&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;)&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;文件夹传输&quot;&gt;文件夹传输&lt;/h3&gt;
+
+&lt;p&gt;配合 tar 命令和管道, 在两台主机之间传输文件夹内容&lt;/p&gt;
+
+&lt;p&gt;把 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.2&lt;/code&gt; 的文件夹 &lt;code class=&quot;highlighter-rouge&quot;&gt;dir&lt;/code&gt; 发往 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.3&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在 192.168.11.2 上: &lt;code class=&quot;highlighter-rouge&quot;&gt;tar -cvf - dir | nc -l 1234&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;在 192.168.11.3 上: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc 192.168.11.2 1234 | tar xvf -&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;使用 tar 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;-j&lt;/code&gt; 选项(&lt;code class=&quot;highlighter-rouge&quot;&gt;bzip2&lt;/code&gt;) 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;z&lt;/code&gt; 选项(&lt;code class=&quot;highlighter-rouge&quot;&gt;gzip&lt;/code&gt;) 进行数据压缩传输&lt;/p&gt;
+
+&lt;h3 id=&quot;远程克隆磁盘&quot;&gt;远程克隆磁盘&lt;/h3&gt;
+
+&lt;p&gt;配合 dd 命令和管道, 进行远程磁盘读写&lt;/p&gt;
+
+&lt;p&gt;把 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.2&lt;/code&gt; 上的 &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/sda&lt;/code&gt; 克隆到 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.3&lt;/code&gt; 上的 &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/sdb&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在 192.168.11.2 上: &lt;code class=&quot;highlighter-rouge&quot;&gt;dd if=/dev/sda | nc -l 1234&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;在 192.168.11.3 上: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc 192.168.11.2 1234 | dd of=/dev/sdb&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;shell&quot;&gt;shell&lt;/h3&gt;
+
+&lt;p&gt;可以打开一个远程主机的 bash, 对远程主机进行操作&lt;/p&gt;
+
+&lt;p&gt;从本地远程打开 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.3&lt;/code&gt; 的 shell:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在 192.168.11.3 上: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc -l 1234 -e /bin/bash&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;在本地: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc 192.168.11.3 1234&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果不支持 &lt;code class=&quot;highlighter-rouge&quot;&gt;-e&lt;/code&gt; 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;-c&lt;/code&gt; 选项, 可以这样做:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;在 192.168.11.3 上:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ mkfifo /tmp/tmp_fifo
+  $ cat /tmp/tmp_fifo | /bin/sh 2&amp;gt;&amp;amp;1 | nc -l 1234 &amp;gt; /tmp/tmp_fifo
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在本地: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc 192.168.11.3 1234&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;反向-shell&quot;&gt;反向 shell&lt;/h3&gt;
+
+&lt;p&gt;在服务端访问客户端的 shell&lt;/p&gt;
+
+&lt;p&gt;服务器 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.11.2&lt;/code&gt; 访问本地 shelk:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在服务器上: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc -l 1234&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;在本机: &lt;code class=&quot;highlighter-rouge&quot;&gt;nc 192.168.11.2 1234 -e /bin/bash&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+                <link>/%E8%AE%B0%E5%BD%95/2017/12/12/netcat-usage/</link>
+                <guid>/%E8%AE%B0%E5%BD%95/2017/12/12/netcat-usage</guid>
+                <pubDate>Tue, 12 Dec 2017 00:00:00 +0000</pubDate>
+        </item>
 
         <item>
                 <title>使用最大余额法计算百分比</title>
@@ -100,7 +425,7 @@ function getPercentWithPrecision(valueList, idx, precision) {
 </description>
                 <link>/2017/11/19/percent-with-the-largest-remainder-method/</link>
                 <guid>/2017/11/19/percent-with-the-largest-remainder-method</guid>
-                <pubDate>Sun, 19 Nov 2017 00:00:00 +0800</pubDate>
+                <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -219,7 +544,7 @@ function unix2dos (content) {
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2017/09/16/crlf-or-lf/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2017/09/16/crlf-or-lf</guid>
-                <pubDate>Sat, 16 Sep 2017 00:00:00 +0800</pubDate>
+                <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -408,7 +733,7 @@ function getElementViewportCoords(element) {
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2017/08/21/get-dom-coords-size-by-javascript/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2017/08/21/get-dom-coords-size-by-javascript</guid>
-                <pubDate>Mon, 21 Aug 2017 00:00:00 +0800</pubDate>
+                <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -456,7 +781,7 @@ if (mode == 'CSS1Compat') {
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2017/08/20/browser-standards-quirks-mode/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2017/08/20/browser-standards-quirks-mode</guid>
-                <pubDate>Sun, 20 Aug 2017 00:00:00 +0800</pubDate>
+                <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -546,7 +871,7 @@ if (mode == 'CSS1Compat') {
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2016/07/07/modify-hard-size-for-virtualbox/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2016/07/07/modify-hard-size-for-virtualbox</guid>
-                <pubDate>Thu, 07 Jul 2016 00:00:00 +0800</pubDate>
+                <pubDate>Thu, 07 Jul 2016 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -1217,7 +1542,7 @@ RUN mkdir MwumLi
 </description>
                 <link>/%E8%BD%AF%E4%BB%B6/2016/03/14/docker-install-and-usage/</link>
                 <guid>/%E8%BD%AF%E4%BB%B6/2016/03/14/docker-install-and-usage</guid>
-                <pubDate>Mon, 14 Mar 2016 00:00:00 +0800</pubDate>
+                <pubDate>Mon, 14 Mar 2016 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -1386,7 +1711,7 @@ mdn 上的文章, 讲述 collapsing margin, 中文&lt;/p&gt;
 </description>
                 <link>/%E5%89%8D%E7%AB%AF/2015/12/24/css-clearfix/</link>
                 <guid>/%E5%89%8D%E7%AB%AF/2015/12/24/css-clearfix</guid>
-                <pubDate>Thu, 24 Dec 2015 00:00:00 +0800</pubDate>
+                <pubDate>Thu, 24 Dec 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -1397,7 +1722,7 @@ mdn 上的文章, 讲述 collapsing margin, 中文&lt;/p&gt;
 </description>
                 <link>/2015/11/19/automated-test-by-selenium/</link>
                 <guid>/2015/11/19/automated-test-by-selenium</guid>
-                <pubDate>Thu, 19 Nov 2015 00:00:00 +0800</pubDate>
+                <pubDate>Thu, 19 Nov 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -1524,7 +1849,7 @@ Hello,World. 你好, 世界!
 </description>
                 <link>/%E6%90%AD%E5%BB%BA/2015/11/10/run-go-in-ubuntu/</link>
                 <guid>/%E6%90%AD%E5%BB%BA/2015/11/10/run-go-in-ubuntu</guid>
-                <pubDate>Tue, 10 Nov 2015 00:00:00 +0800</pubDate>
+                <pubDate>Tue, 10 Nov 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -1856,7 +2181,7 @@ B98FC99C 8FAC73EE D2B95564 DF450523
 </description>
                 <link>/%E8%BD%AF%E4%BB%B6/2015/11/06/sublime-text-such-things/</link>
                 <guid>/%E8%BD%AF%E4%BB%B6/2015/11/06/sublime-text-such-things</guid>
-                <pubDate>Fri, 06 Nov 2015 00:00:00 +0800</pubDate>
+                <pubDate>Fri, 06 Nov 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -1915,7 +2240,7 @@ sudo apt-get install -y nodejs
 
 &lt;h4 id=&quot;安装&quot;&gt;安装&lt;/h4&gt;
 
-&lt;p&gt;nvm 给出了自动安装的脚本, 因此你可以用过 &lt;code class=&quot;highlighter-rouge&quot;&gt;wget&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;curl&lt;/code&gt; 实现自动安装, 看这里 :&lt;br /&gt;
+&lt;p&gt;nvm 给出了自动安装的脚本, 因此你可以用过 &lt;code class=&quot;highlighter-rouge&quot;&gt;wget&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;curl&lt;/code&gt; 实现自动安装, 看这里 :  &lt;br /&gt;
 &lt;a href=&quot;https://github.com/creationix/nvm#install-script&quot;&gt;https://github.com/creationix/nvm#install-script&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;这里主要讲一下手动安装  &lt;br /&gt;
@@ -2005,7 +2330,7 @@ sudo apt-get install -y nodejs
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/11/03/install-nodejs-on-ubuntu/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/11/03/install-nodejs-on-ubuntu</guid>
-                <pubDate>Tue, 03 Nov 2015 00:00:00 +0800</pubDate>
+                <pubDate>Tue, 03 Nov 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -2324,7 +2649,7 @@ sudo apt-get install -y nodejs
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/09/25/ssh-port-forwarding/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/09/25/ssh-port-forwarding</guid>
-                <pubDate>Fri, 25 Sep 2015 00:00:00 +0800</pubDate>
+                <pubDate>Fri, 25 Sep 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -2465,7 +2790,7 @@ remote_auto ifmicro@remote-host-1 &amp;amp;
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/09/23/ssh-remote-run-cmd/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/09/23/ssh-remote-run-cmd</guid>
-                <pubDate>Wed, 23 Sep 2015 00:00:00 +0800</pubDate>
+                <pubDate>Wed, 23 Sep 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -2785,14 +3110,14 @@ Are you sure you want to continue connecting (yes/no)?
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:fingerprint&quot;&gt;
-      &lt;p&gt;对 RSA 公钥进行 MD5 计算生成的一个 128 位的指纹&amp;nbsp;&lt;a href=&quot;#fnref:fingerprint&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;对 RSA 公钥进行 MD5 计算生成的一个 128 位的指纹 &lt;a href=&quot;#fnref:fingerprint&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/09/21/ssh-login-server/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/09/21/ssh-login-server</guid>
-                <pubDate>Mon, 21 Sep 2015 00:00:00 +0800</pubDate>
+                <pubDate>Mon, 21 Sep 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -2815,8 +3140,8 @@ Are you sure you want to continue connecting (yes/no)?
       &lt;li&gt;&lt;a href=&quot;#发现插件&quot; id=&quot;markdown-toc-发现插件&quot;&gt;发现插件&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#安装插件&quot; id=&quot;markdown-toc-安装插件&quot;&gt;安装插件&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#一些插件&quot; id=&quot;markdown-toc-一些插件&quot;&gt;一些插件&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#disqus-评论系统--disqus&quot; id=&quot;markdown-toc-disqus-评论系统--disqus&quot;&gt;disqus 评论系统 – &lt;a href=&quot;http://plugins.gitbook.com/plugin/disqus&quot;&gt;disqus&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#自动化封面--autocover&quot; id=&quot;markdown-toc-自动化封面--autocover&quot;&gt;自动化封面 – &lt;a href=&quot;http://plugins.gitbook.com/plugin/autocover&quot;&gt;autocover&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#disqus-评论系统--disqus&quot; id=&quot;markdown-toc-disqus-评论系统--disqus&quot;&gt;disqus 评论系统 – disqus&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#自动化封面--autocover&quot; id=&quot;markdown-toc-自动化封面--autocover&quot;&gt;自动化封面 – autocover&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -3291,20 +3616,20 @@ Are you sure you want to continue connecting (yes/no)?
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:gitbook-online&quot;&gt;
-      &lt;p&gt;还有一个与之同名的在线创建和托管书籍的平台&lt;a href=&quot;https://www.gitbook.com/&quot;&gt;www.gitbook.com&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;#fnref:gitbook-online&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;还有一个与之同名的在线创建和托管书籍的平台&lt;a href=&quot;https://www.gitbook.com/&quot;&gt;www.gitbook.com&lt;/a&gt; &lt;a href=&quot;#fnref:gitbook-online&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:nodejs&quot;&gt;
-      &lt;p&gt;采用软链接解决ubuntu下 nodejs 命令名与 gitbook 内部使用 nodejs 命令名不一致&lt;br /&gt;具体看&lt;a href=&quot;http://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04#answer-18130296&quot;&gt;nodejs vs node on ubuntu 12.04&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;#fnref:nodejs&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;采用软链接解决ubuntu下 nodejs 命令名与 gitbook 内部使用 nodejs 命令名不一致&lt;br /&gt;具体看&lt;a href=&quot;http://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04#answer-18130296&quot;&gt;nodejs vs node on ubuntu 12.04&lt;/a&gt; &lt;a href=&quot;#fnref:nodejs&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:npm&quot;&gt;
-      &lt;p&gt;Node Package Manager , 一个 nodejs 包管理和分发工具 &lt;br /&gt;&lt;a href=&quot;https://github.com/npm/npm&quot;&gt;NPM Github项目地址&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;#fnref:npm&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Node Package Manager , 一个 nodejs 包管理和分发工具 &lt;br /&gt;&lt;a href=&quot;https://github.com/npm/npm&quot;&gt;NPM Github项目地址&lt;/a&gt; &lt;a href=&quot;#fnref:npm&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/09/07/gitbook/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/09/07/gitbook</guid>
-                <pubDate>Mon, 07 Sep 2015 00:00:00 +0800</pubDate>
+                <pubDate>Mon, 07 Sep 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -3755,7 +4080,7 @@ set -g prefix C-a
 </description>
                 <link>/%E8%BD%AF%E4%BB%B6/2015/05/05/tmux/</link>
                 <guid>/%E8%BD%AF%E4%BB%B6/2015/05/05/tmux</guid>
-                <pubDate>Tue, 05 May 2015 00:00:00 +0800</pubDate>
+                <pubDate>Tue, 05 May 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -3844,7 +4169,7 @@ set -g prefix C-a
 </description>
                 <link>/%E6%83%85%E7%BB%AA/2015/05/01/leave-beijing/</link>
                 <guid>/%E6%83%85%E7%BB%AA/2015/05/01/leave-beijing</guid>
-                <pubDate>Fri, 01 May 2015 00:00:00 +0800</pubDate>
+                <pubDate>Fri, 01 May 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -4081,7 +4406,7 @@ extension=igbinary.so
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/04/24/php-extension-install/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/04/24/php-extension-install</guid>
-                <pubDate>Fri, 24 Apr 2015 00:00:00 +0800</pubDate>
+                <pubDate>Fri, 24 Apr 2015 00:00:00 +0000</pubDate>
         </item>
 
         <item>
@@ -4421,147 +4746,7 @@ iface default inet dhcp
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2014/12/06/raspberrypi-install/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2014/12/06/raspberrypi-install</guid>
-                <pubDate>Sat, 06 Dec 2014 00:00:00 +0800</pubDate>
-        </item>
-
-        <item>
-                <title>Linux下MASM汇编环境搭建</title>
-                <description>
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#碎碎念&quot; id=&quot;markdown-toc-碎碎念&quot;&gt;碎碎念&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#安装dosbox&quot; id=&quot;markdown-toc-安装dosbox&quot;&gt;安装dosbox&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#下载masm软件包&quot; id=&quot;markdown-toc-下载masm软件包&quot;&gt;下载MASM软件包&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#启动dosbox&quot; id=&quot;markdown-toc-启动dosbox&quot;&gt;启动dosbox&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#使用脚本启动dosbox&quot; id=&quot;markdown-toc-使用脚本启动dosbox&quot;&gt;使用脚本启动dosbox&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#写个汇编版的helloworld&quot; id=&quot;markdown-toc-写个汇编版的helloworld&quot;&gt;写个汇编版的HelloWorld&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#在dosbox中编译连接&quot; id=&quot;markdown-toc-在dosbox中编译连接&quot;&gt;在dosbox中编译连接&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#一些自言自语&quot; id=&quot;markdown-toc-一些自言自语&quot;&gt;一些自言自语&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#推荐&quot; id=&quot;markdown-toc-推荐&quot;&gt;推荐&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;碎碎念&quot;&gt;碎碎念&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MASM&lt;/code&gt;是Microsoft Macro Assembler的缩写，它是微软为x86微处理器家族缩写的一套宏编译器&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dosbox&lt;/code&gt;是一款x86/DOS环境模拟器，可以很好模拟DOS环境,方便我们运行DOS程序&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;.asm&lt;/code&gt;是汇编代码的后缀&lt;/p&gt;
-
-&lt;p&gt;好了，现在开始吧！&lt;/p&gt;
-
-&lt;h2 id=&quot;安装dosbox&quot;&gt;安装dosbox&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get install dosbox  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;下载masm软件包&quot;&gt;下载MASM软件包&lt;/h2&gt;
-
-&lt;p&gt;从这里下载&lt;a href=&quot;http://yun.baidu.com/share/link?shareid=507770005&amp;amp;uk=388194121&quot; title=&quot;masm.tar.bz2&quot;&gt;masm.tar.bz2&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd ~
-$ mkdir -p masm/tools
-$ tar xjf Download/masm.tar.bz2 -C masm/tools 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;下载的文件，解压到新建的文件夹masm/tools下  &lt;br /&gt;
-masm即将作为dosbox的C盘&lt;/p&gt;
-
-&lt;h2 id=&quot;启动dosbox&quot;&gt;启动dosbox&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ dosbox -c &quot;mount C: ~/masm/tools&quot; -c &quot;path %path%;C:\tools\&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;好了，dosbox应该出现了，你可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;debug.exe&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;masm.exe&lt;/code&gt;了  &lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;-c&lt;/code&gt;: 指定dosbox的启动参数  &lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;mount C: ~/masm/tools&lt;/code&gt;: 把我们用户主目录下的masm/tools作为dosbox的C盘  &lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;path %path%;C:\tools&lt;/code&gt; : 给path(&lt;em&gt;可执行文件搜索路径&lt;/em&gt;)环境变量添加值，这样，我们无论在哪个目录都可以使用masm软件包的工具了&lt;/p&gt;
-
-&lt;h2 id=&quot;使用脚本启动dosbox&quot;&gt;使用脚本启动dosbox&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;dosbox_setup.sh&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-dosbox -c &lt;span class=&quot;s2&quot;&gt;&quot;mount C: ~masm&quot;&lt;/span&gt; -c &lt;span class=&quot;s2&quot;&gt;&quot;path %path%;C:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ools&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &amp;amp;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;为dosbox_setup.sh添加执行权限&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ chmod a+x dosbox_setup.sh
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;好了，你可以通过运行此脚本打开dosbox,而且路径已经配置好了&lt;/p&gt;
-
-&lt;h2 id=&quot;写个汇编版的helloworld&quot;&gt;写个汇编版的HelloWorld&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;hello.asm&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;assume cs:codes, ds:datas
-datas segment
-		str db 'hello,world',13,10,'$'
-datas ends
-codes segment
-	start:
-		mov ax, datas
-		mov ds, ax
-		lea dx, str
-		mov ah, 9
-		int 21h
-		mov ah, 4ch
-		int 21h
-codes ends
-	end start
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;可以使用vim写代码(当然如果你嫌影响你的心情的话，可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;EDIT.COM&lt;/code&gt;)&lt;/p&gt;
-
-&lt;h3 id=&quot;在dosbox中编译连接&quot;&gt;在dosbox中编译连接&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\&amp;gt; masm hello.asm
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;编译生成hello.obj的连接文件&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\&amp;gt; link hello.obj
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;连接生成hello.exe的可执行文件&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\&amp;gt; hello.exe
-hello,world
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;至此结束&lt;/p&gt;
-
-&lt;h2 id=&quot;一些自言自语&quot;&gt;一些自言自语&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;为什么选择MASM呢？&lt;/em&gt;  &lt;br /&gt;
-事实上，各大高校的汇编语言学习都是使用MASM的语法，而Linux下的NASM的语法和其还是有些差异的  &lt;br /&gt;
-(不要问我为何在Linux下使用MASM，我能告诉你这是我的偏执吗?嘿嘿…)&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;为什么还要学习汇编?&lt;/em&gt;    &lt;br /&gt;
-这个各人有个人的理由吧，而我只是单纯想了解一下底层程序的运行机制&lt;/p&gt;
-
-&lt;h2 id=&quot;推荐&quot;&gt;推荐&lt;/h2&gt;
-
-&lt;p&gt;对于汇编学习，推荐王爽先生的《汇编语言》  &lt;br /&gt;
-对于dosbox的其他用法，请使用Linux下的&lt;code class=&quot;highlighter-rouge&quot;&gt;man dosbox&lt;/code&gt;  &lt;br /&gt;
-对于其它问题，请留言或者google&lt;/p&gt;
-
-</description>
-                <link>/%E8%BD%AF%E4%BB%B6/2014/12/05/linux-masm-built/</link>
-                <guid>/%E8%BD%AF%E4%BB%B6/2014/12/05/linux-masm-built</guid>
-                <pubDate>Fri, 05 Dec 2014 00:00:00 +0800</pubDate>
+                <pubDate>Sat, 06 Dec 2014 00:00:00 +0000</pubDate>
         </item>
 
 
