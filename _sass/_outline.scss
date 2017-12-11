@@ -1,5 +1,5 @@
 //
-// Site 轮廓
+// Site Outline
 //
 
 html, body {
@@ -218,7 +218,7 @@ code {
   word-wrap: break-word;
 }
 
-// 行内 code
+// inline code
 p code {
   // color: yellow;
   padding: 0.5em;
@@ -327,12 +327,12 @@ em, i {
   }
 }
 
-// 上/下篇文章
+// last/next article
 .pagination ul {
   list-style: none;
 }
 
-// 目录
+// toc menu
 .tocWrap {
   z-index: 100;
   top: 16%;
