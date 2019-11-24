@@ -9,6 +9,7 @@ branches:
 
 before_install:
   - docker pull jekyll/minimal:3.5.1
+  - sudo chown -R travis:travis /home/travis/
 
 install:
   - docker run --volume="$PWD:/srv/jekyll" jekyll/minimal:3.5.1 jekyll build
