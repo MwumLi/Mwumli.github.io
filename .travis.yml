@@ -22,5 +22,6 @@ deploy:
   github_token: $GITHUB_ACCESS_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep_history: true
   local_dir: _site
+  target_branch: gh-pages
   on:
     branch: develop
