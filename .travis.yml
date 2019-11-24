@@ -20,15 +20,5 @@ install:
   - docker run --volume="$PWD:/srv/jekyll" jekyll/minimal:3.5.1 jekyll build
 
 script:
-  - echo "Skipping tests"
+  - npx gh-pages -x -b master -d _site -r https://${GITHUB_ACCESS_TOKEN}@github.com/MwumLi/MwumLi.github.io.git
 
-deploy:
-  provider: script
-  script: npx gh-pages -x -b master -d _site -r https://${GITHUB_ACCESS_TOKEN}@github.com/MwumLi/MwumLi.github.io.git
-  skip_cleanup: true
-  github_token: $GITHUB_ACCESS_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
-  local_dir: _site
-  target_branch: master
-  on:
-    branch: develop
