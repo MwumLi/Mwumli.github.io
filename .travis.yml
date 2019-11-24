@@ -1,4 +1,5 @@
 language: ruby
+dist: trusty
 
 services:
   - docker
@@ -9,7 +10,6 @@ branches:
 
 before_install:
   - docker pull jekyll/minimal:3.5.1
-  - sudo chown -R travis:travis /home/travis/
 
 install:
   - docker run --volume="$PWD:/srv/jekyll" jekyll/minimal:3.5.1 jekyll build
@@ -23,6 +23,6 @@ deploy:
   github_token: $GITHUB_ACCESS_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep_history: true
   local_dir: _site
-  target_branch: gh-pages
+  target_branch: master
   on:
     branch: develop
