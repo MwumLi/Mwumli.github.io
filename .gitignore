@@ -1,4 +1,14 @@
+# build results
 _site
+
+# sass cache
 .sass-cache
+
+# inore vim swap
 **/*.swp
+
+# ignore node_modul
 node_modules
+
+# jekyll cache
+.jekyll-cache

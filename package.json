@@ -8,7 +8,7 @@
     "gh-pages": "^1.1.0"
   },
   "scripts": {
-    "predeploy": "jekyll build",
+    "predeploy": "make build",
     "deploy": "gh-pages -b master -d _site"
   },
   "repository": {
