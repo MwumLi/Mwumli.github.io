@@ -1,7 +1,10 @@
-language: ruby
-dist: trusty
-rvm:
-  - 2.4.5
+language: node_js
+node_js:
+  - "10"
+
+cache:
+  directories:
+    - "node_modules"
 
 services:
   - docker
@@ -20,7 +23,8 @@ script:
   - echo "Skipping tests"
 
 deploy:
-  provider: pages
+  provider: script
+  script: npx gh-pages -x -b master -d _site -r https://${GITHUB_ACCESS_TOKEN}@github.com/MwumLi/MwumLi.github.io.git
   skip_cleanup: true
   github_token: $GITHUB_ACCESS_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep_history: true
