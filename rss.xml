@@ -5,8 +5,8 @@
         <description>倘若微小 - MwumLi</description>
         <link></link>
         <atom:link href="" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Wed, 10 Jan 2018 14:19:04 +0000</lastBuildDate>
-        <pubDate>Wed, 10 Jan 2018 14:19:04 +0000</pubDate>
+        <lastBuildDate>Sun, 24 Nov 2019 09:04:58 -0600</lastBuildDate>
+        <pubDate>Sun, 24 Nov 2019 09:04:58 -0600</pubDate>
         <ttl>60</ttl>
 
 
@@ -265,8 +265,8 @@
 
 &lt;p&gt;监听 8080 端口, 如果通过 http 访问, 则返回文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;file&lt;/code&gt; 的内容, 然后断开:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;	&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'HTTP/1.0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;OK\r\nContent-Length:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%d\r\n\r\n'&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;$(wc -c &amp;lt; file)&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;file;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;nc&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;-l&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;)&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	{ printf 'HTTP/1.0 200 OK\r\nContent-Length: %d\r\n\r\n' &quot;$(wc -c &amp;lt; file)&quot;; cat file; } | nc -l 8080&quot;&amp;gt;)&quot;}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h3 id=&quot;文件夹传输&quot;&gt;文件夹传输&lt;/h3&gt;
@@ -332,7 +332,7 @@
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2017/12/12/netcat-usage/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2017/12/12/netcat-usage</guid>
-                <pubDate>Tue, 12 Dec 2017 00:00:00 +0000</pubDate>
+                <pubDate>Tue, 12 Dec 2017 00:00:00 -0600</pubDate>
         </item>
 
         <item>
@@ -425,7 +425,7 @@ function getPercentWithPrecision(valueList, idx, precision) {
 </description>
                 <link>/2017/11/19/percent-with-the-largest-remainder-method/</link>
                 <guid>/2017/11/19/percent-with-the-largest-remainder-method</guid>
-                <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+                <pubDate>Sun, 19 Nov 2017 00:00:00 -0600</pubDate>
         </item>
 
         <item>
@@ -544,7 +544,7 @@ function unix2dos (content) {
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2017/09/16/crlf-or-lf/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2017/09/16/crlf-or-lf</guid>
-                <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
+                <pubDate>Sat, 16 Sep 2017 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -733,7 +733,7 @@ function getElementViewportCoords(element) {
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2017/08/21/get-dom-coords-size-by-javascript/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2017/08/21/get-dom-coords-size-by-javascript</guid>
-                <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
+                <pubDate>Mon, 21 Aug 2017 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -781,7 +781,7 @@ if (mode == 'CSS1Compat') {
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2017/08/20/browser-standards-quirks-mode/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2017/08/20/browser-standards-quirks-mode</guid>
-                <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
+                <pubDate>Sun, 20 Aug 2017 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -871,7 +871,7 @@ if (mode == 'CSS1Compat') {
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2016/07/07/modify-hard-size-for-virtualbox/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2016/07/07/modify-hard-size-for-virtualbox</guid>
-                <pubDate>Thu, 07 Jul 2016 00:00:00 +0000</pubDate>
+                <pubDate>Thu, 07 Jul 2016 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -1542,7 +1542,7 @@ RUN mkdir MwumLi
 </description>
                 <link>/%E8%BD%AF%E4%BB%B6/2016/03/14/docker-install-and-usage/</link>
                 <guid>/%E8%BD%AF%E4%BB%B6/2016/03/14/docker-install-and-usage</guid>
-                <pubDate>Mon, 14 Mar 2016 00:00:00 +0000</pubDate>
+                <pubDate>Mon, 14 Mar 2016 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -1711,7 +1711,7 @@ mdn 上的文章, 讲述 collapsing margin, 中文&lt;/p&gt;
 </description>
                 <link>/%E5%89%8D%E7%AB%AF/2015/12/24/css-clearfix/</link>
                 <guid>/%E5%89%8D%E7%AB%AF/2015/12/24/css-clearfix</guid>
-                <pubDate>Thu, 24 Dec 2015 00:00:00 +0000</pubDate>
+                <pubDate>Thu, 24 Dec 2015 00:00:00 -0600</pubDate>
         </item>
 
         <item>
@@ -1722,7 +1722,7 @@ mdn 上的文章, 讲述 collapsing margin, 中文&lt;/p&gt;
 </description>
                 <link>/2015/11/19/automated-test-by-selenium/</link>
                 <guid>/2015/11/19/automated-test-by-selenium</guid>
-                <pubDate>Thu, 19 Nov 2015 00:00:00 +0000</pubDate>
+                <pubDate>Thu, 19 Nov 2015 00:00:00 -0600</pubDate>
         </item>
 
         <item>
@@ -1849,7 +1849,7 @@ Hello,World. 你好, 世界!
 </description>
                 <link>/%E6%90%AD%E5%BB%BA/2015/11/10/run-go-in-ubuntu/</link>
                 <guid>/%E6%90%AD%E5%BB%BA/2015/11/10/run-go-in-ubuntu</guid>
-                <pubDate>Tue, 10 Nov 2015 00:00:00 +0000</pubDate>
+                <pubDate>Tue, 10 Nov 2015 00:00:00 -0600</pubDate>
         </item>
 
         <item>
@@ -2181,7 +2181,7 @@ B98FC99C 8FAC73EE D2B95564 DF450523
 </description>
                 <link>/%E8%BD%AF%E4%BB%B6/2015/11/06/sublime-text-such-things/</link>
                 <guid>/%E8%BD%AF%E4%BB%B6/2015/11/06/sublime-text-such-things</guid>
-                <pubDate>Fri, 06 Nov 2015 00:00:00 +0000</pubDate>
+                <pubDate>Fri, 06 Nov 2015 00:00:00 -0600</pubDate>
         </item>
 
         <item>
@@ -2240,7 +2240,7 @@ sudo apt-get install -y nodejs
 
 &lt;h4 id=&quot;安装&quot;&gt;安装&lt;/h4&gt;
 
-&lt;p&gt;nvm 给出了自动安装的脚本, 因此你可以用过 &lt;code class=&quot;highlighter-rouge&quot;&gt;wget&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;curl&lt;/code&gt; 实现自动安装, 看这里 :  &lt;br /&gt;
+&lt;p&gt;nvm 给出了自动安装的脚本, 因此你可以用过 &lt;code class=&quot;highlighter-rouge&quot;&gt;wget&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;curl&lt;/code&gt; 实现自动安装, 看这里 :&lt;br /&gt;
 &lt;a href=&quot;https://github.com/creationix/nvm#install-script&quot;&gt;https://github.com/creationix/nvm#install-script&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;这里主要讲一下手动安装  &lt;br /&gt;
@@ -2330,7 +2330,7 @@ sudo apt-get install -y nodejs
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/11/03/install-nodejs-on-ubuntu/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/11/03/install-nodejs-on-ubuntu</guid>
-                <pubDate>Tue, 03 Nov 2015 00:00:00 +0000</pubDate>
+                <pubDate>Tue, 03 Nov 2015 00:00:00 -0600</pubDate>
         </item>
 
         <item>
@@ -2649,7 +2649,7 @@ sudo apt-get install -y nodejs
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/09/25/ssh-port-forwarding/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/09/25/ssh-port-forwarding</guid>
-                <pubDate>Fri, 25 Sep 2015 00:00:00 +0000</pubDate>
+                <pubDate>Fri, 25 Sep 2015 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -2790,7 +2790,7 @@ remote_auto ifmicro@remote-host-1 &amp;amp;
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/09/23/ssh-remote-run-cmd/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/09/23/ssh-remote-run-cmd</guid>
-                <pubDate>Wed, 23 Sep 2015 00:00:00 +0000</pubDate>
+                <pubDate>Wed, 23 Sep 2015 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -3117,7 +3117,7 @@ Are you sure you want to continue connecting (yes/no)?
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/09/21/ssh-login-server/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/09/21/ssh-login-server</guid>
-                <pubDate>Mon, 21 Sep 2015 00:00:00 +0000</pubDate>
+                <pubDate>Mon, 21 Sep 2015 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -3312,11 +3312,11 @@ Are you sure you want to continue connecting (yes/no)?
     &lt;p&gt;指定书籍所用语言风格  &lt;br /&gt;
 修改 book.json 内容为 :&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;gitbook&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2.2.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;language&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;cn&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
- &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; {
+     &quot;gitbook&quot; : &quot;2.2.0&quot;,
+     &quot;language&quot; : &quot;cn&quot;
+ }
+&lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
 
     &lt;p&gt;在浏览器中可以看到侧边栏的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Introduction&lt;/code&gt; 变为 &lt;code class=&quot;highlighter-rouge&quot;&gt;介绍&lt;/code&gt;&lt;/p&gt;
@@ -3325,16 +3325,16 @@ Are you sure you want to continue connecting (yes/no)?
     &lt;p&gt;为侧边栏顶部增加链接  &lt;br /&gt;
    修改 book.json 内容为 :&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;gitbook&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2.2.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;language&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;cn&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;links&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;sidebar&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;倘若微小&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://www.ifmicro.com/&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;gitbook&quot; : &quot;2.2.0&quot;,
+    &quot;language&quot; : &quot;cn&quot;,
+    &quot;links&quot; : {
+        &quot;sidebar&quot; : {
+            &quot;倘若微小&quot; : &quot;http://www.ifmicro.com/&quot;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
 
     &lt;p&gt;在浏览器中可以看到侧边栏顶部增加一个链接，名为 &lt;a href=&quot;http://www.ifmicro.com/&quot;&gt;倘若微小&lt;/a&gt;&lt;/p&gt;
@@ -3447,15 +3447,15 @@ Are you sure you want to continue connecting (yes/no)?
   &lt;li&gt;
     &lt;p&gt;在 book.json 中添加&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;styles&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-         &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;website&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;assets/css/myWebStyle.css&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-         &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;pdf&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;assets/css/myPdfStyle.css&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-         &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;mobi&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;assets/css/myMobiStyle.css&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-         &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;epub&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;assets/css/myEpubStyle.css&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-     &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
- &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; {
+     &quot;styles&quot; : {
+         &quot;website&quot; : &quot;assets/css/myWebStyle.css&quot;,
+         &quot;pdf&quot; : &quot;assets/css/myPdfStyle.css&quot;,
+         &quot;mobi&quot; : &quot;assets/css/myMobiStyle.css&quot;,
+         &quot;epub&quot; : &quot;assets/css/myEpubStyle.css&quot;
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
 
     &lt;p&gt;我分别为 site, pdf, mobi, epub 指定了 css, 那么分别生成它们的时候，会在默认的 css 基础上层叠指定的 css&lt;/p&gt;
@@ -3501,10 +3501,10 @@ Are you sure you want to continue connecting (yes/no)?
 
 &lt;p&gt;一旦你发现你需要的插件，在 book.json 添加:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;plugins&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;myPlugin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;anotherPlugin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+  &quot;plugins&quot;: [&quot;myPlugin&quot;, &quot;anotherPlugin&quot;]
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;对于 gitbook-plugin-X 的插件，请这样安装 :&lt;/p&gt;
@@ -3536,15 +3536,15 @@ Are you sure you want to continue connecting (yes/no)?
   &lt;li&gt;
     &lt;p&gt;在 book.json 中添加 :&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;plugins&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;disqus&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;pluginsConfig&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-         &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;disqus&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;shortName&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;XXXXXXX&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-         &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  
- &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; {
+     &quot;plugins&quot;: [&quot;disqus&quot;],
+     &quot;pluginsConfig&quot;: {
+         &quot;disqus&quot;: {
+                 &quot;shortName&quot;: &quot;XXXXXXX&quot;
+             }
+         }  
+ }
+&lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -3565,28 +3565,28 @@ Are you sure you want to continue connecting (yes/no)?
   &lt;li&gt;
     &lt;p&gt;在 book.json 中添加 :&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;plugins&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;autocover&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;pluginsConfig&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-         &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;autocover&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;My Book&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Author&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;font&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;size&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;family&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Impact&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;color&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#FFF&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;size&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;w&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1800&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;h&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2360&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;background&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;color&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#09F&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-         &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-     &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
- &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; {
+     &quot;plugins&quot;: [&quot;autocover&quot;],
+     &quot;pluginsConfig&quot;: {
+         &quot;autocover&quot;: {
+             &quot;title&quot;: &quot;My Book&quot;,
+             &quot;author&quot;: &quot;Author&quot;,
+             &quot;font&quot;: {
+                 &quot;size&quot;: null,
+                 &quot;family&quot;: &quot;Impact&quot;,
+                 &quot;color&quot;: &quot;#FFF&quot;
+             },
+             &quot;size&quot;: {
+                 &quot;w&quot;: 1800,
+                 &quot;h&quot;: 2360
+             },
+             &quot;background&quot;: {
+                 &quot;color&quot;: &quot;#09F&quot;
+             }
+         }
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
     &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -3629,7 +3629,7 @@ Are you sure you want to continue connecting (yes/no)?
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/09/07/gitbook/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/09/07/gitbook</guid>
-                <pubDate>Mon, 07 Sep 2015 00:00:00 +0000</pubDate>
+                <pubDate>Mon, 07 Sep 2015 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -4080,7 +4080,7 @@ set -g prefix C-a
 </description>
                 <link>/%E8%BD%AF%E4%BB%B6/2015/05/05/tmux/</link>
                 <guid>/%E8%BD%AF%E4%BB%B6/2015/05/05/tmux</guid>
-                <pubDate>Tue, 05 May 2015 00:00:00 +0000</pubDate>
+                <pubDate>Tue, 05 May 2015 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -4169,7 +4169,7 @@ set -g prefix C-a
 </description>
                 <link>/%E6%83%85%E7%BB%AA/2015/05/01/leave-beijing/</link>
                 <guid>/%E6%83%85%E7%BB%AA/2015/05/01/leave-beijing</guid>
-                <pubDate>Fri, 01 May 2015 00:00:00 +0000</pubDate>
+                <pubDate>Fri, 01 May 2015 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -4406,7 +4406,7 @@ extension=igbinary.so
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2015/04/24/php-extension-install/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2015/04/24/php-extension-install</guid>
-                <pubDate>Fri, 24 Apr 2015 00:00:00 +0000</pubDate>
+                <pubDate>Fri, 24 Apr 2015 00:00:00 -0500</pubDate>
         </item>
 
         <item>
@@ -4746,7 +4746,7 @@ iface default inet dhcp
 </description>
                 <link>/%E8%AE%B0%E5%BD%95/2014/12/06/raspberrypi-install/</link>
                 <guid>/%E8%AE%B0%E5%BD%95/2014/12/06/raspberrypi-install</guid>
-                <pubDate>Sat, 06 Dec 2014 00:00:00 +0000</pubDate>
+                <pubDate>Sat, 06 Dec 2014 00:00:00 -0600</pubDate>
         </item>
 
 

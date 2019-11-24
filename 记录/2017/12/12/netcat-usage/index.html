@@ -392,8 +392,8 @@
 
 <p>监听 8080 端口, 如果通过 http 访问, 则返回文件 <code class="highlighter-rouge">file</code> 的内容, 然后断开:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="w">	</span><span class="p">{</span><span class="w"> </span><span class="err">printf</span><span class="w"> </span><span class="err">'HTTP/1.0</span><span class="w"> </span><span class="err">200</span><span class="w"> </span><span class="err">OK\r\nContent-Length:</span><span class="w"> </span><span class="err">%d\r\n\r\n'</span><span class="w"> </span><span class="nt">"$(wc -c &lt; file)"</span><span class="err">;</span><span class="w"> </span><span class="err">cat</span><span class="w"> </span><span class="err">file;</span><span class="w"> </span><span class="err">}</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">nc</span><span class="w"> </span><span class="err">-l</span><span class="w"> </span><span class="mi">8080</span><span class="s2">"&gt;)"</span><span class="err">}</span><span class="w">
-</span></code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code>	{ printf 'HTTP/1.0 200 OK\r\nContent-Length: %d\r\n\r\n' "$(wc -c &lt; file)"; cat file; } | nc -l 8080"&gt;)"}
+</code></pre>
 </div>
 
 <h3 id="文件夹传输">文件夹传输</h3>
@@ -500,7 +500,7 @@
       </main>
       <footer class="site-footer">
         <div class="site-wrapper clearfix">
-          <p>&copy;2014-2018 <a href="">倘若微小</a><br />
+          <p>&copy;2014-2019 <a href="">倘若微小</a><br />
 Powered by <a href="https://jekyllrb.com/">jekyll</a> | Hosted by <a href="https://github.com/">github</a> | Designed by <a href="">MwumLi</a><br />
 本站采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。</p>
 
