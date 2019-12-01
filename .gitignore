@@ -12,3 +12,4 @@ node_modules
 
 # jekyll cache
 .jekyll-cache
+.jekyll-metadata
